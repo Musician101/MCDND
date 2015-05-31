@@ -2,12 +2,20 @@ package musician101.mcdnd.combat;
 
 public enum DamageType
 {
-	//TODO include weapon damage types
 	ACID("Acid"),
+	BLUDGEONING("Bludgeoning"),
 	COLD("Cold"),
 	FIRE("Fire"),
+	FORCE("Force"),
 	LIGHTNING("Lightning"),
-	POISON("Poison");
+	NECROTIC("Necrotic"),
+	NONE("None"),
+	PIERCING("Piercing"),
+	POISON("Poison"),
+	PSYCHIC("Psychic"),
+	RADIANT("Radiant"),
+	SLASHING("Slashing"),
+	THUNDER("Thunder");
 	
 	String name;
 	

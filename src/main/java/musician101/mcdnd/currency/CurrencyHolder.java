@@ -97,6 +97,11 @@ public abstract class CurrencyHolder
 			super();
 		}
 		
+		public Cost(CurrencyType type, int amount)
+		{
+			super(new Currency(type, amount));
+		}
+		
 		public Cost(Currency... currencies)
 		{
 			super(currencies);

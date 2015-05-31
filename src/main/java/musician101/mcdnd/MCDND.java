@@ -34,8 +34,8 @@ public class MCDND
 			return;
 		}
 		
-		//TODO left off here. character sheet command
-		
+		//TODO character sheet keybind
+		//TODO guihandler init here and in proxy. check Botania for example
 	}
 	
 	//TODO NPC: ability score, size, armor class, hit points, resistances, actions

@@ -7,7 +7,8 @@ import java.util.List;
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.abilityscore.RaceAbilityScoreIncrease;
-import musician101.mcdnd.combat.Dice;
+import musician101.mcdnd.dice.Dice;
+import musician101.mcdnd.dice.Dice.DiceType;
 import musician101.mcdnd.language.Language;
 import musician101.mcdnd.trait.Trait;
 import musician101.mcdnd.trait.Traits;
@@ -247,18 +248,18 @@ public class Race
 	
 	public static enum Height
 	{
-		HILL_DWARF(3 * 12 + 8, Dice.D4),
-		MOUNTAIN_DWARF(4 * 12, Dice.D4),
-		DROW_ELF(4 * 12 + 5, Dice.D6),
-		HIGH_ELF(4 * 12 + 6, Dice.D10),
-		WOOD_ELF(4 * 12 + 6, Dice.D10),
-		HUMAN(4 * 12 + 8, Dice.D10),
-		DRAGONBORN(5 * 12 + 6, Dice.D8),
-		HALFLING(2 * 12 + 7, Dice.D4),
-		HALF_ELF(4 * 12 + 9, Dice.D8),
-		HALF_ORC(4 * 12 + 10, Dice.D10),
-		TIEFLING(4 * 12 + 9, Dice.D8),
-		GNOME(2 * 12 + 11, Dice.D4);
+		HILL_DWARF(3 * 12 + 8, new Dice(DiceType.D4, 2)),
+		MOUNTAIN_DWARF(4 * 12, new Dice(DiceType.D4, 2)),
+		DROW_ELF(4 * 12 + 5, new Dice(DiceType.D6)),
+		HIGH_ELF(4 * 12 + 6, new Dice(DiceType.D10, 2)),
+		WOOD_ELF(4 * 12 + 6, new Dice(DiceType.D10, 2)),
+		HUMAN(4 * 12 + 8, new Dice(DiceType.D10, 2)),
+		DRAGONBORN(5 * 12 + 6, new Dice(DiceType.D8, 2)),
+		HALFLING(2 * 12 + 7, new Dice(DiceType.D4, 2)),
+		HALF_ELF(4 * 12 + 9, new Dice(DiceType.D8, 2)),
+		HALF_ORC(4 * 12 + 10, new Dice(DiceType.D10, 2)),
+		TIEFLING(4 * 12 + 9, new Dice(DiceType.D8, 2)),
+		GNOME(2 * 12 + 11, new Dice(DiceType.D4, 2));
 		
 		Dice dice;
 		int base;
@@ -267,6 +268,11 @@ public class Race
 		{
 			this.base = base;
 			this.dice = dice;
+		}
+		
+		public Dice getDice()
+		{
+			return dice;
 		}
 		
 		public int getMinHeight()
@@ -281,7 +287,7 @@ public class Race
 		
 		public int roll()
 		{
-			return base + dice.rollDice(2);
+			return base + dice.rollDice();
 		}
 	}
 	
@@ -312,53 +318,43 @@ public class Race
 	
 	public static enum Weight
 	{
-		HILL_DWARF(115, Dice.D4, 2, Dice.D6),
-		MOUNTAIN_DWARF(130, Dice.D4, 2, Dice.D6),
-		HUMAN(110, Dice.D10, 2, Dice.D4),
-		HIGH_ELF(90, Dice.D10, 1, Dice.D4),
-		WOOD_ELF(100, Dice.D10, 1, Dice.D4),
-		DROW_ELF(75, Dice.D6, 1, Dice.D6),
-		HALFLING(35, Dice.D4, 1, null),
-		DRAGONBORN(175, Dice.D8, 2, Dice.D6),
-		GNOME(110, Dice.D8, 1, null),
-		HALF_ELF(110, Dice.D8, 2, Dice.D4),
-		HALF_ORC(140, Dice.D10, 2, Dice.D6),
-		TIEFLING(110, Dice.D8, 2, Dice.D4);
+		HILL_DWARF(115, Height.HILL_DWARF.getDice(), new Dice(DiceType.D6, 2)),
+		MOUNTAIN_DWARF(130, Height.MOUNTAIN_DWARF.getDice(), new Dice(DiceType.D6, 2)),
+		HUMAN(110, Height.HUMAN.getDice(), new Dice(DiceType.D4, 2)),
+		HIGH_ELF(90, Height.HIGH_ELF.getDice(), new Dice(DiceType.D4)),
+		WOOD_ELF(100, Height.WOOD_ELF.getDice(), new Dice(DiceType.D4)),
+		DROW_ELF(75, Height.DROW_ELF.getDice(), new Dice(DiceType.D6)),
+		HALFLING(35, Height.HALFLING.getDice(), new Dice(DiceType.D1)),
+		DRAGONBORN(175, Height.DRAGONBORN.getDice(), new Dice(DiceType.D6, 2)),
+		GNOME(110, Height.GNOME.getDice(), new Dice(DiceType.D1)),
+		HALF_ELF(110, Height.HALF_ELF.getDice(), new Dice(DiceType.D4, 2)),
+		HALF_ORC(140, Height.HALF_ORC.getDice(), new Dice(DiceType.D6, 2)),
+		TIEFLING(110, Height.TIEFLING.getDice(), new Dice(DiceType.D4, 2));
 		
 		Dice heightMod;
 		Dice weightMod;
 		int base;
-		int diceAmount;
 		
-		private Weight(int base, Dice heightMod, int diceAmount, Dice weightMod)
+		private Weight(int base, Dice heightMod, Dice weightMod)
 		{
 			this.base = base;
 			this.heightMod = heightMod;
-			this.diceAmount = diceAmount;
 			this.weightMod = weightMod;
 		}
 		
 		public int getMin()
 		{
-			return base + 2 * diceAmount;
+			return base + heightMod.getAmount() * weightMod.getAmount();
 		}
 		
 		public int getMax()
 		{
-			int weightMod = 1;
-			if (this.weightMod != null)
-				weightMod = (2 * this.weightMod.getSides());
-			
-			return base + (2 * heightMod.getSides()) * weightMod;
+			return base + (heightMod.getAmount() * heightMod.getType().getSides()) * (weightMod.getAmount() * weightMod.getType().getSides());
 		}
 		
 		public int roll(int heightMod)
 		{
-			int weightMod = 1;
-			if (this.weightMod != null)
-				weightMod = this.weightMod.rollDice(diceAmount);
-			
-			return base + heightMod * weightMod;
+			return base + heightMod * weightMod.rollDice();
 		}
 	}
 }
