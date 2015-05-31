@@ -1,4 +1,4 @@
-package musician101.mcdnd.armor;
+package musician101.mcdnd.gear;
 
 import java.util.Arrays;
 import java.util.List;

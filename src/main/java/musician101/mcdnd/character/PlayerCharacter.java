@@ -2,9 +2,9 @@ package musician101.mcdnd.character;
 
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.alignment.Alignment;
-import musician101.mcdnd.armor.Armor;
-import musician101.mcdnd.armor.Armor.ArmorTypes;
 import musician101.mcdnd.clazz.ProficiencyBonus;
+import musician101.mcdnd.gear.Armor;
+import musician101.mcdnd.gear.Armor.ArmorTypes;
 import musician101.mcdnd.race.Race;
 import musician101.mcdnd.skill.SkillCarrier;
 import net.minecraft.entity.player.EntityPlayer;

@@ -2,7 +2,7 @@ package musician101.mcdnd.clazz;
 
 import java.util.List;
 
-import musician101.mcdnd.armor.Armor;
+import musician101.mcdnd.gear.Armor;
 
 public class CharacterClass
 {
