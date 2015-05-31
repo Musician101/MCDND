@@ -11,7 +11,7 @@ import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.dice.Dice.DiceType;
 
-public enum Weapon
+public enum Weapons
 {
 	CLUB("Club", new Cost(CurrencyType.SILVER, 1), new Damage(DamageType.BLUDGEONING, new Dice(DiceType.D4)), 2, Arrays.asList(Property.LIGHT), WeaponType.SIMPLE_MELEE),
 	DAGGER("Dagger", new Cost(CurrencyType.GOLD, 2), new Damage(DamageType.PIERCING, new Dice(DiceType.D4)), 1, Arrays.asList(Property.FINESSE, Property.LIGHT, Property.THROWN_20_60), WeaponType.SIMPLE_MELEE),
@@ -59,7 +59,7 @@ public enum Weapon
 	String name;
 	WeaponType type;
 	
-	private Weapon(String name, Cost cost, Damage damage, double weight, List<Property> properties, WeaponType type)
+	private Weapons(String name, Cost cost, Damage damage, double weight, List<Property> properties, WeaponType type)
 	{
 		this.name = name;
 		this.cost = cost;
