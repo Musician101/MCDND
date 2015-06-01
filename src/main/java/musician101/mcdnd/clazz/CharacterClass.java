@@ -3,10 +3,13 @@ package musician101.mcdnd.clazz;
 import java.util.List;
 
 import musician101.mcdnd.equipment.Armor;
+import musician101.mcdnd.skill.Skills;
 
 public class CharacterClass
 {
+	//TODO figure out how to incorporate starting equipment and class features
 	List<Armor> armorProficiencies;
+	List<Skills> skillProficiencies;
 	HitDice hitDice;
 	int level;
 	String name;
@@ -19,6 +22,11 @@ public class CharacterClass
 	public List<Armor> getArmorProficiencies()
 	{
 		return armorProficiencies;
+	}
+	
+	public List<Skills> getSkillProficiencies()
+	{
+		return skillProficiencies;
 	}
 	
 	public HitDice getHitDice()

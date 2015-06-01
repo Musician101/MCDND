@@ -10,8 +10,8 @@ import musician101.mcdnd.abilityscore.RaceAbilityScoreIncrease;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.dice.Dice.DiceType;
 import musician101.mcdnd.language.Language;
-import musician101.mcdnd.trait.Trait;
-import musician101.mcdnd.trait.Traits;
+import musician101.mcdnd.race.trait.Trait;
+import musician101.mcdnd.race.trait.Traits;
 
 public class Race
 {

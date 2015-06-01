@@ -1,4 +1,4 @@
-package musician101.mcdnd.trait;
+package musician101.mcdnd.race.trait;
 
 import java.util.ArrayList;
 import java.util.Arrays;
