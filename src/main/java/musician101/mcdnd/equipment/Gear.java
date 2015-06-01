@@ -1,7 +1,7 @@
 package musician101.mcdnd.equipment;
 
-import musician101.mcdnd.currency.Currency.CurrencyType;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.currency.CurrencyType;
 
 public enum Gear
 {

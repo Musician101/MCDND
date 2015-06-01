@@ -6,8 +6,8 @@ import java.util.List;
 
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
-import musician101.mcdnd.currency.Currency.CurrencyType;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.dice.Dice.DiceType;
 

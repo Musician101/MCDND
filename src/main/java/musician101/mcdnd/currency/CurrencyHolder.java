@@ -1,80 +1,33 @@
 package musician101.mcdnd.currency;
 
-import musician101.mcdnd.currency.Currency.CurrencyType;
+import java.util.Map;
+
+import musician101.mcdnd.util.CustomHashMap;
 
 public abstract class CurrencyHolder
 {
-	Currency copper = new Currency(CurrencyType.COPPER, 0);
-	Currency silver = new Currency(CurrencyType.SILVER, 0);
-	Currency electrum = new Currency(CurrencyType.ELECTRUM, 0);
-	Currency gold = new Currency(CurrencyType.GOLD, 0);
-	Currency platinum = new Currency(CurrencyType.PLATINUM, 0);
+	Map<CurrencyType, Integer> currency;
 	
 	protected CurrencyHolder()
 	{
-		this.copper = new Currency(CurrencyType.COPPER, 0);
-		this.silver = new Currency(CurrencyType.SILVER, 0);
-		this.electrum = new Currency(CurrencyType.ELECTRUM, 0);
-		this.gold = new Currency(CurrencyType.GOLD, 0);
-		this.platinum = new Currency(CurrencyType.PLATINUM, 0);
+		currency = new CustomHashMap<CurrencyType, Integer>().add(CurrencyType.COPPER, 0)
+				.add(CurrencyType.SILVER, 0).add(CurrencyType.ELECTRUM, 0)
+				.add(CurrencyType.GOLD, 0).add(CurrencyType.PLATINUM, 0);
 	}
 	
-	protected CurrencyHolder(Currency... currencies)
+	protected CurrencyHolder(Map<CurrencyType, Integer> currency)
 	{
-		this();
-		for (Currency currency : currencies)
-		{
-			if (currency.getType() == CurrencyType.COPPER)
-				this.copper = currency;
-			else if (currency.getType() == CurrencyType.SILVER)
-				this.silver = currency;
-			else if (currency.getType() == CurrencyType.ELECTRUM)
-				this.electrum = currency;
-			else if (currency.getType() == CurrencyType.GOLD)
-				this.gold = currency;
-			else if (currency.getType() == CurrencyType.PLATINUM)
-				this.platinum = currency;
-		}
+		this.currency = currency;
 	}
 	
-	public int getCopper()
+	public int getAmount(CurrencyType type)
 	{
-		return copper.getAmount();
+		return currency.get(type);
 	}
 	
-	public void setCopperCurrency(Currency copper)
+	public void setAmount(CurrencyType type, int amount)
 	{
-		this.copper = copper;
-	}
-	
-	public int getSilver()
-	{
-		return silver.getAmount();
-	}
-	
-	public void setSilverCurrency(Currency silver)
-	{
-		this.silver = silver;
-	}
-	
-	public int getGold()
-	{
-		return gold.getAmount();
-	}
-	
-	public void setGoldCurrency(Currency gold)
-	{
-		this.gold = gold;
-	}
-	
-	public int getPlatinum()
-	{
-		return platinum.getAmount();
-	}
-	
-	public void setPlatinumCurrency(Currency platinum)
-	{
-		this.platinum = platinum;
+		currency.put(type, amount);
 	}
 	
 	public static class CurrencyCarrier extends CurrencyHolder
@@ -84,9 +37,9 @@ public abstract class CurrencyHolder
 			super();
 		}
 		
-		public CurrencyCarrier(Currency... currencies)
+		public CurrencyCarrier(Map<CurrencyType, Integer> currency)
 		{
-			super(currencies);
+			super(currency);
 		}
 	}
 	
@@ -99,12 +52,13 @@ public abstract class CurrencyHolder
 		
 		public Cost(CurrencyType type, int amount)
 		{
-			super(new Currency(type, amount));
+			this();
+			currency.put(type, amount);
 		}
 		
-		public Cost(Currency... currencies)
+		public Cost(Map<CurrencyType, Integer> currency)
 		{
-			super(currencies);
+			super(currency);
 		}
 	}
 }

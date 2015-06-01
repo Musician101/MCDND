@@ -3,8 +3,8 @@ package musician101.mcdnd.equipment;
 import java.util.Arrays;
 import java.util.List;
 
-import musician101.mcdnd.currency.Currency.CurrencyType;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.currency.CurrencyType;
 
 public enum Armor
 {
