@@ -7,7 +7,8 @@ import musician101.mcdnd.skill.Skills;
 
 public class CharacterClass
 {
-	//TODO figure out how to incorporate starting equipment and class features
+	//TODO figure out how to incorporate starting equipment
+	//TODO Archetypes, Paths, Schools, etc. will be a different class from Features
 	List<Armor> armorProficiencies;
 	List<Skills> skillProficiencies;
 	HitDice hitDice;
