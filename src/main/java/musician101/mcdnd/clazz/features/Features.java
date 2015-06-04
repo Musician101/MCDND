@@ -9,12 +9,20 @@ import musician101.mcdnd.util.CustomHashMap;
 
 public class Features
 {
-	Map<CharacterClasses, List<Feature>> map = new CustomHashMap<CharacterClasses, List<Feature>>()
+	static Map<CharacterClasses, List<Feature>> map = new CustomHashMap<CharacterClasses, List<Feature>>()
 			.add(CharacterClasses.BARBARIAN, getBarbarianFeatures()).add(CharacterClasses.BARD, getBardFeatures())
 			.add(CharacterClasses.CLERIC, getClericFeatures()).add(CharacterClasses.DRUID, getDruidFeatures())
-			.add(CharacterClasses.FIGHTER, getFighterFeatures()).add(CharacterClasses.MONK, getMonkFeatures());
+			.add(CharacterClasses.FIGHTER, getFighterFeatures()).add(CharacterClasses.MONK, getMonkFeatures())
+			.add(CharacterClasses.PALADIN, getPaladinFeatures()).add(CharacterClasses.RANGER, getRangerFeatures())
+			.add(CharacterClasses.ROGUE, getRogueFeatures()).add(CharacterClasses.SORCERER, getSorcererFeatures())
+			.add(CharacterClasses.WIZARD, getWarlockFeatures()).add(CharacterClasses.WIZARD, getWizardFeatures());
 	
-	private List<Feature> getBarbarianFeatures()
+	public static List<Feature> getFeatures(CharacterClasses cc)
+	{
+		return map.get(cc);
+	}
+	
+	private static List<Feature> getBarbarianFeatures()
 	{
 		return Arrays.asList(new Feature("Rage", "Enter (or end) a rage as a bonus action gaining the following benefits if not wearing heavy armor.\n"
 				+ "- Advantage on STR checks and STR saving throws\n"
@@ -39,7 +47,7 @@ public class Features
 			new Feature("Indomitable Might", "Starting at 18th level, if the total for a STR check is less than your STR score, use the STR score instead."));
 	}
 	
-	private List<Feature> getBardFeatures()
+	private static List<Feature> getBardFeatures()
 	{
 		return Arrays.asList(new Feature("Spellcasting", "Cast any known bard spell as a ritual spell if that spell has the ritual tag. Spellcasting focus: musical instrument."),
 				new Feature("Bardic Inspiration", "As a bonus action, choose on creature other than yourself within 60 feet. That creature gains one Bardic Inspiration die, a d6.\n"
@@ -56,7 +64,7 @@ public class Features
 				new Feature("Countercharm", "At 6th level, you gain the ability to use music or words of power to disrupt mind influencing effects. As an action, you can start a performance that lasts until the end of your next turn."));
 	}
 	
-	private List<Feature> getClericFeatures()
+	private static List<Feature> getClericFeatures()
 	{
 		return Arrays.asList(new Feature("Spellcasting", "As a conduit for divine power, you can cast cleric spells."),
 				new Feature("Divine Domain", "Choose one domain related to your deity: Knowledge, Life, Light, Nature, Tempest, Trickery, or War."),
@@ -72,7 +80,7 @@ public class Features
 						+ "At 20th level, your call for intervention succeeds automatically, no roll required."));
 	}
 	
-	private List<Feature> getDruidFeatures()
+	private static List<Feature> getDruidFeatures()
 	{
 		return Arrays.asList(new Feature("Druidic", "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence with a successful DC 15 Wisdom (Perception) check but can't decipther it without magic."),
 				new Feature("Spellcasting", "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will."),
@@ -87,7 +95,7 @@ public class Features
 						+ "Additionally, you can ignore the verbal and somatic components of your druid spells, as well as any material components that lack a cost and aren't consumed by a spell. You gain this benefit in both your normal and beast shapes."));
 	}
 	
-	private List<Feature> getFighterFeatures()
+	private static List<Feature> getFighterFeatures()
 	{
 		return Arrays.asList(new Feature("Fighting Style", "You adopt a particular style of fighting as your specialty: Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting."),
 				new Feature("Second Wind", "You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level. You must finish a short or long rest before you can use it again."),
@@ -101,7 +109,7 @@ public class Features
 								+ "You can use this feature twice between long rests at 13th level and three times at 17th level."));
 	}
 	
-	private List<Feature> getMonkFeatures()
+	private static List<Feature> getMonkFeatures()
 	{
 		return Arrays.asList(new Feature("Unarmored Defense", "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your DEX mod + your WIS mod."),
 				new Feature("Martial Arts", "At 1st level, when you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action."),
@@ -131,5 +139,101 @@ public class Features
 				new Feature("Empty Body", "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.\n"
 						+ "Additionally, you can spend 8 ki points to cast the astral projection spell, without needing material components. When you do so, you can't take any other creatures with you."),
 				new Feature("Perfect Self", "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points."));
+	}
+	
+	private static List<Feature> getPaladinFeatures()
+	{
+		return Arrays.asList(new Feature("Divine Sense", "As an action, know the location of any celestial, fiend, or undead within 60ft (not in total cover) until the end of your next turn.\n"
+					+ "You also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow Spell.\n"
+					+ "You can use this feature 1 time and recover uses after a long rest."),
+				new Feature("Lay on Hands", "As an action, touch a creature and restore its hit points from your healing pool (your paladin level * 5). Expend 5 hit points from your pool of healing to cure a disease or neutralize a poison affecting it. It has no effect on undead or constucts."),
+				new Feature("Spellcasting", "Starting at 2nd level, you can draw on divine magic through meditation and prayer to cast spells."),
+				new Feature("Fighting Style", "At 2nd level, you adopt a style of fighting as your specialty. You can't take a Fighting Style option more than once, even if you later get to choose agin."),
+				new Feature("Divine Smite", "Starting at 2nd level, when you hit a creature witha  melee weapon attack, you can expend one paladin spell slot to deal radiant damage to the target. The extra damage is 2d8 for a 1st-level spell, plus 1d8 for each spell level higher than 1st, to a max of 5d8. The damage increases by 1d8 if the target is undead or a fiend."),
+				new Feature("Divine Health", "By 3rd level, the divine magic flowing through you makes you immune to dease."),
+				new Feature("Sacred Oath", "When you reach 3rd level, you swear the oath that binds you as a paladin forever. You can choose either the Oath of Devotion, Oath of the Ancients, or the Oath of Vengeance."),
+				new Feature("Ability Score Improvement", "When you reach 4th, 8th, 12th, 16th, and 19th levels, you can increase one ability score by 2 or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Extra Attack", "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."),
+				new Feature("Aura of Protection", "Starting at 6th level, whenever you or a friendly creature within 10 feet (30ft at 18th level) of you must make a saving throw, the creature gains a bonus to the saving throw equal to your CHA mod (with a minimum of +1). You must be conscious to grant this bonus."),
+				new Feature("Aura of Courage", "Starting at 10th level, you and friendly creatures within 10 feet (30 feet at 18th level) of you can't be frightened while you are conscious."),
+				new Feature("Cleansing Touch", "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your CHA mod (min. 1). You regain uses when you finish a long rest."));
+	}
+	
+	private static List<Feature> getRangerFeatures()
+	{
+		return Arrays.asList(new Feature("Favored Enemy", "At 1st, 6th, and 14th levels, you choose a type of enemy to be familiar with. You have advantage on WIS (Survival) checks to track your favored enemies, as well as on INT checks to recall info about them."),
+				new Feature("Natural Explorer", "At 1st, 6th, and 10th levels, you choose a favored terrain. When you make an INT or WIS check related to your favored terrain, your proficiency bonus is doubled if you're using a skill that you're proficient in.\n"
+						+ "While traveling for an hour or more in your favored terrain, you gain the following benefits:\n"
+						+ "- Difficult terratin doesn't slow your group's travel.\n"
+						+ "Your group can't become lost except by magical means.\n"
+						+ "Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n"
+						+ "If you are traveling alone, you can move stealthily at a normal place.\n"
+						+ "When you forage, you find twice as much food as you normally would.\n"
+						+ "While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area."),
+				new Feature("Fighting Style", "At 2nd level, you adopt a particular style of fighting as your specialty. You can't take a the same option more than once, even if you later get to choose again."),
+				new Feature("Spellcasting", "By 2nd level, you have learned to use the magical essence of nature to cast spells."),
+				new Feature("Ranger Archetype", "At 3rd level, you choose an archetype that you strive to emulate: Hunter or Beast Master."),
+				new Feature("Primeval Awareness", "Beginning at 3rd level, you can use your action and expend on ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense whether the following types of creatures are present within 1 mile of you (or within up to 6 miles if you are in your favored terrain): aberrations, celestials, dragons, elementals, fey, fiends, and undead. This feature doesn't reveal the creatures' location or number."),
+				new Feature("Ability Score Improvement", "When you reach 4th, 8th, 12th, 16th, and 19th level, you can increase one ability score by 2, or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Extra Attack", "Beginning at 5th level, you can attack twice, instead of once whenever you take the Attack aciont on you turn."),
+				new Feature("Land's Stride", "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants with being slowed by them and without taking damage from them if they have throns, spines, or a similar hazard.\n"
+						+ "In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement."),
+				new Feature("Hide in Plain Sight", "Starting at 10th level, you can spend 1 minute creating camoflauge for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create your camouflage."),
+				new Feature("Vanish", "Starting at 14th level, you can use the Hide action as a bonus action on you turn. Also you can't be tracked by nonmagical means, unless you choose to leave a trail."),
+				new Feature("Feral Senses", "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack rolls against it.\n"
+						+ "You are alos aware of the location of any invisible creature within 30 feet of you, provided that the creature isn't hidden from you and you aren't blinded or deafened."),
+				new Feature("Foe Slayer", "At 20th level, once on each of your turns , you can add your WIS mod to the attack roll or the damage roll of an attack you make against one of your favored enemies. You can choose to use this feature before or after the roll, but before any effects of the roll are applied."));
+	}
+	
+	private static List<Feature> getRogueFeatures()
+	{
+		return Arrays.asList(new Feature("Expertise", "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\n"
+						+ "At 6th level, you can choose two more of your proficiencies (in skills or thieves' tools) to gain this benefit."),
+				new Feature("Thieves' Cant", "During your rogue training you learned a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. It takes four times longer to convey such a message than it does to speak the same idea plainly.\n"
+						+ "In addition, you understand a set of secret signs and symbols used to convey short, simple messages."),
+				new Feature("Cunning Action", "Starting at 2nd level, you can take a bonus action on each of your turns in combat to Dash, Disengage, or Hide."),
+				new Feature("Roguish Archetype", "At 3rd level, you choose an arcetype that you emulate in the exercise of your rogue abilities: Thief, Assassin, or Arcane Trickster."),
+				new Feature("Ability Score Improvement", "When you reach 4th, 8th, 10th, 12th, 16th, or 19th level, you can increase an ability score of your choice by 2, or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Uncanny Dodge", "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you."),
+				new Feature("Evasion", "Beginning at 7th level, when you are subjected to an effect that allows you to make a DEX saving throw to take half damage, you instead take no damage if you succeed, and only half damage if you fail."),
+				new Feature("Reliable Talent", "By 11th level, whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of 9 or lower as a 10."),
+				new Feature("Blindsense", "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you."),
+				new Feature("Slippery Mind", "By 15th level, you gain proficiency in Wisdom saving throws."),
+				new Feature("Stroke of Luck", "At 20th level, if your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check, you can treat the d20 roll as a 20. Once you use this feature, you can't use it again until you finish a short or long rest."));
+	}
+	
+	private static List<Feature> getSorcererFeatures()
+	{
+		return Arrays.asList(new Feature("Spellcasting", "An event in your past, or in the life of a parent or ancestor, left an idelible mark on you, infusing you with arcane magic."),
+				new Feature("Sorcerous Origin", "Choose a sorcerous origin, which describes the source of your innate magical power: Draconic Bloodline or Wild Magic."),
+				new Feature("Font of Magic", "At 2nd level, you tap into a deep wellspring of magic within yourself (represented by sorcery points).\n"
+						+ "You start with 2 sorcery points, and gain more as you reach higher levels. You regain all spent sorcery points when you finish a long rest.\n"
+						+ "You can use your sorcery points to gain additional spell slots, or sacrifice spell slots to gain additional sorcery points."),
+				new Feature("Metamagic", "At 3rd, 10th, and 17th levels, you gain the ability to twist your spells to suit your needs."),
+				new Feature("Ability Score Improvement", "When you reach 4th, 8th, 12th, 16th, and 19th levels, you can increase one ability score by 2, or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Sorcerous Restoration", "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest."));
+	}
+	
+	private static List<Feature> getWarlockFeatures()
+	{
+		return Arrays.asList(new Feature("Otherworldly Patron", "At 1st level, you have struck a bargain with an otherworldly being of your choice: the Archfey, the Fiend, or the Greate Old One."),
+				new Feature("Pact Magic", "Your arcane research and the magic bestowed on you by your patron have given you facility with spells."),
+				new Feature("Eldritch Invocations", "At 2nd level, you gain two eldritch invocations of your choice. You gain additional invocations as you gain more warlock levels. Additionally, when you gain a level int this class, you can choose one of the invocations you know and replace it with another invocation that you could learn at that level."),
+				new Feature("Pact Boon", "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service."),
+				new Feature("Ability Score Improvement", "When you reach 4th, 8th, 12th, 16th, and 19th levels, you can increase one ability score by 2, or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Mystic Arcanum", "At 11th level, choose one 6th-level spell from the warlock spell list. You can cast this spell once without expending a spell slot. You must finish a long rest before you can do so again.\n"
+						+ "At higher levels, you gain more spells of your choice that can be cast in this way: one 7th-level spell at 13th level, one 8th-level spell at 15th-level, and one 9th-level spell at 17th level. You regain all uses when you finish a long rest."),
+				new Feature("Eldritch master", "At 20th level, You can spend 1 minute entreating your patron for aid to regain all your expended spell slots from your Pact Magic feature. You must finish a long rest before you can do this again."));
+	}
+	
+	private static List<Feature> getWizardFeatures()
+	{
+		return Arrays.asList(new Feature("Spellcasting", "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power."),
+				new Feature("Arcane Recovery", "Oncer per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher."),
+				new Feature("Arcane Tradition", "When you reach 2nd level, you can choose an arcane tradition, shaping your practice of magic through one of eight schools: Abjuration, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, or Transmutation."),
+				new Feature("Ability Score Imporvement", "When you reach 4th, 8th, 12th, 16th, and 19th levels, you can increase on ability score by 2, or increase two ability scores by 1. You can't increase an ability score above 20 using this feature."),
+				new Feature("Spell Mastery", "At 18th level, choose a 1st-level wizard spell and a 2nd-level wizrd spell that are in your spell book. You can cast those spells at their lowest level without expending a spell slot when you have them prepared. If you want to cast either spell at a higher level, you must expend a spell slot as normal.\n"
+						+ "By spending 8 hours in study, you can exchange one or both of the spells you chose for different spells of the same levels."),
+				new Feature("Signature Spells", "When you reach 20th level, choose two 3rd-level wizard spells in your spellbook as signature spells. You always have these spells prepared, they don't count against the number of spells you ahve prepared, and you can cast each of them once 3rd level without expending a spell slot. When you do so, you can't do so again until you finish a short or long rest. If you want to cast either spell at a higher level, you must expend a spell slot as normal."));
 	}
 }
