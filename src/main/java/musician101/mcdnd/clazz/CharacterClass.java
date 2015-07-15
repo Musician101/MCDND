@@ -9,6 +9,7 @@ public class CharacterClass
 {
 	//TODO figure out how to incorporate starting equipment
 	//TODO Archetypes, Paths, Schools, etc. will be a different class from Features
+	//TODO do something similar to SpongeAPI's DataManipulators
 	List<Armor> armorProficiencies;
 	List<Skills> skillProficiencies;
 	HitDice hitDice;

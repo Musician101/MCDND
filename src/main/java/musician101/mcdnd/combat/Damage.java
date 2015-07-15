@@ -25,6 +25,6 @@ public class Damage
 	
 	public int rollDamage()
 	{
-		return dice.rollDice();
+		return dice.roll();
 	}
 }

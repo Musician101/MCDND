@@ -37,6 +37,6 @@ public class MCDND
 		//TODO character sheet keybind
 		//TODO guihandler init here and in proxy. check Botania for example
 	}
-	
+	//TODO remove all hardcoded enum classes
 	//TODO NPC: ability score, size, armor class, hit points, resistances, actions
 }

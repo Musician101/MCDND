@@ -31,6 +31,11 @@ public class AbilityScore
 		this.amount = amount;
 	}
 	
+	public int getMod()
+	{
+		return (amount - 10) / 2;
+	}
+	
 	public static enum AbilityScores
 	{
 		STR("Strength"),

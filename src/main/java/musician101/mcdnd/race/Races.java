@@ -17,7 +17,7 @@ public enum Races
 	DROW_ELF("Elf", "Drow"),
 	HIGH_ELF("Elf", "High"),
 	WOOD_ELF("Elf", "Wood"),
-	HUMAN("Dragonborn"),
+	HUMAN("Human"),
 	HALF_ELF("Half-Elf"),
 	HALF_ORC("Half-Orc"),
 	LIGHTFOOT_HALFLING("Halfling", "Lightfoot"),

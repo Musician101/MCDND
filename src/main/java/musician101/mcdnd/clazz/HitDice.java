@@ -1,26 +1,32 @@
 package musician101.mcdnd.clazz;
 
-import java.util.Random;
-
 import musician101.mcdnd.dice.Dice;
 
 public class HitDice extends Dice
 {
-	public HitDice(DiceType type)
+	public HitDice(int sides)
 	{
-		super(type);
+		super(sides);
 	}
 	
-	public HitDice(DiceType type, int amount)
+	public HitDice(int sides, int amount)
 	{
-		super(type, amount);
+		super(sides, amount);
 	}
 	
+	/** Gain average HP */
+	public int gainHitPoints(int conMod)
+	{
+		return gainHitPoints(conMod, false);
+	}
+	
+	/** Used for when leveling up, when a player uses a hit die to regain HP, or when a player goes for a long rest */
+	/** Needs to be replaced with Override of roll()? */
 	public int gainHitPoints(int conMod, boolean isRolling)
 	{
 		if (isRolling)
-			return new Random().nextInt(getType().getSides() - 1) + 1 + conMod;
+			return super.roll() + conMod;
 		
-		return (getType().getSides() / 2) + 1 + conMod;
+		return (sides() / 2) + 1 + conMod;
 	}
 }

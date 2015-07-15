@@ -22,6 +22,9 @@ public class CharacterAbilityScores extends AbstractAbilityScores
 		super();
 		this.proficientSavingThrows = proficientSavingThrows;
 		this.proficiencyBonus = proficiencyBonus;
+		updateScores(new AbilityScore(AbilityScores.STR), new AbilityScore(AbilityScores.DEX), 
+				new AbilityScore(AbilityScores.CON), new AbilityScore(AbilityScores.INT),
+				new AbilityScore(AbilityScores.WIS), new AbilityScore(AbilityScores.CHA));
 	}
 	
 	public int getProficiencyBonus()

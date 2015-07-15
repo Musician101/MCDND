@@ -3,6 +3,8 @@ package musician101.mcdnd.equipment;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.currency.CurrencyType;
 
+/** Need to switch over to classes rather than enum */
+@Deprecated
 public enum Gear
 {
 	ABACUS("Abacus", new Cost(CurrencyType.GOLD, 2), 2),

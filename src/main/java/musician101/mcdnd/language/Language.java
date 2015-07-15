@@ -10,7 +10,7 @@ public enum Language
 	GOBLIN("Goblin", "Dwarvish"),
 	HALFLING("Halfling", "Common"),
 	ORC("Orc", "Dwarvish"),
-	AYSSAL("Abyssal", "Infernal", true),
+	ABYSSAL("Abyssal", "Infernal", true),
 	CELESTIAL("Celestial", true),
 	DRACONIC("Draconic", true),
 	DEEP_SPEECH("Deep Speech", true),
