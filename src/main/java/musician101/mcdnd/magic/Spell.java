@@ -1,7 +1,5 @@
 package musician101.mcdnd.magic;
 
-import java.util.List;
-
 public class Spell
 {
 	boolean needsConcentration;
@@ -12,11 +10,11 @@ public class Spell
 	int castingTime;
 	int duration;
 	int range;
-	List<String> materials;
 	String description;
+	String materials;
 	String name;
 	
-	protected Spell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, List<String> materials, int duration, boolean needsConcentration, String description)
+	public Spell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String description)
 	{
 		this.name = name;
 		this.type = type;
@@ -30,7 +28,7 @@ public class Spell
 		this.needsConcentration = needsConcentration;
 		this.description = description;
 	}
-	
+
 	public boolean needsConcentration()
 	{
 		return needsConcentration;
@@ -63,7 +61,7 @@ public class Spell
 		return range;
 	}
 	
-	public List<String> getMaterials()
+	public String getMaterials()
 	{
 		return materials;
 	}
@@ -116,8 +114,14 @@ public class Spell
 	
 	public static enum SpellType
 	{
+		ABJURATION("Abjuration"),
 		CONJURATION("Conjuration"),
-		EVOCATION("Evocation");
+		DIVINATION("Divination"),
+		ENCHANTMENT("Enchantment"),
+		EVOCATION("Evocation"),
+		ILLUSION("Illusion"),
+		NECROMANCY("Necromancy"),
+		TRANSMUTATION("Transmutation");
 		
 		String name;
 		

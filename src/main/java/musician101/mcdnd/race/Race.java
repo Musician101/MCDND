@@ -8,6 +8,8 @@ public interface Race
 {
 	public List<Trait> getTraits();
 	
+	public String getName();
+	
 	public static enum CharacterSize
 	{
 		TINY("Tiny"),
