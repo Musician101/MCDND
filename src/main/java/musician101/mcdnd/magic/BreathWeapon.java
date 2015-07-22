@@ -44,6 +44,12 @@ public abstract class BreathWeapon extends Spell implements DCSave, ScaleableDam
 	}
 	
 	@Override
+	public boolean containsKey(Integer key)
+	{
+		return damageMap.containsKey(key);
+	}
+	
+	@Override
 	public Damage get(Integer key)
 	{
 		return damageMap.get(key);
@@ -55,9 +61,10 @@ public abstract class BreathWeapon extends Spell implements DCSave, ScaleableDam
 		return damage;
 	}
 	
-	public Shape getDamagePath()
+	@Override
+	public Damage remove(Integer key)
 	{
-		return shape;
+		return damageMap.remove(key);
 	}
 	
 	@Override
@@ -80,36 +87,29 @@ public abstract class BreathWeapon extends Spell implements DCSave, ScaleableDam
 	}
 	
 	@Override
+	public Set<Entry<Integer, Damage>> entrySet()
+	{
+		return damageMap.entrySet();
+	}
+	
+	@Override
+	public Set<Integer> keySet()
+	{
+		return damageMap.keySet();
+	}
+	
+	public Shape getShape()
+	{
+		return shape;
+	}
+	
+	@Override
 	public void updateDamage(int level)
 	{
 		if (damageMap.containsKey(level))
 			return;
 		
 		this.damage = get(level);
-	}
-	
-	@Override
-	public boolean containsKey(Integer key)
-	{
-		return damageMap.containsKey(key);
-	}
-
-	@Override
-	public Damage remove(Integer key)
-	{
-		return damageMap.remove(key);
-	}
-
-	@Override
-	public Set<Integer> keySet()
-	{
-		return damageMap.keySet();
-	}
-
-	@Override
-	public Set<Entry<Integer, Damage>> entrySet()
-	{
-		return damageMap.entrySet();
 	}
 	
 	public static abstract class LineBreathWeapon extends BreathWeapon
