@@ -34,7 +34,12 @@ public class Traits
 	public static final AlignmentTrait DRAGONBORN_ALIGNMENT = new AlignmentTrait("Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.");
 	public static final MovementSpeedTrait DRAGONBORN_SPEED = new MovementSpeedTrait();
 	public static final SizeTrait DRAGONBORN_SIZE = new SizeTrait(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.");
-	public static final List<Trait> DRAGONBORN_TRAITS = Arrays.asList(DRAGONBORN_ASI, DRAGONBORN_AGE, DRAGONBORN_ALIGNMENT, DRAGONBORN_SPEED, DRAGONBORN_SIZE);
+	public static final Trait DRACONIC_ANCENSTRY = new Trait("Draconic Ancestry", "You hae draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and the damage resistance are determined by the dragon type, as shown in the table.");
+	public static final Trait BREATH_WEAPON = new Trait("Breath Weapon", "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\n" + 
+			"When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constituion modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\n" +
+			"After you use your breathe weapon, you can't use it again until you complete a short or long rest.");
+	public static final LanguagesTrait DRAGONBORN_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DRACONIC), "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.");
+	public static final List<Trait> DRAGONBORN_TRAITS = Arrays.asList(DRAGONBORN_ASI, DRAGONBORN_AGE, DRAGONBORN_ALIGNMENT, DRAGONBORN_SPEED, DRAGONBORN_SIZE, DRACONIC_ANCENSTRY, BREATH_WEAPON, DRAGONBORN_LANGUAGES);
 	
 	// Hill Dwarf Traits
 	public static final AbilityScoreIncreaseTrait DWARF_HILL_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.WIS, 1)), "Your Wisdom score increases by 1.");
