@@ -3,12 +3,12 @@ package musician101.mcdnd.magic;
 import java.util.ArrayList;
 import java.util.List;
 
-import musician101.mcdnd.util.IAreaOfEffect;
+import musician101.mcdnd.util.Interfaces.EffectsArea;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-public abstract class Shape implements IAreaOfEffect
+public abstract class Shape implements EffectsArea
 {
 	String description;
 	String name;

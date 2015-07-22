@@ -3,6 +3,9 @@ package musician101.mcdnd.race.trait;
 import java.util.Arrays;
 import java.util.List;
 
+import musician101.mcdnd.abilityscore.AbilityScore;
+import musician101.mcdnd.language.Language;
+
 public class ListTrait<V> extends Trait
 {
 	List<V> values;
@@ -47,5 +50,21 @@ public class ListTrait<V> extends Trait
 	public void add(V value)
 	{
 		values.add(value);
+	}
+	
+	public static class AbilityScoreIncreaseTrait extends ListTrait<AbilityScore>
+	{
+		protected AbilityScoreIncreaseTrait(List<AbilityScore> values, String description)
+		{
+			super("Ability Score Increase", values, description);
+		}
+	}
+	
+	public static class LanguagesTrait extends ListTrait<Language>
+	{
+		public LanguagesTrait(List<Language> languages, String description)
+		{
+			super("Languanges", languages, description);
+		}
 	}
 }

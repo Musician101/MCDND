@@ -2,6 +2,8 @@ package musician101.mcdnd.magic;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
@@ -10,10 +12,10 @@ import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.magic.Shape.Cone;
 import musician101.mcdnd.magic.Shape.Line;
-import musician101.mcdnd.util.IDCSave;
-import musician101.mcdnd.util.IScaleableDamage;
+import musician101.mcdnd.util.Interfaces.DCSave;
+import musician101.mcdnd.util.Interfaces.ScaleableDamage;
 
-public abstract class BreathWeapon extends Spell implements IDCSave, IScaleableDamage
+public abstract class BreathWeapon extends Spell implements DCSave, ScaleableDamage
 {
 	AbilityScores saveType;
 	Damage damage;
@@ -77,12 +79,37 @@ public abstract class BreathWeapon extends Spell implements IDCSave, IScaleableD
 		return damageMap;
 	}
 	
+	@Override
 	public void updateDamage(int level)
 	{
 		if (damageMap.containsKey(level))
 			return;
 		
 		this.damage = get(level);
+	}
+	
+	@Override
+	public boolean containsKey(Integer key)
+	{
+		return damageMap.containsKey(key);
+	}
+
+	@Override
+	public Damage remove(Integer key)
+	{
+		return damageMap.remove(key);
+	}
+
+	@Override
+	public Set<Integer> keySet()
+	{
+		return damageMap.keySet();
+	}
+
+	@Override
+	public Set<Entry<Integer, Damage>> entrySet()
+	{
+		return damageMap.entrySet();
 	}
 	
 	public static abstract class LineBreathWeapon extends BreathWeapon

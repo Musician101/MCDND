@@ -5,7 +5,6 @@ import java.util.List;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
-import musician101.mcdnd.abilityscore.RaceAbilityScoreIncrease;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
@@ -16,34 +15,42 @@ import musician101.mcdnd.language.Language;
 import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.magic.Spells;
 import musician101.mcdnd.race.Race.CharacterSize;
+import musician101.mcdnd.race.trait.ListTrait.AbilityScoreIncreaseTrait;
+import musician101.mcdnd.race.trait.ListTrait.LanguagesTrait;
+import musician101.mcdnd.race.trait.MappedTrait.SpellcastingTrait;
+import musician101.mcdnd.race.trait.MappedTrait.SubraceTrait;
+import musician101.mcdnd.race.trait.SingleValueTrait.DarkvisionTrait;
+import musician101.mcdnd.race.trait.SingleValueTrait.MovementSpeedTrait;
+import musician101.mcdnd.race.trait.Trait.AlignmentTrait;
 import musician101.mcdnd.skill.Skills;
 import musician101.mcdnd.util.CustomHashMap;
 
 public class Traits
 {
+	//TODO change Traits to have interfaces or change each trait to be a class?
 	// Dragonborn Traits
-	public static final AbilityScoreIncreaseTrait DRAGONBORN_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.STR, 2), new AbilityScore(AbilityScores.CHA, 1)), "Your Strength score increases by 2, and your Charisma score increases by 1.");
-	public static final AgeTrait DRAGONBORN_AGE = new AgeTrait(15, 80, "Young dragonborns grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.");
+	public static final AbilityScoreIncreaseTrait DRAGONBORN_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.STR, 2), new AbilityScore(AbilityScores.CHA, 1)), "Your Strength score increases by 2, and your Charisma score increases by 1.");
+	public static final Trait DRAGONBORN_AGE = new Trait("Age", "Young dragonborns grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.");
 	public static final AlignmentTrait DRAGONBORN_ALIGNMENT = new AlignmentTrait("Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil (represented by Bahamut and Tiamat, respectively). Most dragonborn are good, but those who side with Tiamat can be terrible villains.");
 	public static final MovementSpeedTrait DRAGONBORN_SPEED = new MovementSpeedTrait();
 	public static final SizeTrait DRAGONBORN_SIZE = new SizeTrait(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.");
 	public static final List<Trait> DRAGONBORN_TRAITS = Arrays.asList(DRAGONBORN_ASI, DRAGONBORN_AGE, DRAGONBORN_ALIGNMENT, DRAGONBORN_SPEED, DRAGONBORN_SIZE);
 	
 	// Hill Dwarf Traits
-	public static final AbilityScoreIncreaseTrait DWARF_HILL_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.WIS, 1)), "Your Wisdom score increases by 1.");
+	public static final AbilityScoreIncreaseTrait DWARF_HILL_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.WIS, 1)), "Your Wisdom score increases by 1.");
 	public static final SizeTrait DWARF_HILL_SIZE = new SizeTrait(3 * 12 + 8, new Dice(4, 2), 115, new Dice(6, 2), CharacterSize.MEDIUM, "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.");
 	public static final Trait DWARVEN_TOUGHNESS = new Trait("Dwarven Toughness", "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.");
 	public static final List<Trait> DWARVEN_HILL_TRAITS = Arrays.asList(DWARF_HILL_ASI, DWARF_HILL_SIZE, DWARVEN_TOUGHNESS);
 	
 	// Mountain Dwarf Traits
-	public static final AbilityScoreIncreaseTrait DWARF_MOUNTAIN_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.STR, 2)), "Your Strength score increases by 2.");
+	public static final AbilityScoreIncreaseTrait DWARF_MOUNTAIN_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.STR, 2)), "Your Strength score increases by 2.");
 	public static final ListTrait<ArmorTypes> DWARVEN_ARMOR_TRAINING = new ListTrait<ArmorTypes>("Dwarven Armor Training", Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM), "You have proficiency with light and medium armor.");
 	public static final SizeTrait DWARF_MOUNTAIN_SIZE = new SizeTrait(4 * 12, new Dice(4, 2), 130, new Dice(6, 2), CharacterSize.MEDIUM, "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.");
 	public static final List<Trait> DWARF_MOUNTAIN_TRAITS = Arrays.asList(DWARF_MOUNTAIN_ASI, DWARVEN_ARMOR_TRAINING, DWARF_MOUNTAIN_SIZE);
 	
 	// Dwarf Traits
-	public static final AbilityScoreIncreaseTrait DWARF_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CON, 2)), "Your Constitution score increases by 2");
-	public static final AgeTrait DWARF_AGE = new AgeTrait(50, 350, "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.");
+	public static final AbilityScoreIncreaseTrait DWARF_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CON, 2)), "Your Constitution score increases by 2");
+	public static final Trait DWARF_AGE = new Trait("Age", "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.");
 	public static final AlignmentTrait DWARF_ALIGNMENT = new AlignmentTrait("Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.");
 	public static final DarkvisionTrait DWARF_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
 	public static final LanguagesTrait DWARF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DWARVISH), "You can speak, read and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds and those characteristics spill over into whatever other language a dwarf might speak.");
@@ -63,7 +70,7 @@ public class Traits
 	public static final ListTrait<Weapons> ELF_WEAPON_TRAINING = new ListTrait<Weapons>("Elf Weapon Training", Arrays.asList(Weapons.LONGSWORD, Weapons.SHORTSWORD, Weapons.SHORTBOW, Weapons.LONGBOW), "You have proficiency with the longsword, shortsword, shortbow, and longbow.");
 	
 	// Dark/Drow Elf Traits
-	public static final AbilityScoreIncreaseTrait ELF_DARK_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CHA, 1)), "Your Charisma score increases by 1.");
+	public static final AbilityScoreIncreaseTrait ELF_DARK_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CHA, 1)), "Your Charisma score increases by 1.");
 	public static final DarkvisionTrait ELF_DARK_DARKVISION = new DarkvisionTrait("Superior Darkvision", 120, "Your darkvision has a radius of 120 feet.");
 	public static final SizeTrait ELF_DARK_SIZE = new SizeTrait(4 * 12 + 5, new Dice(6, 2), 75, new Dice(4, 2), CharacterSize.MEDIUM, "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.");
 	public static final SingleValueTrait<Skills> SUNLIGHT_SENSITIVITY = new SingleValueTrait<Skills>("Sunlight Sensitivity", Skills.PERCEPTION, "You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.");
@@ -73,22 +80,22 @@ public class Traits
 	public static final List<Trait> ELF_DARK_TRAITS = Arrays.asList(ELF_DARK_ASI, ELF_DARK_DARKVISION, ELF_DARK_SIZE, SUNLIGHT_SENSITIVITY, DROW_MAGIC, DROW_WEAPON_TRAINING, ELF_SPEED);
 	
 	// High Elf Traits
-	public static final AbilityScoreIncreaseTrait ELF_HIGH_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.INT, 1)), "Your Intelligence score increases by 1.");
+	public static final AbilityScoreIncreaseTrait ELF_HIGH_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.INT, 1)), "Your Intelligence score increases by 1.");
 	public static final SizeTrait ELF_HIGH_SIZE = new SizeTrait(4 * 12 + 6, new Dice(10, 2), 90, new Dice(4, 2), CharacterSize.MEDIUM, "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.");
 	public static final SingleValueTrait<AbilityScores> CANTRIP = new SingleValueTrait<AbilityScores>("Cantrip", AbilityScores.INT, "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it.");
 	public static final Trait EXTRA_LANGUAGE = new Trait("Extra Language", "You can speak, read, and write one extra language of your choice.");
 	public static final List<Trait> ELF_HIGH_TRAITS = Arrays.asList(ELF_HIGH_ASI, ELF_HIGH_SIZE, CANTRIP, EXTRA_LANGUAGE, ELF_SPEED, ELF_DARKVISION, ELF_WEAPON_TRAINING);
 	
 	// Wood Elf Traits
-	public static final AbilityScoreIncreaseTrait ELF_WOOD_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.WIS, 1)), "Your Wisdom score increases by 1.");
+	public static final AbilityScoreIncreaseTrait ELF_WOOD_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.WIS, 1)), "Your Wisdom score increases by 1.");
 	public static final SizeTrait ELF_WOOD_SIZE = new SizeTrait(4 * 12 + 6, new Dice(10, 2), 100, new Dice(6, 2), CharacterSize.MEDIUM, "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.");
 	public static final SingleValueTrait<Integer> FLEET_OF_FOOT = new SingleValueTrait<Integer>("Fleet of Foot", 35, "Your base walking speed increases to 35 feet.");
 	public static final Trait MASK_OF_THE_WILD = new Trait("Mask of the Wild", "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.");
 	public static final List<Trait> ELF_WOOD_TRAITS = Arrays.asList(ELF_WOOD_ASI, ELF_WOOD_SIZE, FLEET_OF_FOOT, MASK_OF_THE_WILD, ELF_DARKVISION, ELF_WEAPON_TRAINING);
 	
 	// Elf Traits
-	public static final AbilityScoreIncreaseTrait ELF_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.DEX, 2)), "Your Strength score increases by 2.");
-	public static final AgeTrait ELF_AGE = new AgeTrait(100, 750, "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.");
+	public static final AbilityScoreIncreaseTrait ELF_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.DEX, 2)), "Your Strength score increases by 2.");
+	public static final Trait ELF_AGE = new Trait("Age", "Although elves reach physical maturity at about the same age as humans, the elven understanding of adulthood goes beyond physical growth to encompass worldly experience. An elf typically claims adulthood and an adult name around the age of 100 and can live to be 750 years old.");
 	public static final AlignmentTrait ELF_ALIGNMENT = new AlignmentTrait("Elves love freedom, variety, and self-expression, so they lean strongly toward the gentler aspects of chaos. They value and protect others' freedom as well as their own, and they are more often good than not. The drow are an exception; their exile into the Underdark has made them vicious and dangerous. Drow are more often evil than not.");
 	public static final SingleValueTrait<Skills> KEEN_SENSES = new SingleValueTrait<Skills>("Keen Senses", Skills.PERCEPTION, "You have proficiency in the Perception skill.");
 	public static final Trait FEY_ANCESTRY = new Trait("Fey Ancestry", "You have advantage on saving throws against being charmed, and magic can't put you to sleep.");
@@ -98,13 +105,13 @@ public class Traits
 	public static final List<Trait> ELF_TRAITS = Arrays.asList(ELF_ASI, ELF_AGE, ELF_ALIGNMENT, KEEN_SENSES, FEY_ANCESTRY, TRANCE, ELF_LANGUAGES, ELF_SUBRACE);
 	
 	// Forest Gnome Traits
-	public static final AbilityScoreIncreaseTrait GNOME_FOREST_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.DEX, 1)), "Your Dexterity score increases by 1.");
+	public static final AbilityScoreIncreaseTrait GNOME_FOREST_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.DEX, 1)), "Your Dexterity score increases by 1.");
 	public static final SingleValueTrait<Spell> NATURAL_ILLUSIONIST = new SingleValueTrait<Spell>("Natural Illusionist", Spells.MINOR_ILLUSION, "You know the Minor Illusion cantrip. Intelligence is your spellcasting ability for it.");
 	public static final Trait SPEAK_WITH_SMALL_BEASTS = new Trait("Speak with Small Beasts", "Through sounds and gestures, you can communicate simple ideas with Small or smaller beasts. Forest gnomes love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets.");
 	public static final List<Trait> GNOME_FOREST_TRAITS = Arrays.asList(GNOME_FOREST_ASI, NATURAL_ILLUSIONIST, SPEAK_WITH_SMALL_BEASTS);
 	
 	// Rock Gnome Traits
-	public static final AbilityScoreIncreaseTrait GNOME_ROCK_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
+	public static final AbilityScoreIncreaseTrait GNOME_ROCK_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
 	public static final SingleValueTrait<Skills> ARTIFICERS_LORE = new SingleValueTrait<Skills>("Artificer's Lore", Skills.HISTORY, "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.");
 	public static final SingleValueTrait<Tool> TINKER = new SingleValueTrait<Tool>("Tinker", Tool.TINKERS_TOOLS, "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.\n" + 
 			"When you create a device, choose one of the following options:\n" + 
@@ -114,8 +121,8 @@ public class Traits
 	public static final List<? extends Trait> GNOME_ROCK_TRAITS = Arrays.asList(GNOME_ROCK_ASI, ARTIFICERS_LORE, TINKER);
 	
 	// Gnome Traits
-	public static final AbilityScoreIncreaseTrait GNOME_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.INT, 2)), "Your Intelligence score increases by 2.");
-	public static final AgeTrait GNOME_AGE = new AgeTrait(40, 500, "Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.");
+	public static final AbilityScoreIncreaseTrait GNOME_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.INT, 2)), "Your Intelligence score increases by 2.");
+	public static final Trait GNOME_AGE = new Trait("Age", "Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.");
 	public static final AlignmentTrait GNOME_ALIGNMENT = new AlignmentTrait("Gnomes are most often good. Those who tend toward law are sages, engineers, researches, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.");
 	public static final ListTrait<AbilityScores> GNOME_CUNNING = new ListTrait<AbilityScores>("Gnome Cunning", Arrays.asList(AbilityScores.INT, AbilityScores.WIS, AbilityScores.CHA), "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.");
 	public static final DarkvisionTrait GNOME_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
@@ -126,8 +133,8 @@ public class Traits
 	public static final List<Trait> GNOME_TRAITS = Arrays.asList(GNOME_ASI, GNOME_AGE, GNOME_ALIGNMENT, GNOME_CUNNING, GNOME_DARKVISION, GNOME_LANGUAGES, GNOME_SPEED, GNOME_SIZE, GNOME_SUBRACE);
 	
 	// Half-Elf Traits
-	public static final AbilityScoreIncreaseTrait HALF_ELF_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CHA, 2)), "Your Charisma score increases by 2, and two other ability scores of your choice increases by 1.");
-	public static final AgeTrait HALF_ELF_AGE = new AgeTrait(20, 180, "Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.");
+	public static final AbilityScoreIncreaseTrait HALF_ELF_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CHA, 2)), "Your Charisma score increases by 2, and two other ability scores of your choice increases by 1.");
+	public static final Trait HALF_ELF_AGE = new Trait("Age", "Half-elves mature at the same rate humans do and reach adulthood around the age of 20. They live much longer than humans, however, often exceeding 180 years.");
 	public static final AlignmentTrait HALF_ELF_ALIGNMENT = new AlignmentTrait("Half-elves share the chaotic bent of their elven heritage. They value both personal freedom and creative expression, demonstrating neither love of leaders nor desire for followers. They chafe at rules, resent others' demands, and sometimes prove unreliable or at least unpredictable.");
 	public static final DarkvisionTrait HALF_ELF_DARKVISION = new DarkvisionTrait("Thanks to your elf blood, you have superior vision in dark and dim conditions.");
 	public static final MovementSpeedTrait HALF_ELF_SPEED = new MovementSpeedTrait();
@@ -137,8 +144,8 @@ public class Traits
 	public static final List<Trait> HALF_ELF_TRAITS = Arrays.asList(HALF_ELF_ASI, HALF_ELF_AGE, HALF_ELF_ALIGNMENT, HALF_ELF_DARKVISION, HALF_ELF_SPEED, HALF_ELF_SIZE, SKILL_VERSATILITY, HALF_ELF_LANGUAGES);
 	
 	// Half-Orc Traits
-	public static final AbilityScoreIncreaseTrait HALF_ORC_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.STR, 2), new AbilityScore(AbilityScores.CON, 1)), "Your Strength score increases by 2, and your Constitution score increases by 1.");
-	public static final AgeTrait HALF_ORC_AGE = new AgeTrait(14, 75, "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.");
+	public static final AbilityScoreIncreaseTrait HALF_ORC_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.STR, 2), new AbilityScore(AbilityScores.CON, 1)), "Your Strength score increases by 2, and your Constitution score increases by 1.");
+	public static final Trait HALF_ORC_AGE = new Trait("Age", "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.");
 	public static final AlignmentTrait HALF_ORC_ALIGNMENT = new AlignmentTrait("Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.");
 	public static final DarkvisionTrait HALF_ORC_DARKVISION = new DarkvisionTrait("Thanks to your orc blood, you have superior vision in dark and dim conditions.");
 	public static final MovementSpeedTrait HALF_ORC_SPEED = new MovementSpeedTrait();
@@ -149,18 +156,18 @@ public class Traits
 	public static final List<Trait> HALF_ORC_TRAITS = Arrays.asList(HALF_ORC_ASI, HALF_ORC_AGE, HALF_ORC_ALIGNMENT, HALF_ORC_DARKVISION, HALF_ORC_SPEED, HALF_ORC_SIZE, MENACING, RELENTLESS_ENDURANCE, HALF_ORC_LANGUAGES);
 	
 	// Lightfoot Halfling Traits
-	public static final AbilityScoreIncreaseTrait HALFLING_LIGHTFOOT_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CHA, 1)), "Your Charisma score increases by 1.");
+	public static final AbilityScoreIncreaseTrait HALFLING_LIGHTFOOT_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CHA, 1)), "Your Charisma score increases by 1.");
 	public static final Trait NATURALLY_STEALTHY = new Trait("Naturally Stealthy", "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.");
 	public static final List<Trait> HALFLING_LIGHTFOOT_TRAITS = Arrays.asList(HALFLING_LIGHTFOOT_ASI, NATURALLY_STEALTHY);
 	
 	// Stout Halfling Traits
-	public static final AbilityScoreIncreaseTrait HALFLING_STOUT_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
+	public static final AbilityScoreIncreaseTrait HALFLING_STOUT_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
 	public static final SingleValueTrait<DamageType> STOUT_RESILIENCE = new SingleValueTrait<DamageType>("Stout Resilience", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage."); 
 	public static final List<? extends Trait> HALFLING_STOUT_TRAITS = Arrays.asList(HALFLING_STOUT_ASI, STOUT_RESILIENCE);
 	
 	// Halfing Traits
-	public static final AbilityScoreIncreaseTrait HALFLING_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.DEX, 1)), "Your Dexterity score increases by 2.");
-	public static final AgeTrait HALFLING_AGE = new AgeTrait(20, 250, "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.");
+	public static final AbilityScoreIncreaseTrait HALFLING_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.DEX, 1)), "Your Dexterity score increases by 2.");
+	public static final Trait HALFLING_AGE = new Trait("Age", "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.");
 	public static final AlignmentTrait HALFLING_ALIGNMENT = new AlignmentTrait("Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of the their old ways.");
 	public static final MovementSpeedTrait HALFLING_SPEED = new MovementSpeedTrait(25);
 	public static final SizeTrait HALFLING_SIZE = new SizeTrait(2 * 12 + 7, new Dice(4, 2), 35, new Dice(1), CharacterSize.SMALL, "Halflings average about 3 feet tall and weight about 40 pounds. Your size is Small.");
@@ -172,8 +179,8 @@ public class Traits
 	public static final List<Trait> HALFLING_TRAITS = Arrays.asList(HALFLING_ASI, HALFLING_AGE, HALFLING_ALIGNMENT, HALFLING_SPEED, HALFLING_SIZE, LUCKY, BRAVE, HALFLING_NIMBLENESS, HALFLING_LANGUAGES, HALFLING_SUBRACE);
 	
 	// Human Traits
-	public static final AbilityScoreIncreaseTrait HUMAN_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(), "Your ability scores each increases by 1.");
-	public static final AgeTrait HUMAN_AGE = new AgeTrait(18, 100, "Humans reach adulthood in their late teens and live less than a century.");
+	public static final AbilityScoreIncreaseTrait HUMAN_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CHA, 1), new AbilityScore(AbilityScores.CON, 1), new AbilityScore(AbilityScores.DEX, 1), new AbilityScore(AbilityScores.INT, 1), new AbilityScore(AbilityScores.STR, 1), new AbilityScore(AbilityScores.WIS, 1)), "Your ability scores each increases by 1.");
+	public static final Trait HUMAN_AGE = new Trait("Age", "Humans reach adulthood in their late teens and live less than a century.");
 	public static final AlignmentTrait HUMAN_ALIGNMENT = new AlignmentTrait("Humans tend toward no particular alignment. The best and the worst are found among them.");
 	public static final MovementSpeedTrait HUMAN_SPEED = new MovementSpeedTrait();
 	public static final SizeTrait HUMAN_SIZE = new SizeTrait(4 * 12 + 8, new Dice(10, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.");
@@ -181,8 +188,8 @@ public class Traits
 	public static final List<Trait> HUMAN_TRAITS = Arrays.asList(HUMAN_ASI, HUMAN_AGE, HUMAN_ALIGNMENT, HUMAN_SPEED, HUMAN_SIZE, HUMAN_LANGUAGES);
 	
 	// Tiefling Traits
-	public static final AbilityScoreIncreaseTrait TIEFLING_ASI = new AbilityScoreIncreaseTrait(new RaceAbilityScoreIncrease(new AbilityScore(AbilityScores.INT, 1), new AbilityScore(AbilityScores.CHA, 2)), "Your Intelligence score increases by 1, and your Charisma score increases by 2.");
-	public static final AgeTrait TIEFLING_AGE = new AgeTrait(18, 100, "Tieflings mature at the same rate as humans but live a few years longer.");
+	public static final AbilityScoreIncreaseTrait TIEFLING_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.INT, 1), new AbilityScore(AbilityScores.CHA, 2)), "Your Intelligence score increases by 1, and your Charisma score increases by 2.");
+	public static final Trait TIEFLING_AGE = new Trait("Age", "Tieflings mature at the same rate as humans but live a few years longer.");
 	public static final AlignmentTrait TIEFLING_ALIGNMENT = new AlignmentTrait("Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not an independent nature inclines many tieflings toward a chaotic alignment.");
 	public static final DarkvisionTrait TIEFLING_DARKVISION = new DarkvisionTrait("Thanks to your infernal heritage, you have superior vision in dark and dim conditions.");
 	public static final MovementSpeedTrait TIEFLING_SPEED = new MovementSpeedTrait();
