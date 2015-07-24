@@ -36,4 +36,10 @@ public class Dice
 		
 		return roll;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return amount + "d" + sides;
+	}
 }

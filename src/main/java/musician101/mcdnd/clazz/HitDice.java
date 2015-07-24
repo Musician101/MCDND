@@ -21,7 +21,6 @@ public class HitDice extends Dice
 	}
 	
 	/** Used for when leveling up, when a player uses a hit die to regain HP, or when a player goes for a long rest */
-	/** Needs to be replaced with Override of roll()? */
 	public int gainHitPoints(int conMod, boolean isRolling)
 	{
 		if (isRolling)

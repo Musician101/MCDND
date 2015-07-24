@@ -18,6 +18,6 @@ public abstract class ScaleableDamageWeapon extends Weapon
 	
 	public void updateDamage(int level)
 	{
-		damage = damageMap.get(level);
+		d = damageMap.get(level);
 	}
 }

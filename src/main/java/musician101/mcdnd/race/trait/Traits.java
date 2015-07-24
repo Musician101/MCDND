@@ -27,7 +27,6 @@ import musician101.mcdnd.util.CustomHashMap;
 
 public class Traits
 {
-	//TODO change Traits to have interfaces or change each trait to be a class?
 	// Dragonborn Traits
 	public static final AbilityScoreIncreaseTrait DRAGONBORN_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.STR, 2), new AbilityScore(AbilityScores.CHA, 1)), "Your Strength score increases by 2, and your Charisma score increases by 1.");
 	public static final Trait DRAGONBORN_AGE = new Trait("Age", "Young dragonborns grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.");

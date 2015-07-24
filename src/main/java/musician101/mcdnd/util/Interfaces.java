@@ -8,14 +8,15 @@ import java.util.Set;
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.combat.Damage;
+import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 
 public class Interfaces
 {
-	public static interface Described
+	public static interface Buyable
 	{
-		String getDescription();
+		Cost getCost();
 	}
 	
 	public static interface DamageDealer
@@ -28,6 +29,11 @@ public class Interfaces
 		AbilityScores getAbilitySaveType();
 		
 		int getDCSave(AbilityScore score, int... bonuses);
+	}
+	
+	public static interface Described
+	{
+		String getDescription();
 	}
 	
 	public static interface EffectsArea
@@ -60,5 +66,10 @@ public class Interfaces
 	public interface ScaleableDamage extends DamageDealer, Mapped<Integer, Damage>
 	{
 		void updateDamage(int level);
+	}
+	
+	public static interface Weighable
+	{
+		double getWeight();
 	}
 }
