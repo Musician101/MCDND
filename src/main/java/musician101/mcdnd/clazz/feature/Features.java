@@ -22,9 +22,9 @@ import musician101.mcdnd.clazz.feature.SingleValueFeature.FirstLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
-import musician101.mcdnd.equipment.Weapons;
-import musician101.mcdnd.equipment.Weapons.WeaponType;
 import musician101.mcdnd.equipment.tool.Tool;
+import musician101.mcdnd.equipment.weapon.Weapons;
+import musician101.mcdnd.equipment.weapon.Weapons.WeaponType;
 import musician101.mcdnd.skill.Skills;
 import musician101.mcdnd.util.CustomHashMap;
 

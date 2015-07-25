@@ -5,7 +5,7 @@ import musician101.mcdnd.util.Interfaces.Buyable;
 import musician101.mcdnd.util.Interfaces.Named;
 import musician101.mcdnd.util.Interfaces.Weighable;
 
-public class Equipment implements Buyable, Named, Weighable
+public abstract class Equipment implements Buyable, Named, Weighable
 {
 	Cost cost;
 	double weight;
