@@ -50,14 +50,6 @@ public class WeaponProperty implements Described, Named
 		}
 	}
 	
-	public static class ThrownWeaponProperty extends WeaponProperty
-	{
-		public ThrownWeaponProperty(String description)
-		{
-			super("Thrown", description);
-		}
-	}
-	
 	public static class VersatileWeaponProperty extends WeaponProperty
 	{
 		Dice dice;
