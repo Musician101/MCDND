@@ -4,7 +4,7 @@ import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.equipment.Equipment;
 import musician101.mcdnd.equipment.gear.AdventuringGear;
-import musician101.mcdnd.equipment.tool.Tool;
+import musician101.mcdnd.equipment.tool.Tools;
 import musician101.mcdnd.util.CustomHashMap;
 
 public class Packs
@@ -24,7 +24,7 @@ public class Packs
 			.add(AdventuringGear.ROPE_HEMPEN, 1));
 	public static final Pack ENTERTAINERS_PACK = new Pack("Entertainer's Pack", new Cost(CurrencyType.GOLD, 40), new CustomHashMap<Equipment, Integer>()
 			.add(AdventuringGear.BACKPACK, 1).add(AdventuringGear.BEDROLL,1).add(AdventuringGear.CLOTHES_COSTUME, 2).add(AdventuringGear.CANDLE, 5)
-			.add(AdventuringGear.RATIONS, 5).add(AdventuringGear.WATERSKIN, 1).add(Tool.DISGUISE_KIT, 1));
+			.add(AdventuringGear.RATIONS, 5).add(AdventuringGear.WATERSKIN, 1).add(Tools.DISGUISE_KIT, 1));
 	public static final Pack EXPLORERS_PACK = new Pack("Explorer's Pack", new Cost(CurrencyType.GOLD, 10), new CustomHashMap<Equipment, Integer>()
 			.add(AdventuringGear.BACKPACK, 1).add(AdventuringGear.BEDROLL, 1).add(AdventuringGear.MESS_KIT, 1).add(AdventuringGear.TINDERBOX,  1)
 			.add(AdventuringGear.TORCH, 10).add(AdventuringGear.RATIONS, 10).add(AdventuringGear.WATERSKIN, 1).add(AdventuringGear.ROPE_HEMPEN, 1));

@@ -9,7 +9,7 @@ import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
-import musician101.mcdnd.equipment.tool.Tool.ArtisanTool;
+import musician101.mcdnd.equipment.tool.Tools;
 import musician101.mcdnd.equipment.weapon.Weapon;
 import musician101.mcdnd.equipment.weapon.Weapons;
 import musician101.mcdnd.language.Language;
@@ -59,7 +59,7 @@ public class Traits
 	public static final AlignmentTrait DWARF_ALIGNMENT = new AlignmentTrait("Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.");
 	public static final DarkvisionTrait DWARF_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
 	public static final LanguagesTrait DWARF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DWARVISH), "You can speak, read and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds and those characteristics spill over into whatever other language a dwarf might speak.");
-	public static final ListTrait<ArtisanTool> DWARF_TOOL_PROFICIENCY = new ListTrait<ArtisanTool>("Tool Proficiency", Arrays.asList(Tool.BREWERS_SUPPLIES, Tool.MASONS_TOOLS, Tool.SMITHS_TOOLS), "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.");
+	public static final ListTrait<Tool> DWARF_TOOL_PROFICIENCY = new ListTrait<Tool>("Tool Proficiency", Arrays.asList(Tools.BREWERS_SUPPLIES, Tools.MASONS_TOOLS, Tools.SMITHS_TOOLS), "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.");
 	public static final ListTrait<Weapon> DWARVEN_COMBAT_TRAINING = new ListTrait<Weapon>("Dwarven Combat Training", Arrays.asList(Weapons.BATTLEAXE, Weapons.HANDAXE, Weapons.LIGHT_HAMMER, Weapons.WARHAMMER), "You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.");
 	public static final MovementSpeedTrait DWARF_SPEED = new MovementSpeedTrait(25);
 	public static final SingleValueTrait<DamageType> DWARVEN_RESILIENCE = new SingleValueTrait<DamageType>("DwarvenResilienceTrait", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
@@ -118,7 +118,7 @@ public class Traits
 	// Rock Gnome Traits
 	public static final AbilityScoreIncreaseTrait GNOME_ROCK_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
 	public static final SingleValueTrait<Skills> ARTIFICERS_LORE = new SingleValueTrait<Skills>("Artificer's Lore", Skills.HISTORY, "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.");
-	public static final SingleValueTrait<Tool> TINKER = new SingleValueTrait<Tool>("Tinker", Tool.TINKERS_TOOLS, "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.\n" + 
+	public static final SingleValueTrait<Tool> TINKER = new SingleValueTrait<Tool>("Tinker", Tools.TINKERS_TOOLS, "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.\n" + 
 			"When you create a device, choose one of the following options:\n" + 
 			"Clockwork Toy: This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.\n" + 
 			"Fire Starter: The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action.\n" +
