@@ -10,6 +10,7 @@ import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.tool.Tool.ArtisanTool;
+import musician101.mcdnd.equipment.weapon.Weapon;
 import musician101.mcdnd.equipment.weapon.Weapons;
 import musician101.mcdnd.language.Language;
 import musician101.mcdnd.magic.Spell;
@@ -59,7 +60,7 @@ public class Traits
 	public static final DarkvisionTrait DWARF_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
 	public static final LanguagesTrait DWARF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DWARVISH), "You can speak, read and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds and those characteristics spill over into whatever other language a dwarf might speak.");
 	public static final ListTrait<ArtisanTool> DWARF_TOOL_PROFICIENCY = new ListTrait<ArtisanTool>("Tool Proficiency", Arrays.asList(Tool.BREWERS_SUPPLIES, Tool.MASONS_TOOLS, Tool.SMITHS_TOOLS), "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.");
-	public static final ListTrait<Weapons> DWARVEN_COMBAT_TRAINING = new ListTrait<Weapons>("Dwarven Combat Training", Arrays.asList(Weapons.BATTLEAXE, Weapons.HANDAXE, Weapons.LIGHT_HAMMER, Weapons.WARHAMMER), "You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.");
+	public static final ListTrait<Weapon> DWARVEN_COMBAT_TRAINING = new ListTrait<Weapon>("Dwarven Combat Training", Arrays.asList(Weapons.BATTLEAXE, Weapons.HANDAXE, Weapons.LIGHT_HAMMER, Weapons.WARHAMMER), "You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.");
 	public static final MovementSpeedTrait DWARF_SPEED = new MovementSpeedTrait(25);
 	public static final SingleValueTrait<DamageType> DWARVEN_RESILIENCE = new SingleValueTrait<DamageType>("DwarvenResilienceTrait", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
 	public static final SingleValueTrait<Skills> STONECUNNING = new SingleValueTrait<Skills>("Stonecunning", Skills.HISTORY, "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient int the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.");
@@ -71,7 +72,7 @@ public class Traits
 		
 	// Shared traits between High and Wood Elves
 	public static final DarkvisionTrait ELF_DARKVISION = new DarkvisionTrait("Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions.");
-	public static final ListTrait<Weapons> ELF_WEAPON_TRAINING = new ListTrait<Weapons>("Elf Weapon Training", Arrays.asList(Weapons.LONGSWORD, Weapons.SHORTSWORD, Weapons.SHORTBOW, Weapons.LONGBOW), "You have proficiency with the longsword, shortsword, shortbow, and longbow.");
+	public static final ListTrait<Weapon> ELF_WEAPON_TRAINING = new ListTrait<Weapon>("Elf Weapon Training", Arrays.asList(Weapons.LONGSWORD, Weapons.SHORTSWORD, Weapons.SHORTBOW, Weapons.LONGBOW), "You have proficiency with the longsword, shortsword, shortbow, and longbow.");
 	
 	// Dark/Drow Elf Traits
 	public static final AbilityScoreIncreaseTrait ELF_DARK_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CHA, 1)), "Your Charisma score increases by 1.");
@@ -80,7 +81,7 @@ public class Traits
 	public static final SingleValueTrait<Skills> SUNLIGHT_SENSITIVITY = new SingleValueTrait<Skills>("Sunlight Sensitivity", Skills.PERCEPTION, "You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.");
 	public static final SpellcastingTrait DROW_MAGIC = new SpellcastingTrait("Drow Magic", new CustomHashMap<Integer, Spell>().add(1, Spells.DANCING_LIGHTS).add(3, Spells.FAERIE_FIRE).add(5, Spells.DARKNESS), AbilityScores.CHA, 
 			"You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per day. When you reach 5th level, you can also cast the darkness spell once per day. Charisma is your spellcasting ability for these spells.");
-	public static final ListTrait<Weapons> DROW_WEAPON_TRAINING = new ListTrait<Weapons>("Drow Weapon Training", Arrays.asList(Weapons.RAPIER, Weapons.SHORTSWORD, Weapons.HAND_CROSSBOW), "You have proficiency with rapiers, shortswords, and hand crossbows.");
+	public static final ListTrait<Weapon> DROW_WEAPON_TRAINING = new ListTrait<Weapon>("Drow Weapon Training", Arrays.asList(Weapons.RAPIER, Weapons.SHORTSWORD, Weapons.HAND_CROSSBOW), "You have proficiency with rapiers, shortswords, and hand crossbows.");
 	public static final List<Trait> ELF_DARK_TRAITS = Arrays.asList(ELF_DARK_ASI, ELF_DARK_DARKVISION, ELF_DARK_SIZE, SUNLIGHT_SENSITIVITY, DROW_MAGIC, DROW_WEAPON_TRAINING, ELF_SPEED);
 	
 	// High Elf Traits

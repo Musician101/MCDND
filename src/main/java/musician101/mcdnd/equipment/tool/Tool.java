@@ -1,9 +1,10 @@
 package musician101.mcdnd.equipment.tool;
 
-import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.currency.CurrencyType;
+import musician101.mcdnd.equipment.Equipment;
 
-public class Tool
+public class Tool extends Equipment
 {
 	public static final ArtisanTool ALCHEMISTS_SUPPLIES = new ArtisanTool("Aclhemist's Supplies", new Cost(CurrencyType.GOLD, 50), 8);
 	public static final ArtisanTool BREWERS_SUPPLIES = new ArtisanTool("Brewer's Supplies", new Cost(CurrencyType.GOLD, 20), 9);
@@ -46,30 +47,9 @@ public class Tool
 	public static final Tool POISONERS_KIT = new Tool("Poisoner's Kit", new Cost(CurrencyType.GOLD, 50), 2);
 	public static final Tool THIEVES_TOOLS = new Tool("Thieve's Tools", new Cost(CurrencyType.GOLD, 25), 1);
 	
-	Cost cost;
-	double weight;
-	String name;
-	
 	public Tool(String name, Cost cost, double weight)
 	{
-		this.name = name;
-		this.cost = cost;
-		this.weight = weight;
-	}
-	
-	public Cost getCost()
-	{
-		return cost;
-	}
-	
-	public double getWeight()
-	{
-		return weight;
-	}
-	
-	public String getName()
-	{
-		return name;
+		super(name, cost, weight);
 	}
 	
 	public static class ArtisanTool extends Tool

@@ -23,8 +23,8 @@ import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
+import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
 import musician101.mcdnd.equipment.weapon.Weapons;
-import musician101.mcdnd.equipment.weapon.Weapons.WeaponType;
 import musician101.mcdnd.skill.Skills;
 import musician101.mcdnd.util.CustomHashMap;
 
@@ -37,8 +37,9 @@ public class Features
 	public static final ProficienciesFeature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
 			new ToolProficiencyFeature(new ArrayList<Tool>(), "None"), new SavingThrowProficiencyFeature(Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution"), new SkillProficiencyFeature(Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"));
 	public static final EquipmentFeature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.GREATAXE), new EquipmentChoiceFeature(Arrays.asList(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP)), "(a) a greataxe or (b) any martial melee weapon"),
-			new EquipmentChoicesFeature()));
-	//TODO change weapons enum to class
+			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.HANDAXE, 2), new EquipmentChoiceFeature(Arrays.asList(Weapons.CLUB, Weapons.DAGGER, Weapons.GREATCLUB, Weapons.HANDAXE, Weapons.JAVELIN, Weapons.LIGHT_HAMMER, Weapons.MACE, Weapons.QUARTERSTAFF, Weapons.SICKLE, Weapons.SPEAR, Weapons.LIGHT_CROSSBOW, Weapons.DART, Weapons.SHORTBOW, Weapons.SLING)), "(a) two handaxes or (b) any simple weapon"),
+			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Arrays.asList(Weapons.JAVELIN), 4), "An explorer's pack and four javelins"));
+	
 	static Map<CharacterClasses, List<Feature>> map = new CustomHashMap<CharacterClasses, List<Feature>>()
 			.add(CharacterClasses.BARBARIAN, getBarbarianFeatures()).add(CharacterClasses.BARD, getBardFeatures())
 			.add(CharacterClasses.CLERIC, getClericFeatures()).add(CharacterClasses.DRUID, getDruidFeatures())
