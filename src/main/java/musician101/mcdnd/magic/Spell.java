@@ -86,6 +86,14 @@ public class Spell
 		return name;
 	}
 	
+	public static class RitualSpell extends Spell
+	{
+		public RitualSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String description)
+		{
+			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+		}
+	}
+	
 	public static enum SpellLevel
 	{
 		CANTRIP("Cantrip"),

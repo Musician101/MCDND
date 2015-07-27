@@ -13,6 +13,8 @@ import musician101.mcdnd.clazz.feature.Feature.EquipmentChoicesFeature.Equipment
 import musician101.mcdnd.clazz.feature.Feature.EquipmentFeature;
 import musician101.mcdnd.clazz.feature.Feature.HitPointsFeature;
 import musician101.mcdnd.clazz.feature.Feature.ProficienciesFeature;
+import musician101.mcdnd.clazz.feature.Feature.RageFeature;
+import musician101.mcdnd.clazz.feature.Feature.UnarmoredDefenseFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.ArmorProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
@@ -21,10 +23,14 @@ import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.FirstLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
+import musician101.mcdnd.clazz.feature.totem.Totem;
+import musician101.mcdnd.clazz.feature.totem.Totems;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
 import musician101.mcdnd.equipment.weapon.Weapons;
+import musician101.mcdnd.magic.Spell;
+import musician101.mcdnd.magic.Spells;
 import musician101.mcdnd.skill.Skills;
 import musician101.mcdnd.util.CustomHashMap;
 
@@ -33,12 +39,34 @@ public class Features
 	private static final HitDice D12 = new HitDice(12);
 	
 	// Barbarian Features
-	public static final HitPointsFeature BARBARIAN_HP = new HitPointsFeature(new HitDiceFeature(D12, D12.toString() + " per barbarian level"), new FirstLevelHPFeature(D12), new HigherLevelHPFeature(D12));
-	public static final ProficienciesFeature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
+	// Path of the Berserker
+	public static final Feature FRENZY = new Feature("Frenzy", 3, "Starting when you choose this path at 3rd level, you can go into a frenzy whn you rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer one level of exhaustion.");
+	public static final Feature MINDLESS_RAGE = new Feature("Mindless Rage", 6, "Beginning at 6th level, you can't be charmed or fightened while raging. If you are charmed or frightened when you enter your rage, the effect is suspended for the duration of the rage.");
+	public static final Feature INTIMIDATING_PRESENCE = new DCSaveFeature("Intimidating Presence", 10, AbilityScores.CHA, "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the durationof this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you.\n" +
+			"If the creature succeeds on its saving throw, you can't use this feature on that creature again for 24 hours.");
+	public static final Feature RETALIATION = new Feature("Retaliation", 14, "Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon attack against that creature.");
+	public static final Feature BERSERKER = new ListFeature<Feature>("Path of the Berserker", Arrays.asList(FRENZY, MINDLESS_RAGE, INTIMIDATING_PRESENCE), "For some barbarians, rage is a means to an end-that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being.");
+	
+	// Path of the Totem Warrior
+	public static final Feature SPIRIT_SEEKER = new ListFeature<Spell>("Spirit Seeker", 3, Arrays.asList(Spells.BEAST_SENSE, Spells.SPEAK_WITH_ANIMALS), "Yours is a path that seeks attunement with the natural world, giving you a kinship with beasts. At 3rd level when you adopt this path, you gain the ability to cast the Beast Sense and Speak with Animals spells, but only as rituals.");
+	public static final Feature TOTEM_SPIRIT = new ListFeature<Totem>("Totem Spirit", 3, Arrays.asList(Totems.BEAR_3, Totems.EAGLE_3, Totems.WOLF_3), "At 3rd level, when you adopt this path, you choose a totem spirit and gain its feature. You must make or acquire a physical totem object-an amulet or similar adornment-that incorporates fur or feathers, cloaws, teeth, or bones of the totem animal. At your option, you also gain minor physical attributes that are reminiscent of your totem spirit. For example, if you have a bear totem spirit, you might be unusually hairy and thick-skinned, or if your totem is the eagle, your eyes turn bright yellow.\n" +
+			"Your totem animal might be an animal related to those listed here but more appropriate to you homeland. For example, you could choose a hawk or vulture in place of an eagle.");
+	public static final Feature ASPECT_OF_THE_BEAST = new ListFeature<Totem>("Aspect of the Beast", 6, Arrays.asList(Totems.BEAR_6, Totems.EAGLE_6, Totems.WOLF_6), "At 6th level, you gain a magical benefit based on the totem animal of your choice. You can choose the same animal you selected at 3rd level or a different one.");
+	
+	
+	// Core Features
+	public static final Feature BARBARIAN_HP = new HitPointsFeature(new HitDiceFeature(D12, D12.toString() + " per barbarian level"), new FirstLevelHPFeature(D12), new HigherLevelHPFeature(D12));
+	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
 			new ToolProficiencyFeature(new ArrayList<Tool>(), "None"), new SavingThrowProficiencyFeature(Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution"), new SkillProficiencyFeature(Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"));
-	public static final EquipmentFeature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.GREATAXE), new EquipmentChoiceFeature(Arrays.asList(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP)), "(a) a greataxe or (b) any martial melee weapon"),
+	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.GREATAXE), new EquipmentChoiceFeature(Arrays.asList(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP)), "(a) a greataxe or (b) any martial melee weapon"),
 			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.HANDAXE, 2), new EquipmentChoiceFeature(Arrays.asList(Weapons.CLUB, Weapons.DAGGER, Weapons.GREATCLUB, Weapons.HANDAXE, Weapons.JAVELIN, Weapons.LIGHT_HAMMER, Weapons.MACE, Weapons.QUARTERSTAFF, Weapons.SICKLE, Weapons.SPEAR, Weapons.LIGHT_CROSSBOW, Weapons.DART, Weapons.SHORTBOW, Weapons.SLING)), "(a) two handaxes or (b) any simple weapon"),
-			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Arrays.asList(Weapons.JAVELIN), 4), "An explorer's pack and four javelins"));
+			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Arrays.asList(Weapons.JAVELIN), 4), "An explorer's pack and four javelins."));
+	public static final Feature RAGE = new RageFeature();
+	public static final Feature UNARMORED_DEFENSE = new UnarmoredDefenseFeature("While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.");
+	public static final Feature RECLESS_ATTACK = new Feature("Reckless Attack", 2, "Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advatange until your next turn.");
+	public static final Feature DANGER_SENSE = new Feature("Danger Sense", 2, "At 2nd level, you gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger.\n" +
+			"You have advantage on Dexterity saving throws against effects that you can see, such as traps and spells. To gain this benefit, you can't be blinded, deafened, or incapacitated.");
+	public static final Feature PRIMAL_PATH = new ListFeature<Feature>("Primal Path", 3, Arrays.asList(BERSERKER), "At 3rd level, you choose a path that shapes the nature of your rage. Choose the path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels.");
 	
 	static Map<CharacterClasses, List<Feature>> map = new CustomHashMap<CharacterClasses, List<Feature>>()
 			.add(CharacterClasses.BARBARIAN, getBarbarianFeatures()).add(CharacterClasses.BARD, getBardFeatures())
