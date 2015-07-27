@@ -28,6 +28,14 @@ public class ListFeature<T> extends Feature
 		return list;
 	}
 	
+	public static class AbilityScoreImprovementFeature extends ListFeature<Integer>
+	{
+		public AbilityScoreImprovementFeature(List<Integer> levels, String description)
+		{
+			super("Ability Score Improvement", levels.get(1), levels, description);
+		}
+	}
+	
 	public static class ArmorProficiencyFeature extends ListFeature<ArmorTypes>
 	{
 		public ArmorProficiencyFeature(List<ArmorTypes> armorTypes, String description)
