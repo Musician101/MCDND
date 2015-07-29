@@ -23,9 +23,6 @@ import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature
 import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.ToolProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.FirstLevelHPFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
 import musician101.mcdnd.clazz.feature.totem.Totem;
 import musician101.mcdnd.clazz.feature.totem.Totems;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
@@ -63,7 +60,7 @@ public class Features
 			"Most barbarian tribes consider a totem animal to be kin to a particular clan. In such cases, it is unusal for an individual to have more than one totem animal spirit, though exceptions exist.");
 	
 	// Core Features
-	public static final Feature BARBARIAN_HP = new HitPointsFeature(new HitDiceFeature(D12, D12.toString() + " per barbarian level"), new FirstLevelHPFeature(D12), new HigherLevelHPFeature(D12));
+	public static final Feature BARBARIAN_HP = new HitPointsFeature(D12, "barbarian");
 	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
 			new ToolProficiencyFeature(new ArrayList<Tool>(), "None"), new SavingThrowProficiencyFeature(Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution"), new SkillProficiencyFeature(Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"));
 	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.GREATAXE), new ListEquipmentChoice(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP), "(a) a greataxe or (b) any martial melee weapon"),

@@ -3,14 +3,12 @@ package musician101.mcdnd.clazz.feature;
 import java.util.Map;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
+import musician101.mcdnd.clazz.HitDice;
 import musician101.mcdnd.clazz.feature.ListFeature.ArmorProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.ToolProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.FirstLevelHPFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
-import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
 import musician101.mcdnd.util.CustomHashMap;
 import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.Named;
@@ -80,31 +78,29 @@ public class Feature implements Described, Named
 	
 	public static class HitPointsFeature extends Feature
 	{
-		FirstLevelHPFeature firstLevelHPFeature;
-		HigherLevelHPFeature higherLevelHPFeature;
-		HitDiceFeature hitDiceFeature;
+		HitDice dice;
+		String className;
 		
-		public HitPointsFeature(HitDiceFeature hitDiceFeature, FirstLevelHPFeature firstLevelHPFeature, HigherLevelHPFeature higherLevelHPFeature)
+		public HitPointsFeature(HitDice dice, String className)
 		{
 			super("Hit Points", "");
-			this.hitDiceFeature = hitDiceFeature;
-			this.firstLevelHPFeature = firstLevelHPFeature;
-			this.higherLevelHPFeature = higherLevelHPFeature;
+			this.dice = dice;
+			this.className = className;
 		}
 		
-		public FirstLevelHPFeature getFirstLevelHPFeature()
+		public HitDice getHitDice()
 		{
-			return firstLevelHPFeature;
+			return dice;
 		}
 		
-		public HigherLevelHPFeature getHigherLevelHPFeature()
+		public String getHitPointsAtFirstLevel()
 		{
-			return higherLevelHPFeature;
+			return "8 + your Constitution modifier";
 		}
 		
-		public HitDiceFeature getHitDiceFeature()
+		public String getHitPointsAtHigherLevels()
 		{
-			return hitDiceFeature;
+			return dice.toString() + " (or " + (dice.sides() / 2) + " + your Constitution modifier per " + className + " level";
 		}
 	}
 	
