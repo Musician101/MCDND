@@ -1,14 +1,15 @@
 package musician101.mcdnd.clazz.feature;
 
+import java.util.List;
 import java.util.Map;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.clazz.HitDice;
-import musician101.mcdnd.clazz.feature.ListFeature.ArmorProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.ToolProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
+import musician101.mcdnd.equipment.Armor.ArmorTypes;
+import musician101.mcdnd.equipment.tool.Tool;
+import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
+import musician101.mcdnd.skill.Skills;
 import musician101.mcdnd.util.CustomHashMap;
 import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.Named;
@@ -106,45 +107,87 @@ public class Feature implements Described, Named
 	
 	public static class ProficienciesFeature extends Feature
 	{
-		ArmorProficiencyFeature armor;
-		SavingThrowProficiencyFeature savingThrow;
-		SkillProficiencyFeature skills;
-		ToolProficiencyFeature tools;
-		WeaponProficiencyFeature weapons;
+		int skillAmount;
+		List<ArmorTypes> armor;
+		List<AbilityScores> savingThrows;
+		List<Skills> skills;
+		List<Tool> tools;
+		List<WeaponType> weapons;
+		String armorString;
+		String toolString;
+		String savingThrowString;
+		String skillString;
+		String weaponString;
 		
-		public ProficienciesFeature(ArmorProficiencyFeature armor, WeaponProficiencyFeature weapons, ToolProficiencyFeature tools, SavingThrowProficiencyFeature savingThrow, SkillProficiencyFeature skills)
+		public ProficienciesFeature(List<ArmorTypes> armor, String armorString, List<WeaponType> weapons, String weaponString, List<Tool> tools, String toolString, List<AbilityScores> savingThrows, String savingThrowString, List<Skills> skills, int skillAmount, String skillString)
 		{
 			super("Proficiencies", "");
 			this.armor = armor;
+			this.armorString = armorString;
 			this.weapons = weapons;
+			this.weaponString = weaponString;
 			this.tools = tools;
-			this.savingThrow = savingThrow;
+			this.toolString = toolString;
+			this.savingThrows = savingThrows;
+			this.savingThrowString = savingThrowString;
 			this.skills = skills;
+			this.skillAmount = skillAmount;
+			this.skillString = skillString;
 		}
 		
-		public ArmorProficiencyFeature getArmorProficiency()
+		public int getSkillAmount()
+		{
+			return skillAmount;
+		}
+		
+		public List<ArmorTypes> getArmorProficiency()
 		{
 			return armor;
 		}
 		
-		public SavingThrowProficiencyFeature getSavingThrowProficiency()
+		public List<AbilityScores> getSavingThrowProficiency()
 		{
-			return savingThrow;
+			return savingThrows;
 		}
 		
-		public SkillProficiencyFeature getSkillProficiency()
+		public List<Skills> getSkillProficiency()
 		{
 			return skills;
 		}
 		
-		public ToolProficiencyFeature getToolProficiency()
+		public List<Tool> getToolProficiency()
 		{
 			return tools;
 		}
 		
-		public WeaponProficiencyFeature getWeaponProficiency()
+		public List<WeaponType> getWeaponProficiency()
 		{
 			return weapons;
+		}
+		
+		public String getArmorString()
+		{
+			return armorString;
+		}
+		
+		public String getToolString()
+		{
+			return toolString;
+		}
+		
+		public String getSavingThrowString()
+		{
+			return savingThrowString;
+		}
+		
+		public String getSkillString()
+		{
+			return skillString;
+		}
+		
+		public String getWeaponString()
+		{
+			return weaponString;
 		}
 	}
 	

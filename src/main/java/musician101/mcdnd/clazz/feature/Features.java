@@ -17,12 +17,7 @@ import musician101.mcdnd.clazz.feature.Feature.ProficienciesFeature;
 import musician101.mcdnd.clazz.feature.Feature.RageFeature;
 import musician101.mcdnd.clazz.feature.Feature.UnarmoredDefenseFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.AbilityScoreImprovementFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.ArmorProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.EquipmentFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.ToolProficiencyFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
 import musician101.mcdnd.clazz.feature.totem.Totem;
 import musician101.mcdnd.clazz.feature.totem.Totems;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
@@ -61,8 +56,8 @@ public class Features
 	
 	// Core Features
 	public static final Feature BARBARIAN_HP = new HitPointsFeature(D12, "barbarian");
-	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
-			new ToolProficiencyFeature(new ArrayList<Tool>(), "None"), new SavingThrowProficiencyFeature(Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution"), new SkillProficiencyFeature(Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"));
+	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields", Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons",
+			new ArrayList<Tool>(), "None", Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution", Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival");
 	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.GREATAXE), new ListEquipmentChoice(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP), "(a) a greataxe or (b) any martial melee weapon"),
 			new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.HANDAXE, 2), new ListEquipmentChoice(Weapons.CLUB, Weapons.DAGGER, Weapons.GREATCLUB, Weapons.HANDAXE, Weapons.JAVELIN, Weapons.LIGHT_HAMMER, Weapons.MACE, Weapons.QUARTERSTAFF, Weapons.SICKLE, Weapons.SPEAR, Weapons.LIGHT_CROSSBOW, Weapons.DART, Weapons.SHORTBOW, Weapons.SLING), "(a) two handaxes or (b) any simple weapon"),
 			new EquipmentChoicesFeature(new MultipleEquipmentChoice(new CustomHashMap<Equipment, Integer>().add(Packs.EXPLORERS_PACK, 1).add(Weapons.JAVELIN, 4)), "An explorer's pack and four javelins."));
