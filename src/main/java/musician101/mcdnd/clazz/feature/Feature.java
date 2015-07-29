@@ -1,7 +1,5 @@
 package musician101.mcdnd.clazz.feature;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
@@ -13,7 +11,6 @@ import musician101.mcdnd.clazz.feature.ListFeature.WeaponProficiencyFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.FirstLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HigherLevelHPFeature;
 import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
-import musician101.mcdnd.equipment.Equipment;
 import musician101.mcdnd.util.CustomHashMap;
 import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.Named;
@@ -55,81 +52,29 @@ public class Feature implements Described, Named
 	
 	public static class EquipmentChoicesFeature extends Feature
 	{
-		EquipmentChoiceFeature option1;
-		EquipmentChoiceFeature option2;
+		EquipmentChoice option1;
+		EquipmentChoice option2;
 		
-		public EquipmentChoicesFeature(EquipmentChoiceFeature option1, String description)
+		public EquipmentChoicesFeature(EquipmentChoice option1, String description)
 		{
 			this(option1, null, description);
 		}
 		
-		public EquipmentChoicesFeature(EquipmentChoiceFeature option1, EquipmentChoiceFeature option2, String description)
+		public EquipmentChoicesFeature(EquipmentChoice option1, EquipmentChoice option2, String description)
 		{
 			super("EquipmentChoices", description);
 			this.option1 = option1;
 			this.option2 = option2;
 		}
 		
-		public EquipmentChoiceFeature get1stOption()
+		public EquipmentChoice get1stOption()
 		{
 			return option1;
 		}
 		
-		public EquipmentChoiceFeature get2ndOption()
+		public EquipmentChoice get2ndOption()
 		{
 			return option2;
-		}
-		
-		public static class EquipmentChoiceFeature
-		{
-			int amount;
-			List<? extends Equipment> list;
-			
-			public EquipmentChoiceFeature(Equipment equipment)
-			{
-				this(equipment, 1);
-			}
-			
-			public EquipmentChoiceFeature(Equipment equipment, int amount)
-			{
-				this(Arrays.asList(equipment), amount);
-			}
-			
-			public EquipmentChoiceFeature(List<? extends Equipment> equipmentList)
-			{
-				this(equipmentList, 1);
-			}
-			
-			public EquipmentChoiceFeature(List<? extends Equipment> equipment, int amount)
-			{
-				this.list = equipment;
-				this.amount = amount;
-			}
-			
-			public List<? extends Equipment> getEquipment()
-			{
-				return list;
-			}
-			
-			public int getAmount()
-			{
-				return amount;
-			}
-		}
-	}
-	
-	public static class EquipmentFeature extends Feature
-	{
-		List<EquipmentChoicesFeature> equipmentChoices;
-		public EquipmentFeature(EquipmentChoicesFeature... equipmentChoices)
-		{
-			super("Equipment", "You start with the following equipment, in addition to the equipment granted by your background:");
-			this.equipmentChoices = Arrays.asList(equipmentChoices);
-		}
-		
-		public List<EquipmentChoicesFeature> getEquipmentChoicesFeature()
-		{
-			return equipmentChoices;
 		}
 	}
 	

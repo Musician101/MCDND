@@ -1,55 +1,31 @@
 package musician101.mcdnd.race.trait;
 
-import java.util.Arrays;
 import java.util.List;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.language.Language;
+import musician101.mcdnd.util.Interfaces.Listed;
 
-public class ListTrait<V> extends Trait
+public class ListTrait<T> extends Trait implements Listed<T>
 {
-	List<V> values;
+	List<T> values;
 	
-	public ListTrait(String name, List<V> values, String description)
+	public ListTrait(String name, List<T> values, String description)
 	{
 		super(name, description);
 		this.values = values;
 	}
 	
-	public List<V> getAll()
+	@Override
+	public List<T> getList()
 	{
 		return values;
 	}
 	
-	public V get(int index)
+	@Override
+	public T get(int index)
 	{
 		return values.get(index);
-	}
-	
-	public boolean contains(V object)
-	{
-		return values.contains(object);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void set(V... values)
-	{
-		set(Arrays.asList(values));
-	}
-	
-	public void set(List<V> values)
-	{
-		this.values = values;
-	}
-	
-	public void set(int index, V value)
-	{
-		values.set(index, value);
-	}
-	
-	public void add(V value)
-	{
-		values.add(value);
 	}
 	
 	public static class AbilityScoreIncreaseTrait extends ListTrait<AbilityScore>

@@ -2,8 +2,6 @@ package musician101.mcdnd.util;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
@@ -43,29 +41,25 @@ public class Interfaces
 		List<BlockPos> getArea(Entity entity);
 	}
 	
+	public static interface Listed<T>
+	{
+		List<T> getList();
+		
+		T get(int T);
+	}
+	
 	public static interface Mapped<K, V>
 	{
-		Map<K, V> getMap();
-		
 		boolean containsKey(K key);
 		
+		Map<K, V> getMap();
+		
 		V get(K key);
-		
-		V remove(K key);
-		
-		Set<K> keySet();
-		
-		Set<Entry<K, V>> entrySet();
 	}
 	
 	public static interface Named
 	{
 		String getName();
-	}
-	
-	public interface ScaleableDamage extends DamageDealer, Mapped<Integer, Damage>
-	{
-		void updateDamage(int level);
 	}
 	
 	public static interface Weighable

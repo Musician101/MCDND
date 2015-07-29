@@ -1,5 +1,6 @@
 package musician101.mcdnd.clazz.feature;
 
+import java.util.Arrays;
 import java.util.List;
 
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
@@ -7,8 +8,9 @@ import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
 import musician101.mcdnd.skill.Skills;
+import musician101.mcdnd.util.Interfaces.Listed;
 
-public class ListFeature<T> extends Feature
+public class ListFeature<T> extends Feature implements Listed<T>
 {
 	List<T> list;
 	
@@ -23,9 +25,16 @@ public class ListFeature<T> extends Feature
 		this.list = list;
 	}
 	
+	@Override
 	public List<T> getList()
 	{
 		return list;
+	}
+	
+	@Override
+	public T get(int index)
+	{
+		return list.get(index);
 	}
 	
 	public static class AbilityScoreImprovementFeature extends ListFeature<Integer>
@@ -41,6 +50,14 @@ public class ListFeature<T> extends Feature
 		public ArmorProficiencyFeature(List<ArmorTypes> armorTypes, String description)
 		{
 			super("Armor", armorTypes, description);
+		}
+	}
+	
+	public static class EquipmentFeature extends ListFeature<EquipmentChoicesFeature>
+	{
+		public EquipmentFeature(EquipmentChoicesFeature... equipmentChoices)
+		{
+			super("Equipment", Arrays.asList(equipmentChoices), "You start with the following equipment, in addition to the equipment granted by your background:");
 		}
 	}
 	

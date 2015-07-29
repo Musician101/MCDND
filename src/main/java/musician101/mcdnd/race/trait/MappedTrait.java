@@ -2,8 +2,6 @@ package musician101.mcdnd.race.trait;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.magic.Spell;
@@ -35,24 +33,6 @@ public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
 	public V get(K key)
 	{
 		return map.get(key);
-	}
-	
-	@Override
-	public V remove(K key)
-	{
-		return map.remove(key);
-	}
-	
-	@Override
-	public Set<K> keySet()
-	{
-		return map.keySet();
-	}
-	
-	@Override
-	public Set<Entry<K, V>> entrySet()
-	{
-		return map.entrySet();
 	}
 	
 	public static class SubraceTrait extends MappedTrait<String, List<? extends Trait>>

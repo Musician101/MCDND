@@ -8,15 +8,17 @@ import java.util.Map;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.clazz.CharacterClasses;
 import musician101.mcdnd.clazz.HitDice;
+import musician101.mcdnd.clazz.feature.EquipmentChoice.ListEquipmentChoice;
+import musician101.mcdnd.clazz.feature.EquipmentChoice.MultipleEquipmentChoice;
+import musician101.mcdnd.clazz.feature.EquipmentChoice.SingleEquipmentFeature;
 import musician101.mcdnd.clazz.feature.Feature.EquipmentChoicesFeature;
-import musician101.mcdnd.clazz.feature.Feature.EquipmentChoicesFeature.EquipmentChoiceFeature;
-import musician101.mcdnd.clazz.feature.Feature.EquipmentFeature;
 import musician101.mcdnd.clazz.feature.Feature.HitPointsFeature;
 import musician101.mcdnd.clazz.feature.Feature.ProficienciesFeature;
 import musician101.mcdnd.clazz.feature.Feature.RageFeature;
 import musician101.mcdnd.clazz.feature.Feature.UnarmoredDefenseFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.AbilityScoreImprovementFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.ArmorProficiencyFeature;
+import musician101.mcdnd.clazz.feature.ListFeature.EquipmentFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SavingThrowProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.SkillProficiencyFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.ToolProficiencyFeature;
@@ -27,6 +29,8 @@ import musician101.mcdnd.clazz.feature.SingleValueFeature.HitDiceFeature;
 import musician101.mcdnd.clazz.feature.totem.Totem;
 import musician101.mcdnd.clazz.feature.totem.Totems;
 import musician101.mcdnd.equipment.Armor.ArmorTypes;
+import musician101.mcdnd.equipment.Equipment;
+import musician101.mcdnd.equipment.pack.Packs;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
 import musician101.mcdnd.equipment.weapon.Weapons;
@@ -62,9 +66,9 @@ public class Features
 	public static final Feature BARBARIAN_HP = new HitPointsFeature(new HitDiceFeature(D12, D12.toString() + " per barbarian level"), new FirstLevelHPFeature(D12), new HigherLevelHPFeature(D12));
 	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(new ArmorProficiencyFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields"), new WeaponProficiencyFeature(Arrays.asList(WeaponType.SIMPLE_MELEE, WeaponType.SIMPLE_RANGED, WeaponType.MARTIAL_MELEE, WeaponType.MARTIAL_RANGED), "Simple weapons, martial weapons"),
 			new ToolProficiencyFeature(new ArrayList<Tool>(), "None"), new SavingThrowProficiencyFeature(Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution"), new SkillProficiencyFeature(Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival"));
-	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.GREATAXE), new EquipmentChoiceFeature(Arrays.asList(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP)), "(a) a greataxe or (b) any martial melee weapon"),
-			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Weapons.HANDAXE, 2), new EquipmentChoiceFeature(Arrays.asList(Weapons.CLUB, Weapons.DAGGER, Weapons.GREATCLUB, Weapons.HANDAXE, Weapons.JAVELIN, Weapons.LIGHT_HAMMER, Weapons.MACE, Weapons.QUARTERSTAFF, Weapons.SICKLE, Weapons.SPEAR, Weapons.LIGHT_CROSSBOW, Weapons.DART, Weapons.SHORTBOW, Weapons.SLING)), "(a) two handaxes or (b) any simple weapon"),
-			new EquipmentChoicesFeature(new EquipmentChoiceFeature(Arrays.asList(Weapons.JAVELIN), 4), "An explorer's pack and four javelins."));
+	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.GREATAXE), new ListEquipmentChoice(Weapons.BATTLEAXE, Weapons.FLAIL, Weapons.GLAIVE, Weapons.GREATAXE, Weapons.GREATSWORD, Weapons.HALBERD, Weapons.LANCE, Weapons.LONGSWORD, Weapons.MAUL, Weapons.MORNINGSTAR, Weapons.PIKE, Weapons.RAPIER, Weapons.SCIMITAR, Weapons.SHORTSWORD, Weapons.TRIDENT, Weapons.WAR_PICK, Weapons.WARHAMMER, Weapons.WHIP), "(a) a greataxe or (b) any martial melee weapon"),
+			new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.HANDAXE, 2), new ListEquipmentChoice(Weapons.CLUB, Weapons.DAGGER, Weapons.GREATCLUB, Weapons.HANDAXE, Weapons.JAVELIN, Weapons.LIGHT_HAMMER, Weapons.MACE, Weapons.QUARTERSTAFF, Weapons.SICKLE, Weapons.SPEAR, Weapons.LIGHT_CROSSBOW, Weapons.DART, Weapons.SHORTBOW, Weapons.SLING), "(a) two handaxes or (b) any simple weapon"),
+			new EquipmentChoicesFeature(new MultipleEquipmentChoice(new CustomHashMap<Equipment, Integer>().add(Packs.EXPLORERS_PACK, 1).add(Weapons.JAVELIN, 4)), "An explorer's pack and four javelins."));
 	public static final Feature RAGE = new RageFeature();
 	public static final Feature UNARMORED_DEFENSE = new UnarmoredDefenseFeature("While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.");
 	public static final Feature RECKLESS_ATTACK = new Feature("Reckless Attack", 2, "Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advatange until your next turn.");
