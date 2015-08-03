@@ -4,7 +4,7 @@ import java.util.Map;
 
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.race.Race.CharacterSize;
-import musician101.mcdnd.util.CustomHashMap;
+import musician101.mcdnd.util.CustomMap;
 
 public class SizeTrait extends Trait
 {
@@ -14,7 +14,7 @@ public class SizeTrait extends Trait
 	int baseHeight;
 	int baseWeight;
 	
-	protected SizeTrait(int baseHeight, Dice heightDice, int baseWeight, Dice weightDice, CharacterSize size, String description)
+	protected SizeTrait(int baseHeight, Dice heightDice, int baseWeight, Dice weightDice, CharacterSize size, String... description)
 	{
 		super("Size", description);
 		this.size = size;
@@ -42,6 +42,6 @@ public class SizeTrait extends Trait
 	public Map<String, Integer> rollHeightAndWeight()
 	{
 		int heightMod = heightDice.roll();
-		return new CustomHashMap<String, Integer>().add("height", baseHeight + heightMod).add("weight", heightMod * weightDice.roll() + baseWeight);
+		return new CustomMap<String, Integer>().add("height", baseHeight + heightMod).add("weight", heightMod * weightDice.roll() + baseWeight);
 	}
 }

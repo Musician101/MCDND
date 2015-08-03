@@ -41,14 +41,14 @@ public class EquipmentChoice
 	{
 		List<Equipment> equipment;
 		
+		public ListEquipmentChoice(List<Equipment> equipment)
+		{
+			this.equipment = equipment;
+		}
+		
 		public ListEquipmentChoice(Equipment... equipment)
 		{
 			this.equipment = Arrays.asList(equipment);
-		}
-		
-		public List<Equipment> getEquipmentChoices()
-		{
-			return equipment;
 		}
 
 		@Override

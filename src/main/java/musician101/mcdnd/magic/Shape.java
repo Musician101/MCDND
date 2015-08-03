@@ -3,27 +3,31 @@ package musician101.mcdnd.magic;
 import java.util.ArrayList;
 import java.util.List;
 
+import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.EffectsArea;
+import musician101.mcdnd.util.Interfaces.Named;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
-public abstract class Shape implements EffectsArea
+public abstract class Shape implements Described, EffectsArea, Named
 {
-	String description;
+	String[] description;
 	String name;
 	
-	protected Shape(String name, String description)
+	protected Shape(String name, String... description)
 	{
 		this.name = name;
 		this.description = description;
 	}
 	
-	public String getDescription()
+	@Override
+	public String[] getDescription()
 	{
 		return description;
 	}
 	
+	@Override
 	public String getName()
 	{
 		return name;
@@ -35,7 +39,8 @@ public abstract class Shape implements EffectsArea
 		
 		public Cone(int length)
 		{
-			super("Cone", "A cone extends in a direction you choose from its point of origin. A cone's width at a given point along its length is equal to that point's distance from the point of origin. A cone's area of effect specifies its maximum length.\nA cone's point of origin is not included in the cone's area of effect, unless you decide otherwise.");
+			super("Cone", "A cone extends in a direction you choose from its point of origin. A cone's width at a given point along its length is equal to that point's distance from the point of origin. A cone's area of effect specifies its maximum length.",
+					"A cone's point of origin is not included in the cone's area of effect, unless you decide otherwise.");
 			this.length = length;
 		}
 		
@@ -101,7 +106,8 @@ public abstract class Shape implements EffectsArea
 		
 		public Cube(int length)
 		{
-			super("Cube", "You select a cube's point of origin, which lies anywhere on a face of the cubic effect. The cube's size is expressed as the length of each side.\nA cube's point of origin is not included in the cube's area effect, unless you decide otherwise.");
+			super("Cube", "You select a cube's point of origin, which lies anywhere on a face of the cubic effect. The cube's size is expressed as the length of each side.",
+					"A cube's point of origin is not included in the cube's area effect, unless you decide otherwise.");
 			this.length = length;
 		}
 		
@@ -125,7 +131,7 @@ public abstract class Shape implements EffectsArea
 		
 		public Cylinder(int radius, int height)
 		{
-			super("Cylinder", "A cylinder's point of origin is the center of a circle of a particular radius, as given in the spell description. The circle must either be on the ground or at the height of the spell effect. The energy in a cylinder expands in straight lines from the point of origin to the perimeter of the cirlce, forming the base of the cylinder. The spell's effect then shoots up from the base or down from the top, to a distance equal to the height of they cylinder.\n" + 
+			super("Cylinder", "A cylinder's point of origin is the center of a circle of a particular radius, as given in the spell description. The circle must either be on the ground or at the height of the spell effect. The energy in a cylinder expands in straight lines from the point of origin to the perimeter of the cirlce, forming the base of the cylinder. The spell's effect then shoots up from the base or down from the top, to a distance equal to the height of they cylinder.", 
 					"A cylinder's point of origin is included in the cylinder's area of effect.");
 			this.radius = radius;
 			this.height = height;
@@ -146,7 +152,8 @@ public abstract class Shape implements EffectsArea
 		
 		public Line(int length, int width)
 		{
-			super("Line", "A line extends from its point of origin in a straight path up to its length and covers an area defined by its width.\nA line's point of origin is not included in the line's area of effect, unless you decide otherwise.");
+			super("Line", "A line extends from its point of origin in a straight path up to its length and covers an area defined by its width.",
+					"A line's point of origin is not included in the line's area of effect, unless you decide otherwise.");
 			this.length = length;
 			this.width = width;
 		}
@@ -165,7 +172,8 @@ public abstract class Shape implements EffectsArea
 		
 		public Sphere(int radius)
 		{
-			super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. The sphere's size is epxressed as a radius in feet that extends from the point.\nA sphere's point of origin is included in the sphere's are of effect.");
+			super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. The sphere's size is epxressed as a radius in feet that extends from the point.",
+					"A sphere's point of origin is included in the sphere's are of effect.");
 			this.radius = radius;
 		}
 

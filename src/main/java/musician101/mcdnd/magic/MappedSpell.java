@@ -10,12 +10,12 @@ public class MappedSpell<K, V> extends Spell
 {
 	Map<K, V> map;
 	
-	public MappedSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<K, V> map, String description)
+	public MappedSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<K, V> map, String... description)
 	{
 		this(name, type, level, castingTime, range, isVerbal, isSomatic, "", 0, false, map, description);
 	}
 	
-	public MappedSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, V> map, String description)
+	public MappedSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, V> map, String... description)
 	{
 		super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
 		this.map = map;
@@ -35,12 +35,12 @@ public class MappedSpell<K, V> extends Spell
 	{
 		Damage damage;
 		
-		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String description)
+		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String... description)
 		{
 			this(name, type, level, castingTime, range, isVerbal, isSomatic, "", 0, false, map, damageType, description);
 		}
 		
-		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String description)
+		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String... description)
 		{
 			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
 			this.damage = new Damage(damageType, map.get(1));
@@ -62,12 +62,12 @@ public class MappedSpell<K, V> extends Spell
 	{
 		SpellLevel startingLevel;
 		
-		public MultipleSpellSlotSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<SpellLevel, Integer> map, SpellLevel startingLevel, String description)
+		public MultipleSpellSlotSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<SpellLevel, Integer> map, SpellLevel startingLevel, String... description)
 		{
 			this(name, type, level, castingTime, range, isVerbal, isSomatic, "", 0, false, map, startingLevel, description);
 		}
 		
-		public MultipleSpellSlotSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<SpellLevel, Integer> map, SpellLevel startingLevel, String description)
+		public MultipleSpellSlotSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<SpellLevel, Integer> map, SpellLevel startingLevel, String... description)
 		{
 			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
 		}

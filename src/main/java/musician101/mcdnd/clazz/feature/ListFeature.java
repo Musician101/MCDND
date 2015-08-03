@@ -10,12 +10,12 @@ public class ListFeature<T> extends Feature implements Listed<T>
 {
 	List<T> list;
 	
-	public ListFeature(String name, List<T> list, String description)
+	public ListFeature(String name, List<T> list, String... description)
 	{
 		this(name, 1, list, description);
 	}
 	
-	public ListFeature(String name, int level, List<T> list, String description)
+	public ListFeature(String name, int level, List<T> list, String... description)
 	{
 		super(name, level, description);
 		this.list = list;

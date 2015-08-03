@@ -5,17 +5,17 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class Trait implements Described, Named
 {
-	String description;
+	String[] description;
 	String name;
 	
-	public Trait(String name, String description)
+	public Trait(String name, String... description)
 	{
 		this.name = name;
 		this.description = description;
 	}
 	
 	@Override
-	public String getDescription()
+	public String[] getDescription()
 	{
 		return description;
 	}

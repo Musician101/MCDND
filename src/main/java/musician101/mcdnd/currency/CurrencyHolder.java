@@ -2,7 +2,7 @@ package musician101.mcdnd.currency;
 
 import java.util.Map;
 
-import musician101.mcdnd.util.CustomHashMap;
+import musician101.mcdnd.util.CustomMap;
 
 public abstract class CurrencyHolder
 {
@@ -10,7 +10,7 @@ public abstract class CurrencyHolder
 	
 	protected CurrencyHolder()
 	{
-		currency = new CustomHashMap<CurrencyType, Integer>().add(CurrencyType.COPPER, 0)
+		currency = new CustomMap<CurrencyType, Integer>().add(CurrencyType.COPPER, 0)
 				.add(CurrencyType.SILVER, 0).add(CurrencyType.ELECTRUM, 0)
 				.add(CurrencyType.GOLD, 0).add(CurrencyType.PLATINUM, 0);
 	}

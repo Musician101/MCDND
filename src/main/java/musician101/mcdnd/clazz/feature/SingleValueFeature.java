@@ -6,7 +6,12 @@ public class SingleValueFeature<V> extends Feature
 	
 	public SingleValueFeature(String name, V value, String description)
 	{
-		super(name, description);
+		this(name, 1, value, description);
+	}
+	
+	public SingleValueFeature(String name, int level, V value, String... description)
+	{
+		super(name, level, description);
 	}
 	
 	public V getValue()

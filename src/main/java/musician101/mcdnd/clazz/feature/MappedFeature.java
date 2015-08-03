@@ -8,7 +8,12 @@ public class MappedFeature<K, V> extends Feature implements Mapped<K, V>
 {
 	Map<K, V> map;
 	
-	public MappedFeature(String name, int level, Map<K, V> map, String description)
+	public MappedFeature(String name, Map<K, V> map, String... description)
+	{
+		this(name, 1, map, description);
+	}
+	
+	public MappedFeature(String name, int level, Map<K, V> map, String... description)
 	{
 		super(name, level, description);
 		this.map = map;

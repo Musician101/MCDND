@@ -24,7 +24,7 @@ import musician101.mcdnd.race.trait.SingleValueTrait.DarkvisionTrait;
 import musician101.mcdnd.race.trait.SingleValueTrait.MovementSpeedTrait;
 import musician101.mcdnd.race.trait.Trait.AlignmentTrait;
 import musician101.mcdnd.skill.Skills;
-import musician101.mcdnd.util.CustomHashMap;
+import musician101.mcdnd.util.CustomMap;
 
 public class Traits
 {
@@ -35,8 +35,8 @@ public class Traits
 	public static final Trait DRAGONBORN_SPEED = new MovementSpeedTrait();
 	public static final Trait DRAGONBORN_SIZE = new SizeTrait(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.");
 	public static final Trait DRACONIC_ANCENSTRY = new Trait("Draconic Ancestry", "You hae draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and the damage resistance are determined by the dragon type, as shown in the table.");
-	public static final Trait BREATH_WEAPON = new Trait("Breath Weapon", "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\n" + 
-			"When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constituion modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\n" +
+	public static final Trait BREATH_WEAPON = new Trait("Breath Weapon", "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.", 
+			"When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constituion modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.",
 			"After you use your breathe weapon, you can't use it again until you complete a short or long rest.");
 	public static final Trait DRAGONBORN_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DRACONIC), "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.");
 	public static final List<Trait> DRAGONBORN_TRAITS = Arrays.asList(DRAGONBORN_ASI, DRAGONBORN_AGE, DRAGONBORN_ALIGNMENT, DRAGONBORN_SPEED, DRAGONBORN_SIZE, DRACONIC_ANCENSTRY, BREATH_WEAPON, DRAGONBORN_LANGUAGES);
@@ -64,7 +64,7 @@ public class Traits
 	public static final Trait DWARF_SPEED = new MovementSpeedTrait(25);
 	public static final Trait DWARVEN_RESILIENCE = new SingleValueTrait<DamageType>("DwarvenResilienceTrait", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
 	public static final Trait STONECUNNING = new SingleValueTrait<Skills>("Stonecunning", Skills.HISTORY, "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient int the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.");
-	public static final Trait DWARF_SUBRACE = new SubraceTrait(new CustomHashMap<String, List<? extends Trait>>().add("hill", DWARVEN_HILL_TRAITS).add("mountain", DWARF_MOUNTAIN_TRAITS), "Two main subraces of dwarves populate the worlds of D&D: hill dwarves and mountain dwarves. Choose one of these subraces.");
+	public static final Trait DWARF_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("hill", DWARVEN_HILL_TRAITS).add("mountain", DWARF_MOUNTAIN_TRAITS), "Two main subraces of dwarves populate the worlds of D&D: hill dwarves and mountain dwarves. Choose one of these subraces.");
 	public static final List<Trait> DWARF_TRAITS = Arrays.asList(DWARF_ASI, DWARF_AGE, DWARF_ALIGNMENT, DWARF_DARKVISION, DWARF_LANGUAGES, DWARF_TOOL_PROFICIENCY, DWARVEN_COMBAT_TRAINING, DWARF_SPEED, DWARVEN_RESILIENCE, STONECUNNING, DWARF_SUBRACE);
 	
 	// Shared traits between Dark and High Elves
@@ -79,7 +79,7 @@ public class Traits
 	public static final Trait ELF_DARK_DARKVISION = new DarkvisionTrait("Superior Darkvision", 120, "Your darkvision has a radius of 120 feet.");
 	public static final Trait ELF_DARK_SIZE = new SizeTrait(4 * 12 + 5, new Dice(6, 2), 75, new Dice(4, 2), CharacterSize.MEDIUM, "Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.");
 	public static final Trait SUNLIGHT_SENSITIVITY = new SingleValueTrait<Skills>("Sunlight Sensitivity", Skills.PERCEPTION, "You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are trying to perceive is in direct sunlight.");
-	public static final Trait DROW_MAGIC = new SpellcastingTrait("Drow Magic", new CustomHashMap<Integer, Spell>().add(1, Spells.DANCING_LIGHTS).add(3, Spells.FAERIE_FIRE).add(5, Spells.DARKNESS), AbilityScores.CHA, 
+	public static final Trait DROW_MAGIC = new SpellcastingTrait("Drow Magic", new CustomMap<Integer, Spell>().add(1, Spells.DANCING_LIGHTS).add(3, Spells.FAERIE_FIRE).add(5, Spells.DARKNESS), AbilityScores.CHA, 
 			"You know the dancing lights cantrip. When you reach 3rd level, you can cast the faerie fire spell once per day. When you reach 5th level, you can also cast the darkness spell once per day. Charisma is your spellcasting ability for these spells.");
 	public static final Trait DROW_WEAPON_TRAINING = new ListTrait<Weapon>("Drow Weapon Training", Arrays.asList(Weapons.RAPIER, Weapons.SHORTSWORD, Weapons.HAND_CROSSBOW), "You have proficiency with rapiers, shortswords, and hand crossbows.");
 	public static final List<Trait> ELF_DARK_TRAITS = Arrays.asList(ELF_DARK_ASI, ELF_DARK_DARKVISION, ELF_DARK_SIZE, SUNLIGHT_SENSITIVITY, DROW_MAGIC, DROW_WEAPON_TRAINING, ELF_SPEED);
@@ -106,7 +106,7 @@ public class Traits
 	public static final Trait FEY_ANCESTRY = new Trait("Fey Ancestry", "You have advantage on saving throws against being charmed, and magic can't put you to sleep.");
 	public static final Trait TRANCE = new Trait("Trance", "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercieses taht have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.");
 	public static final Trait ELF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.ELVISH), "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires.");
-	public static final Trait ELF_SUBRACE = new SubraceTrait(new CustomHashMap<String, List<? extends Trait>>().add("dark", ELF_DARK_TRAITS).add("high", ELF_HIGH_TRAITS).add("wood", ELF_WOOD_TRAITS), "Ancient divides among the elven people resulted in three main subraces: high elves, wood elves, and dark elves, who are commonly called drow. Choose one of these subraces. In some worlds, these subraces are divided still further (such as the sun elves and moon elves of the Forgotten Realms), so if you wish you can choose a narrower subrace.");
+	public static final Trait ELF_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("dark", ELF_DARK_TRAITS).add("high", ELF_HIGH_TRAITS).add("wood", ELF_WOOD_TRAITS), "Ancient divides among the elven people resulted in three main subraces: high elves, wood elves, and dark elves, who are commonly called drow. Choose one of these subraces. In some worlds, these subraces are divided still further (such as the sun elves and moon elves of the Forgotten Realms), so if you wish you can choose a narrower subrace.");
 	public static final List<Trait> ELF_TRAITS = Arrays.asList(ELF_ASI, ELF_AGE, ELF_ALIGNMENT, KEEN_SENSES, FEY_ANCESTRY, TRANCE, ELF_LANGUAGES, ELF_SUBRACE);
 	
 	// Forest Gnome Traits
@@ -118,12 +118,12 @@ public class Traits
 	// Rock Gnome Traits
 	public static final Trait GNOME_ROCK_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.CON, 1)), "Your Constitution score increases by 1.");
 	public static final Trait ARTIFICERS_LORE = new SingleValueTrait<Skills>("Artificer's Lore", Skills.HISTORY, "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply.");
-	public static final Trait TINKER = new SingleValueTrait<Tool>("Tinker", Tools.TINKERS_TOOLS, "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.\n" + 
-			"When you create a device, choose one of the following options:\n" + 
-			"Clockwork Toy: This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.\n" + 
-			"Fire Starter: The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action.\n" +
+	public static final Trait TINKER = new SingleValueTrait<Tool>("Tinker", Tools.TINKERS_TOOLS, "You have proficiency with artisan's tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny clockwork device (AC5, 1 hp). The device ceases to function after 24 hours (unless you spend 1 hour repairing it to keep the device functioning), or when you use your action to dismantle it; at that time, you can reclaim the materials used to create it. You can have up to three such devices active at a time.", 
+			"When you create a device, choose one of the following options:", 
+			"Clockwork Toy: This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet across the ground on each of your turns in a random direction. It makes noises as appropriate to the creature it represents.", 
+			"Fire Starter: The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action.",
 			"Music Box: When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed.");
-	public static final List<? extends Trait> GNOME_ROCK_TRAITS = Arrays.asList(GNOME_ROCK_ASI, ARTIFICERS_LORE, TINKER);
+	public static final List<Trait> GNOME_ROCK_TRAITS = Arrays.asList(GNOME_ROCK_ASI, ARTIFICERS_LORE, TINKER);
 	
 	// Gnome Traits
 	public static final Trait GNOME_ASI = new AbilityScoreIncreaseTrait(Arrays.asList(new AbilityScore(AbilityScores.INT, 2)), "Your Intelligence score increases by 2.");
@@ -134,7 +134,7 @@ public class Traits
 	public static final Trait GNOME_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.GNOMISH), "You can speak, read, and write Common and Gnomish. The Gnomish language, which uses Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world.");
 	public static final Trait GNOME_SPEED = new MovementSpeedTrait(25);
 	public static final Trait GNOME_SIZE = new SizeTrait(2 * 12 + 11, new Dice(4, 2), 35, new Dice(1), CharacterSize.SMALL, "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.");
-	public static final Trait GNOME_SUBRACE = new SubraceTrait(new CustomHashMap<String, List<? extends Trait>>().add("forest", GNOME_FOREST_TRAITS).add("rock", GNOME_ROCK_TRAITS), "Two subraces of gnomes are found among the worlds of D&D: forest gnomes and rock gnomes. Choose one of these subraces.");
+	public static final Trait GNOME_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("forest", GNOME_FOREST_TRAITS).add("rock", GNOME_ROCK_TRAITS), "Two subraces of gnomes are found among the worlds of D&D: forest gnomes and rock gnomes. Choose one of these subraces.");
 	public static final List<Trait> GNOME_TRAITS = Arrays.asList(GNOME_ASI, GNOME_AGE, GNOME_ALIGNMENT, GNOME_CUNNING, GNOME_DARKVISION, GNOME_LANGUAGES, GNOME_SPEED, GNOME_SIZE, GNOME_SUBRACE);
 	
 	// Half-Elf Traits
@@ -180,7 +180,7 @@ public class Traits
 	public static final Trait BRAVE = new Trait("Brave", "You have advantage on saving throws against being frightened.");
 	public static final Trait HALFLING_NIMBLENESS = new Trait("Halfling Nimbleness", "You can move through the space of any creature that is of a size larger than yours.");
 	public static final Trait HALFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.HALFLING), "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.");
-	public static final Trait HALFLING_SUBRACE = new SubraceTrait(new CustomHashMap<String, List<? extends Trait>>().add("lightfoot", HALFLING_LIGHTFOOT_TRAITS).add("stout", HALFLING_STOUT_TRAITS), "The two main kinds of halfling, lightfoot and stout, are more like closely related families than true subraces. Choose one of these subraces.");
+	public static final Trait HALFLING_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("lightfoot", HALFLING_LIGHTFOOT_TRAITS).add("stout", HALFLING_STOUT_TRAITS), "The two main kinds of halfling, lightfoot and stout, are more like closely related families than true subraces. Choose one of these subraces.");
 	public static final List<Trait> HALFLING_TRAITS = Arrays.asList(HALFLING_ASI, HALFLING_AGE, HALFLING_ALIGNMENT, HALFLING_SPEED, HALFLING_SIZE, LUCKY, BRAVE, HALFLING_NIMBLENESS, HALFLING_LANGUAGES, HALFLING_SUBRACE);
 	
 	// Human Traits
@@ -200,7 +200,7 @@ public class Traits
 	public static final Trait TIEFLING_SPEED = new MovementSpeedTrait();
 	public static final Trait TIEFLING_SIZE = new SizeTrait(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Tieflings are about the same size and build as humans. Your size is Medium.");
 	public static final Trait HELLISH_RESISTANCE = new SingleValueTrait<DamageType>("Hellish Resistance", DamageType.FIRE, "You have resistance to fire damage.");
-	public static final Trait INFERNAL_LEGACY = new SpellcastingTrait("Infernal Legacy", new CustomHashMap<Integer, Spell>().add(1, Spells.THAUMATURGY).add(3, Spells.HELLISH_REBUKE).add(5, Spells.DARKNESS), AbilityScores.CHA, "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once per day as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once per day. Charisma is your spellcasting ability for these spells.");
+	public static final Trait INFERNAL_LEGACY = new SpellcastingTrait("Infernal Legacy", new CustomMap<Integer, Spell>().add(1, Spells.THAUMATURGY).add(3, Spells.HELLISH_REBUKE).add(5, Spells.DARKNESS), AbilityScores.CHA, "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once per day as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once per day. Charisma is your spellcasting ability for these spells.");
 	public static final Trait TIEFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.INFERNAL), "You can speak, read, and write Common and Infernal.");
 	public static final List<Trait> TIEFLING_TRAITS = Arrays.asList(TIEFLING_ASI, TIEFLING_AGE, TIEFLING_ALIGNMENT, TIEFLING_DARKVISION, TIEFLING_SPEED, TIEFLING_SIZE, HELLISH_RESISTANCE, INFERNAL_LEGACY, TIEFLING_LANGUAGES);
 }

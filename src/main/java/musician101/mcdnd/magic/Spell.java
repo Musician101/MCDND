@@ -1,6 +1,9 @@
 package musician101.mcdnd.magic;
 
-public class Spell
+import musician101.mcdnd.util.Interfaces.Described;
+import musician101.mcdnd.util.Interfaces.Named;
+
+public class Spell implements Described, Named
 {
 	boolean needsConcentration;
 	boolean isSomatic;
@@ -10,11 +13,11 @@ public class Spell
 	int castingTime;
 	int duration;
 	int range;
-	String description;
+	String[] description;
 	String materials;
 	String name;
 	
-	public Spell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String description)
+	public Spell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
 	{
 		this.name = name;
 		this.type = type;
@@ -76,11 +79,13 @@ public class Spell
 		return type;
 	}
 	
-	public String getDescription()
+	@Override
+	public String[] getDescription()
 	{
 		return description;
 	}
 	
+	@Override
 	public String getName()
 	{
 		return name;
@@ -88,7 +93,7 @@ public class Spell
 	
 	public static class RitualSpell extends Spell
 	{
-		public RitualSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String description)
+		public RitualSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
 		{
 			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
 		}

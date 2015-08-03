@@ -31,7 +31,7 @@ public class Interfaces
 	
 	public static interface Described
 	{
-		String getDescription();
+		String[] getDescription();
 	}
 	
 	public static interface EffectsArea

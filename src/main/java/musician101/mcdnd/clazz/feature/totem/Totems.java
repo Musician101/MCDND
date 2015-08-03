@@ -1,8 +1,13 @@
 package musician101.mcdnd.clazz.feature.totem;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import musician101.mcdnd.clazz.feature.totem.Totem.BearTotem;
 import musician101.mcdnd.clazz.feature.totem.Totem.EagleTotem;
 import musician101.mcdnd.clazz.feature.totem.Totem.WolfTotem;
+import musician101.mcdnd.util.CustomMap;
 
 public class Totems
 {
@@ -15,4 +20,5 @@ public class Totems
 	public static final Totem BEAR_14 = new BearTotem("While you're raging, any creature within 5 feet of you that's hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. An enemy is immune to this effect if it can't see or hear you or if it can't be frightened.");
 	public static final Totem EAGLE_14 = new EagleTotem("While raging, you have a flying speed equal to your current walking speed. This benefit works only in short bursts; you fall if you end your turn in the air and nothing else is holding you aloft.");
 	public static final Totem WOLF_14 = new WolfTotem("While you're raging, you can use a bonus action on your turn to knock a Large or smaller creature prone when you hit it with a melee weapon attack.");
+	public static final Map<Integer, List<Totem>> TOTEMS = new CustomMap<Integer, List<Totem>>().add(3, Arrays.asList(BEAR_3, EAGLE_3, WOLF_3)).add(6, Arrays.asList(BEAR_6, EAGLE_6, WOLF_6)).add(14, Arrays.asList(BEAR_14, EAGLE_14, WOLF_14));
 }

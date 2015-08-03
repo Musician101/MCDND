@@ -6,17 +6,17 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class WeaponProperty implements Described, Named
 {
-	String description;
+	String[] description;
 	String name;
 	
-	public WeaponProperty(String name, String description)
+	public WeaponProperty(String name, String... description)
 	{
 		this.name = name;
 		this.description = description;
 	}
 	
 	@Override
-	public String getDescription()
+	public String[] getDescription()
 	{
 		return description;
 	}

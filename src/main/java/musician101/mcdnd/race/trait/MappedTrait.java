@@ -11,7 +11,7 @@ public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
 {
 	Map<K, V> map;
 	
-	public MappedTrait(String name, Map<K, V> map, String description)
+	public MappedTrait(String name, Map<K, V> map, String... description)
 	{
 		super(name, description);
 		this.map = map;

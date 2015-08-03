@@ -10,7 +10,7 @@ public class ListTrait<T> extends Trait implements Listed<T>
 {
 	List<T> values;
 	
-	public ListTrait(String name, List<T> values, String description)
+	public ListTrait(String name, List<T> values, String... description)
 	{
 		super(name, description);
 		this.values = values;
@@ -30,7 +30,7 @@ public class ListTrait<T> extends Trait implements Listed<T>
 	
 	public static class AbilityScoreIncreaseTrait extends ListTrait<AbilityScore>
 	{
-		protected AbilityScoreIncreaseTrait(List<AbilityScore> values, String description)
+		protected AbilityScoreIncreaseTrait(List<AbilityScore> values, String... description)
 		{
 			super("Ability Score Increase", values, description);
 		}
@@ -38,7 +38,7 @@ public class ListTrait<T> extends Trait implements Listed<T>
 	
 	public static class LanguagesTrait extends ListTrait<Language>
 	{
-		public LanguagesTrait(List<Language> languages, String description)
+		public LanguagesTrait(List<Language> languages, String... description)
 		{
 			super("Languanges", languages, description);
 		}

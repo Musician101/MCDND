@@ -1,10 +1,11 @@
 package musician101.mcdnd.equipment.tool;
 
-import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.equipment.tool.Tool.ArtisanTool;
 import musician101.mcdnd.equipment.tool.Tool.GamingSet;
 import musician101.mcdnd.equipment.tool.Tool.MusicalInstrument;
+import musician101.mcdnd.util.CustomList;
 
 public class Tools
 {
@@ -48,4 +49,24 @@ public class Tools
 	public static final Tool NAVIGATORS_TOOLS = new Tool("Navigator's Tools", new Cost(CurrencyType.GOLD, 25), 2);
 	public static final Tool POISONERS_KIT = new Tool("Poisoner's Kit", new Cost(CurrencyType.GOLD, 50), 2);
 	public static final Tool THIEVES_TOOLS = new Tool("Thieve's Tools", new Cost(CurrencyType.GOLD, 25), 1);
+	
+	public static CustomList<Tool> getArtisanTools()
+	{
+		return new CustomList<Tool>(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS, COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS, MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS, WOODCARVERS_TOOLS);
+	}
+	
+	public static CustomList<Tool> getGamingSets()
+	{
+		return new CustomList<Tool>(DICE_SET, DRAGONCHESS_SET, PLAYING_CARD_SET, THREE_DRAGON_ANTE_SET);
+	}
+	
+	public static CustomList<Tool> getMusicalInstruments()
+	{
+		return new CustomList<Tool>(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL);
+	}
+	
+	public static CustomList<Tool> getMiscTools()
+	{
+		return new CustomList<Tool>(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT, THIEVES_TOOLS);
+	}
 }

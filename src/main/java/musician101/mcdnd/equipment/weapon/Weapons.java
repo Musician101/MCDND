@@ -9,6 +9,7 @@ import musician101.mcdnd.currency.CurrencyType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.equipment.weapon.Weapon.WeaponType;
 import musician101.mcdnd.equipment.weapon.property.WeaponProperties;
+import musician101.mcdnd.util.CustomList;
 
 public class Weapons
 {
@@ -50,4 +51,39 @@ public class Weapons
 	public static final Weapon HEAVY_CROSSBOW = new Weapon("Heavy Crossbow", new Cost(CurrencyType.GOLD, 50), new Damage(DamageType.PIERCING, new Dice(10)), 18, Arrays.asList(WeaponProperties.AMMUNITION, WeaponProperties.RANGE_100_400, WeaponProperties.HEAVY, WeaponProperties.LOADING, WeaponProperties.TWO_HANDED), WeaponType.MARTIAL_RANGED);
 	public static final Weapon LONGBOW = new Weapon("Longbow", new Cost(CurrencyType.GOLD, 50), new Damage(DamageType.PIERCING, new Dice(8)), 2, Arrays.asList(WeaponProperties.AMMUNITION, WeaponProperties.RANGE_150_600, WeaponProperties.HEAVY, WeaponProperties.TWO_HANDED), WeaponType.MARTIAL_RANGED);
 	public static final Weapon NET = new Weapon("Net", new Cost(CurrencyType.GOLD, 1), new Damage(DamageType.NONE, new Dice(1)), 3, Arrays.asList(WeaponProperties.SPECIAL_NET, WeaponProperties.THROWN, WeaponProperties.RANGE_5_15), WeaponType.MARTIAL_RANGED);
+	
+	public static CustomList<Weapon> getSimpleMeleeWeapons()
+	{
+		return new CustomList<Weapon>(CLUB, DAGGER, GREATCLUB, HANDAXE, JAVELIN, LIGHT_HAMMER, MACE, QUARTERSTAFF, SICKLE, SPEAR, UNARMED_STRIKE);
+	}
+	
+	public static CustomList<Weapon> getSimpleRangedWeapons()
+	{
+		return new CustomList<Weapon>(LIGHT_CROSSBOW, DART, SHORTBOW, SLING);
+	}
+	
+	public static CustomList<Weapon> getSimpleWeapons()
+	{
+		return new CustomList<Weapon>(getSimpleMeleeWeapons(), getSimpleRangedWeapons());
+	}
+	
+	public static CustomList<Weapon> getMartialMeleeWeapons()
+	{
+		return new CustomList<Weapon>(BATTLEAXE, FLAIL, GLAIVE, GREATAXE, GREATSWORD, HALBERD, LANCE, LONGSWORD, MAUL, MORNINGSTAR, PIKE, RAPIER, SCIMITAR, SHORTSWORD, TRIDENT, WAR_PICK, WARHAMMER, WHIP);
+	}
+	
+	public static CustomList<Weapon> getMartialRangedWeapons()
+	{
+		return new CustomList<Weapon>(BLOWGUN, HAND_CROSSBOW, HEAVY_CROSSBOW, LONGBOW, NET);
+	}
+	
+	public static CustomList<Weapon> getMartialWeapons()
+	{
+		return new CustomList<Weapon>(getMartialMeleeWeapons(), getMartialRangedWeapons());
+	}
+	
+	public static CustomList<Weapon> getAll()
+	{
+		return new CustomList<Weapon>(getSimpleWeapons(), getMartialWeapons());
+	}
 }

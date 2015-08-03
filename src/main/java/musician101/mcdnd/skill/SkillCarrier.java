@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Random;
 
 import musician101.mcdnd.abilityscore.CharacterAbilityScores;
-import musician101.mcdnd.util.CustomHashMap;
+import musician101.mcdnd.util.CustomMap;
 
 public class SkillCarrier
 {
@@ -31,7 +31,7 @@ public class SkillCarrier
 	
 	public SkillCarrier(CharacterAbilityScores scores, List<Skills> proficientSkills, List<Skills> expertSkills)
 	{
-		skills = new CustomHashMap<Skills, Skill>().add(Skills.ACROBATICS, new Skill(Skills.ACROBATICS, scores, proficientSkills, expertSkills))
+		skills = new CustomMap<Skills, Skill>().add(Skills.ACROBATICS, new Skill(Skills.ACROBATICS, scores, proficientSkills, expertSkills))
 				.add(Skills.ANIMAL_HANDLING, new Skill(Skills.ANIMAL_HANDLING, scores, proficientSkills, expertSkills))
 				.add(Skills.ARCANA, new Skill(Skills.ARCANA, scores, proficientSkills, expertSkills))
 				.add(Skills.ATHLETICS, new Skill(Skills.ATHLETICS, scores, proficientSkills, expertSkills))

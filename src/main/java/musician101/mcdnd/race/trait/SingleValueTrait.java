@@ -4,7 +4,7 @@ public class SingleValueTrait<T> extends Trait
 {
 	T trait;
 	
-	public SingleValueTrait(String name, T trait, String description)
+	public SingleValueTrait(String name, T trait, String... description)
 	{
 		super(name, description);
 		this.trait = trait;

@@ -8,7 +8,12 @@ public class DCSaveFeature extends Feature implements DCSave
 {
 	AbilityScores scoreType;
 	
-	public DCSaveFeature(String name, int level, AbilityScores scoreType, String description)
+	public DCSaveFeature(String name, AbilityScores scoreType, String... description)
+	{
+		this(name, 0, scoreType, description);
+	}
+	
+	public DCSaveFeature(String name, int level, AbilityScores scoreType, String... description)
 	{
 		super(name, level, description);
 		this.scoreType = scoreType;
