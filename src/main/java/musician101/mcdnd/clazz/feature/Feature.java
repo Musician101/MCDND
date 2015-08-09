@@ -40,31 +40,11 @@ public class Feature implements Described, Named
 		return name;
 	}
 	
-	public static class EquipmentChoicesFeature extends Feature
+	public static class ChannelDivinityFeature extends Feature
 	{
-		EquipmentChoice option1;
-		EquipmentChoice option2;
-		
-		public EquipmentChoicesFeature(EquipmentChoice option1, String... description)
+		public ChannelDivinityFeature(String name, int level, String... description)
 		{
-			this(option1, null, description);
-		}
-		
-		public EquipmentChoicesFeature(EquipmentChoice option1, EquipmentChoice option2, String... description)
-		{
-			super("EquipmentChoices", description);
-			this.option1 = option1;
-			this.option2 = option2;
-		}
-		
-		public EquipmentChoice get1stOption()
-		{
-			return option1;
-		}
-		
-		public EquipmentChoice get2ndOption()
-		{
-			return option2;
+			super("Channel Divinity: " + name, level, description);
 		}
 	}
 	

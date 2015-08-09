@@ -7,7 +7,7 @@ import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
-import musician101.mcdnd.equipment.Armor.ArmorTypes;
+import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.tool.Tools;
 import musician101.mcdnd.equipment.weapon.Weapon;

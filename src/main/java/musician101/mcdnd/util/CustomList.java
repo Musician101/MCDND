@@ -9,6 +9,7 @@ public class CustomList<T> extends ArrayList<T>
 	@SafeVarargs
 	public CustomList(List<? extends T>... lists)
 	{
+		super();
 		for (List<? extends T> list : lists)
 			addAll(list);
 	}

@@ -3,7 +3,7 @@ package musician101.mcdnd.clazz.feature;
 import java.util.List;
 
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
-import musician101.mcdnd.equipment.Armor.ArmorTypes;
+import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon;
 import musician101.mcdnd.skill.Skills;

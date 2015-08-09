@@ -10,14 +10,14 @@ public class Spell implements Described, Named
 	boolean isVerbal;
 	SpellLevel level;
 	SpellType type;
-	int castingTime;
+	double castingTime;
 	int duration;
 	int range;
 	String[] description;
 	String materials;
 	String name;
 	
-	public Spell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
+	public Spell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
 	{
 		this.name = name;
 		this.type = type;
@@ -47,8 +47,8 @@ public class Spell implements Described, Named
 		return isVerbal;
 	}
 	
-	// Number of actions
-	public int getCastingTime()
+	// In seconds
+	public double getCastingTime()
 	{
 		return castingTime;
 	}
@@ -93,7 +93,7 @@ public class Spell implements Described, Named
 	
 	public static class RitualSpell extends Spell
 	{
-		public RitualSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
+		public RitualSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
 		{
 			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
 		}

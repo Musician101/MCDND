@@ -1,7 +1,9 @@
 package musician101.mcdnd.clazz.feature;
 
+import java.util.List;
 import java.util.Map;
 
+import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
 public class MappedFeature<K, V> extends Feature implements Mapped<K, V>
@@ -35,5 +37,13 @@ public class MappedFeature<K, V> extends Feature implements Mapped<K, V>
 	public V get(K key)
 	{
 		return map.get(key);
+	}
+	
+	public static class DomainSpellsFeature extends MappedFeature<Integer, List<Spell>>
+	{
+		public DomainSpellsFeature(String name, Map<Integer, List<Spell>> map)
+		{
+			super(name + " Domain Spells", map, "");
+		}
 	}
 }

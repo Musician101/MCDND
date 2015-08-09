@@ -7,24 +7,29 @@ import java.util.Map;
 
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 import musician101.mcdnd.clazz.HitDice;
-import musician101.mcdnd.clazz.feature.EquipmentChoice.ListEquipmentChoice;
-import musician101.mcdnd.clazz.feature.EquipmentChoice.MultipleEquipmentChoice;
-import musician101.mcdnd.clazz.feature.EquipmentChoice.SingleEquipmentFeature;
-import musician101.mcdnd.clazz.feature.Feature.EquipmentChoicesFeature;
+import musician101.mcdnd.clazz.feature.EquipmentFeature.EquipmentChoice.ListChoice;
+import musician101.mcdnd.clazz.feature.EquipmentFeature.EquipmentChoice.MultipleChoice;
+import musician101.mcdnd.clazz.feature.EquipmentFeature.EquipmentChoice.SingleChoice;
+import musician101.mcdnd.clazz.feature.EquipmentFeature.EquipmentChoices;
+import musician101.mcdnd.clazz.feature.Feature.ChannelDivinityFeature;
 import musician101.mcdnd.clazz.feature.Feature.HitPointsFeature;
 import musician101.mcdnd.clazz.feature.Feature.UnarmoredDefenseFeature;
 import musician101.mcdnd.clazz.feature.ListFeature.AbilityScoreImprovementFeature;
-import musician101.mcdnd.clazz.feature.ListFeature.EquipmentFeature;
+import musician101.mcdnd.clazz.feature.MappedFeature.DomainSpellsFeature;
 import musician101.mcdnd.clazz.feature.SpellcastingFeature.Cantrips;
 import musician101.mcdnd.clazz.feature.SpellcastingFeature.RitualCasting;
 import musician101.mcdnd.clazz.feature.SpellcastingFeature.SpellSlots;
+import musician101.mcdnd.clazz.feature.SpellcastingFeature.SpellcastingAbility;
 import musician101.mcdnd.clazz.feature.SpellcastingFeature.SpellcastingFocus;
 import musician101.mcdnd.clazz.feature.SpellcastingFeature.SpellsKnown;
+import musician101.mcdnd.clazz.feature.SpellcastingFeature.SpellsKnownSpellcastingFeature;
 import musician101.mcdnd.clazz.feature.totem.Totem;
 import musician101.mcdnd.clazz.feature.totem.Totems;
 import musician101.mcdnd.dice.Dice;
-import musician101.mcdnd.equipment.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.Equipment;
+import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
+import musician101.mcdnd.equipment.armor.Armors;
+import musician101.mcdnd.equipment.gear.AdventuringGear;
 import musician101.mcdnd.equipment.pack.Packs;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.tool.Tools;
@@ -66,9 +71,9 @@ public class Features
 	public static final Feature BARBARIAN_HP = new HitPointsFeature(D12, "barbarian");
 	public static final Feature BARBARIAN_PROFICIENCIES = new ProficienciesFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields", Weapons.getAll(), "Simple weapons, martial weapons",
 			new ArrayList<Tool>(), "None", Arrays.asList(AbilityScores.STR, AbilityScores.CON), "Strength, Constitution", Arrays.asList(Skills.ANIMAL_HANDLING, Skills.ATHLETICS, Skills.INTIMIDATION, Skills.NATURE, Skills.PERCEPTION, Skills.SURVIVAL), 2, "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, and Survival");
-	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.GREATAXE), new ListEquipmentChoice(new CustomList<Equipment>(Weapons.getMartialMeleeWeapons())), "(a) a greataxe or (b) any martial melee weapon"),
-			new EquipmentChoicesFeature(new SingleEquipmentFeature(Weapons.HANDAXE, 2), new ListEquipmentChoice(new CustomList<Equipment>(Weapons.getSimpleWeapons())), "(a) two handaxes or (b) any simple weapon"),
-			new EquipmentChoicesFeature(new MultipleEquipmentChoice(new CustomMap<Equipment, Integer>().add(Packs.EXPLORERS_PACK, 1).add(Weapons.JAVELIN, 4)), "An explorer's pack and four javelins."));
+	public static final Feature BARBARIAN_EQUIPMENT = new EquipmentFeature(new EquipmentChoices("(a) a greataxe or (b) any martial melee weapon", new SingleChoice(Weapons.GREATAXE), new ListChoice(new CustomList<Equipment>(Weapons.getMartialMeleeWeapons()))),
+			new EquipmentChoices("(a) two handaxes or (b) any simple weapon", new SingleChoice(Weapons.HANDAXE, 2), new ListChoice(new CustomList<Equipment>(Weapons.getSimpleWeapons()))),
+			new EquipmentChoices("An explorer's pack and four javelins.", new MultipleChoice(new CustomMap<Equipment, Integer>().add(Packs.EXPLORERS_PACK, 1).add(Weapons.JAVELIN, 4))));
 	public static final Feature RAGE = new RageFeature();
 	public static final Feature UNARMORED_DEFENSE = new UnarmoredDefenseFeature("While you are not wearing any armor, your Armor Class equals 10 your Dexterity modifier your Constitution modifier. You can use a shield and still gain this benefit.");
 	public static final Feature RECKLESS_ATTACK = new Feature("Reckless Attack", 2, "Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advatange until your next turn.");
@@ -111,8 +116,9 @@ public class Features
 	// Core Features
 	public static final Feature BARD_HP = new HitPointsFeature(D8, "bard");
 	public static final Feature BARD_PROFICIENCIES = new ProficienciesFeature(Arrays.asList(ArmorTypes.LIGHT), "Light armor", Weapons.getSimpleWeapons().add(Weapons.HAND_CROSSBOW, Weapons.LONGSWORD, Weapons.RAPIER, Weapons.SHORTSWORD), "Simple weapons, hand crossbows, longswords, rapiers, shortswords", Tools.getMusicalInstruments(), "Three musical instruments of your choice", Arrays.asList(AbilityScores.DEX, AbilityScores.CHA), "Dexterity, Charisma", Arrays.asList(Skills.values()), 3, "Choose any three");
-	public static final Feature BARD_SPELLCASTING = new SpellcastingFeature(new Cantrips(new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3), 2).add(Arrays.asList(4, 5, 6, 7, 8, 9), 3).add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 2), "You know two cantrips of your choice from the bard spell list. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table."), 
-			new SpellSlots(new CustomMap<SpellLevel, Map<Integer, Integer>>().add(SpellLevel.LEVEL_1, new CustomMap<Integer, Integer>().add(1, 2).add(2, 3).add(Arrays.asList(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 4)).add(SpellLevel.LEVEL_2, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2), 0).add(3, 2).add(Arrays.asList(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 4))
+	//TODO i forgot bard equipment
+	public static final Feature BARD_SPELLCASTING = new SpellsKnownSpellcastingFeature(new Cantrips(new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3), 2).add(Arrays.asList(4, 5, 6, 7, 8, 9), 3).add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 2), "You know two cantrips of your choice from the bard spell list. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table."), 
+			new SpellSlots("Spell Slots", new CustomMap<SpellLevel, Map<Integer, Integer>>().add(SpellLevel.LEVEL_1, new CustomMap<Integer, Integer>().add(1, 2).add(2, 3).add(Arrays.asList(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 4)).add(SpellLevel.LEVEL_2, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2), 0).add(3, 2).add(Arrays.asList(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 4))
 					.add(SpellLevel.LEVEL_3, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2), 3).add(3, 2).add(Arrays.asList(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 3)).add(SpellLevel.LEVEL_4, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6), 0).add(7, 1).add(8, 1).add(Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 3))
 					.add(SpellLevel.LEVEL_5, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), 0).add(9, 1).add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17), 2).add(Arrays.asList(18, 19, 20), 3)).add(SpellLevel.LEVEL_6, new CustomMap<Integer, Integer>().add(Arrays.asList(0, 1,2 ,3, 4, 5, 6, 7, 8, 9, 10), 0).add(Arrays.asList(11, 12, 13, 14, 15, 16, 17, 18), 1).add(Arrays.asList(19, 20), 2))
 					.add(SpellLevel.LEVEL_7, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), 0).add(Arrays.asList(13, 14, 15, 16, 17, 18, 19, 20), 1)).add(SpellLevel.LEVEL_8, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), 0).add(Arrays.asList(15, 16, 17, 18, 19, 20), 1))
@@ -121,6 +127,9 @@ public class Features
 			new SpellsKnown(new CustomMap<Integer, Integer>().add(1, 4).add(2, 5).add(3, 6).add(4, 7).add(5, 8).add(6, 9).add(7, 10).add(8, 11).add(9, 12).add(10, 14).add(Arrays.asList(11, 12), 15).add(13, 16).add(14, 18).add(Arrays.asList(15, 16), 19).add(17, 20).add(Arrays.asList(18, 19, 20), 22), "You know four 1st-level spells of your choice from the bard spell list.",
 					"The Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn on new spell of 1st or 2nd level.",
 					"Additionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots."),
+			new SpellcastingAbility(AbilityScores.CHA, "Charisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music ororation. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one.",
+					"Spell save DC = 8 + your proficiency bonus + your Charisma modifier",
+					"Spell attack modifier = your proficiency bonus + your Charisma modifier"),
 			new RitualCasting("You can cast any bard spell you know as a ritual if that spell has the ritual tag."),
 			new SpellcastingFocus("You can use a musical instrument as a spellcasting focus for your bard spells."),
 			"You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations.");
@@ -140,4 +149,52 @@ public class Features
 			.add(1, Arrays.asList(BARD_HP, BARD_PROFICIENCIES, BARD_SPELLCASTING, BARDIC_INSPIRATION)).add(2, Arrays.asList(JACK_OF_ALL_TRADES, SONG_OF_REST))
 			.add(3, Arrays.asList(BARD_COLLEGE)).add(4, Arrays.asList(ABILITY_SCORE_IMPROVEMENT)).add(5, Arrays.asList(FONT_OF_INSPIRATION))
 			.add(6, Arrays.asList(COUNTERCHARM)).add(10, Arrays.asList(MAGICAL_SECRETS)).add(20, Arrays.asList(SUPERIOR_INSPIRATION));
+	
+	// Cleric Features
+	// Features shared between all Divine Domains
+	public static final Feature DOMAIN_SPELLS = new Feature("Domain Spells", "Each domain has a list of spells-its domain spells-that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn't count against theu number of spells you can prepare each day.", "If you have a domain spell that doesn't appear on the cleric spell list, the spell is nonetheless a cleric spell for you.");
+	
+	// Knowledge Domain
+	public static final Feature KNOWLEDGE_DOMAIN_SPELLS = new DomainSpellsFeature("Knowledge", new CustomMap<Integer, List<Spell>>().add(1, Arrays.asList(Spells.COMMAND, Spells.IDENTIFY)).add(3, Arrays.asList(Spells.AUGURY, Spells.SUGGESTION)).add(5, Arrays.asList(Spells.NONDETECTION, Spells.SPEAK_WITH_DEAD)).add(7, Arrays.asList(Spells.ARCANE_EYE, Spells.CONFUSION)).add(9, Arrays.asList(Spells.LEGEND_LORE, Spells.SCRYING)));
+	public static final Feature BLESSINGS_OF_KNOWLEDGE = new ListFeature<Skills>("Blessings of Knowledge", Arrays.asList(Skills.ARCANA, Skills.HISTORY, Skills.NATURE, Skills.RELIGION), "At 1st level, you learn two languages of your choice. You also become proficient in your choice of two of the following skills: Arcana, History, Nature, or Religion.", "Your proficiency bonus is double for any ability check you make that uses either of those skills.");
+	public static final Feature KNOWLEDGE_OF_THE_AGES = new ChannelDivinityFeature("Knowledge of the Ages", 2, "Starting at 2nd level, you can use your Channel Divinity to tap into a divine well of knowledge. As an action you choose one skill or tool. For 10 minutes, you have proficiency with the chosen skill or tool.");
+	public static final Feature READ_THOUGHTS = new ChannelDivinityFeature("Read Thoughts", 6, "At 6th level, you can use your Channel Divinity to read a creature's throughts. You can then use your access to the creature's mind to command it.",
+			"As an action, choose one creature that you can see within 60 feet of you. That creature must make a Wisdom saving throw. If the creature succeeds on the saving throw, you can't use this feature on it again until you finish a long rest.",
+			"If the creature fails its save, you can read its surface thoughts (those foremost in its mind, reflecting its current emotions and what it is actively thinking about) when it is within 60 feet of you. This effect lasts for 1 minute.",
+			"During that time, you can use your action to end this effect and cast the Suggestion spell on the creature without expending a spell slot. The target automatically fails its saving throw against the spell.");
+	public static final Feature POTENT_SPELLCASTING = new Feature("Potent Spellcasting", 8, "Starting at 8th level, you add your Wisdom modifier to the damage you deal with any cleric cantrip.");
+	public static final Feature VISIONS_OF_THE_PAST = new Feature("Visions of the Past", 17, "Starting at the 17th level, you can call up visions of the past that relate to an object you hold or your immediate surroundings. You spend at least 1 minute in meditation and prayer, then receive dreamlike, shadowy glimpses of refcent events. You can meditate in this way fro a number of minutes equal to your Wisdom score and must maintain concentration during that time, as if you were casting a spell.",
+			"Once you use this feature, you can't use it again until you finish a short or a long rest.",
+			"Object Reading: Holding an object as you meditate, you can see visions of the object's previous owner. After meditating for 1 minute, you learn how the owner acquired and lost the object, as well as the most recent significant event involving the object and that owner. If the object was owned by another creature in the recent past (within a number of days equal to your Wisdom score), you can spend 1 additional minute for each owner to learn the same information about that creature.",
+			"Area Reading: As you meditate, you see visions of recent events in your immediate vicinity (a room, street, tunnel clearing, or the like, up to a 50-foot cube), going back a number of days equal to your Wisdom score. For each minute you meditate, you learn about one significant event, beginning with the most recent. Significatn events typically involve powerful emotions, such as battles and betrayals, marriages, and murders, births and funerals. However, they might also include more mundane events that are nevertheless important in your current situation.");
+	public static final Feature KNOWLEDGE_DOMAIN = new MappedFeature<Integer, List<Feature>>("Knowledge Domain", new CustomMap<Integer, List<Feature>>().add(1, Arrays.asList(DOMAIN_SPELLS, KNOWLEDGE_DOMAIN_SPELLS, BLESSINGS_OF_KNOWLEDGE)).add(2, Arrays.asList(KNOWLEDGE_OF_THE_AGES)).add(6, Arrays.asList(READ_THOUGHTS)).add(8, Arrays.asList(POTENT_SPELLCASTING)).add(17, Arrays.asList(VISIONS_OF_THE_PAST)),
+			"The gods of knowledge-including Oghma, Boccob, Gilean, Aureon, and Thoth-value learning and understanding above all. Some teach that knowledge is to be gathered and shared in libraries and universities, or promote the practical knowledge of craft and invention. Some deities hoard knowledge and keep its secrets to themselves. And some promise their followers that they will gain trememndous power if they unlock the secrets of the multiverse. Followers of these gods study esoteric lore, collect old tomes, delve into the secret places of the earth, and learn all they can. Some gods of knowledge promote the practical knowledge of craft and invention, including smith deities like Gond, Reors, Onatar, Moradin, Hephaestus, and Goibhniu.");
+	
+	// Life Domain
+	
+	// Core Features
+	public static final Feature CLERIC_HP = new HitPointsFeature(D8, "cleric");
+	public static final Feature CLERIC_PROFICIENCIES = new ProficienciesFeature(Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM, ArmorTypes.SHIELD), "Light armor, medium armor, shields", Weapons.getSimpleWeapons(), "All simple weapons", new ArrayList<Tool>(), "None", Arrays.asList(AbilityScores.WIS, AbilityScores.CHA), "Wisdom, Charisma", Arrays.asList(Skills.HISTORY, Skills.INSIGHT, Skills.MEDICINE, Skills.PERSUASION, Skills.RELIGION), 2, "Choose two from History, Insight, Medicine, Persuasion, and Religion");
+	public static final Feature CLERIC_EQUIPMENT = new EquipmentFeature(new EquipmentChoices("(a) a mace or (b) a warhammer (if proficient)", new SingleChoice(Weapons.MACE), new SingleChoice(Weapons.WARHAMMER)),
+			new EquipmentChoices("(a) scale mail, (b) leather armor, or (c) chain mail (if proficient)", new SingleChoice(Armors.SCALE_MAIL), new SingleChoice(Armors.LEATHER), new SingleChoice(Armors.CHAIN_MAIL)),
+			new EquipmentChoices("(a) a light crossbow and 20 bolts or (b) any simple weapon", new MultipleChoice(new CustomMap<Equipment, Integer>().add(Weapons.LIGHT_CROSSBOW, 1).add(AdventuringGear.CROSSBOW_BOLTS, 1)), new ListChoice(new CustomList<Equipment>(Weapons.getSimpleWeapons()))),
+			new EquipmentChoices("(a) a priest's pack or (b) an explorer's pack", new SingleChoice(Packs.PRIESTS_PACK), new SingleChoice(Packs.EXPLORERS_PACK)),
+			new EquipmentChoices("A shield and a holy symbol", new MultipleChoice(new CustomMap<Equipment, Integer>().add(Armors.SHIELD, 1).add(AdventuringGear.HOLY_SYMBOL_AMULET, 1).add(AdventuringGear.HOLY_SYMBOL_EMBLEM, 1).add(AdventuringGear.HOLY_SYMBOL_RELIQUARY, 1))));
+	public static final Feature CLERIC_SPELLCASTING = new SpellcastingFeature(new Cantrips(new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3), 3).add(Arrays.asList(4, 5, 6, 7, 8, 9), 4).add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 5), "At 1st level, you know three cantrips of your choice from the cleric spell list. You learn additional cleric cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Cleric table."),
+			new SpellSlots("Preparing and Casting Spells", new CustomMap<SpellLevel, Map<Integer, Integer>>().add(SpellLevel.LEVEL_1, new CustomMap<Integer, Integer>().add(1, 2).add(2, 3).add(Arrays.asList(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 4)).add(SpellLevel.LEVEL_2, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2), 0).add(3, 2).add(Arrays.asList(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 3))
+					.add(SpellLevel.LEVEL_3, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4), 0).add(5, 2).add(Arrays.asList(6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 3)).add(SpellLevel.LEVEL_4, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6), 0).add(7, 1).add(8, 1).add(Arrays.asList(9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20), 3))
+					.add(SpellLevel.LEVEL_5, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), 0).add(9, 1).add(Arrays.asList(10, 11, 12, 13, 14, 15, 16, 17), 2).add(Arrays.asList(18, 19, 20), 3)).add(SpellLevel.LEVEL_6, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), 0).add(Arrays.asList(11, 12, 13, 14, 15, 16, 17, 18), 1).add(Arrays.asList(19, 20), 2))
+					.add(SpellLevel.LEVEL_7, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), 0).add(Arrays.asList(13, 14, 15, 16, 17, 18, 19), 1).add(20, 2)).add(SpellLevel.LEVEL_8, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14), 0).add(Arrays.asList(15, 16, 17, 18, 19, 20), 1))
+					.add(SpellLevel.LEVEL_9, new CustomMap<Integer, Integer>().add(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), 0).add(Arrays.asList(17, 18, 19, 20), 1)),
+					"The Cleric table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest.",
+					"You prepare the list of cleric spells that are available for you to cast, choosing from the cleric spell list. When you do so, choose a number of cleric spell list. When you do so, choose a number of cleric spells equal to your Wisdom modifier * you cleric level (minimum of one spell). The spells must be of a level for which you have spell slots.",
+					"For example, if you are a 3rd-level cleric, you have four 1st-level and two 2nd-level spell slots. With a Wisdom of 16, your list of prepared spells can included six spells of 1st or 2nd level, in any combination. If you prepare the 1st-level spell Cure Wounds, you can cast it using the 1st-level or 2nd-level slot. Casting the spell doesn't remove it from your list of prepared spells.",
+					"You can change your list of prepared spells when you finish a long rest. Preparing a new list of cleric spells requires time spent in prayer and meditation: at least 1 minute per spell level for each spell on your list."),
+			new SpellcastingAbility(AbilityScores.WIS, "Wisdom is your spellcasting ability for your cleric spells. The power of your spells comes from your devotion to your deity. You use your Wisdom whenever a cleric spell refers to your spellcasting ability. In addition, you use your Wisdom modifier when setting the saving throw DC for a cleric spell you cast and when making an attack roll with one.",
+					"Spell save DC = 8 + your proficiency bonus + your Wisdom modifier",
+					"Spell attack modifier = your proficiency bonus + your Wisdom modifier"),
+			new RitualCasting("You can cast a cleric spell as a ritual if that spell has the ritual tag and you have the spell prepared."),
+			new SpellcastingFocus("You can use a holy symbol as a spellcasting focus for your cleric spells."),
+			"As a conduit for divine power, you can cast cleric spells.");
+	public static final Feature DIVINE_DOMAIN = new ListFeature<Feature>("Divine Domain", Arrays.asList(KNOWLEDGE_DOMAIN), "Choose one domain related to your eity: Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Each domain is detailed at the end of the class description, and each one provides examples of gods associated with it. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.");
 }

@@ -12,15 +12,14 @@ public class SpellcastingFeature extends Feature
 	RitualCasting ritualCasting;
 	SpellcastingAbility spellcastingAbility;
 	SpellcastingFocus spellcastingFocus;
-	SpellsKnown spellsKnown;
 	SpellSlots spellSlots;
 	
-	public SpellcastingFeature(Cantrips cantrips, SpellSlots spellSlots, SpellsKnown spellsKnown, RitualCasting ritualCasting, SpellcastingFocus spellcastingFocus, String... description)
+	public SpellcastingFeature(Cantrips cantrips, SpellSlots spellSlots, SpellcastingAbility spellcastingAbility, RitualCasting ritualCasting, SpellcastingFocus spellcastingFocus, String... description)
 	{
 		super("Spellcasting", description);
 		this.cantrips = cantrips;
 		this.spellSlots = spellSlots;
-		this.spellsKnown = spellsKnown;
+		this.spellcastingAbility = spellcastingAbility;
 		this.ritualCasting = ritualCasting;
 		this.spellcastingFocus = spellcastingFocus;
 	}
@@ -28,6 +27,42 @@ public class SpellcastingFeature extends Feature
 	public Cantrips getCantrips()
 	{
 		return cantrips;
+	}
+	
+	public RitualCasting getRitualCasting()
+	{
+		return ritualCasting;
+	}
+	
+	public SpellcastingAbility getSpellcastingAbility()
+	{
+		return spellcastingAbility;
+	}
+	
+	public SpellcastingFocus getSpellcastingFocus()
+	{
+		return spellcastingFocus;
+	}
+	
+	public SpellSlots getSpellSlots()
+	{
+		return spellSlots;
+	}
+	
+	public static class SpellsKnownSpellcastingFeature extends SpellcastingFeature
+	{
+		SpellsKnown spellsKnown;
+		
+		public SpellsKnownSpellcastingFeature(Cantrips cantrips, SpellSlots spellSlots, SpellsKnown spellsKnown, SpellcastingAbility spellcastingAbility, RitualCasting ritualCasting, SpellcastingFocus spellcastingFocus, String... description)
+		{
+			super(cantrips, spellSlots, spellcastingAbility, ritualCasting, spellcastingFocus, description);
+			this.spellsKnown = spellsKnown;
+		}
+		
+		public SpellsKnown getSpellsKnown()
+		{
+			return spellsKnown;
+		}
 	}
 	
 	public static class Cantrips extends MappedFeature<Integer, Integer>
@@ -77,9 +112,9 @@ public class SpellcastingFeature extends Feature
 	
 	public static class SpellSlots extends MappedFeature<SpellLevel, Map<Integer, Integer>>
 	{
-		public SpellSlots(Map<SpellLevel, Map<Integer, Integer>> map, String... description)
+		public SpellSlots(String name, Map<SpellLevel, Map<Integer, Integer>> map, String... description)
 		{
-			super("Spell Slots", map, description);
+			super(name, map, description);
 		}
 	}
 }
