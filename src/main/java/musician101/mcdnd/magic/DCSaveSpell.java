@@ -7,11 +7,6 @@ public class DCSaveSpell extends Spell
 {
 	AbilityScores type;
 	
-	public DCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, int duration, boolean needsConcentration, AbilityScores scoreType, String... description)
-	{
-		this(name, type, level, castingTime, range, isVerbal, isSomatic, "", duration, needsConcentration, scoreType, description);
-	}
-	
 	public DCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, AbilityScores scoreType, String... description)
 	{
 		super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);

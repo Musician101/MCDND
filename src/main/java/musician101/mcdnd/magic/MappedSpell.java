@@ -59,11 +59,6 @@ public class MappedSpell<K, V> extends Spell
 	{
 		Damage damage;
 		
-		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String... description)
-		{
-			this(name, type, level, castingTime, range, isVerbal, isSomatic, "", 0, false, map, damageType, description);
-		}
-		
 		public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String... description)
 		{
 			super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);

@@ -10,7 +10,7 @@ public abstract class MappedDCSaveSpell<K, V> extends DCSaveSpell
 	
 	protected MappedDCSaveSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, int duration, boolean needsConcentration, AbilityScores scoreType, String description)
 	{
-		super(name, type, level, castingTime, range, isVerbal, isSomatic, duration, needsConcentration, scoreType, description);
+		super(name, type, level, castingTime, range, isVerbal, isSomatic, "", duration, needsConcentration, scoreType, description);
 	}
 	
 	public Map<K, V> getMap()
