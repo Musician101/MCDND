@@ -6,64 +6,68 @@ import java.util.List;
 
 public abstract class Dragonborn implements Race
 {
-	List<Trait> traits;
-	
-	protected Dragonborn()
-	{
-		//traits.add();
-	}
-	
-	public static class BlackDragonborn extends Dragonborn
-	{
-		public BlackDragonborn()
-		{
-			super();
-		}
+    List<Trait> traits;
 
-		@Override
-		public List<Trait> getTraits()
-		{
-			return null;
-		}
+    protected Dragonborn()
+    {
+        //traits.add();
+    }
 
-		@Override
-		public String getName()
-		{
-			return "Black Dragonborn";
-		}
-	}
-	
-	public static class BlueDragonborn extends Dragonborn
-	{
-		public BlueDragonborn() {}
+    public static class BlackDragonborn extends Dragonborn
+    {
+        public BlackDragonborn()
+        {
+            super();
+        }
 
-		@Override
-		public List<Trait> getTraits()
-		{
-			return null;
-		}
+        @Override
+        public List<Trait> getTraits()
+        {
+            return null;
+        }
 
-		@Override
-		public String getName()
-		{
-			return "Blue Dragonborn";
-		}
-	}
-	
-	public static class BrassDragonborn extends Dragonborn
-	{
-		public BrassDragonborn() {}
+        @Override
+        public String getName()
+        {
+            return "Black Dragonborn";
+        }
+    }
 
-		@Override
-		public List<Trait> getTraits()
-		{
-			return null;
-		}
+    public static class BlueDragonborn extends Dragonborn
+    {
+        public BlueDragonborn()
+        {
+        }
 
-		@Override
-		public String getName()
-		{
-			return "Brass Dragonborn";
-		}
-	}
+        @Override
+        public List<Trait> getTraits()
+        {
+            return null;
+        }
+
+        @Override
+        public String getName()
+        {
+            return "Blue Dragonborn";
+        }
+    }
+
+    public static class BrassDragonborn extends Dragonborn
+    {
+        public BrassDragonborn()
+        {
+        }
+
+        @Override
+        public List<Trait> getTraits()
+        {
+            return null;
+        }
+
+        @Override
+        public String getName()
+        {
+            return "Brass Dragonborn";
+        }
+    }
 }
