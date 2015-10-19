@@ -9,12 +9,12 @@ import musician101.mcdnd.clazz.ProficiencyBonus;
 
 public class CharacterAbilityScores extends AbstractAbilityScores
 {
-	ProficiencyBonus proficiencyBonus;
-	List<AbilityScores> proficientSavingThrows;
+	private ProficiencyBonus proficiencyBonus;
+	private final List<AbilityScores> proficientSavingThrows;
 	
 	public CharacterAbilityScores()
 	{
-		this(new ArrayList<AbilityScores>(), new ProficiencyBonus());
+		this(new ArrayList<>(), new ProficiencyBonus());
 	}
 	
 	public CharacterAbilityScores(List<AbilityScores> proficientSavingThrows, ProficiencyBonus proficiencyBonus)

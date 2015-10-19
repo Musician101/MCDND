@@ -38,6 +38,7 @@ public class Gear extends Equipment
 		public BundledGear(String name, double amount, Cost cost, double weight)
 		{
 			super(name, cost, weight);
+			this.amount = amount;
 		}
 		
 		public double getAmount()

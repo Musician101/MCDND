@@ -2,7 +2,7 @@ package musician101.mcdnd.abilityscore;
 
 public class AbilityScore
 {
-	private AbilityScores type;
+	private final AbilityScores type;
 	private int amount;
 	
 	public AbilityScore(AbilityScores type)
@@ -36,7 +36,7 @@ public class AbilityScore
 		return (amount - 10) / 2;
 	}
 	
-	public static enum AbilityScores
+	public enum AbilityScores
 	{
 		STR("Strength"),
 		DEX("Dexterity"),
@@ -45,9 +45,9 @@ public class AbilityScore
 		WIS("Wisdom"),
 		CHA("Charisma");
 		
-		String name;
+		final String name;
 		
-		private AbilityScores(String name)
+		AbilityScores(String name)
 		{
 			this.name = name;
 		}

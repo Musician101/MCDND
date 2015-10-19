@@ -7,11 +7,11 @@ import musician101.mcdnd.equipment.Equipment;
 
 public class Armor extends Equipment
 {
-	ArmorTypes type;
-	boolean stealthDisadvantage;
+	private final ArmorTypes type;
+	private final boolean stealthDisadvantage;
 	Cost cost;
-	int armorClass;
-	int strength;
+	private final int armorClass;
+	private final int strength;
 	int weight;
 	String name;
 	
@@ -44,7 +44,7 @@ public class Armor extends Equipment
 		return strength;
 	}
 	
-	public static enum ArmorTypes
+	public enum ArmorTypes
 	{
 		LIGHT(),
 		MEDIUM(),
@@ -52,14 +52,14 @@ public class Armor extends Equipment
 		SHIELD(),
 		UNARMORED;
 		
-		List<Armor> armor;
+		final List<Armor> armor;
 		
-		private ArmorTypes()
+		ArmorTypes()
 		{
 			this(null);
 		}
 		
-		private ArmorTypes(List<Armor> armor)
+		ArmorTypes(List<Armor> armor)
 		{
 			this.armor = armor;
 		}

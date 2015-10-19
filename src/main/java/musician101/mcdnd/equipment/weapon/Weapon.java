@@ -12,13 +12,13 @@ import musician101.mcdnd.util.Interfaces.DamageDealer;
 
 public class Weapon extends Equipment implements DamageDealer
 {
-	Damage damage;
-	List<WeaponProperty> properties;
-	WeaponType type;
+	private final Damage damage;
+	private final List<WeaponProperty> properties;
+	private final WeaponType type;
 	
 	protected Weapon(String name, Cost cost, Damage damage, double weight, WeaponType type)
 	{
-		this(name, cost, damage, weight, new ArrayList<WeaponProperty>(), type);
+		this(name, cost, damage, weight, new ArrayList<>(), type);
 	}
 	
 	protected Weapon(String name, Cost cost, Damage damage, double weight, List<WeaponProperty> properties, WeaponType type)
@@ -50,16 +50,16 @@ public class Weapon extends Equipment implements DamageDealer
 		return damage.rollDamage() + mod;
 	}
 	
-	public static enum WeaponType
+	public enum WeaponType
 	{
 		SIMPLE_MELEE("Simple Melee Weapon"),
 		SIMPLE_RANGED("Simple Ranged Weapon"),
 		MARTIAL_MELEE("Martial Melee Weapon"),
 		MARTIAL_RANGED("Martial Ranged Weapon");
 		
-		String name;
+		final String name;
 		
-		private WeaponType(String name)
+		WeaponType(String name)
 		{
 			this.name = name;
 		}

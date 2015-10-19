@@ -6,7 +6,7 @@ import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 
 public abstract class MappedDCSaveSpell<K, V> extends DCSaveSpell
 {
-	Map<K, V> map;
+	private Map<K, V> map;
 	
 	protected MappedDCSaveSpell(String name, SpellType type, SpellLevel level, int castingTime, int range, boolean isVerbal, boolean isSomatic, int duration, boolean needsConcentration, AbilityScores scoreType, String description)
 	{
@@ -18,7 +18,7 @@ public abstract class MappedDCSaveSpell<K, V> extends DCSaveSpell
 		return map;
 	}
 	
-	public V get(V key)
+	public V get(K key)
 	{
 		return map.get(key);
 	}

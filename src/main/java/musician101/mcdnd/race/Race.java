@@ -6,11 +6,11 @@ import musician101.mcdnd.race.trait.Trait;
 
 public interface Race
 {
-	public List<Trait> getTraits();
+	List<Trait> getTraits();
 	
-	public String getName();
+	String getName();
 	
-	public static enum CharacterSize
+	enum CharacterSize
 	{
 		TINY("Tiny"),
 		SMALL("Small"),
@@ -19,9 +19,9 @@ public interface Race
 		HUGE("Huge"),
 		GARGANTUAN("Gargantuan");
 		
-		String name;
+		final String name;
 		
-		private CharacterSize(String name)
+		CharacterSize(String name)
 		{
 			this.name = name;
 		}

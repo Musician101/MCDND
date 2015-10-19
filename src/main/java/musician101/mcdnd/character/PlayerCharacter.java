@@ -12,13 +12,13 @@ import net.minecraft.server.MinecraftServer;
 
 public class PlayerCharacter extends Character
 {
-	Alignment alignment;
-	Armor armor;
-	Armor shield;
-	int armorClassBonus;
+	private Alignment alignment;
+	private Armor armor;
+	private Armor shield;
+	private int armorClassBonus;
 	ProficiencyBonus proficiencyBonus;
-	Race race;
-	SkillCarrier skills;
+	private Race race;
+	private SkillCarrier skills;
 	
 	public PlayerCharacter(EntityPlayer player)
 	{

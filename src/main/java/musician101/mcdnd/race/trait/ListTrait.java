@@ -8,7 +8,7 @@ import musician101.mcdnd.util.Interfaces.Listed;
 
 public class ListTrait<T> extends Trait implements Listed<T>
 {
-	List<T> values;
+	private final List<T> values;
 	
 	public ListTrait(String name, List<T> values, String... description)
 	{
@@ -40,7 +40,7 @@ public class ListTrait<T> extends Trait implements Listed<T>
 	{
 		public LanguagesTrait(List<Language> languages, String... description)
 		{
-			super("Languanges", languages, description);
+			super("Languages", languages, description);
 		}
 	}
 }

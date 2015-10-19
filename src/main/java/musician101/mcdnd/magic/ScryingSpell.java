@@ -6,8 +6,8 @@ import musician101.mcdnd.util.CustomMap;
 
 public class ScryingSpell extends Spell
 {
-	Map<String, Integer> connectionMap;
-	Map<String, Integer> knowledgeMap;
+	private final Map<String, Integer> connectionMap;
+	private final Map<String, Integer> knowledgeMap;
 	
 	public ScryingSpell()
 	{
@@ -17,7 +17,7 @@ public class ScryingSpell extends Spell
 				"On a failed save, the spell creates an invisible sensor within 10 feet of the target. You can see and hear through the sensor as if you were there. The sensor moves with the target, remaining within 10 feet of it for the duration. A creature that can see invisible objects sees the sensor as a luminous orb about the size of your fist.",
 				"Instead of targeting a creature, you can choose a location you have seen before as the target of this spell. When you do, the sensor appears at that location and doesn't move.");
 		knowledgeMap = new CustomMap<String, Integer>().add("Secondhand", 5).add("Firsthand", 0).add("Familiar", -5);
-		connectionMap = new CustomMap<String, Integer>().add("Likeness", -2).add("Possesion", -4).add("Body part", -10);
+		connectionMap = new CustomMap<String, Integer>().add("Likeness", -2).add("Possession", -4).add("Body part", -10);
 	}
 	
 	public Map<String, Integer> getConnectionMap()

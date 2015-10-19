@@ -19,26 +19,26 @@ public enum Language
 	SYLVAN("Sylvan", "Elvish", true),
 	UNDERCOMMON("Undercommon", "Elvish", true);
 	
-	boolean isExotic;
-	String name;
-	String script;
+	final boolean isExotic;
+	final String name;
+	final String script;
 	
-	private Language(String name, boolean isExotic)
+	Language(String name, boolean isExotic)
 	{
 		this(name, name, isExotic);
 	}
 	
-	private Language(String name)
+	Language(String name)
 	{
 		this(name, name);
 	}
 	
-	private Language(String name, String script)
+	Language(String name, String script)
 	{
 		this(name, script, false);
 	}
 	
-	private Language(String name, String script, boolean isExotic)
+	Language(String name, String script, boolean isExotic)
 	{
 		this.name = name;
 		this.script = script;

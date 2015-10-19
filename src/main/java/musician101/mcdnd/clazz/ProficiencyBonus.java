@@ -2,7 +2,7 @@ package musician101.mcdnd.clazz;
 
 public class ProficiencyBonus
 {
-	int bonus = 2;
+	private int bonus = 2;
 	
 	public ProficiencyBonus(CharacterClass... classes)
 	{
@@ -20,6 +20,6 @@ public class ProficiencyBonus
 		for (CharacterClass clazz : classes)
 			classLevels =+ clazz.getLevel();
 		
-		this.bonus = (int) (Math.floor(classLevels / (1 * 10^10)) + Math.floor(classLevels / 4d));
+		this.bonus = (int) (Math.floor(classLevels / (10000000000D)) + Math.floor(classLevels / 4d));
 	}
 }

@@ -33,7 +33,8 @@ public class MCDND
 			Loader.instance().runtimeDisableMod(Reference.ID);
 			return;
 		}
-		
+
+		event.getModState();
 		//TODO character sheet keybind
 		//TODO guihandler init here and in proxy. check Botania for example
 	}

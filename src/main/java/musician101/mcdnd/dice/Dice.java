@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Dice
 {
-	int amount;
-	int sides;
+	private final int amount;
+	private final int sides;
 	
 	public Dice(int sides)
 	{

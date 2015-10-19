@@ -5,17 +5,17 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class Spell implements Described, Named
 {
-	boolean needsConcentration;
-	boolean isSomatic;
-	boolean isVerbal;
-	SpellLevel level;
-	SpellType type;
-	double castingTime;
-	int duration;
-	int range;
-	String[] description;
-	String materials;
-	String name;
+	private final boolean needsConcentration;
+	private final boolean isSomatic;
+	private final boolean isVerbal;
+	private final SpellLevel level;
+	private final SpellType type;
+	private final double castingTime;
+	private final int duration;
+	private final int range;
+	private final String[] description;
+	private final String materials;
+	private final String name;
 	
 	public Spell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
 	{
@@ -99,7 +99,7 @@ public class Spell implements Described, Named
 		}
 	}
 	
-	public static enum SpellLevel
+	public enum SpellLevel
 	{
 		CANTRIP("Cantrip"),
 		LEVEL_1("1st Level"),
@@ -112,9 +112,9 @@ public class Spell implements Described, Named
 		LEVEL_8("8th Level"),
 		LEVEL_9("9th Level"),;
 		
-		String name;
+		final String name;
 		
-		private SpellLevel(String name)
+		SpellLevel(String name)
 		{
 			this.name = name;
 		}
@@ -125,7 +125,7 @@ public class Spell implements Described, Named
 		}
 	}
 	
-	public static enum SpellType
+	public enum SpellType
 	{
 		ABJURATION("Abjuration"),
 		CONJURATION("Conjuration"),
@@ -136,9 +136,9 @@ public class Spell implements Described, Named
 		NECROMANCY("Necromancy"),
 		TRANSMUTATION("Transmutation");
 		
-		String name;
+		final String name;
 		
-		private SpellType(String name)
+		SpellType(String name)
 		{
 			this.name = name;
 		}

@@ -8,9 +8,9 @@ public enum CurrencyType
 	GOLD("Gold"),
 	PLATINUM("Platinum");
 	
-	String name;
+	final String name;
 	
-	private CurrencyType(String name)
+	CurrencyType(String name)
 	{
 		this.name = name;
 	}

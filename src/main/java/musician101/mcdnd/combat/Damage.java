@@ -4,8 +4,8 @@ import musician101.mcdnd.dice.Dice;
 
 public class Damage
 {
-	DamageType type;
-	Dice dice;
+	private final DamageType type;
+	private final Dice dice;
 	
 	public Damage(DamageType type, Dice dice)
 	{

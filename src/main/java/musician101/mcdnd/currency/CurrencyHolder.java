@@ -6,7 +6,7 @@ import musician101.mcdnd.util.CustomMap;
 
 public abstract class CurrencyHolder
 {
-	Map<CurrencyType, Integer> currency;
+	final Map<CurrencyType, Integer> currency;
 	
 	protected CurrencyHolder()
 	{

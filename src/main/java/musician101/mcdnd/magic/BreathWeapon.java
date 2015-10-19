@@ -15,9 +15,9 @@ import musician101.mcdnd.util.Interfaces.Mapped;
 
 public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integer, Damage>
 {
-	AbilityScores saveType;
-	Map<Integer, Damage> damageMap = new HashMap<Integer, Damage>();
-	Shape shape;
+	private final AbilityScores saveType;
+	private final Map<Integer, Damage> damageMap = new HashMap<>();
+	private final Shape shape;
 	
 	protected BreathWeapon(DamageType damageType, AbilityScores saveType, Shape shape)
 	{
@@ -55,7 +55,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
 	public int getDCSave(AbilityScore score, int... bonuses)
 	{
 		if (score.getType() != AbilityScores.CON)
-			throw new IllegalArgumentException("Breath Weapon DC requires Consitution modifier!");
+			throw new IllegalArgumentException("Breath Weapon DC requires Constitution modifier!");
 		
 		int save = 8 + score.getMod();
 		for (int bonus : bonuses)

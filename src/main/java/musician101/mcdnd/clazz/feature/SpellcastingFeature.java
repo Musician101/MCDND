@@ -8,11 +8,11 @@ import musician101.mcdnd.magic.Spell.SpellLevel;
 
 public class SpellcastingFeature extends Feature
 {
-	Cantrips cantrips;
-	RitualCasting ritualCasting;
-	SpellcastingAbility spellcastingAbility;
-	SpellcastingFocus spellcastingFocus;
-	SpellSlots spellSlots;
+	private final Cantrips cantrips;
+	private final RitualCasting ritualCasting;
+	private final SpellcastingAbility spellcastingAbility;
+	private final SpellcastingFocus spellcastingFocus;
+	private final SpellSlots spellSlots;
 	
 	public SpellcastingFeature(Cantrips cantrips, SpellSlots spellSlots, SpellcastingAbility spellcastingAbility, RitualCasting ritualCasting, SpellcastingFocus spellcastingFocus, String... description)
 	{
@@ -51,7 +51,7 @@ public class SpellcastingFeature extends Feature
 	
 	public static class SpellsKnownSpellcastingFeature extends SpellcastingFeature
 	{
-		SpellsKnown spellsKnown;
+		final SpellsKnown spellsKnown;
 		
 		public SpellsKnownSpellcastingFeature(Cantrips cantrips, SpellSlots spellSlots, SpellsKnown spellsKnown, SpellcastingAbility spellcastingAbility, RitualCasting ritualCasting, SpellcastingFocus spellcastingFocus, String... description)
 		{

@@ -6,10 +6,10 @@ import musician101.mcdnd.util.CustomMap;
 
 public class RageFeature extends Feature
 {
-	int rageDamage = 2;
-	int rages = 2;
-	Map<Integer, Integer> rageDamageMap = new CustomMap<Integer, Integer>().add(1, 2).add(9, 3).add(16, 4);
-	Map<Integer, Integer> ragesMap = new CustomMap<Integer, Integer>().add(1, 2).add(3, 3).add(6, 4).add(12, 5).add(17, 6).add(20, -1);
+	private int rageDamage = 2;
+	private int rages = 2;
+	private final Map<Integer, Integer> rageDamageMap = new CustomMap<Integer, Integer>().add(1, 2).add(9, 3).add(16, 4);
+	private final Map<Integer, Integer> ragesMap = new CustomMap<Integer, Integer>().add(1, 2).add(3, 3).add(6, 4).add(12, 5).add(17, 6).add(20, -1);
 	
 	public RageFeature()
 	{

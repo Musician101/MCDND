@@ -6,10 +6,10 @@ import musician101.mcdnd.abilityscore.CharacterAbilityScores;
 
 public class Skill
 {
-	private Skills skill;
-	private boolean isExpert;
-	private boolean isProficient;
-	private int skillMod;
+	private final Skills skill;
+	private final boolean isExpert;
+	private final boolean isProficient;
+	private final int skillMod;
 	
 	public Skill(Skills skill, CharacterAbilityScores scores, List<Skills> proficientSkills, List<Skills> expertSkills)
 	{

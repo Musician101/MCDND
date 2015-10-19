@@ -12,20 +12,20 @@ public enum Alignment
 	NEUTRAL_EVIL("Neutral Evil", "NE", "Neutral evil is the alignment of those who do whatever they can get away with, without compassion or qualms."),
 	CHAOTIC_EVIL("Chaotic Evil", "CE", "Chaotic creatures act with arbitrary violence, spurred by their greed, hatred, or bloodlust.");
 	
-	String abbv;
-	String description;
-	String name;
+	final String abbreviation;
+	final String description;
+	final String name;
 	
-	private Alignment(String name, String abbv, String description)
+	Alignment(String name, String abbreviation, String description)
 	{
 		this.name = name;
-		this.abbv = abbv;
+		this.abbreviation = abbreviation;
 		this.description = description;
 	}
 	
 	public String getAbbreviation()
 	{
-		return abbv;
+		return abbreviation;
 	}
 	
 	public String getName()

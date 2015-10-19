@@ -8,11 +8,11 @@ import musician101.mcdnd.util.CustomMap;
 
 public class SizeTrait extends Trait
 {
-	CharacterSize size;
-	Dice heightDice;
-	Dice weightDice;
-	int baseHeight;
-	int baseWeight;
+	private final CharacterSize size;
+	private final Dice heightDice;
+	private final Dice weightDice;
+	private final int baseHeight;
+	private final int baseWeight;
 	
 	protected SizeTrait(int baseHeight, Dice heightDice, int baseWeight, Dice weightDice, CharacterSize size, String... description)
 	{

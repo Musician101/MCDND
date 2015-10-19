@@ -7,7 +7,7 @@ import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 
 public abstract class AbstractAbilityScores
 {
-	Map<AbilityScores, AbilityScore> scores = new HashMap<AbilityScores, AbilityScore>();
+	private final Map<AbilityScores, AbilityScore> scores = new HashMap<>();
 	
 	//TODO add point buy system and standard system array (15, 14, 13, 12, 10, 8)
 	protected AbstractAbilityScores() {}

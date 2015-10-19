@@ -26,15 +26,15 @@ public enum Races
 	ROCK_GNOME("Gnome", "Rock"),
 	TIEFLING("Dragonborn", "Black");
 	
-	String race;
-	String subRace;
+	final String race;
+	final String subRace;
 	
-	private Races(String race)
+	Races(String race)
 	{
 		this(race, null);
 	}
 	
-	private Races(String race, String subRace)
+	Races(String race, String subRace)
 	{
 		this.race = race;
 		this.subRace = subRace;

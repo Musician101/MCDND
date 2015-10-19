@@ -15,9 +15,9 @@ public enum CharacterClasses
 	WARLOCK("Warlock"),
 	WIZARD("Wizard");
 	
-	String name;
+	final String name;
 	
-	private CharacterClasses(String name)
+	CharacterClasses(String name)
 	{
 		this.name = name;
 	}

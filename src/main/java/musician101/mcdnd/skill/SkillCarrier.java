@@ -27,7 +27,7 @@ public class SkillCarrier
 	Skill sleightOfHand;
 	Skill stealth;
 	Skill survival;
-	Map<Skills, Skill> skills;
+	private final Map<Skills, Skill> skills;
 	
 	public SkillCarrier(CharacterAbilityScores scores, List<Skills> proficientSkills, List<Skills> expertSkills)
 	{

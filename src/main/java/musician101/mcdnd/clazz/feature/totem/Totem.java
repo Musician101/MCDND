@@ -5,8 +5,8 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class Totem implements Described, Named
 {
-	String[] description;
-	String name;
+	private final String[] description;
+	private final String name;
 	
 	public Totem(String name, String... description)
 	{

@@ -7,7 +7,7 @@ import musician101.mcdnd.equipment.Equipment;
 
 public class Pack extends Equipment
 {
-	Map<Equipment, Integer> contents;
+	private final Map<Equipment, Integer> contents;
 	
 	public Pack(String name, Cost cost, Map<Equipment, Integer> contents)
 	{

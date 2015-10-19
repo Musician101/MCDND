@@ -1,9 +1,8 @@
 package musician101.mcdnd.race;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import musician101.mcdnd.race.trait.Trait;
+
+import java.util.List;
 
 public abstract class Dragonborn implements Race
 {
@@ -24,8 +23,7 @@ public abstract class Dragonborn implements Race
 		@Override
 		public List<Trait> getTraits()
 		{
-			List<Trait> list = new ArrayList<Trait>();
-			return list;
+			return null;
 		}
 
 		@Override

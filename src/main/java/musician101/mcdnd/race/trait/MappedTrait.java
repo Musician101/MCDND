@@ -9,7 +9,7 @@ import musician101.mcdnd.util.Interfaces.Mapped;
 
 public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
 {
-	Map<K, V> map;
+	private final Map<K, V> map;
 	
 	public MappedTrait(String name, Map<K, V> map, String... description)
 	{
@@ -45,7 +45,7 @@ public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
 	
 	public static class SpellcastingTrait extends MappedTrait<Integer, Spell>
 	{
-		AbilityScores type;
+		final AbilityScores type;
 		
 		public SpellcastingTrait(String name, Map<Integer, Spell> map, AbilityScores type, String description)
 		{

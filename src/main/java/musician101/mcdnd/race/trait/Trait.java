@@ -5,8 +5,8 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class Trait implements Described, Named
 {
-	String[] description;
-	String name;
+	private final String[] description;
+	private final String name;
 	
 	public Trait(String name, String... description)
 	{

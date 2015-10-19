@@ -28,8 +28,8 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
 	{
 		public static class SingleChoice extends EquipmentChoice
 		{
-			int amount;
-			Equipment equipment;
+			final int amount;
+			final Equipment equipment;
 			
 			public SingleChoice(Equipment equipment)
 			{
@@ -55,7 +55,7 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
 		
 		public static class ListChoice extends EquipmentChoice implements Listed<Equipment>
 		{
-			List<Equipment> equipment;
+			final List<Equipment> equipment;
 			
 			public ListChoice(List<Equipment> equipment)
 			{
@@ -82,7 +82,7 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
 		
 		public static class MultipleChoice extends EquipmentChoice implements Mapped<Equipment, Integer>
 		{
-			Map<Equipment, Integer> equipment;
+			final Map<Equipment, Integer> equipment;
 			
 			public MultipleChoice(Map<Equipment, Integer> equipment)
 			{

@@ -17,9 +17,9 @@ public enum DamageType
 	SLASHING("Slashing"),
 	THUNDER("Thunder");
 	
-	String name;
+	final String name;
 	
-	private DamageType(String name)
+	DamageType(String name)
 	{
 		this.name = name;
 	}

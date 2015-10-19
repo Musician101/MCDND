@@ -10,17 +10,17 @@ import musician101.mcdnd.skill.Skills;
 
 public class ProficienciesFeature extends Feature
 {
-	int skillAmount;
-	List<ArmorTypes> armor;
-	List<AbilityScores> savingThrows;
-	List<Skills> skills;
-	List<Tool> tools;
-	List<Weapon> weapons;
-	String armorString;
-	String toolString;
-	String savingThrowString;
-	String skillString;
-	String weaponString;
+	private final int skillAmount;
+	private final List<ArmorTypes> armor;
+	private final List<AbilityScores> savingThrows;
+	private final List<Skills> skills;
+	private final List<Tool> tools;
+	private final List<Weapon> weapons;
+	private final String armorString;
+	private final String toolString;
+	private final String savingThrowString;
+	private final String skillString;
+	private final String weaponString;
 	
 	public ProficienciesFeature(List<ArmorTypes> armor, String armorString, List<Weapon> weapons, String weaponString, List<Tool> tools, String toolString, List<AbilityScores> savingThrows, String savingThrowString, List<Skills> skills, int skillAmount, String skillString)
 	{

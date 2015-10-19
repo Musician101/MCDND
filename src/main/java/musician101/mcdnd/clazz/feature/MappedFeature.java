@@ -8,7 +8,7 @@ import musician101.mcdnd.util.Interfaces.Mapped;
 
 public class MappedFeature<K, V> extends Feature implements Mapped<K, V>
 {
-	Map<K, V> map;
+	private final Map<K, V> map;
 	
 	public MappedFeature(String name, Map<K, V> map, String... description)
 	{

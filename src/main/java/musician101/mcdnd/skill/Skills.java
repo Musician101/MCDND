@@ -8,7 +8,7 @@ public enum Skills
 	ANIMAL_HANDLING("Animal Handling", AbilityScores.WIS),
 	ARCANA("Arcana", AbilityScores.INT),
 	ATHLETICS("Athletics", AbilityScores.STR),
-	DECEPTION("Decpetion", AbilityScores.CHA),
+	DECEPTION("Deception", AbilityScores.CHA),
 	HISTORY("History", AbilityScores.INT),
 	INSIGHT("Insight", AbilityScores.WIS),
 	INTIMIDATION("Intimidation", AbilityScores.STR),
@@ -23,10 +23,10 @@ public enum Skills
 	STEALTH("Stealth", AbilityScores.DEX),
 	SURVIVAL("Survival", AbilityScores.WIS);
 	
-	AbilityScores type;
-	String name;
+	final AbilityScores type;
+	final String name;
 	
-	private Skills(String name, AbilityScores type)
+	Skills(String name, AbilityScores type)
 	{
 		this.name = name;
 		this.type = type;

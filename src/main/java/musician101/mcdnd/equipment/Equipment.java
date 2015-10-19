@@ -7,11 +7,11 @@ import musician101.mcdnd.util.Interfaces.Weighable;
 
 public abstract class Equipment implements Buyable, Named, Weighable
 {
-	Cost cost;
-	double weight;
-	String name;
+	private final Cost cost;
+	private final double weight;
+	private final String name;
 	
-	public Equipment(String name, Cost cost, double weight)
+	protected Equipment(String name, Cost cost, double weight)
 	{
 		this.name = name;
 		this.cost = cost;

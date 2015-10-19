@@ -5,7 +5,7 @@ import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
 
 public class DCSaveSpell extends Spell
 {
-	AbilityScores type;
+	private final AbilityScores type;
 	
 	public DCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, AbilityScores scoreType, String... description)
 	{

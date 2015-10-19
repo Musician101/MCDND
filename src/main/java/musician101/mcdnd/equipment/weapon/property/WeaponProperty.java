@@ -6,8 +6,8 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class WeaponProperty implements Described, Named
 {
-	String[] description;
-	String name;
+	private final String[] description;
+	private final String name;
 	
 	public WeaponProperty(String name, String... description)
 	{
@@ -29,8 +29,8 @@ public class WeaponProperty implements Described, Named
 	
 	public static class RangeWeaponProperty extends WeaponProperty
 	{
-		int max;
-		int min;
+		final int max;
+		final int min;
 		
 		public RangeWeaponProperty(int min, int max)
 		{
@@ -52,7 +52,7 @@ public class WeaponProperty implements Described, Named
 	
 	public static class VersatileWeaponProperty extends WeaponProperty
 	{
-		Dice dice;
+		final Dice dice;
 		
 		public VersatileWeaponProperty(Dice dice)
 		{

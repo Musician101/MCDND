@@ -9,7 +9,7 @@ import musician101.mcdnd.util.CustomList;
 
 public class Tools
 {
-	public static final Tool ALCHEMISTS_SUPPLIES = new ArtisanTool("Aclhemist's Supplies", new Cost(CurrencyType.GOLD, 50), 8);
+	public static final Tool ALCHEMISTS_SUPPLIES = new ArtisanTool("Alchemist's Supplies", new Cost(CurrencyType.GOLD, 50), 8);
 	public static final Tool BREWERS_SUPPLIES = new ArtisanTool("Brewer's Supplies", new Cost(CurrencyType.GOLD, 20), 9);
 	public static final Tool CALLIGRAPHERS_SUPPLIES = new ArtisanTool("Calligrapher's Supplies", new Cost(CurrencyType.GOLD, 10), 5);
 	public static final Tool CARPENTERS_TOOLS = new ArtisanTool("Carpenter's Tools", new Cost(CurrencyType.GOLD, 8), 6);
@@ -52,21 +52,21 @@ public class Tools
 	
 	public static CustomList<Tool> getArtisanTools()
 	{
-		return new CustomList<Tool>(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS, COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS, MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS, WOODCARVERS_TOOLS);
+		return new CustomList<>(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS, COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS, MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS, WOODCARVERS_TOOLS);
 	}
 	
 	public static CustomList<Tool> getGamingSets()
 	{
-		return new CustomList<Tool>(DICE_SET, DRAGONCHESS_SET, PLAYING_CARD_SET, THREE_DRAGON_ANTE_SET);
+		return new CustomList<>(DICE_SET, DRAGONCHESS_SET, PLAYING_CARD_SET, THREE_DRAGON_ANTE_SET);
 	}
 	
 	public static CustomList<Tool> getMusicalInstruments()
 	{
-		return new CustomList<Tool>(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL);
+		return new CustomList<>(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL);
 	}
 	
 	public static CustomList<Tool> getMiscTools()
 	{
-		return new CustomList<Tool>(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT, THIEVES_TOOLS);
+		return new CustomList<>(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT, THIEVES_TOOLS);
 	}
 }

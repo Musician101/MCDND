@@ -7,7 +7,7 @@ import musician101.mcdnd.util.Interfaces.Listed;
 
 public class ListFeature<T> extends Feature implements Listed<T>
 {
-	List<T> list;
+	private final List<T> list;
 	
 	public ListFeature(String name, List<T> list, String... description)
 	{

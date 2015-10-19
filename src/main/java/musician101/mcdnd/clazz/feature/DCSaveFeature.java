@@ -6,7 +6,7 @@ import musician101.mcdnd.util.Interfaces.DCSave;
 
 public class DCSaveFeature extends Feature implements DCSave
 {
-	AbilityScores scoreType;
+	private final AbilityScores scoreType;
 	
 	public DCSaveFeature(String name, AbilityScores scoreType, String... description)
 	{

@@ -12,8 +12,8 @@ import net.minecraft.util.EnumFacing;
 
 public abstract class Shape implements Described, EffectsArea, Named
 {
-	String[] description;
-	String name;
+	private final String[] description;
+	private final String name;
 	
 	protected Shape(String name, String... description)
 	{
@@ -35,7 +35,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 	
 	public static class Cone extends Shape
 	{
-		int length;
+		final int length;
 		
 		public Cone(int length)
 		{
@@ -48,7 +48,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 		public List<BlockPos> getArea(Entity entity)
 		{
 			BlockPos pos = entity.getPosition();
-			List<BlockPos> list = new ArrayList<BlockPos>();
+			List<BlockPos> list = new ArrayList<>();
 			int x = pos.getX();
 			int z = pos.getZ();
 			//TODO doesn't take diagonals into consideration
@@ -102,7 +102,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 	
 	public static class Cube extends Shape
 	{
-		int length;
+		final int length;
 		
 		public Cube(int length)
 		{
@@ -116,7 +116,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 		public List<BlockPos> getArea(Entity entity)
 		{
 			BlockPos pos = entity.getPosition();
-			List<BlockPos> list = new ArrayList<BlockPos>();
+			List<BlockPos> list = new ArrayList<>();
 			int x = pos.getX();
 			int y = pos.getY();
 			int z = pos.getY();
@@ -126,12 +126,12 @@ public abstract class Shape implements Described, EffectsArea, Named
 	
 	public static class Cylinder extends Shape
 	{
-		int height;
-		int radius;
+		final int height;
+		final int radius;
 		
 		public Cylinder(int radius, int height)
 		{
-			super("Cylinder", "A cylinder's point of origin is the center of a circle of a particular radius, as given in the spell description. The circle must either be on the ground or at the height of the spell effect. The energy in a cylinder expands in straight lines from the point of origin to the perimeter of the cirlce, forming the base of the cylinder. The spell's effect then shoots up from the base or down from the top, to a distance equal to the height of they cylinder.", 
+			super("Cylinder", "A cylinder's point of origin is the center of a circle of a particular radius, as given in the spell description. The circle must either be on the ground or at the height of the spell effect. The energy in a cylinder expands in straight lines from the point of origin to the perimeter of the circle, forming the base of the cylinder. The spell's effect then shoots up from the base or down from the top, to a distance equal to the height of they cylinder.",
 					"A cylinder's point of origin is included in the cylinder's area of effect.");
 			this.radius = radius;
 			this.height = height;
@@ -147,8 +147,8 @@ public abstract class Shape implements Described, EffectsArea, Named
 	
 	public static class Line extends Shape
 	{
-		int length;
-		int width;
+		final int length;
+		final int width;
 		
 		public Line(int length, int width)
 		{
@@ -168,11 +168,11 @@ public abstract class Shape implements Described, EffectsArea, Named
 	
 	public static class Sphere extends Shape
 	{
-		int radius;
+		final int radius;
 		
 		public Sphere(int radius)
 		{
-			super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. The sphere's size is epxressed as a radius in feet that extends from the point.",
+			super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. The sphere's size is expressed as a radius in feet that extends from the point.",
 					"A sphere's point of origin is included in the sphere's are of effect.");
 			this.radius = radius;
 		}

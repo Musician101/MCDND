@@ -7,9 +7,9 @@ import musician101.mcdnd.util.Interfaces.Named;
 
 public class Feature implements Described, Named
 {
-	int level;
-	String[] description;
-	String name;
+	private final int level;
+	private final String[] description;
+	private final String name;
 	
 	public Feature(String name, String... description)
 	{
@@ -50,8 +50,8 @@ public class Feature implements Described, Named
 	
 	public static class HitPointsFeature extends Feature
 	{
-		HitDice dice;
-		String className;
+		final HitDice dice;
+		final String className;
 		
 		public HitPointsFeature(HitDice dice, String className)
 		{

@@ -10,7 +10,7 @@ public abstract class Character
 {
 	//TODO redo this so that we have PlayerCharacter and NonPlayerCharacter classes?
 	CharacterAbilityScores scores;
-	UUID uuid;
+	final UUID uuid;
 	
 	public Character(Entity entity)
 	{
@@ -29,7 +29,6 @@ public abstract class Character
 	
 	/**
 	 * @deprecated Method needs to be moved to the NPC class
-	 * @return
 	 */
 	@Deprecated
 	public Entity getEntity()

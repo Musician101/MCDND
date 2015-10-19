@@ -9,7 +9,7 @@ import musician101.mcdnd.util.CustomMap;
 
 public class ConfusionSpell extends MultipleSpellSlotSpell
 {
-	Map<Integer, String> behaviorMap;
+	private final Map<Integer, String> behaviorMap;
 	
 	public ConfusionSpell()
 	{

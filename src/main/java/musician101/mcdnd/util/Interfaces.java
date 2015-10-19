@@ -12,43 +12,43 @@ import net.minecraft.util.BlockPos;
 
 public class Interfaces
 {
-	public static interface Buyable
+	public interface Buyable
 	{
 		Cost getCost();
 	}
 	
-	public static interface DamageDealer
+	public interface DamageDealer
 	{
 		Damage getDamage();
 	}
 	
-	public static interface DCSave
+	public interface DCSave
 	{
 		AbilityScores getAbilitySaveType();
 		
 		int getDCSave(AbilityScore score, int... bonuses);
 	}
 	
-	public static interface Described
+	public interface Described
 	{
 		String[] getDescription();
 	}
 	
-	public static interface EffectsArea
+	public interface EffectsArea
 	{
 		/** Needs to consider diagonals and the choice to include point of origin */
 		@Deprecated
 		List<BlockPos> getArea(Entity entity);
 	}
 	
-	public static interface Listed<T>
+	public interface Listed<T>
 	{
 		List<T> getList();
 		
 		T get(int T);
 	}
 	
-	public static interface Mapped<K, V>
+	public interface Mapped<K, V>
 	{
 		boolean containsKey(K key);
 		
@@ -57,12 +57,12 @@ public class Interfaces
 		V get(K key);
 	}
 	
-	public static interface Named
+	public interface Named
 	{
 		String getName();
 	}
 	
-	public static interface Weighable
+	public interface Weighable
 	{
 		double getWeight();
 	}
