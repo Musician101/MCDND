@@ -1,6 +1,6 @@
 package musician101.mcdnd.abilityscore;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 
 public class RaceAbilityScoreIncrease extends AbstractAbilityScores
 {
@@ -9,9 +9,9 @@ public class RaceAbilityScoreIncrease extends AbstractAbilityScores
      */
     public RaceAbilityScoreIncrease()
     {
-        this(new AbilityScore(AbilityScores.STR, 1), new AbilityScore(AbilityScores.DEX, 1), new AbilityScore
-                (AbilityScores.CON, 1), new AbilityScore(AbilityScores.INT, 1), new AbilityScore(AbilityScores.WIS,
-                1), new AbilityScore(AbilityScores.CHA, 1));
+        this(new AbilityScore(AbilityScoreType.STR, 1), new AbilityScore(AbilityScoreType.DEX, 1), new AbilityScore
+                (AbilityScoreType.CON, 1), new AbilityScore(AbilityScoreType.INT, 1), new AbilityScore(AbilityScoreType.WIS,
+                1), new AbilityScore(AbilityScoreType.CHA, 1));
     }
 
     public RaceAbilityScoreIncrease(AbilityScore... scores)
@@ -20,7 +20,7 @@ public class RaceAbilityScoreIncrease extends AbstractAbilityScores
         updateScores(scores);
     }
 
-    public int getAbilityScoreIncrease(AbilityScores score)
+    public int getAbilityScoreIncrease(AbilityScoreType score)
     {
         return getAbilityScore(score);
     }

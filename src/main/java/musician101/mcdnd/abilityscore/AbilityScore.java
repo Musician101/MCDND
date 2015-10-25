@@ -2,21 +2,21 @@ package musician101.mcdnd.abilityscore;
 
 public class AbilityScore
 {
-    private final AbilityScores type;
+    private final AbilityScoreType type;
     private int amount;
 
-    public AbilityScore(AbilityScores type)
+    public AbilityScore(AbilityScoreType type)
     {
         this(type, 8);
     }
 
-    public AbilityScore(AbilityScores type, int amount)
+    public AbilityScore(AbilityScoreType type, int amount)
     {
         this.type = type;
         this.amount = amount;
     }
 
-    public AbilityScores getType()
+    public AbilityScoreType getType()
     {
         return type;
     }
@@ -36,7 +36,7 @@ public class AbilityScore
         return (amount - 10) / 2;
     }
 
-    public enum AbilityScores
+    public enum AbilityScoreType
     {
         STR("Strength"),
         DEX("Dexterity"),
@@ -47,7 +47,7 @@ public class AbilityScore
 
         final String name;
 
-        AbilityScores(String name)
+        AbilityScoreType(String name)
         {
             this.name = name;
         }

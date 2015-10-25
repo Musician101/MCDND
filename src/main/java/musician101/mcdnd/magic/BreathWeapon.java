@@ -1,25 +1,25 @@
 package musician101.mcdnd.magic;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.magic.Shape.Cone;
 import musician101.mcdnd.magic.Shape.Line;
-import musician101.mcdnd.util.Interfaces.DCSave;
+import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integer, Damage>
+public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, Mapped<Integer, Damage>
 {
-    private final AbilityScores saveType;
+    private final AbilityScoreType saveType;
     private final Map<Integer, Damage> damageMap = new HashMap<>();
     private final Shape shape;
 
-    protected BreathWeapon(DamageType damageType, AbilityScores saveType, Shape shape)
+    protected BreathWeapon(DamageType damageType, AbilityScoreType saveType, Shape shape)
     {
         super("Breath Weapon", SpellType.EVOCATION, SpellLevel.CANTRIP, 0, 0, false, false, "", 0, false, "You can " +
                 "use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and" +
@@ -39,7 +39,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
     }
 
     @Override
-    public AbilityScores getAbilitySaveType()
+    public AbilityScoreType getAbilitySaveType()
     {
         return saveType;
     }
@@ -59,7 +59,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
     @Override
     public int getDCSave(AbilityScore score, int... bonuses)
     {
-        if (score.getType() != AbilityScores.CON)
+        if (score.getType() != AbilityScoreType.CON)
             throw new IllegalArgumentException("Breath Weapon DC requires Constitution modifier!");
 
         int save = 8 + score.getMod();
@@ -84,7 +84,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
     {
         protected LineBreathWeapon(DamageType damageType)
         {
-            super(damageType, AbilityScores.DEX, new Line(5, 30));
+            super(damageType, AbilityScoreType.DEX, new Line(5, 30));
         }
 
         public static class AcidLineBreathWeapon extends LineBreathWeapon
@@ -114,7 +114,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
 
     public static abstract class ConeBreathWeapon extends BreathWeapon
     {
-        protected ConeBreathWeapon(DamageType damageType, AbilityScores scoreType)
+        protected ConeBreathWeapon(DamageType damageType, AbilityScoreType scoreType)
         {
             super(damageType, scoreType, new Cone(15));
         }
@@ -123,7 +123,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
         {
             public ColdConeBreathWeapon()
             {
-                super(DamageType.COLD, AbilityScores.CON);
+                super(DamageType.COLD, AbilityScoreType.CON);
             }
         }
 
@@ -131,7 +131,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
         {
             public FireConeBreathWeapon()
             {
-                super(DamageType.FIRE, AbilityScores.DEX);
+                super(DamageType.FIRE, AbilityScoreType.DEX);
             }
         }
 
@@ -139,7 +139,7 @@ public abstract class BreathWeapon extends Spell implements DCSave, Mapped<Integ
         {
             public PoisonConeBreathWeapon()
             {
-                super(DamageType.POISON, AbilityScores.CON);
+                super(DamageType.POISON, AbilityScoreType.CON);
             }
         }
     }

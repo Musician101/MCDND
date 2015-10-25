@@ -1,9 +1,11 @@
 package musician101.mcdnd.util;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.skill.Skill;
+import musician101.mcdnd.skill.SkillType;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
 
@@ -22,9 +24,9 @@ public class Interfaces
         Damage getDamage();
     }
 
-    public interface DCSave
+    public interface AbilityScoreDCSave
     {
-        AbilityScores getAbilitySaveType();
+        AbilityScoreType getAbilitySaveType();
 
         int getDCSave(AbilityScore score, int... bonuses);
     }
@@ -62,6 +64,13 @@ public class Interfaces
     public interface Named
     {
         String getName();
+    }
+
+    public interface SkillDCSave
+    {
+        int getDCSave(Skill skill, int... bonuses);
+
+        SkillType getSkillSaveType();
     }
 
     public interface Weighable

@@ -1,6 +1,6 @@
 package musician101.mcdnd.character;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.alignment.Alignment;
 import musician101.mcdnd.clazz.ProficiencyBonus;
 import musician101.mcdnd.equipment.armor.Armor;
@@ -67,7 +67,7 @@ public class PlayerCharacter extends Character
     {
         int ac = armor.getArmorClass();
         if (armor.getType() != ArmorTypes.HEAVY)
-            ac = +scores.getAbilityMod(AbilityScores.DEX);
+            ac = +scores.getAbilityMod(AbilityScoreType.DEX);
 
         if (shield != null)
             ac = +shield.getArmorClass();

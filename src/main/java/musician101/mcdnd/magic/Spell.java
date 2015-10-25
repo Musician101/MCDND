@@ -1,7 +1,12 @@
 package musician101.mcdnd.magic;
 
+import musician101.mcdnd.combat.Damage;
+import musician101.mcdnd.skill.Skill;
+import musician101.mcdnd.skill.SkillType;
+import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.Named;
+import musician101.mcdnd.util.Interfaces.SkillDCSave;
 
 public class Spell implements Described, Named
 {
@@ -17,8 +22,7 @@ public class Spell implements Described, Named
     private final String materials;
     private final String name;
 
-    public Spell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal,
-                 boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
+    public Spell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
     {
         this.name = name;
         this.type = type;
@@ -144,12 +148,70 @@ public class Spell implements Described, Named
 
     public static class RitualSpell extends Spell
     {
-        public RitualSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean
-                isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String...
-                description)
+        public RitualSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
         {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration,
-                    needsConcentration, description);
+            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+        }
+    }
+
+    public static class DamagePerDistanceSkillDCSaveSpell extends Spell implements DamageDealer, SkillDCSave
+    {
+        Damage damage;
+        int distance;
+        SkillType skillType;
+
+        public DamagePerDistanceSkillDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Damage damage, int distance, SkillType skillType, String... description)
+        {
+            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+            this.damage = damage;
+            this.distance = distance;
+            this.skillType = skillType;
+        }
+
+        @Override
+        public Damage getDamage()
+        {
+            return damage;
+        }
+
+        public int getDistance()
+        {
+            return distance;
+        }
+
+        @Override
+        public SkillType getSkillSaveType()
+        {
+            return skillType;
+        }
+
+        @Override
+        public int getDCSave(Skill skill, int... bonuses)
+        {
+            if (skillType != skill.getSkill())
+                throw new IllegalArgumentException("Invalid AbilityScore type for DC saving throw.");
+
+            int save = 8 + skill.getSkillMod();
+            for (int bonus : bonuses)
+                save = +bonus;
+
+            return save;
+        }
+    }
+
+    public static class CastTimeChoiceSpell extends Spell
+    {
+        int castTime2;
+
+        public CastTimeChoiceSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, int castTime2, String... description)
+        {
+            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+            this.castTime2 = castTime2;
+        }
+
+        public int getCastTime2()
+        {
+            return castTime2;
         }
     }
 }

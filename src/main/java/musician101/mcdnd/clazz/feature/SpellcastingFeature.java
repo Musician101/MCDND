@@ -1,7 +1,7 @@
 package musician101.mcdnd.clazz.feature;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.magic.Spell.SpellLevel;
 
 import java.util.Map;
@@ -84,9 +84,9 @@ public class SpellcastingFeature extends Feature
         }
     }
 
-    public static class SpellcastingAbility extends DCSaveFeature
+    public static class SpellcastingAbility extends AbilityScoreDCSaveFeature
     {
-        public SpellcastingAbility(AbilityScores scoreType, String... description)
+        public SpellcastingAbility(AbilityScoreType scoreType, String... description)
         {
             super("Spellcasting Ability", scoreType, description);
         }

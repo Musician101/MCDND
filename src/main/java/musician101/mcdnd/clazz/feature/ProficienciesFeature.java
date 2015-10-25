@@ -1,10 +1,10 @@
 package musician101.mcdnd.clazz.feature;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon;
-import musician101.mcdnd.skill.Skills;
+import musician101.mcdnd.skill.SkillType;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ public class ProficienciesFeature extends Feature
 {
     private final int skillAmount;
     private final List<ArmorTypes> armor;
-    private final List<AbilityScores> savingThrows;
-    private final List<Skills> skills;
+    private final List<AbilityScoreType> savingThrows;
+    private final List<SkillType> skills;
     private final List<Tool> tools;
     private final List<Weapon> weapons;
     private final String armorString;
@@ -23,8 +23,8 @@ public class ProficienciesFeature extends Feature
     private final String weaponString;
 
     public ProficienciesFeature(List<ArmorTypes> armor, String armorString, List<Weapon> weapons, String
-            weaponString, List<Tool> tools, String toolString, List<AbilityScores> savingThrows, String
-            savingThrowString, List<Skills> skills, int skillAmount, String skillString)
+            weaponString, List<Tool> tools, String toolString, List<AbilityScoreType> savingThrows, String
+            savingThrowString, List<SkillType> skills, int skillAmount, String skillString)
     {
         super("Proficiencies", "");
         this.armor = armor;
@@ -50,12 +50,12 @@ public class ProficienciesFeature extends Feature
         return armor;
     }
 
-    public List<AbilityScores> getSavingThrowProficiency()
+    public List<AbilityScoreType> getSavingThrowProficiency()
     {
         return savingThrows;
     }
 
-    public List<Skills> getSkillProficiency()
+    public List<SkillType> getSkillProficiency()
     {
         return skills;
     }

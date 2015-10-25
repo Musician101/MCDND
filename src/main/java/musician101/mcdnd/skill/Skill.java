@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Skill
 {
-    private final Skills skill;
+    private final SkillType skill;
     private final boolean isExpert;
     private final boolean isProficient;
     private final int skillMod;
 
-    public Skill(Skills skill, CharacterAbilityScores scores, List<Skills> proficientSkills, List<Skills> expertSkills)
+    public Skill(SkillType skill, CharacterAbilityScores scores, List<SkillType> proficientSkills, List<SkillType> expertSkills)
     {
         this.skill = skill;
         this.isProficient = proficientSkills.contains(skill);
@@ -19,7 +19,7 @@ public class Skill
         this.skillMod = calcSkillMod(scores);
     }
 
-    public Skills getSkill()
+    public SkillType getSkill()
     {
         return skill;
     }

@@ -1,6 +1,6 @@
 package musician101.mcdnd.race.trait;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScores;
+import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
@@ -45,15 +45,15 @@ public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
 
     public static class SpellcastingTrait extends MappedTrait<Integer, Spell>
     {
-        final AbilityScores type;
+        final AbilityScoreType type;
 
-        public SpellcastingTrait(String name, Map<Integer, Spell> map, AbilityScores type, String description)
+        public SpellcastingTrait(String name, Map<Integer, Spell> map, AbilityScoreType type, String description)
         {
             super(name, map, description);
             this.type = type;
         }
 
-        public AbilityScores getAbilityScoreType()
+        public AbilityScoreType getAbilityScoreType()
         {
             return type;
         }
