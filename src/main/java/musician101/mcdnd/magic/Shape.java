@@ -39,10 +39,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 
         public Cone(int length)
         {
-            super("Cone", "A cone extends in a direction you choose from its point of origin. A cone's width at a " +
-                    "given point along its length is equal to that point's distance from the point of origin. A " +
-                    "cone's area of effect specifies its maximum length.", "A cone's point of origin is not included " +
-                    "" + "in the cone's area of effect, unless you decide otherwise.");
+            super("Cone", "A cone extends in a direction you choose from its point of origin. A cone's width at a given point along its length is equal to that point's distance from the point of origin. A cone's area of effect specifies its maximum length.", "A cone's point of origin is not included in the cone's area of effect, unless you decide otherwise.");
             this.length = length;
         }
 
@@ -108,9 +105,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 
         public Cube(int length)
         {
-            super("Cube", "You select a cube's point of origin, which lies anywhere on a face of the cubic effect. "
-                    + "The cube's size is expressed as the length of each side.", "A cube's point of origin is not "
-                    + "included in the cube's area effect, unless you decide otherwise.");
+            super("Cube", "You select a cube's point of origin, which lies anywhere on a face of the cubic effect. The cube's size is expressed as the length of each side.", "A cube's point of origin is not included in the cube's area effect, unless you decide otherwise.");
             this.length = length;
         }
 
@@ -159,9 +154,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 
         public Line(int length, int width)
         {
-            super("Line", "A line extends from its point of origin in a straight path up to its length and covers an " +
-                    "" + "area defined by its width.", "A line's point of origin is not included in the line's area " +
-                    "of " + "effect, unless you decide otherwise.");
+            super("Line", "A line extends from its point of origin in a straight path up to its length and covers an area defined by its width.", "A line's point of origin is not included in the line's area of effect, unless you decide otherwise.");
             this.length = length;
             this.width = width;
         }
@@ -180,9 +173,7 @@ public abstract class Shape implements Described, EffectsArea, Named
 
         public Sphere(int radius)
         {
-            super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. "
-                    + "The sphere's size is expressed as a radius in feet that extends from the point.", "A sphere's " +
-                    "" + "point of origin is included in the sphere's are of effect.");
+            super("Sphere", "You select a sphere's point of origin, and the sphere extends outward from that point. The sphere's size is expressed as a radius in feet that extends from the point.", "A sphere's point of origin is included in the sphere's are of effect.");
             this.radius = radius;
         }
 

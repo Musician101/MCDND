@@ -31,24 +31,11 @@ public class WeaponProperties
     public static final WeaponProperty RANGE_150_600 = new RangeWeaponProperty(150, 600);
     public static final WeaponProperty RANGE_5_15 = new RangeWeaponProperty(5, 15);
     public static final WeaponProperty RANGE_20_60 = new RangeWeaponProperty(20, 60);
-    public static final WeaponProperty REACH = new WeaponProperty("Reach", "This weapon adds 5 feet to you reach " +
-            "when" + " you attack with it.");
-    public static final WeaponProperty SPECIAL_LANCE = new WeaponProperty("Special", "You have disadvantage when you " +
-            "use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you " +
-            "aren't mounted.");
-    public static final WeaponProperty SPECIAL_NET = new WeaponProperty("Special", "A Large or smaller creature hit " +
-            "by a net is restrained until it is freed. A net has no effect on creatures that are formless, or " +
-            "creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing" +
-            " itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) " +
-            "also frees the creature without harming it, ending the effect and destroying the net.", "When you use an" +
-            " action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the " +
-            "number of attacks you can normally make.");
-    public static final WeaponProperty THROWN = new WeaponProperty("Thrown", "If a weapon has the thrown property, " +
-            "you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same " +
-            "ability modifier for that attack roll and damage roll that you would use for a melee attack with the " +
-            "weapon.");
-    public static final WeaponProperty TWO_HANDED = new WeaponProperty("Two-handed", "This weapon requires two hands " +
-            "" + "to use.");
+    public static final WeaponProperty REACH = new WeaponProperty("Reach", "This weapon adds 5 feet to you reach when you attack with it.");
+    public static final WeaponProperty SPECIAL_LANCE = new WeaponProperty("Special", "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.");
+    public static final WeaponProperty SPECIAL_NET = new WeaponProperty("Special", "A Large or smaller creature hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net.", "When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.");
+    public static final WeaponProperty THROWN = new WeaponProperty("Thrown", "If a weapon has the thrown property, you can throw the weapon to make a ranged attack. If the weapon is a melee weapon, you use the same ability modifier for that attack roll and damage roll that you would use for a melee attack with the weapon.");
+    public static final WeaponProperty TWO_HANDED = new WeaponProperty("Two-handed", "This weapon requires two hands to use.");
     public static final WeaponProperty VERSATILE_D8 = new VersatileWeaponProperty(new Dice(8));
     public static final WeaponProperty VERSATILE_D10 = new VersatileWeaponProperty(new Dice(10));
 }

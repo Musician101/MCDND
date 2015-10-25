@@ -13,8 +13,7 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
 {
     public EquipmentFeature(EquipmentChoices... equipmentChoices)
     {
-        super("Equipment", Arrays.asList(equipmentChoices), "You start with the following equipment, in addition to "
-                + "the equipment granted by your background:");
+        super("Equipment", Arrays.asList(equipmentChoices), "You start with the following equipment, in addition to the equipment granted by your background:");
     }
 
     public static class EquipmentChoices extends ListFeature<EquipmentChoice>

@@ -72,8 +72,7 @@ public class Feature implements Described, Named
 
         public String getHitPointsAtHigherLevels()
         {
-            return dice.toString() + " (or " + (dice.sides() / 2) + " + your Constitution modifier per " + className
-                    + " level";
+            return dice.toString() + " (or " + (dice.sides() / 2) + " + your Constitution modifier per " + className + " level";
         }
     }
 
