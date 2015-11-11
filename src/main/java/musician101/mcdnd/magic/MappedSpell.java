@@ -6,22 +6,16 @@ import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
+import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Listed;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
 {
-    final Map<K, V> map;
-
-    public MappedSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, V> map, String... description)
-    {
-        super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
-        this.map = map;
-    }
+    protected Map<K, V> map;
 
     @Override
     public boolean containsKey(K key)
@@ -41,44 +35,18 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
         return map.get(key);
     }
 
-    public static class MultipleSpellSlotSpell extends MappedSpell<SpellLevel, Integer>
-    {
-        public final SpellLevel startingLevel;
-
-        public MultipleSpellSlotSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<SpellLevel, Integer> map, SpellLevel startingLevel, String... description)
-        {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration,
-                    needsConcentration, map, description);
-            this.startingLevel = startingLevel;
-        }
-
-        public SpellLevel getStartingLevel()
-        {
-            return startingLevel;
-        }
-    }
-
     public static class ScaleableDamageSpell<K> extends MappedSpell<K, Dice>
     {
-        Damage damage;
+        DamageType damageType;
 
-        public ScaleableDamageSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, String... description)
+        public DamageType getDamageType()
         {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
-            List<K> list = new ArrayList<>();
-            map.keySet().forEach(object -> list.add((K) object));
-            this.damage = new Damage(damageType, map.get(list.get(1)));
+            return damageType;
         }
 
-        public Damage getDamage()
+        public Damage getDamage(K key)
         {
-            return damage;
-        }
-
-        public void updateDamage(K level)
-        {
-            if (map.containsKey(level))
-                damage = new Damage(damage.getDamageType(), map.get(level));
+            return new Damage(damageType, map.get(key));
         }
 
         public static class ScaleableDamageAbilityScoreDCSaveSpell<K> extends ScaleableDamageSpell<K> implements AbilityScoreDCSave

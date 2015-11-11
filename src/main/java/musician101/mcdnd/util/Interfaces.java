@@ -14,6 +14,11 @@ import java.util.Map;
 
 public class Interfaces
 {
+    public interface AbilityScoreDCSave
+    {
+        int getDCSave(AbilityScore score, int... bonuses);
+    }
+
     public interface Buyable
     {
         Cost getCost();
@@ -22,13 +27,6 @@ public class Interfaces
     public interface DamageDealer
     {
         Damage getDamage();
-    }
-
-    public interface AbilityScoreDCSave
-    {
-        AbilityScoreType getAbilitySaveType();
-
-        int getDCSave(AbilityScore score, int... bonuses);
     }
 
     public interface Described
@@ -45,11 +43,16 @@ public class Interfaces
         List<BlockPos> getArea(Entity entity);
     }
 
+    public interface Identified
+    {
+        String getId();
+    }
+
     public interface Listed<T>
     {
         List<T> getList();
 
-        T get(int T);
+        T get(int index);
     }
 
     public interface Mapped<K, V>
@@ -59,11 +62,18 @@ public class Interfaces
         Map<K, V> getMap();
 
         V get(K key);
+
+        Mapped<K, V> add(K key, V value);
     }
 
     public interface Named
     {
         String getName();
+    }
+
+    public interface SingleValue<T>
+    {
+        T getValue();
     }
 
     public interface SkillDCSave

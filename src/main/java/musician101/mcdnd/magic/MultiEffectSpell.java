@@ -7,13 +7,7 @@ import java.util.List;
 
 public class MultiEffectSpell extends Spell implements Listed<SpellEffect>
 {
-    List<SpellEffect> effects;
-
-    public MultiEffectSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, List<SpellEffect> effects, String... description)
-    {
-        super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
-        this.effects = effects;
-    }
+    protected List<SpellEffect> effects;
 
     @Override
     public List<SpellEffect> getList()

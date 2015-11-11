@@ -1,13 +1,13 @@
 package musician101.mcdnd.magic;
 
 import musician101.mcdnd.lib.Reference.ActionTimes;
-import musician101.mcdnd.magic.MappedSpell.MultipleSpellSlotSpell;
+import musician101.mcdnd.magic.MappedSpell.ScalableEffectSpell;
 import musician101.mcdnd.util.CustomMap;
 
 import java.util.Arrays;
 import java.util.Map;
 
-public class ConfusionSpell extends MultipleSpellSlotSpell
+public class ConfusionSpell extends ScalableEffectSpell
 {
     private final Map<Integer, String> behaviorMap;
 

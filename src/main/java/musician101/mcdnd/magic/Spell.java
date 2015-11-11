@@ -1,67 +1,49 @@
 package musician101.mcdnd.magic;
 
 import musician101.mcdnd.combat.Damage;
+import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
 import musician101.mcdnd.skill.SkillType;
 import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Described;
+import musician101.mcdnd.util.Interfaces.Identified;
 import musician101.mcdnd.util.Interfaces.Named;
 import musician101.mcdnd.util.Interfaces.SkillDCSave;
 
-public class Spell implements Described, Named
-{
-    private final boolean needsConcentration;
-    private final boolean isSomatic;
-    private final boolean isVerbal;
-    private final SpellLevel level;
-    private final SpellType type;
-    private final double castingTime;
-    private final int duration;
-    private final int range;
-    private final String[] description;
-    private final String materials;
-    private final String name;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Spell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
+public class Spell implements Described, Named, Identified
+{
+    protected static final String PREFIX = "spell.";
+    protected boolean isRitual = false;
+    protected double castingTime = 0;
+    protected int range = 0;
+    protected List<Property> properties = new ArrayList<>();
+    protected SpellComponents spellComponents = new SpellComponents();
+    protected SpellDuration spellDuration = new SpellDuration();
+    protected SpellLevel spellLevel;
+    protected SpellType spellType;
+    private String id;
+    private String name;
+    private String[] description;
+
+    protected Spell(String id, String name, String... description)
     {
+        this.id = id;
         this.name = name;
-        this.type = type;
-        this.level = level;
-        this.castingTime = castingTime;
-        this.range = range;
-        this.isVerbal = isVerbal;
-        this.isSomatic = isSomatic;
-        this.materials = materials;
-        this.duration = duration;
-        this.needsConcentration = needsConcentration;
         this.description = description;
     }
 
-    public boolean needsConcentration()
+    public boolean isRitual()
     {
-        return needsConcentration;
+        return isRitual;
     }
 
-    public boolean isSomatic()
-    {
-        return isSomatic;
-    }
-
-    public boolean isVerbal()
-    {
-        return isVerbal;
-    }
-
-    // In seconds
+    /** In seconds */
     public double getCastingTime()
     {
         return castingTime;
-    }
-
-    // In seconds
-    public int getDuration()
-    {
-        return duration;
     }
 
     public int getRange()
@@ -69,25 +51,35 @@ public class Spell implements Described, Named
         return range;
     }
 
-    public String getMaterials()
+    public List<Property> getProperties()
     {
-        return materials;
+        return properties;
     }
 
-    public SpellLevel getLevel()
+    public SpellComponents getSpellComponents()
     {
-        return level;
+        return spellComponents;
     }
 
-    public SpellType getType()
+    public SpellDuration getSpellDuration()
     {
-        return type;
+        return spellDuration;
+    }
+
+    public SpellLevel getSpellLevel()
+    {
+        return spellLevel;
+    }
+
+    public SpellType getSpellType()
+    {
+        return spellType;
     }
 
     @Override
-    public String[] getDescription()
+    public String getId()
     {
-        return description;
+        return id;
     }
 
     @Override
@@ -96,33 +88,119 @@ public class Spell implements Described, Named
         return name;
     }
 
-    public enum SpellLevel
+    @Override
+    public String[] getDescription()
     {
-        CANTRIP("Cantrip"),
-        LEVEL_1("1st Level"),
-        LEVEL_2("2nd Level"),
-        LEVEL_3("3rd Level"),
-        LEVEL_4("4th Level"),
-        LEVEL_5("5th Level"),
-        LEVEL_6("6th Level"),
-        LEVEL_7("7th Level"),
-        LEVEL_8("8th Level"),
-        LEVEL_9("9th Level"),;
+        return description;
+    }
 
-        final String name;
+    public static class SpellComponents
+    {
+        boolean isVerbal;
+        boolean isSomatic;
+        String materials;
 
-        SpellLevel(String name)
+        public SpellComponents()
         {
-            this.name = name;
+            this(false, false, "");
         }
 
+        public SpellComponents(boolean isVerbal, boolean isSomatic)
+        {
+            this(isVerbal, isSomatic, "");
+        }
+
+        public SpellComponents(boolean isVerbal, boolean isSomatic, String materials)
+        {
+            this.isVerbal = isVerbal;
+            this.isSomatic = isSomatic;
+            this.materials = materials;
+        }
+
+        public boolean isSomatic()
+        {
+            return isSomatic;
+        }
+
+        public boolean isVerbal()
+        {
+            return isVerbal;
+        }
+
+        public String getMaterials()
+        {
+            return materials;
+        }
+    }
+
+    public static class SpellDuration
+    {
+        boolean needsConcentration;
+        double duration;
+
+        public SpellDuration()
+        {
+            this(0);
+        }
+
+        public SpellDuration(double duration)
+        {
+            this(duration, false);
+        }
+
+        public SpellDuration(double duration, boolean needsConcentration)
+        {
+            this.duration = duration;
+            this.needsConcentration = needsConcentration;
+        }
+
+        public boolean needsConcentration()
+        {
+            return needsConcentration;
+        }
+
+        /** In seconds */
+        public double getDuration()
+        {
+            return duration;
+        }
+    }
+
+    public enum SpellLevel implements Named
+    {
+        CANTRIP("Cantrip", 0),
+        LEVEL_1("1st Level", 1),
+        LEVEL_2("2nd Level", 2),
+        LEVEL_3("3rd Level", 3),
+        LEVEL_4("4th Level", 4),
+        LEVEL_5("5th Level", 5),
+        LEVEL_6("6th Level", 6),
+        LEVEL_7("7th Level", 7),
+        LEVEL_8("8th Level", 8),
+        LEVEL_9("9th Level", 9),;
+
+        final int numericalValue;
+        final String name;
+
+        SpellLevel(String name, int numericalValue)
+        {
+            this.name = name;
+            this.numericalValue = numericalValue;
+        }
+
+        public int getNumericalValue()
+        {
+            return numericalValue;
+        }
+
+        @Override
         public String getName()
         {
             return name;
         }
     }
 
-    public enum SpellType
+    public enum SpellType implements Named
     {
         ABJURATION("Abjuration"),
         CONJURATION("Conjuration"),
@@ -140,20 +218,15 @@ public class Spell implements Described, Named
             this.name = name;
         }
 
+        @Override
         public String getName()
         {
             return name;
         }
     }
 
-    public static class RitualSpell extends Spell
-    {
-        public RitualSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, String... description)
-        {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
-        }
-    }
-
+    /** Obsolete classes currently being kept for reference purposes
+     * Other classes include AbilityScoreDCSaveSpell, ConfusionSpell, ListSpell, MappedSpell, MultiEffectSpell, and ScryingSpell */
     public static class DamagePerDistanceSkillDCSaveSpell extends Spell implements DamageDealer, SkillDCSave
     {
         Damage damage;
@@ -162,7 +235,7 @@ public class Spell implements Described, Named
 
         public DamagePerDistanceSkillDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Damage damage, int distance, SkillType skillType, String... description)
         {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+            //super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
             this.damage = damage;
             this.distance = distance;
             this.skillType = skillType;
@@ -205,7 +278,7 @@ public class Spell implements Described, Named
 
         public CastTimeChoiceSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, int castTime2, String... description)
         {
-            super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
+            //super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
             this.castTime2 = castTime2;
         }
 

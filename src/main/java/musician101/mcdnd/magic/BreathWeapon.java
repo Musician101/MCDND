@@ -19,17 +19,10 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
     private final Map<Integer, Damage> damageMap = new HashMap<>();
     private final Shape shape;
 
+    /** This will be rewritten to the new Spell format once all of the other spells are finished */
     protected BreathWeapon(DamageType damageType, AbilityScoreType saveType, Shape shape)
     {
-        super("Breath Weapon", SpellType.EVOCATION, SpellLevel.CANTRIP, 0, 0, false, false, "", 0, false, "You can " +
-                "use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and" +
-                " damage type of the exhalation", "When you use your breath weapon, each creature in the area of the " +
-                "exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The " +
-                "DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature " +
-                "takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases" +
-                " to 3d6 at the 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breath " +
-                "weapon, you can't use it again until you complete a short or long rest.");
-
+        super("Breath Weapon", SpellType.EVOCATION, SpellLevel.CANTRIP, 0, 0, false, false, "", 0, false, "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation", "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at the 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breath weapon, you can't use it again until you complete a short or long rest.");
         this.shape = shape;
         this.saveType = saveType;
         damageMap.put(1, new Damage(damageType, new Dice(6, 2)));
