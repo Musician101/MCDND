@@ -3,6 +3,7 @@ package musician101.mcdnd.magic;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.condition.Conditions;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.lib.Reference.ActionTimes;
 import musician101.mcdnd.magic.AbilityScoreDCSaveSpell.DamageDealingAbilityScoreDCSaveSpell;
@@ -50,8 +51,12 @@ public class Spells
     public static final Spell ARCANE_EYE = new ArcaneEyeSpell();
     public static final Spell ARCANE_LOCK = new ArcaneLockSpell();
     public static final Spell ARMOR_OF_AGATHYS = new ArmorOfAgathysSpell();
+    public static final Spell ARMS_OF_HADAR = new ArmsOfHadarSpell();
+    public static final Spell ASTRAL_PROJECTION = new AstralProjectionSpell();
+    public static final Spell AUGURY = new AugurySpell();
+    public static final Spell AURA_OF_LIFE = new AuraOfLifeSpell();
+    public static final Spell AURA_OF_PURITY = new AuraOfPuritySpell();
     /** The spells fields below this point have not been updated to the new spell format */
-    public static final Spell AUGURY = new RitualSpell("Augury", SpellType.DIVINATION, SpellLevel.LEVEL_2, 60, 0, true, true, "specially marked sticks, bones, or similar tokens worth at least 25 gp", 0, false, "By casting gem-inlaid sticks, rolling dragon bones, laying out ornate cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:", "- Weal, for good results", "- Woe, for bad results", "- Weal and woe, for both good and bad results", "- Nothing, for results that aren't especially good or bad", "The spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.", "If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret.");
     public static final Spell BARKSKIN = new Spell("Barkskin", SpellType.TRANSMUTATION, SpellLevel.LEVEL_2, ActionTimes.ACTION, 0, true, true, "a handful of oak bark", 3600, true, "You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16, regardless of what kind of armor it is wearing.");
     public static final Spell BEACON_OF_HOPE = new Spell("Beacon of Hope", SpellType.ABJURATION, SpellLevel.LEVEL_3, ActionTimes.ACTION, 30, true, true, "", 60, true, "This spell bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing.");
     public static final Spell BEAST_SENSE = new RitualSpell("Beast Sense", SpellType.DIVINATION, SpellLevel.LEVEL_2, ActionTimes.ACTION, 0, false, true, "", 3600, true, "You touch a willing beast. For the duration of the spell, you can use your action to see through the beast's eyes and hear what it hears, and continue to do so until you use your action to return to your normal senses.", "While perceiving through the beast's senses, you gain the benefits of any special senses possessed by that creature, though you are blinded and deafened to your own surroundings.");
@@ -219,7 +224,7 @@ public class Spells
             castingTime = ActionTimes.ONE_MINUTE;
             range = 10;
             spellComponents = new SpellComponents(true, true, "a drop of blood, a piece of flesh, and a pinch of bone dust");
-            properties = Collections.singletonList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getNumericalValue() - 2));
+            properties = Collections.singletonList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getNumericalValue() - 2)));
         }
     }
 
@@ -235,11 +240,6 @@ public class Spells
             spellComponents = new SpellComponents(true, true);
             spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
             properties = Arrays.asList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getNumericalValue() * 2)), new SingleValueProperty<>(getId() + ".property.single_value.table", new Table("Animated Object Statistics", new Column<>("Size", CharacterSize.TINY, CharacterSize.SMALL, CharacterSize.MEDIUM, CharacterSize.LARGE, CharacterSize.HUGE), new Column<>("HP", 20, 25, 40, 50, 80), new Column<>("AC", 18, 16, 13, 10, 10), new Column<>("Attack", "+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"), new Column<>("Str", 4, 6, 10, 14, 18), new Column<>("Dex", 18, 14, 12, 10, 6))));
-        }
-
-        public Table getTable()
-        {
-            return table;
         }
     }
 
@@ -325,6 +325,68 @@ public class Spells
             spellComponents = new SpellComponents(true, true, "a cup of water");
             spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
             properties = Arrays.asList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(SpellLevel.LEVEL_1,spellLevel -> spellLevel.getNumericalValue() * 5)), new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageType.COLD));
+        }
+    }
+
+    public static class ArmsOfHadarSpell extends Spell
+    {
+        private ArmsOfHadarSpell()
+        {
+            super(Spell.PREFIX + "arms_of_hadar", "Arms of Hadar", "You invoke the power of Hadar, the Dark Hunger. Tendrils of dark energy erupt from you and batter all creatures within 10 feet of you. Each creature in that area must make a Strength saving throw. On a failed save, a target takes 2d6 necrotic damage and can't take reactions until its next turn. On a successful save, the creature takes half damage, but suffers no other effect.", "At HigherLevels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.");
+            spellType = SpellType.CONJURATION;
+            spellLevel = SpellLevel.LEVEL_1;
+            spellComponents = new SpellComponents(true, true);
+            properties = Collections.singletonList(new ScaleableDamageProperty<>(getId() + ".property.scaleable_damage", DamageType.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getNumericalValue() + 1)));
+        }
+    }
+
+    public static class AstralProjectionSpell extends Spell
+    {
+        private AstralProjectionSpell()
+        {
+            super(Spell.PREFIX + "astral_projection", "Astral Projection", "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell fails and the casting is wasted if you are already on that plane). The material body you leave behind is unconscious and in a state of suspended animation; it doesn't need food or air and doesn't age.", "Your astral body resembles your mortal form in almost every way, replicating your game statistics and possessions. The principal difference is the addition of a silvery cord that extends from between your shoulder blades and trails behind you, fading to invisibility after 1 foot. This cord is your tether to your material body. As long as the thether remains intact, you can find your way home. If the cord is cut-something that can happen only when an effect specifically states that it does-your soul and body are separated, killing you instantly.", "Your astral form can freely travel through the Astral Plane and can pass through portals there leading to any other plane. If you enter a new plane or return to the plane you were on when casting this spell, your body and possesions are transported along the silver cord, allowing you to re-enter your body as you enter the new plane. Your astral form is a separate incarnation. Any damage or other effects that apply to it have no effect on your physical body nor do they persist when you return to it.", "The spell ends for you and your companions when you use your action to dismiss it. When the spell ends, the affected creature returns to its physical body, and it awakens.", "The spell might also end early for you or one of your companions. A successful Dispel Magic spell used against an astral or physical body ends the spell for that creature. If a creature's original body or its astral form drops to 0 hit points, the spell ends for that creature. If the spell ends and the silver cord is intact, the cord pulls the creature's astral form back to its body, ending its state of suspended animation.", "If you are returned to your body prematurely, your companions remain in their astral forms and must find their own way back to their bodies, usually by dropping to 0 hit points.");
+            spellType = SpellType.NECROMANCY;
+            spellLevel = SpellLevel.LEVEL_9;
+            spellComponents = new SpellComponents(true, true, "for each creature you affect with this spell, you must provide one jacinth worth at least 1,000 gp and one ornately carved bar of silver worth at least 100 gp, all of which the spell consumes");
+            /** Special Conditions */
+            spellDuration = new SpellDuration(-1);
+        }
+    }
+
+    public static class AugurySpell extends Spell
+    {
+        private AugurySpell()
+        {
+            super(Spell.PREFIX + "augury", "Augury", "By casting gem-inlaid sticks, rolling dragon bones, laying out ornate cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:", "- Weal, for good results", "- Woe, for bad results", "- Weal and woe, for both good and bad results", "- Nothing, for results that aren't especially good or bad", "The spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.", "If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret.");
+            spellType = SpellType.DIVINATION;
+            spellLevel = SpellLevel.LEVEL_2;
+            castingTime = ActionTimes.ONE_MINUTE;
+            spellComponents = new SpellComponents(true, true, "specially marked sticks, bones, or similar tokens worth at least 25 gp");
+        }
+    }
+
+    public static class AuraOfLifeSpell extends Spell
+    {
+        private AuraOfLifeSpell()
+        {
+            super(Spell.PREFIX + "aura_of_life", "Aura of Life", "Life-preserving energy radiates from you in an aura with a 30-foot radius. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced. In addition, a nonhostile, living creature regains 1 hit point when it starts its turn in the aura with 0 hit points.");
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, false);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
+            properties = Collections.singletonList(new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageType.NECROTIC));
+        }
+    }
+
+    public static class AuraOfPuritySpell extends Spell
+    {
+        private AuraOfPuritySpell()
+        {
+            super(Spell.PREFIX + "aura_of_purity", "Aura of Purity", "Purifying energy radiates from you in an aura with a 30-foot radius. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause any of the following conditions: blinded, charmed, deafened, frightened, paralyzed, poisoned, and stunned.");
+            spellType = SpellType.ABJURATION;
+            spellLevel = SpellLevel.LEVEL_4;
+            spellComponents = new SpellComponents(true, false);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageType.POISON), new ListProperty<>(getId() + ".property.list.condition", Arrays.asList(Conditions.BLINDED, Conditions.CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED)));
         }
     }
 }

@@ -4,6 +4,7 @@ import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
+import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
 import musician101.mcdnd.skill.SkillType;
 import net.minecraft.entity.Entity;
@@ -46,6 +47,11 @@ public class Interfaces
     public interface Identified
     {
         String getId();
+    }
+
+    public interface HasProperties
+    {
+        List<Property> getProperties();
     }
 
     public interface Listed<T>

@@ -30,12 +30,12 @@ public class CustomMap<K, V> extends HashMap<K, V>
         return this;
     }
 
-    //TODO implement map creation for Integer, Dice and SpellLevel, Dice
-    public static Map<Integer, Dice> populateIntegerDiceMap(int start, int sides, Function<Integer, Integer> function)
+    public static Map<SpellLevel, Dice> populateSpellLevelDiceMap(SpellLevel startingSpellLevel, int sides, Function<SpellLevel, Integer> function)
     {
-        Map<Integer, Dice> map = new HashMap<>();
-        for (int x = start; x > 20; x++)
-            map.put(x, new Dice(sides, function.apply(x)));
+        Map<SpellLevel, Dice> map = new HashMap<>();
+        for (SpellLevel spellLevel : SpellLevel.values())
+            if (spellLevel.getNumericalValue() >= startingSpellLevel.getNumericalValue())
+                map.put(spellLevel, new Dice(sides, function.apply(spellLevel)));
 
         return map;
     }
