@@ -1,42 +1,26 @@
 package musician101.mcdnd;
 
-import musician101.mcdnd.lib.Reference;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.plugin.Plugin;
 
-@Mod(modid = Reference.ID, name = Reference.NAME, version = Reference.VERSION)
+@Plugin(id = Reference.ID, name = Reference.NAME, version = Reference.VERSION)
 public class MCDND
 {
-    @Instance(value = Reference.ID)
+    public static Logger log;
     public static MCDND instance;
 
-    public static Logger log;
-
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    @Listener
+    public void preInit(GameStartedServerEvent event)
     {
-        log = event.getModLog();
+        log = LoggerFactory.getLogger(Reference.ID.toUpperCase());
+        instance = this;
     }
 
-    @EventHandler
-    public void onServerStart(FMLServerStartingEvent event)
-    {
-        if (event.getSide().isClient())
-        {
-            event.getModState();
-            Loader.instance().runtimeDisableMod(Reference.ID);
-            return;
-        }
-
-        event.getModState();
-        //TODO character sheet keybind
-        //TODO guihandler init here and in proxy. check Botania for example
-    }
+    //TODO character sheet keybind
+    //TODO guihandler init here and in proxy. check Botania for example
     //TODO remove all hardcoded enum classes
     //TODO NPC: ability score, size, armor class, hit points, resistances, actions
 }
