@@ -35,6 +35,13 @@ public class MappedTrait<K, V> extends Trait implements Mapped<K, V>
         return map.get(key);
     }
 
+    @Override
+    public MappedTrait<K, V> add(K key, V value)
+    {
+        map.put(key, value);
+        return this;
+    }
+
     public static class SubraceTrait extends MappedTrait<String, List<? extends Trait>>
     {
         public SubraceTrait(Map<String, List<? extends Trait>> map, String description)

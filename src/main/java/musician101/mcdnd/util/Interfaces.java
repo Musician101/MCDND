@@ -1,14 +1,14 @@
 package musician101.mcdnd.util;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
 import musician101.mcdnd.skill.SkillType;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.BlockPos;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.Location;
+import org.spongepowered.api.world.World;
 
 import java.util.List;
 import java.util.Map;
@@ -37,11 +37,9 @@ public class Interfaces
 
     public interface EffectsArea
     {
-        /**
-         * Needs to consider diagonals and the choice to include point of origin
-         */
+        /** Needs to consider diagonals and the choice to include point of origin */
         @Deprecated
-        List<BlockPos> getArea(Entity entity);
+        List<Location<World>> getArea(Entity entity);
     }
 
     public interface Identified
