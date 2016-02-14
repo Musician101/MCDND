@@ -3,10 +3,9 @@ package musician101.mcdnd.magic;
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
-import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Listed;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
@@ -37,9 +36,9 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
 
     public static class ScaleableDamageSpell<K> extends MappedSpell<K, Dice>
     {
-        DamageType damageType;
+        DamageTypes damageType;
 
-        public DamageType getDamageType()
+        public DamageTypes getDamageType()
         {
             return damageType;
         }
@@ -53,7 +52,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
         {
             AbilityScoreType scoreType;
 
-            public ScaleableDamageAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageType damageType, AbilityScoreType scoreType, String... description)
+            public ScaleableDamageAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageTypes damageType, AbilityScoreType scoreType, String... description)
             {
                 super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, damageType, description);
                 this.scoreType = scoreType;
@@ -75,12 +74,12 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
                 return 8 + mod;
             }
 
-            public static class MultiDamageScaleableAbilityScoreDCSaveSpell<K> extends MappedSpell<K, Dice> implements AbilityScoreDCSave, Listed<DamageType>
+            public static class MultiDamageScaleableAbilityScoreDCSaveSpell<K> extends MappedSpell<K, Dice> implements AbilityScoreDCSave, Listed<DamageTypes>
             {
                 AbilityScoreType scoreType;
-                List<DamageType> list;
+                List<DamageTypes> list;
 
-                public MultiDamageScaleableAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, List<DamageType> list, AbilityScoreType scoreType, String... description)
+                public MultiDamageScaleableAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, List<DamageTypes> list, AbilityScoreType scoreType, String... description)
                 {
                     super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
                     this.list = list;
@@ -88,13 +87,13 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
                 }
 
                 @Override
-                public List<DamageType> getList()
+                public List<DamageTypes> getList()
                 {
                     return list;
                 }
 
                 @Override
-                public DamageType get(int index)
+                public DamageTypes get(int index)
                 {
                     return list.get(index);
                 }

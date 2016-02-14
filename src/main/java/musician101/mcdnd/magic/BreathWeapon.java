@@ -3,7 +3,7 @@ package musician101.mcdnd.magic;
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.magic.Shape.Cone;
 import musician101.mcdnd.magic.Shape.Line;
@@ -20,7 +20,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
     private final Shape shape;
 
     /** This will be rewritten to the new Spell format once all of the other spells are finished */
-    protected BreathWeapon(DamageType damageType, AbilityScoreType saveType, Shape shape)
+    protected BreathWeapon(DamageTypes damageType, AbilityScoreType saveType, Shape shape)
     {
         super("Breath Weapon", SpellType.EVOCATION, SpellLevel.CANTRIP, 0, 0, false, false, "", 0, false, "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation", "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at the 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breath weapon, you can't use it again until you complete a short or long rest.");
         this.shape = shape;
@@ -75,7 +75,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
 
     public static abstract class LineBreathWeapon extends BreathWeapon
     {
-        protected LineBreathWeapon(DamageType damageType)
+        protected LineBreathWeapon(DamageTypes damageType)
         {
             super(damageType, AbilityScoreType.DEX, new Line(5, 30));
         }
@@ -84,7 +84,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public AcidLineBreathWeapon()
             {
-                super(DamageType.ACID);
+                super(DamageTypes.ACID);
             }
         }
 
@@ -92,7 +92,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public FireLineBreathWeapon()
             {
-                super(DamageType.FIRE);
+                super(DamageTypes.FIRE);
             }
         }
 
@@ -100,14 +100,14 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public LightningLineBreathWeapon()
             {
-                super(DamageType.LIGHTNING);
+                super(DamageTypes.LIGHTNING);
             }
         }
     }
 
     public static abstract class ConeBreathWeapon extends BreathWeapon
     {
-        protected ConeBreathWeapon(DamageType damageType, AbilityScoreType scoreType)
+        protected ConeBreathWeapon(DamageTypes damageType, AbilityScoreType scoreType)
         {
             super(damageType, scoreType, new Cone(15));
         }
@@ -116,7 +116,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public ColdConeBreathWeapon()
             {
-                super(DamageType.COLD, AbilityScoreType.CON);
+                super(DamageTypes.COLD, AbilityScoreType.CON);
             }
         }
 
@@ -124,7 +124,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public FireConeBreathWeapon()
             {
-                super(DamageType.FIRE, AbilityScoreType.DEX);
+                super(DamageTypes.FIRE, AbilityScoreType.DEX);
             }
         }
 
@@ -132,7 +132,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public PoisonConeBreathWeapon()
             {
-                super(DamageType.POISON, AbilityScoreType.CON);
+                super(DamageTypes.POISON, AbilityScoreType.CON);
             }
         }
     }

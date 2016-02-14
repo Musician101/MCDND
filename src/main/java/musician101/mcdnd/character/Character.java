@@ -1,20 +1,21 @@
 package musician101.mcdnd.character;
 
 import musician101.mcdnd.abilityscore.CharacterAbilityScores;
-import net.minecraft.entity.Entity;
-import net.minecraftforge.common.DimensionManager;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
-public abstract class Character
+public abstract class Character<E extends Entity>
 {
     final UUID uuid;
-    //TODO redo this so that we have PlayerCharacter and NonPlayerCharacter classes?
     CharacterAbilityScores scores;
 
-    public Character(Entity entity)
+    public Character(E entity)
     {
-        uuid = entity.getUniqueID();
+        uuid = entity.getUniqueId();
     }
 
     public CharacterAbilityScores getAbilityScores()
@@ -27,20 +28,14 @@ public abstract class Character
         this.scores = scores;
     }
 
-    /**
-     * @deprecated Method needs to be moved to the NPC class
-     */
-    @Deprecated
-    public Entity getEntity()
+    @SuppressWarnings("unchecked")
+    public E getEntity()
     {
-        for (int id : DimensionManager.getIDs())
+        for (World world : Sponge.getServer().getWorlds())
         {
-            for (Object object : DimensionManager.getWorld(id).loadedEntityList)
-            {
-                Entity entity = (Entity) object;
-                if (entity.getUniqueID() == uuid)
-                    return entity;
-            }
+            Optional<Entity> entityOptional = world.getEntity(uuid);
+            if (entityOptional.isPresent())
+                return (E) entityOptional.get();
         }
 
         return null;

@@ -1,6 +1,6 @@
 package musician101.mcdnd.clazz.feature;
 
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.util.Interfaces.Listed;
@@ -50,24 +50,24 @@ public class MappedFeature<K, V> extends Feature implements Mapped<K, V>
         }
     }
 
-    public static class MultiDamageTypeScalableDamageFeature extends MappedFeature<Integer, Dice> implements Listed<DamageType>
+    public static class MultiDamageTypeScalableDamageFeature extends MappedFeature<Integer, Dice> implements Listed<DamageTypes>
     {
-        List<DamageType> list;
+        List<DamageTypes> list;
 
-        public MultiDamageTypeScalableDamageFeature(String name, int level, Map<Integer, Dice> map, List<DamageType> list, String... description)
+        public MultiDamageTypeScalableDamageFeature(String name, int level, Map<Integer, Dice> map, List<DamageTypes> list, String... description)
         {
             super(name, level, map, description);
             this.list = list;
         }
 
         @Override
-        public List<DamageType> getList()
+        public List<DamageTypes> getList()
         {
             return list;
         }
 
         @Override
-        public DamageType get(int index)
+        public DamageTypes get(int index)
         {
             return list.get(index);
         }

@@ -2,12 +2,12 @@ package musician101.mcdnd.race.trait;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tools;
 import musician101.mcdnd.equipment.weapon.Weapons;
-import musician101.mcdnd.language.Language;
+import musician101.mcdnd.language.Languages;
 import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.magic.Spells;
 import musician101.mcdnd.race.Race.CharacterSize;
@@ -36,7 +36,7 @@ public class Traits
         public static final Trait DRAGONBORN_SIZE = new SizeTrait(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.");
         public static final Trait DRACONIC_ANCENSTRY = new Trait("Draconic Ancestry", "You hae draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and the damage resistance are determined by the dragon type, as shown in the table.");
         public static final Trait BREATH_WEAPON = new Trait("Breath Weapon", "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.", "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8+ your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breathe weapon, you can't use it again until you complete a short or long rest.");
-        public static final Trait DRAGONBORN_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DRACONIC), "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.");
+        public static final Trait DRAGONBORN_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.DRACONIC), "You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.");
         public static final List<Trait> DRAGONBORN_TRAITS = Arrays.asList(DRAGONBORN_ASI, DRAGONBORN_AGE, DRAGONBORN_ALIGNMENT, DRAGONBORN_SPEED, DRAGONBORN_SIZE, DRACONIC_ANCENSTRY, BREATH_WEAPON, DRAGONBORN_LANGUAGES);
     }
 
@@ -65,11 +65,11 @@ public class Traits
             public static final Trait DWARF_AGE = new Trait("Age", "Dwarves mature at the same rate as humans, but they're considered young until they reach the age of 50. On average, they live about 350 years.");
             public static final Trait DWARF_ALIGNMENT = new AlignmentTrait("Most dwarves are lawful, believing firmly in the benefits of a well-ordered society. They tend toward good as well, with a strong sense of fair play and a belief that everyone deserves to share in the benefits of a just order.");
             public static final Trait DWARF_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
-            public static final Trait DWARF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.DWARVISH), "You can speak, read and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds and those characteristics spill over into whatever other language a dwarf might speak.");
+            public static final Trait DWARF_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.DWARVISH), "You can speak, read and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds and those characteristics spill over into whatever other language a dwarf might speak.");
             public static final Trait DWARF_TOOL_PROFICIENCY = new ListTrait<>("Tool Proficiency", Arrays.asList(Tools.BREWERS_SUPPLIES, Tools.MASONS_TOOLS, Tools.SMITHS_TOOLS), "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.");
             public static final Trait DWARVEN_COMBAT_TRAINING = new ListTrait<>("Dwarven Combat Training", Arrays.asList(Weapons.BATTLEAXE, Weapons.HANDAXE, Weapons.LIGHT_HAMMER, Weapons.WARHAMMER), "You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.");
             public static final Trait DWARF_SPEED = new MovementSpeedTrait(25);
-            public static final Trait DWARVEN_RESILIENCE = new SingleValueTrait<>("DwarvenResilienceTrait", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
+            public static final Trait DWARVEN_RESILIENCE = new SingleValueTrait<>("DwarvenResilienceTrait", DamageTypes.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
             public static final Trait STONECUNNING = new SingleValueTrait<>("Stonecunning", SkillType.HISTORY, "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient int the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.");
             public static final Trait DWARF_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("hill", Hill.DWARVEN_HILL_TRAITS).add("mountain", Mountain.DWARF_MOUNTAIN_TRAITS), "Two main subraces of dwarves populate the worlds of D&D: hill dwarves and mountain dwarves. Choose one of these subraces.");
             public static final List<Trait> DWARF_TRAITS = Arrays.asList(DWARF_ASI, DWARF_AGE, DWARF_ALIGNMENT, DWARF_DARKVISION, DWARF_LANGUAGES, DWARF_TOOL_PROFICIENCY, DWARVEN_COMBAT_TRAINING, DWARF_SPEED, DWARVEN_RESILIENCE, STONECUNNING, DWARF_SUBRACE);
@@ -123,7 +123,7 @@ public class Traits
             public static final Trait KEEN_SENSES = new SingleValueTrait<>("Keen Senses", SkillType.PERCEPTION, "You have proficiency in the Perception skill.");
             public static final Trait FEY_ANCESTRY = new Trait("Fey Ancestry", "You have advantage on saving throws against being charmed, and magic can't put you to sleep.");
             public static final Trait TRANCE = new Trait("Trance", "Elves don't need to sleep. Instead, they meditate deeply, remaining semiconscious, for 4 hours a day. (The Common word for meditation is \"trance.\") While meditating, you can dream after a fashion; such dreams are actually mental exercises that have become reflexive through years of practice. After resting in this way, you gain the same benefit that a human does from 8 hours of sleep.");
-            public static final Trait ELF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.ELVISH), "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires.");
+            public static final Trait ELF_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.ELVISH), "You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires.");
             public static final Trait ELF_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("dark", Dark.ELF_DARK_TRAITS).add("high", High.ELF_HIGH_TRAITS).add("wood", Wood.ELF_WOOD_TRAITS), "Ancient divides among the elven people resulted in three main subraces: high elves, wood elves, and dark elves, who are commonly called drow. Choose one of these subraces. In some worlds, these subraces are divided still further (such as the sun elves and moon elves of the Forgotten Realms), so if you wish you can choose a narrower subrace.");
             public static final List<Trait> ELF_TRAITS = Arrays.asList(ELF_ASI, ELF_AGE, ELF_ALIGNMENT, KEEN_SENSES, FEY_ANCESTRY, TRANCE, ELF_LANGUAGES, ELF_SUBRACE);
         }
@@ -154,7 +154,7 @@ public class Traits
             public static final Trait GNOME_ALIGNMENT = new AlignmentTrait("Gnomes are most often good. Those who tend toward law are sages, engineers, researches, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.");
             public static final ListTrait<AbilityScoreType> GNOME_CUNNING = new ListTrait<>("Gnome Cunning", Arrays.asList(AbilityScoreType.INT, AbilityScoreType.WIS, AbilityScoreType.CHA), "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic.");
             public static final Trait GNOME_DARKVISION = new DarkvisionTrait("Accustomed to life underground, you have superior vision in dark and dim conditions.");
-            public static final Trait GNOME_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.GNOMISH), "You can speak, read, and write Common and Gnomish. The Gnomish language, which uses Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world.");
+            public static final Trait GNOME_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.GNOMISH), "You can speak, read, and write Common and Gnomish. The Gnomish language, which uses Dwarvish script, is renowned for its technical treatises and its catalogs of knowledge about the natural world.");
             public static final Trait GNOME_SPEED = new MovementSpeedTrait(25);
             public static final Trait GNOME_SIZE = new SizeTrait(2 * 12 + 11, new Dice(4, 2), 35, new Dice(1), CharacterSize.SMALL, "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.");
             public static final Trait GNOME_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("forest", Forest.GNOME_FOREST_TRAITS).add("rock", Rock.GNOME_ROCK_TRAITS), "Two subraces of gnomes are found among the worlds of D&D: forest gnomes and rock gnomes. Choose one of these subraces.");
@@ -171,7 +171,7 @@ public class Traits
         public static final Trait HALF_ELF_SPEED = new MovementSpeedTrait();
         public static final Trait HALF_ELF_SIZE = new SizeTrait(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.");
         public static final Trait SKILL_VERSATILITY = new Trait("Skill Versatility", "You gain proficiency in two skills of your choice.");
-        public static final Trait HALF_ELF_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.ELVISH), "You can speak, read, and write Common, Elvish, and one extra language of your choice.");
+        public static final Trait HALF_ELF_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.ELVISH), "You can speak, read, and write Common, Elvish, and one extra language of your choice.");
         public static final List<Trait> HALF_ELF_TRAITS = Arrays.asList(HALF_ELF_ASI, HALF_ELF_AGE, HALF_ELF_ALIGNMENT, HALF_ELF_DARKVISION, HALF_ELF_SPEED, HALF_ELF_SIZE, SKILL_VERSATILITY, HALF_ELF_LANGUAGES);
     }
 
@@ -186,7 +186,7 @@ public class Traits
         public static final Trait HALF_ORC_SIZE = new SizeTrait(4 * 12 + 10, new Dice(10, 2), 140, new Dice(6, 2), CharacterSize.MEDIUM, "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.");
         public static final Trait MENACING = new SingleValueTrait<>("Menacing", SkillType.INTIMIDATION, "You gain proficiency in the Intimidation skill.");
         public static final Trait RELENTLESS_ENDURANCE = new Trait("Relentless Endurance", "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish a long rest.");
-        public static final Trait HALF_ORC_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.ORC), "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.");
+        public static final Trait HALF_ORC_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.ORC), "You can speak, read, and write Common and Orc. Orc is a harsh, grating language with hard consonants. It has no script of its own but is written in the Dwarvish script.");
         public static final List<Trait> HALF_ORC_TRAITS = Arrays.asList(HALF_ORC_ASI, HALF_ORC_AGE, HALF_ORC_ALIGNMENT, HALF_ORC_DARKVISION, HALF_ORC_SPEED, HALF_ORC_SIZE, MENACING, RELENTLESS_ENDURANCE, HALF_ORC_LANGUAGES);
     }
 
@@ -202,7 +202,7 @@ public class Traits
         public static class Stout
         {
             public static final Trait HALFLING_STOUT_ASI = new AbilityScoreIncreaseTrait(Collections.singletonList(new AbilityScore(AbilityScoreType.CON, 1)), "Your Constitution score increases by 1.");
-            public static final Trait STOUT_RESILIENCE = new SingleValueTrait<>("Stout Resilience", DamageType.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
+            public static final Trait STOUT_RESILIENCE = new SingleValueTrait<>("Stout Resilience", DamageTypes.POISON, "You have advantage on saving throws against poison, and you have resistance against poison damage.");
             public static final List<Trait> HALFLING_STOUT_TRAITS = Arrays.asList(HALFLING_STOUT_ASI, STOUT_RESILIENCE);
         }
 
@@ -216,7 +216,7 @@ public class Traits
             public static final Trait LUCKY = new Trait("Lucky", "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.");
             public static final Trait BRAVE = new Trait("Brave", "You have advantage on saving throws against being frightened.");
             public static final Trait HALFLING_NIMBLENESS = new Trait("Halfling Nimbleness", "You can move through the space of any creature that is of a size larger than yours.");
-            public static final Trait HALFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.HALFLING), "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.");
+            public static final Trait HALFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.HALFLING), "You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.");
             public static final Trait HALFLING_SUBRACE = new SubraceTrait(new CustomMap<String, List<? extends Trait>>().add("lightfoot", Lightfoot.HALFLING_LIGHTFOOT_TRAITS).add("stout", Stout.HALFLING_STOUT_TRAITS), "The two main kinds of halfling, lightfoot and stout, are more like closely related families than true subraces. Choose one of these subraces.");
             public static final List<Trait> HALFLING_TRAITS = Arrays.asList(HALFLING_ASI, HALFLING_AGE, HALFLING_ALIGNMENT, HALFLING_SPEED, HALFLING_SIZE, LUCKY, BRAVE, HALFLING_NIMBLENESS, HALFLING_LANGUAGES, HALFLING_SUBRACE);
         }
@@ -229,7 +229,7 @@ public class Traits
         public static final Trait HUMAN_ALIGNMENT = new AlignmentTrait("Humans tend toward no particular alignment. The best and the worst are found among them.");
         public static final Trait HUMAN_SPEED = new MovementSpeedTrait();
         public static final Trait HUMAN_SIZE = new SizeTrait(4 * 12 + 8, new Dice(10, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.");
-        public static final Trait HUMAN_LANGUAGES = new LanguagesTrait(Collections.singletonList(Language.COMMON), "You can speak, read and write Common and one extra language of your choice. Humans typically learn the language of other peoples they deal with including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.");
+        public static final Trait HUMAN_LANGUAGES = new LanguagesTrait(Collections.singletonList(Languages.COMMON), "You can speak, read and write Common and one extra language of your choice. Humans typically learn the language of other peoples they deal with including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.");
         public static final List<Trait> HUMAN_TRAITS = Arrays.asList(HUMAN_ASI, HUMAN_AGE, HUMAN_ALIGNMENT, HUMAN_SPEED, HUMAN_SIZE, HUMAN_LANGUAGES);
     }
 
@@ -241,9 +241,9 @@ public class Traits
         public static final Trait TIEFLING_DARKVISION = new DarkvisionTrait("Thanks to your infernal heritage, you have superior vision in dark and dim conditions.");
         public static final Trait TIEFLING_SPEED = new MovementSpeedTrait();
         public static final Trait TIEFLING_SIZE = new SizeTrait(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM, "Tieflings are about the same size and build as humans. Your size is Medium.");
-        public static final Trait HELLISH_RESISTANCE = new SingleValueTrait<>("Hellish Resistance", DamageType.FIRE, "You have resistance to fire damage.");
+        public static final Trait HELLISH_RESISTANCE = new SingleValueTrait<>("Hellish Resistance", DamageTypes.FIRE, "You have resistance to fire damage.");
         public static final Trait INFERNAL_LEGACY = new SpellcastingTrait("Infernal Legacy", new CustomMap<Integer, Spell>().add(1, Spells.THAUMATURGY).add(3, Spells.HELLISH_REBUKE).add(5, Spells.DARKNESS), AbilityScoreType.CHA, "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once per day as a 2nd-level spell. Once you reach 5th level, you can also cast the Darkness spell once per day. Charisma is your spellcasting ability for these spells.");
-        public static final Trait TIEFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Language.COMMON, Language.INFERNAL), "You can speak, read, and write Common and Infernal.");
+        public static final Trait TIEFLING_LANGUAGES = new LanguagesTrait(Arrays.asList(Languages.COMMON, Languages.INFERNAL), "You can speak, read, and write Common and Infernal.");
         public static final List<Trait> TIEFLING_TRAITS = Arrays.asList(TIEFLING_ASI, TIEFLING_AGE, TIEFLING_ALIGNMENT, TIEFLING_DARKVISION, TIEFLING_SPEED, TIEFLING_SIZE, HELLISH_RESISTANCE, INFERNAL_LEGACY, TIEFLING_LANGUAGES);
     }
 }

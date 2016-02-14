@@ -35,26 +35,4 @@ public class AbilityScore
     {
         return (amount - 10) / 2;
     }
-
-    public enum AbilityScoreType
-    {
-        STR("Strength"),
-        DEX("Dexterity"),
-        CON("Constitution"),
-        INT("Intelligence"),
-        WIS("Wisdom"),
-        CHA("Charisma");
-
-        final String name;
-
-        AbilityScoreType(String name)
-        {
-            this.name = name;
-        }
-
-        public String getName()
-        {
-            return name;
-        }
-    }
 }

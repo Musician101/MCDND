@@ -1,44 +1,29 @@
 package musician101.mcdnd.language;
 
-public enum Language
-{
-    COMMON("Common"),
-    DWARVISH("Dwarvish"),
-    ELVISH("Elvish"),
-    GIANT("Giant", "Dwarvish"),
-    GNOMISH("Gnomish", "Dwarvish"),
-    GOBLIN("Goblin", "Dwarvish"),
-    HALFLING("Halfling", "Common"),
-    ORC("Orc", "Dwarvish"),
-    ABYSSAL("Abyssal", "Infernal", true),
-    CELESTIAL("Celestial", true),
-    DRACONIC("Draconic", true),
-    DEEP_SPEECH("Deep Speech", true),
-    INFERNAL("Infernal", true),
-    PRIMORDIAL("Primordial", "Dwarvish", true),
-    SYLVAN("Sylvan", "Elvish", true),
-    UNDERCOMMON("Undercommon", "Elvish", true);
+import musician101.mcdnd.util.Interfaces.Named;
 
+public class Language implements Named
+{
     final boolean isExotic;
     final String name;
     final String script;
 
-    Language(String name, boolean isExotic)
+    public Language(String name, boolean isExotic)
     {
         this(name, name, isExotic);
     }
 
-    Language(String name)
+    public Language(String name)
     {
         this(name, name);
     }
 
-    Language(String name, String script)
+    public Language(String name, String script)
     {
         this(name, script, false);
     }
 
-    Language(String name, String script, boolean isExotic)
+    public Language(String name, String script, boolean isExotic)
     {
         this.name = name;
         this.script = script;
@@ -50,6 +35,7 @@ public enum Language
         return isExotic;
     }
 
+    @Override
     public String getName()
     {
         return name;

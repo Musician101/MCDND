@@ -1,7 +1,7 @@
 package musician101.mcdnd.condition;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.abilityscore.AbilityScoreTypes;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.property.ListProperty;
 import musician101.mcdnd.property.SingleValueProperty;
 import musician101.mcdnd.util.Table;
@@ -52,7 +52,7 @@ public class Conditions
         private Paralyzed()
         {
             super("Paralyzed", "A paralyzed creature is incapacitated (see the condition) and can't move or speak.", "The creature automatically fails Strength and Dexterity saving throws.", "Attack rolls against the creature have advantage.", "Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.");
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreType.STR, AbilityScoreType.DEX)), new SingleValueProperty<>(getId() + ".property.single_value.integer", 5));
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreTypes.STR, AbilityScoreTypes.DEX)), new SingleValueProperty<>(getId() + ".property.single_value.integer", 5));
         }
     }
 
@@ -61,7 +61,7 @@ public class Conditions
         private Petrified()
         {
             super("Petrified", "A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.", "The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.", "Attack rolls against the creature have advantage.", "The creature automatically fails Strength and Dexterity saving throws.", "The creature has resistance to all damage.", "The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized.");
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new SingleValueProperty<Function<Integer, Integer>>(getId() + ".property.single_value.function", num -> num * 10), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreType.STR, AbilityScoreType.DEX)), new ListProperty<>(getId() + ".property.list.damage_type", Arrays.asList(DamageType.values())));
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new SingleValueProperty<Function<Integer, Integer>>(getId() + ".property.single_value.function", num -> num * 10), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreTypes.STR, AbilityScoreTypes.DEX)), new ListProperty<>(getId() + ".property.list.damage_type", DamageTypes.ALL));
         }
     }
 
@@ -79,7 +79,7 @@ public class Conditions
         private Restrained()
         {
             super("Restrained", "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.", "Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.", "The creature has disadvantage on Dexterity saving throws.");
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.integer", 0), new SingleValueProperty<>(getId() + ".property.single_value.ability_score_type", AbilityScoreType.DEX));
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.integer", 0), new SingleValueProperty<>(getId() + ".property.single_value.ability_score_type", AbilityScoreTypes.DEX));
         }
     }
 
@@ -88,7 +88,7 @@ public class Conditions
         private Stunned()
         {
             super("Stunned", "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.", "The creature automatically fails Strength and Dexterity saving throws.");
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreType.STR, AbilityScoreType.DEX)));
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreTypes.STR, AbilityScoreTypes.DEX)));
         }
     }
 
@@ -97,7 +97,7 @@ public class Conditions
         private Unconscious()
         {
             super("Condition", "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.", "The creature drops whatever it's holding and falls prone.", "The creature automatically fails Strength and Dexterity saving throws.", "Attack rolls against the creature have advantage.", "Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature.");
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreType.STR, AbilityScoreType.DEX)), new SingleValueProperty<>(getId() + ".property.single_value.integer", 5));
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.condition", INCAPACITATED), new ListProperty<>(getId() + ".property.list.ability_score_type", Arrays.asList(AbilityScoreTypes.STR, AbilityScoreTypes.DEX)), new SingleValueProperty<>(getId() + ".property.single_value.integer", 5));
         }
     }
 }

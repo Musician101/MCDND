@@ -1,29 +1,17 @@
 package musician101.mcdnd.combat;
 
-public enum DamageType
-{
-    ACID("Acid"),
-    BLUDGEONING("Bludgeoning"),
-    COLD("Cold"),
-    FIRE("Fire"),
-    FORCE("Force"),
-    LIGHTNING("Lightning"),
-    NECROTIC("Necrotic"),
-    NONE("None"),
-    PIERCING("Piercing"),
-    POISON("Poison"),
-    PSYCHIC("Psychic"),
-    RADIANT("Radiant"),
-    SLASHING("Slashing"),
-    THUNDER("Thunder");
+import musician101.mcdnd.util.Interfaces.Named;
 
+public class DamageType implements Named
+{
     final String name;
 
-    DamageType(String name)
+    public DamageType(String name)
     {
         this.name = name;
     }
 
+    @Override
     public String getName()
     {
         return name;

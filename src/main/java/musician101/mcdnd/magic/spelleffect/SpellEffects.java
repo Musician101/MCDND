@@ -1,14 +1,10 @@
 package musician101.mcdnd.magic.spelleffect;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
-import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.abilityscore.AbilityScoreTypes;
+import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
-import musician101.mcdnd.magic.Spell.SpellLevel;
 import musician101.mcdnd.magic.spelleffect.SpellEffect.AbilityScoreDCSaveSpellEffect;
 import musician101.mcdnd.magic.spelleffect.SpellEffect.DamageDealingMultiDamageTypeSpellEffect;
-import musician101.mcdnd.magic.spelleffect.SpellEffect.MappedSpellEffect;
-import musician101.mcdnd.magic.spelleffect.SpellEffect.MappedSpellEffect.HigherLevelsSpellEffect;
-import musician101.mcdnd.util.CustomMap;
 
 import java.util.Arrays;
 
@@ -44,7 +40,7 @@ public class SpellEffects
             {
                 name = "Natural Weapons";
                 damageAmount = new Dice(6, 1);
-                damageTypes = Arrays.asList(DamageType.BLUDGEONING, DamageType.PIERCING, DamageType.SLASHING);
+                damageTypes = Arrays.asList(DamageTypes.BLUDGEONING, DamageTypes.PIERCING, DamageTypes.SLASHING);
                 description = new String[]{"You grow claws, fangs, spines, horns, or a different natural weapon of your choice. Your unarmed strikes deal 1d6 bludgeoning, piercing, or slashing damage, as appropriate to the natural weapon you chose, and you are proficient with your unarmed strikes. Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it."};
             }
         }
@@ -135,7 +131,7 @@ public class SpellEffects
             private AntipathySpellEffect()
             {
                 name = "Antipathy";
-                type = AbilityScoreType.WIS;
+                type = AbilityScoreTypes.WIS;
                 description = new String[]{"The enchantment causes creatures of the kind you designated to feel an intense urge to leave the area and avoid the target. When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw or become frightened. The creature remains frightened while it can see the target or is within 60 feet of it. While frightened by the target, the creature must use its movement to the nearest safe spot from which it can't see the target. If the creature moves more than 60 feet from the target and can't see it, the creature is no longer frightened, but the creature becomes frightened again if it regains sight of the target or moves within 60 feet of it."};
             }
         }
@@ -145,7 +141,7 @@ public class SpellEffects
             private SympathySpellEffect()
             {
                 name = "Sympathy";
-                type = AbilityScoreType.WIS;
+                type = AbilityScoreTypes.WIS;
                 description = new String[]{"The enchantment causes the specified creatures to feel an intense urge to approach the target while within 60 feet of it or able to see it. When such a creature can see the target or comes within 60 feet of it, the creature must succeed on a Wisdom saving throw or use its movement on each of its turns to enter the area or move within reach of the target. When the creature has done so, it can't willingly move away from the target.", "If the target damages or otherwise harms an affected creature, the affected creature can make a Wisdom saving throw to end the effect, as described below."};
             }
         }
@@ -155,7 +151,7 @@ public class SpellEffects
             private EndingTheEffectSpellEffect()
             {
                 name = "Ending the Effect";
-                type = AbilityScoreType.WIS;
+                type = AbilityScoreTypes.WIS;
                 description = new String[]{"If an affected creature ends its turn while not within 60 feet of the target or able to see it, the creature makes a Wisdom saving throw. On a successful save, the creature is no longer affected by the target and recognizes the feeling of repugnance or attraction as magical. In addition, a creature affected by the spell is allowed another Wisdom saving throw every 24 hours while the spell persists.", "A creature that successfully saves against this effect is immune to it for 1 minute, after which time it can be affected again."};
             }
         }

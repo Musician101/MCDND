@@ -1,7 +1,7 @@
 package musician101.mcdnd.magic.spelleffect;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
@@ -44,7 +44,7 @@ public class SpellEffect implements Described, Named
         protected AbilityScoreDCSaveSpellEffect(){}
 
         @Override
-        public AbilityScoreType getAbilitySaveType()
+        public AbilityScoreType getAbilityScoreType()
         {
             return type;
         }
@@ -133,6 +133,13 @@ public class SpellEffect implements Described, Named
         public V get(K key)
         {
             return map.get(key);
+        }
+
+        @Override
+        public MappedSpellEffect<K, V> add(K key, V value)
+        {
+            map.put(key, value);
+            return this;
         }
     }
 }

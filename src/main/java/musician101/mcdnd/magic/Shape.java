@@ -142,7 +142,6 @@ public abstract class Shape implements Described, EffectsArea, Named
         @Override
         public List<BlockPos> getArea(Entity entity)
         {
-            // TODO Auto-generated method stub
             return null;
         }
     }
@@ -162,7 +161,6 @@ public abstract class Shape implements Described, EffectsArea, Named
         @Override
         public List<BlockPos> getArea(Entity entity)
         {
-            // TODO Auto-generated method stub
             return null;
         }
     }
@@ -180,7 +178,6 @@ public abstract class Shape implements Described, EffectsArea, Named
         @Override
         public List<BlockPos> getArea(Entity entity)
         {
-            // TODO Auto-generated method stub
             return null;
         }
     }

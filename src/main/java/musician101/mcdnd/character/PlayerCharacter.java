@@ -1,78 +1,51 @@
 package musician101.mcdnd.character;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
-import musician101.mcdnd.alignment.Alignment;
+import musician101.mcdnd.alignment.Alignments;
 import musician101.mcdnd.clazz.ProficiencyBonus;
 import musician101.mcdnd.equipment.armor.Armor;
-import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.race.Race;
 import musician101.mcdnd.skill.SkillCarrier;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.entity.living.player.Player;
 
-public class PlayerCharacter extends Character
+public class PlayerCharacter extends Character<Player>
 {
     ProficiencyBonus proficiencyBonus;
-    private Alignment alignment;
-    private Armor armor;
-    private Armor shield;
+    private Alignments alignment;
+    private ArmorClass armorClass;
     private int armorClassBonus;
     private Race race;
     private SkillCarrier skills;
 
-    public PlayerCharacter(EntityPlayer player)
+    public PlayerCharacter(Player player)
     {
         super(player);
     }
 
-    public EntityPlayer getPlayer()
+    @Override
+    public Player getEntity()
     {
-        for (Object object : MinecraftServer.getServer().getConfigurationManager().playerEntityList)
-        {
-            EntityPlayer player = (EntityPlayer) object;
-            if (player.getUniqueID() == uuid)
+        for (Player player : Sponge.getServer().getOnlinePlayers())
+            if (player.getUniqueId() == uuid)
                 return player;
-        }
 
         return null;
     }
 
-    public Alignment getAlignment()
+    public Alignments getAlignment()
     {
         return alignment;
     }
 
-    public Armor getArmor()
+    public void updateArmorClass(Armor armor)
     {
-        return armor;
-    }
-
-    public void setArmor(Armor armor)
-    {
-        this.armor = armor;
-    }
-
-    public Armor getShield()
-    {
-        return shield;
-    }
-
-    public void setShield(Armor shield)
-    {
-        this.shield = shield;
+        armorClass.update(armor);
     }
 
     @Override
     public int getArmorClass()
     {
-        int ac = armor.getArmorClass();
-        if (armor.getType() != ArmorTypes.HEAVY)
-            ac = +scores.getAbilityMod(AbilityScoreType.DEX);
-
-        if (shield != null)
-            ac = +shield.getArmorClass();
-
-        return ac + armorClassBonus;
+        return armorClass.getArmorClass(scores, armorClassBonus);
     }
 
     public Race getRace()

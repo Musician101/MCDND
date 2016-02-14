@@ -2,6 +2,7 @@ package musician101.mcdnd.clazz.feature;
 
 import musician101.mcdnd.clazz.feature.EquipmentFeature.EquipmentChoices;
 import musician101.mcdnd.equipment.Equipment;
+import musician101.mcdnd.util.Interfaces.Described;
 import musician101.mcdnd.util.Interfaces.Listed;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
@@ -16,11 +17,34 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
         super("Equipment", Arrays.asList(equipmentChoices), "You start with the following equipment, in addition to the equipment granted by your background:");
     }
 
-    public static class EquipmentChoices extends ListFeature<EquipmentChoice>
+    public static class EquipmentChoices implements Described, Listed<EquipmentChoice>
     {
+        List<EquipmentChoice> list;
+        String[] description;
+
         public EquipmentChoices(String description, EquipmentChoice... choices)
         {
-            super("EquipmentChoices", Arrays.asList(choices), description);
+            this.description = new String[]{description};
+            this.list = Arrays.asList(choices);
+        }
+
+
+        @Override
+        public String[] getDescription()
+        {
+            return description;
+        }
+
+        @Override
+        public List<EquipmentChoice> getList()
+        {
+            return list;
+        }
+
+        @Override
+        public EquipmentChoice get(int index)
+        {
+            return list.get(index);
         }
     }
 
@@ -105,6 +129,13 @@ public class EquipmentFeature extends ListFeature<EquipmentChoices>
             public Integer get(Equipment key)
             {
                 return equipment.get(key);
+            }
+
+            @Override
+            public MultipleChoice add(Equipment key, Integer value)
+            {
+                equipment.put(key, value);
+                return this;
             }
         }
     }

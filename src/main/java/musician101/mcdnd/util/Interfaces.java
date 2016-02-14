@@ -1,6 +1,7 @@
 package musician101.mcdnd.util;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.property.Property;
@@ -17,6 +18,8 @@ public class Interfaces
 {
     public interface AbilityScoreDCSave
     {
+        AbilityScoreType getAbilityScoreType();
+
         int getDCSave(AbilityScore score, int... bonuses);
     }
 
