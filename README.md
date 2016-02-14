@@ -1,7 +1,7 @@
 Minecraft Dungeons & Dragons
 ===================
 
-A mod for Minecraft using Forge and based on Dungeons & Dragons 5th Edition.
+A mod for Minecraft using Sponge and based on Dungeons & Dragons 5th Edition.
 
 License
 ===================
