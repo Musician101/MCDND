@@ -10,46 +10,10 @@ import java.util.Random;
 public class SkillCarrier
 {
     private final Map<SkillType, Skill> skills;
-    Skill acrobatics;
-    Skill animalHandling;
-    Skill arcana;
-    Skill athletics;
-    Skill deception;
-    Skill history;
-    Skill insight;
-    Skill intimidation;
-    Skill investigation;
-    Skill medicine;
-    Skill nature;
-    Skill perception;
-    Skill performance;
-    Skill persuasion;
-    Skill religion;
-    Skill sleightOfHand;
-    Skill stealth;
-    Skill survival;
 
     public SkillCarrier(CharacterAbilityScores scores, List<SkillType> proficientSkills, List<SkillType> expertSkills)
     {
-        skills = new CustomMap<SkillType, Skill>().add(SkillType.ACROBATICS, new Skill(SkillType.ACROBATICS, scores,
-                proficientSkills, expertSkills)).add(SkillType.ANIMAL_HANDLING, new Skill(SkillType.ANIMAL_HANDLING,
-                scores, proficientSkills, expertSkills)).add(SkillType.ARCANA, new Skill(SkillType.ARCANA, scores,
-                proficientSkills, expertSkills)).add(SkillType.ATHLETICS, new Skill(SkillType.ATHLETICS, scores,
-                proficientSkills, expertSkills)).add(SkillType.DECEPTION, new Skill(SkillType.DECEPTION, scores,
-                proficientSkills, expertSkills)).add(SkillType.HISTORY, new Skill(SkillType.HISTORY, scores,
-                proficientSkills, expertSkills)).add(SkillType.INSIGHT, new Skill(SkillType.INSIGHT, scores,
-                proficientSkills, expertSkills)).add(SkillType.INTIMIDATION, new Skill(SkillType.INTIMIDATION, scores,
-                proficientSkills, expertSkills)).add(SkillType.INVESTIGATION, new Skill(SkillType.INVESTIGATION, scores,
-                proficientSkills, expertSkills)).add(SkillType.MEDICINE, new Skill(SkillType.MEDICINE, scores,
-                proficientSkills, expertSkills)).add(SkillType.NATURE, new Skill(SkillType.NATURE, scores,
-                proficientSkills, expertSkills)).add(SkillType.PERCEPTION, new Skill(SkillType.PERCEPTION, scores,
-                proficientSkills, expertSkills)).add(SkillType.PERFORMANCE, new Skill(SkillType.PERFORMANCE, scores,
-                proficientSkills, expertSkills)).add(SkillType.PERSUASION, new Skill(SkillType.PERSUASION, scores,
-                proficientSkills, expertSkills)).add(SkillType.RELIGION, new Skill(SkillType.RELIGION, scores,
-                proficientSkills, expertSkills)).add(SkillType.SLEIGHT_OF_HAND, new Skill(SkillType.SLEIGHT_OF_HAND,
-                scores, proficientSkills, expertSkills)).add(SkillType.STEALTH, new Skill(SkillType.STEALTH, scores,
-                proficientSkills, expertSkills)).add(SkillType.SURVIVAL, new Skill(SkillType.SURVIVAL, scores,
-                proficientSkills, expertSkills));
+        skills = new CustomMap<SkillType, Skill>().add(SkillTypes.ACROBATICS, new Skill(SkillTypes.ACROBATICS, scores, proficientSkills, expertSkills)).add(SkillTypes.ANIMAL_HANDLING, new Skill(SkillTypes.ANIMAL_HANDLING, scores, proficientSkills, expertSkills)).add(SkillTypes.ARCANA, new Skill(SkillTypes.ARCANA, scores, proficientSkills, expertSkills)).add(SkillTypes.ATHLETICS, new Skill(SkillTypes.ATHLETICS, scores, proficientSkills, expertSkills)).add(SkillTypes.DECEPTION, new Skill(SkillTypes.DECEPTION, scores, proficientSkills, expertSkills)).add(SkillTypes.HISTORY, new Skill(SkillTypes.HISTORY, scores, proficientSkills, expertSkills)).add(SkillTypes.INSIGHT, new Skill(SkillTypes.INSIGHT, scores, proficientSkills, expertSkills)).add(SkillTypes.INTIMIDATION, new Skill(SkillTypes.INTIMIDATION, scores, proficientSkills, expertSkills)).add(SkillTypes.INVESTIGATION, new Skill(SkillTypes.INVESTIGATION, scores, proficientSkills, expertSkills)).add(SkillTypes.MEDICINE, new Skill(SkillTypes.MEDICINE, scores, proficientSkills, expertSkills)).add(SkillTypes.NATURE, new Skill(SkillTypes.NATURE, scores, proficientSkills, expertSkills)).add(SkillTypes.PERCEPTION, new Skill(SkillTypes.PERCEPTION, scores, proficientSkills, expertSkills)).add(SkillTypes.PERFORMANCE, new Skill(SkillTypes.PERFORMANCE, scores, proficientSkills, expertSkills)).add(SkillTypes.PERSUASION, new Skill(SkillTypes.PERSUASION, scores, proficientSkills, expertSkills)).add(SkillTypes.RELIGION, new Skill(SkillTypes.RELIGION, scores, proficientSkills, expertSkills)).add(SkillTypes.SLEIGHT_OF_HAND, new Skill(SkillTypes.SLEIGHT_OF_HAND, scores, proficientSkills, expertSkills)).add(SkillTypes.STEALTH, new Skill(SkillTypes.STEALTH, scores, proficientSkills, expertSkills)).add(SkillTypes.SURVIVAL, new Skill(SkillTypes.SURVIVAL, scores, proficientSkills, expertSkills));
     }
 
     public int getSkillMod(SkillType skill)

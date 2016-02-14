@@ -6,7 +6,7 @@ import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.skill.Skill;
-import musician101.mcdnd.skill.SkillType;
+import musician101.mcdnd.skill.SkillTypes;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Described;
@@ -66,7 +66,7 @@ public class SpellEffect implements Described, Named
     public static class DamageDealingSkillDCSaveSpellEffect extends SpellEffect implements DamageDealer, SkillDCSave
     {
         Damage damage;
-        SkillType skillType;
+        SkillTypes skillType;
 
         protected DamageDealingSkillDCSaveSpellEffect(){}
 
@@ -77,7 +77,7 @@ public class SpellEffect implements Described, Named
         }
 
         @Override
-        public SkillType getSkillSaveType()
+        public SkillTypes getSkillSaveType()
         {
             return skillType;
         }

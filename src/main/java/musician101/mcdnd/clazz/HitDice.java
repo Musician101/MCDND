@@ -14,17 +14,13 @@ public class HitDice extends Dice
         super(sides, amount);
     }
 
-    /**
-     * Gain average HP
-     */
+    /** Gain average HP */
     public int gainHitPoints(int conMod)
     {
         return gainHitPoints(conMod, false);
     }
 
-    /**
-     * Used for when leveling up, when a player uses a hit die to regain HP, or when a player goes for a long rest
-     */
+    /** Used for when leveling up, when a player uses a hit die to regain HP, or when a player goes for a long rest */
     public int gainHitPoints(int conMod, boolean isRolling)
     {
         if (isRolling)

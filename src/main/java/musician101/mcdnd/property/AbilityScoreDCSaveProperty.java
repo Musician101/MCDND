@@ -1,7 +1,7 @@
 package musician101.mcdnd.property;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 
 public class AbilityScoreDCSaveProperty extends SingleValueProperty<AbilityScoreType> implements AbilityScoreDCSave
@@ -9,6 +9,12 @@ public class AbilityScoreDCSaveProperty extends SingleValueProperty<AbilityScore
     public AbilityScoreDCSaveProperty(String id, AbilityScoreType abilityScoreType)
     {
         super(id, abilityScoreType);
+    }
+
+    @Override
+    public AbilityScoreType getAbilityScoreType()
+    {
+        return getValue();
     }
 
     @Override

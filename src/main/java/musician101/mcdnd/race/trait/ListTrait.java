@@ -1,7 +1,7 @@
 package musician101.mcdnd.race.trait;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.language.Languages;
+import musician101.mcdnd.language.Language;
 import musician101.mcdnd.util.Interfaces.Listed;
 
 import java.util.List;
@@ -36,9 +36,9 @@ public class ListTrait<T> extends Trait implements Listed<T>
         }
     }
 
-    public static class LanguagesTrait extends ListTrait<Languages>
+    public static class LanguagesTrait extends ListTrait<Language>
     {
-        public LanguagesTrait(List<Languages> languages, String... description)
+        public LanguagesTrait(List<Language> languages, String... description)
         {
             super("Languages", languages, description);
         }

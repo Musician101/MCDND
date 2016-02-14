@@ -10,8 +10,8 @@ public abstract class CurrencyHolder
 
     protected CurrencyHolder()
     {
-        currency = new CustomMap<CurrencyType, Integer>().add(CurrencyType.COPPER, 0).add(CurrencyType.SILVER, 0).add
-                (CurrencyType.ELECTRUM, 0).add(CurrencyType.GOLD, 0).add(CurrencyType.PLATINUM, 0);
+        currency = new CustomMap<CurrencyType, Integer>().add(CurrencyTypes.COPPER, 0).add(CurrencyTypes.SILVER, 0)
+                .add(CurrencyTypes.ELECTRUM, 0).add(CurrencyTypes.GOLD, 0).add(CurrencyTypes.PLATINUM, 0);
     }
 
     protected CurrencyHolder(Map<CurrencyType, Integer> currency)

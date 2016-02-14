@@ -1,8 +1,8 @@
 package musician101.mcdnd.clazz.feature;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
-import musician101.mcdnd.magic.Spell.SpellLevel;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
+import musician101.mcdnd.magic.SpellLevel;
 
 import java.util.Map;
 

@@ -6,7 +6,7 @@ import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
-import musician101.mcdnd.skill.SkillType;
+import musician101.mcdnd.skill.SkillTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
@@ -87,7 +87,7 @@ public class Interfaces
     {
         int getDCSave(Skill skill, int... bonuses);
 
-        SkillType getSkillSaveType();
+        SkillTypes getSkillSaveType();
     }
 
     public interface Weighable

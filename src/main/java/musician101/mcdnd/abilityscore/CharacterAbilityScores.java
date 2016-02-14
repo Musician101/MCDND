@@ -1,6 +1,5 @@
 package musician101.mcdnd.abilityscore;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.clazz.ProficiencyBonus;
 
 import java.util.ArrayList;
@@ -22,9 +21,9 @@ public class CharacterAbilityScores extends AbstractAbilityScores
         super();
         this.proficientSavingThrows = proficientSavingThrows;
         this.proficiencyBonus = proficiencyBonus;
-        updateScores(new AbilityScore(AbilityScoreType.STR), new AbilityScore(AbilityScoreType.DEX), new AbilityScore
-                (AbilityScoreType.CON), new AbilityScore(AbilityScoreType.INT), new AbilityScore(AbilityScoreType.WIS), new
-                AbilityScore(AbilityScoreType.CHA));
+        updateScores(new AbilityScore(AbilityScoreTypes.STR), new AbilityScore(AbilityScoreTypes.DEX), new AbilityScore
+                (AbilityScoreTypes.CON), new AbilityScore(AbilityScoreTypes.INT), new AbilityScore(AbilityScoreTypes.WIS), new
+                AbilityScore(AbilityScoreTypes.CHA));
     }
 
     public int getProficiencyBonus()
@@ -44,8 +43,7 @@ public class CharacterAbilityScores extends AbstractAbilityScores
 
     public int getSavingThrowMod(AbilityScoreType score)
     {
-        return proficientSavingThrows.contains(AbilityScoreType.STR) ? getAbilityMod(score) + proficiencyBonus.getBonus
-                () : getAbilityMod(score);
+        return proficientSavingThrows.contains(AbilityScoreTypes.STR) ? getAbilityMod(score) + proficiencyBonus.getBonus() : getAbilityMod(score);
     }
 
     public int rollSavingThrow(AbilityScoreType score)

@@ -2,15 +2,16 @@ package musician101.mcdnd.clazz;
 
 import musician101.mcdnd.equipment.armor.Armor;
 import musician101.mcdnd.skill.SkillType;
+import musician101.mcdnd.util.Interfaces.Named;
 
 import java.util.List;
 
-public class CharacterClass
+public class CharacterClass implements Named
 {
-    private List<Armor> armorProficiencies;
-    private List<SkillType> skillProficiencies;
     private HitDice hitDice;
     private int level;
+    private List<Armor> armorProficiencies;
+    private List<SkillType> skillProficiencies;
     private String name;
 
     public CharacterClass()
@@ -38,6 +39,7 @@ public class CharacterClass
         return level;
     }
 
+    @Override
     public String getName()
     {
         return name;

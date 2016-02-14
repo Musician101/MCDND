@@ -3,8 +3,6 @@ package musician101.mcdnd.equipment.armor;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.equipment.Equipment;
 
-import java.util.List;
-
 public class Armor extends Equipment
 {
     private final ArmorTypes type;
@@ -47,27 +45,10 @@ public class Armor extends Equipment
 
     public enum ArmorTypes
     {
-        LIGHT(),
-        MEDIUM(),
-        HEAVY(),
-        SHIELD(),
-        UNARMORED;
-
-        final List<Armor> armor;
-
-        ArmorTypes()
-        {
-            this(null);
-        }
-
-        ArmorTypes(List<Armor> armor)
-        {
-            this.armor = armor;
-        }
-
-        public List<Armor> getArmor()
-        {
-            return armor;
-        }
+        LIGHT,
+        MEDIUM,
+        HEAVY,
+        SHIELD,
+        UNARMORED
     }
 }

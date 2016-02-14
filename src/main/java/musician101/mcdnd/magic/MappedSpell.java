@@ -52,7 +52,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
         {
             AbilityScoreType scoreType;
 
-            public ScaleableDamageAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageTypes damageType, AbilityScoreType scoreType, String... description)
+            public ScaleableDamageAbilityScoreDCSaveSpell(String name, SpellTypes type, SpellLevels level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, DamageTypes damageType, AbilityScoreType scoreType, String... description)
             {
                 super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, damageType, description);
                 this.scoreType = scoreType;
@@ -79,7 +79,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
                 AbilityScoreType scoreType;
                 List<DamageTypes> list;
 
-                public MultiDamageScaleableAbilityScoreDCSaveSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, List<DamageTypes> list, AbilityScoreType scoreType, String... description)
+                public MultiDamageScaleableAbilityScoreDCSaveSpell(String name, SpellTypes type, SpellLevels level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<K, Dice> map, List<DamageTypes> list, AbilityScoreType scoreType, String... description)
                 {
                     super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
                     this.list = list;
@@ -119,7 +119,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
 
     public class BehaviorSpell extends MappedSpell<Integer, String>
     {
-        public BehaviorSpell(String name, SpellType type, SpellLevel level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<Integer, String> map, String... description)
+        public BehaviorSpell(String name, SpellTypes type, SpellLevels level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<Integer, String> map, String... description)
         {
             super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, map, description);
         }

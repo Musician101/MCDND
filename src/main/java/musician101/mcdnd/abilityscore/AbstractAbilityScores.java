@@ -1,6 +1,5 @@
 package musician101.mcdnd.abilityscore;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
 import musician101.mcdnd.util.Interfaces.Mapped;
 
 import java.util.HashMap;

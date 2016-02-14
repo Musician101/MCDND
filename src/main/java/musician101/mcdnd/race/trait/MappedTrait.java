@@ -1,6 +1,6 @@
 package musician101.mcdnd.race.trait;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.magic.Spell;
 import musician101.mcdnd.util.Interfaces.Mapped;
 

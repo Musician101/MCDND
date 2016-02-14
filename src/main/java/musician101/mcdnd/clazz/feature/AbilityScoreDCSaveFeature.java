@@ -1,7 +1,7 @@
 package musician101.mcdnd.clazz.feature;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 
 public class AbilityScoreDCSaveFeature extends Feature implements AbilityScoreDCSave
@@ -20,7 +20,7 @@ public class AbilityScoreDCSaveFeature extends Feature implements AbilityScoreDC
     }
 
     @Override
-    public AbilityScoreType getAbilitySaveType()
+    public AbilityScoreType getAbilityScoreType()
     {
         return scoreType;
     }

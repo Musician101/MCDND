@@ -4,16 +4,16 @@ import musician101.mcdnd.dice.Dice;
 
 public class Damage
 {
-    private final DamageTypes type;
+    private final DamageType type;
     private final Dice dice;
 
-    public Damage(DamageTypes type, Dice dice)
+    public Damage(DamageType type, Dice dice)
     {
         this.type = type;
         this.dice = dice;
     }
 
-    public DamageTypes getDamageType()
+    public DamageType getDamageType()
     {
         return type;
     }

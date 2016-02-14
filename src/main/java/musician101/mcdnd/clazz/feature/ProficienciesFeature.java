@@ -1,6 +1,6 @@
 package musician101.mcdnd.clazz.feature;
 
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.equipment.armor.Armor.ArmorTypes;
 import musician101.mcdnd.equipment.tool.Tool;
 import musician101.mcdnd.equipment.weapon.Weapon;
@@ -22,9 +22,7 @@ public class ProficienciesFeature extends Feature
     private final String skillString;
     private final String weaponString;
 
-    public ProficienciesFeature(List<ArmorTypes> armor, String armorString, List<Weapon> weapons, String
-            weaponString, List<Tool> tools, String toolString, List<AbilityScoreType> savingThrows, String
-            savingThrowString, List<SkillType> skills, int skillAmount, String skillString)
+    public ProficienciesFeature(List<ArmorTypes> armor, String armorString, List<Weapon> weapons, String weaponString, List<Tool> tools, String toolString, List<AbilityScoreType> savingThrows, String savingThrowString, List<SkillType> skills, int skillAmount, String skillString)
     {
         super("Proficiencies", "");
         this.armor = armor;
