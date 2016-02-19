@@ -16,8 +16,8 @@ import java.util.List;
 public class Spell implements Described, Named, Identified
 {
     protected final String PREFIX = "spell.";
-    protected double castingTime = 0;
     protected boolean isRitual = false;
+    protected double castingTime = 0;
     protected int range = 0;
     protected List<Property> properties = new ArrayList<>();
     protected SpellComponents spellComponents = new SpellComponents();
@@ -173,7 +173,7 @@ public class Spell implements Described, Named, Identified
         int distance;
         SkillTypes skillType;
 
-        public DamagePerDistanceSkillDCSaveSpell(String name, SpellTypes type, SpellLevels level, ActionTime castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Damage damage, int distance, SkillTypes skillType, String... description)
+        public DamagePerDistanceSkillDCSaveSpell(String name, SpellTypes type, SpellLevels level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Damage damage, int distance, SkillTypes skillType, String... description)
         {
             //super(name, type, level, castingTime, range, isVerbal, isSomatic, materials, duration, needsConcentration, description);
             this.damage = damage;

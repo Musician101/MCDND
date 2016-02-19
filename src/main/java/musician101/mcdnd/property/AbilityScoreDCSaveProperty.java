@@ -6,9 +6,9 @@ import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 
 public class AbilityScoreDCSaveProperty extends SingleValueProperty<AbilityScoreType> implements AbilityScoreDCSave
 {
-    public AbilityScoreDCSaveProperty(String id, AbilityScoreType abilityScoreType)
+    public AbilityScoreDCSaveProperty(String idPrefix, AbilityScoreType abilityScoreType)
     {
-        super(id, abilityScoreType);
+        super(idPrefix + ".single_value.dc_save_property", abilityScoreType);
     }
 
     @Override

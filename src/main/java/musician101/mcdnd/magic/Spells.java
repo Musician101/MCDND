@@ -2,7 +2,6 @@ package musician101.mcdnd.magic;
 
 import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.abilityscore.AbilityScoreTypes;
-import musician101.mcdnd.util.ActionTimes;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.condition.Conditions;
@@ -13,8 +12,6 @@ import musician101.mcdnd.magic.MappedSpell.ScaleableDamageSpell.ScaleableDamageA
 import musician101.mcdnd.magic.MappedSpell.ScaleableDamageSpell.ScaleableDamageAbilityScoreDCSaveSpell.MultiDamageScaleableAbilityScoreDCSaveSpell;
 import musician101.mcdnd.magic.Spell.CastTimeChoiceSpell;
 import musician101.mcdnd.magic.Spell.DamagePerDistanceSkillDCSaveSpell;
-import musician101.mcdnd.magic.Spell.SpellLevels;
-import musician101.mcdnd.magic.Spell.SpellTypes;
 import musician101.mcdnd.magic.spelleffect.SpellEffect;
 import musician101.mcdnd.magic.spelleffect.SpellEffect.DamageDealingSkillDCSaveSpellEffect;
 import musician101.mcdnd.magic.spelleffect.SpellEffects.AlterSpellEffects;
@@ -22,11 +19,18 @@ import musician101.mcdnd.magic.spelleffect.SpellEffects.AntimagicFieldSpellEffec
 import musician101.mcdnd.magic.spelleffect.SpellEffects.AntipathySympathySpellEffects;
 import musician101.mcdnd.property.AbilityScoreDCSaveProperty;
 import musician101.mcdnd.property.ListProperty;
-import musician101.mcdnd.property.MappedProperty;
-import musician101.mcdnd.property.ScaleableDamageProperty;
+import musician101.mcdnd.property.ListProperty.MultipleEffectsProperty;
+import musician101.mcdnd.property.MapProperty;
+import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelDiceProperty;
+import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelDoubleProperty;
+import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelIntegerProperty;
+import musician101.mcdnd.property.ScalableDamageProperty;
 import musician101.mcdnd.property.SingleValueProperty;
+import musician101.mcdnd.property.SingleValueProperty.DamageTypeProperty;
+import musician101.mcdnd.property.SingleValueProperty.SavingThrowProperty;
 import musician101.mcdnd.race.Race.CharacterSize;
 import musician101.mcdnd.skill.SkillTypes;
+import musician101.mcdnd.util.ActionTimes;
 import musician101.mcdnd.util.CustomMap;
 import musician101.mcdnd.util.Table;
 import musician101.mcdnd.util.Table.Column;
@@ -57,14 +61,14 @@ public class Spells
     public static final Spell AUGURY = new AugurySpell();
     public static final Spell AURA_OF_LIFE = new AuraOfLifeSpell();
     public static final Spell AURA_OF_PURITY = new AuraOfPuritySpell();
+    public static final Spell BARKSKIN = new BarkskinSpell();
+    public static final Spell BEACON_OF_HOPE = new BeaconOfHopeSpell();
+    public static final Spell BEAST_SENSE = new BeastSenseSpell();
+    public static final Spell BLESS = new BlessSpell();
+    public static final Spell BURNING_HANDS = new BurningHandsSpell();
+    public static final Spell CALL_LIGHTNING = new CallLightningSpell();
+    public static final Spell COMMAND = new CommandSpell();
     /** The spells fields below this point have not been updated to the new spell format */
-    public static final Spell BARKSKIN = new Spell("Barkskin", SpellTypes.TRANSMUTATION, SpellLevels.L2, ActionTimes.ACTION, 0, true, true, "a handful of oak bark", 3600, true, "You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16, regardless of what kind of armor it is wearing.");
-    public static final Spell BEACON_OF_HOPE = new Spell("Beacon of Hope", SpellTypes.ABJURATION, SpellLevels.L3, ActionTimes.ACTION, 30, true, true, "", 60, true, "This spell bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing.");
-    public static final Spell BEAST_SENSE = new RitualSpell("Beast Sense", SpellTypes.DIVINATION, SpellLevels.L2, ActionTimes.ACTION, 0, false, true, "", 3600, true, "You touch a willing beast. For the duration of the spell, you can use your action to see through the beast's eyes and hear what it hears, and continue to do so until you use your action to return to your normal senses.", "While perceiving through the beast's senses, you gain the benefits of any special senses possessed by that creature, though you are blinded and deafened to your own surroundings.");
-    public static final Spell BLESS = new ScalableEffectSpell("Bless", SpellTypes.ENCHANTMENT, SpellLevels.L1, ActionTimes.ACTION, 30, true, true, "a sprinkling of holy water", 60, true, new CustomMap<SpellLevels, Integer>().add(SpellLevels.L1, 1).add(SpellLevels.L2, 2).add(SpellLevels.L3, 3).add(SpellLevels.L4, 4).add(SpellLevels.L5, 5).add(SpellLevels.L6, 6).add(SpellLevels.L7, 7).add(SpellLevels.L8, 8).add(SpellLevels.L9, 9), SpellLevels.L2, "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.");
-    public static final Spell BURNING_HANDS = new ScaleableDamageAbilityScoreDCSaveSpell<>("Burning Hands", SpellTypes.EVOCATION, SpellLevels.L1, ActionTimes.ACTION, 15, true, true, "", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L1, new Dice(6, 3)).add(SpellLevels.L2, new Dice(6, 4)).add(SpellLevels.L3, new Dice(6, 5)).add(SpellLevels.L4, new Dice(6, 6)).add(SpellLevels.L5, new Dice(6, 7)).add(SpellLevels.L6, new Dice(6, 8)).add(SpellLevels.L7, new Dice(6, 9)).add(SpellLevels.L8, new Dice(6, 10)).add(SpellLevels.L9, new Dice(6, 11)), DamageTypes.FIRE, AbilityScoreType.DEX, "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.", "The fire ignites any flammable objects in the area that aren't being worn or carried.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.");
-    public static final Spell CALL_LIGHTNING = new ScaleableDamageAbilityScoreDCSaveSpell<>("Call Lightning", SpellTypes.CONJURATION, SpellLevels.L3, ActionTimes.ACTION, 120, true, true, "", 600, true, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L4, new Dice(10, 3)).add(SpellLevels.L5, new Dice(10, 4)).add(SpellLevels.L6, new Dice(10, 5)).add(SpellLevels.L7, new Dice(10, 6)).add(SpellLevels.L8, new Dice(10, 7)).add(SpellLevels.L9, new Dice(10, 9)), DamageTypes.LIGHTNING, AbilityScoreType.DEX, "A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see 100 feet directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you in a room that can't accommodate the cloud).", "When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down from the cloud from that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.", "If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10.", "At Higher Levels: When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.");
-    public static final Spell COMMAND = new ScalableEffectSpell("Command", SpellTypes.ENCHANTMENT, SpellLevels.L1, ActionTimes.ACTION, 60, true, false, "", 6, false, new CustomMap<SpellLevels, Integer>().add(SpellLevels.L1, 1).add(SpellLevels.L2, 2).add(SpellLevels.L3, 3).add(SpellLevels.L4, 4).add(SpellLevels.L5, 5).add(SpellLevels.L6, 6).add(SpellLevels.L7, 7).add(SpellLevels.L8, 8).add(SpellLevels.L9, 9), SpellLevels.L2, "- You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it.", "- Some typical commands and their effects follow You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target can't follow your command, the spell ends.", "- Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet you.", "- Drop: The target drops whatever it is holding end then ends its turn.", "- Flee: The target spends its turn moving away from you by the fastest available means.", "- Grovel: The target falls prone and then ends its turn.", "- Halt: The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.");
     public static final Spell COMMUNE_WITH_NATURE = new RitualSpell("Commune with Nature", SpellTypes.DIVINATION, SpellLevels.L5, 60, 0, true, true, "", 0, false, "You briefly become one with nature and gain knowledge of the surrounding territory. In the outdoors, the spell gives you knowledge of the land within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell doesn't function where nature has been replaced by construction, such as in dungeons and towns.", "You instantly gain knowledge of up to three facts of your choice about any of the following subjects as they relate to the area:", "- terrain and bodies of water", "- prevalent plants, minerals, animals, or peoples", "- influence from other planes of existence", "- buildings", "For example, you could determine the location of powerful undead in the are, the location of major sources of safe drinking water, and the location of any nearby towns.");
     public static final Spell CONFUSION = new ConfusionSpell();
     public static final Spell CONTROL_WATER = new MultiEffectSpell("Control Water", SpellTypes.TRANSMUTATION, SpellLevels.L4, ActionTimes.ACTION, 300, true, true, "a drop of water and a pinch of dust", 600, true, Arrays.asList(new SpellEffect("Flood", "You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land.", "If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicles in the wave's path are carried with it to the other side. Any Huge or smaller vehicles struck by the wave have a 25 percent chance of capsizing.", "The water level remains elevated until the spell ends or you choose a different effect. If this effect produced a wave, the wave repeats on the start of your next turn while the flood effect lasts."), new SpellEffect("Part Water", "You cause water in the area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side. The trench remains until the spell ends or you choose a different effect. The water then slowly fills in the trench over the course of the next round until the normal water level is restored."), new SpellEffect("Redirect Flow", "You cause flowing water in area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water in the area moves as you direct it, but once it moves beyond the spell's area, it resumes its flow based on the terrain conditions. The water continues to move in the direction you chose until the spell ends or you choose a different effect."), new DamageDealingSkillDCSaveSpellEffect("Whirlpool", new Damage(DamageTypes.BLUDGEONING, new Dice(8, 2)), SkillTypes.ATHLETICS, "This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. The whirlpool forms a vortex is pulled 10 feet toward it. A creature can swim away from the vortex by making a Strength (Athletics) check against your spell save DC.", "When a creature enters the vortex for the first time one a turn or starts its turn there, it must make a Strength saving throw. On a failed save the creature takes 2d8 bludgeoning damage and is caught in the vortex until the spell ends. On a successful save, the creature takes half damage, and isn't caught in the vortex. A creature caught in the vortex can use its action to try to swim away from the vortex as described above, but has disadvantage on the Strength (Athletics) check to do so.", "The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex.")), "Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.");
@@ -121,7 +125,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             range = 60;
             spellComponents = new SpellComponents(true, true);
-            properties = Collections.singletonList(new ScaleableDamageProperty<>(getId() + ".property.scaleable_damage", DamageTypes.ACID, new CustomMap<Integer, Dice>().add(1, new Dice(6)).add(5, new Dice(6, 2)).add(11, new Dice(6, 3)).add(17, new Dice(6, 4))));
+            properties = Collections.singletonList(new ScalableDamageProperty<>(getId(), DamageTypes.ACID, new CustomMap<Integer, Dice>().add(1, new Dice(6)).add(5, new Dice(6, 2)).add(11, new Dice(6, 3)).add(17, new Dice(6, 4))));
         }
     }
 
@@ -136,7 +140,7 @@ public class Spells
             range = 30;
             spellComponents = new SpellComponents(true, true, "a tiny strip of white cloth");
             spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
-            properties = Collections.singletonList(new MappedProperty<>(getId() + ".property.map.integer_dice", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> 5 * (level.getValue() - 1))));
+            properties = Collections.singletonList(new MapProperty<>(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> 5 * (level.getValue() - 1))));
         }
     }
 
@@ -165,7 +169,7 @@ public class Spells
             range = 30;
             spellComponents = new SpellComponents(true, true);
             spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
-            properties = Collections.singletonList(new ListProperty<>(getId() + ".property.list.effects", Arrays.asList(AlterSpellEffects.AQUATIC_ADAPTATION, AlterSpellEffects.CHANGE_APPEARANCE, AlterSpellEffects.NATURAL_WEAPONS)));
+            properties = Collections.singletonList(new ListProperty<>(getId(), Arrays.asList(AlterSpellEffects.AQUATIC_ADAPTATION, AlterSpellEffects.CHANGE_APPEARANCE, AlterSpellEffects.NATURAL_WEAPONS)));
         }
     }
 
@@ -180,7 +184,7 @@ public class Spells
             range = 30;
             spellComponents = new SpellComponents(true, true, "a morsel of food");
             spellDuration = new SpellDuration(ActionTimes.ONE_DAY);
-            properties = Arrays.asList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)), new AbilityScoreDCSaveProperty(getId() + ".property.ability_score_dc_save", AbilityScoreTypes.WIS));
+            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.WIS));
         }
     }
 
@@ -197,7 +201,7 @@ public class Spells
             spellComponents = new SpellComponents(true, true, "a morsel of food");
             //This spell has a special condition that changes duration based on the Spell Slot used to cast the spell.
             spellDuration = new SpellDuration(-1);
-            properties = Collections.singletonList(new MappedProperty<>(getId() + ".property.mapped.spellLevel_double", CustomMap.populateSpellLevelDoubleMap(spellLevel, level -> ActionTimes.ONE_DAY + (level.getValue() - 2) * ActionTimes.TWO_DAYS)));
+            properties = Collections.singletonList(new SpellLevelDoubleProperty(getId(), CustomMap.populateSpellLevelDoubleMap(spellLevel, level -> ActionTimes.ONE_DAY + (level.getValue() - 2) * ActionTimes.TWO_DAYS)));
         }
     }
 
@@ -225,7 +229,7 @@ public class Spells
             castingTime = ActionTimes.ONE_MINUTE;
             range = 10;
             spellComponents = new SpellComponents(true, true, "a drop of blood, a piece of flesh, and a pinch of bone dust");
-            properties = Collections.singletonList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() - 2)));
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() - 2)));
         }
     }
 
@@ -240,7 +244,7 @@ public class Spells
             range = 120;
             spellComponents = new SpellComponents(true, true);
             spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
-            properties = Arrays.asList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 2)), new SingleValueProperty<>(getId() + ".property.single_value.table", new Table("Animated Object Statistics", new Column<>("Size", CharacterSize.TINY, CharacterSize.SMALL, CharacterSize.MEDIUM, CharacterSize.LARGE, CharacterSize.HUGE), new Column<>("HP", 20, 25, 40, 50, 80), new Column<>("AC", 18, 16, 13, 10, 10), new Column<>("Attack", "+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"), new Column<>("Str", 4, 6, 10, 14, 18), new Column<>("Dex", 18, 14, 12, 10, 6))));
+            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 2)), new SingleValueProperty<>(getId() + ".property.single_value.table", new Table("Animated Object Statistics", new Column<>("Size", CharacterSize.TINY, CharacterSize.SMALL, CharacterSize.MEDIUM, CharacterSize.LARGE, CharacterSize.HUGE), new Column<>("HP", 20, 25, 40, 50, 80), new Column<>("AC", 18, 16, 13, 10, 10), new Column<>("Attack", "+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"), new Column<>("Str", 4, 6, 10, 14, 18), new Column<>("Dex", 18, 14, 12, 10, 6))));
         }
     }
 
@@ -267,7 +271,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             spellComponents = new SpellComponents(true, true, "a pinch of powdered iron or iron filings");
             spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
-            properties = Collections.singletonList(new ListProperty<>(getId() + ".property.list.effects", Arrays.asList(AntimagicFieldSpellEffects.TARGETED_EFFECTS, AntimagicFieldSpellEffects.AREAS_OF_MAGIC, AntimagicFieldSpellEffects.SPELLS, AntimagicFieldSpellEffects.MAGIC_ITEMS, AntimagicFieldSpellEffects.MAGICAL_TRAVEL, AntimagicFieldSpellEffects.CREATURES_AND_OBJECTS, AntimagicFieldSpellEffects.DISPEL_MAGIC)));
+            properties = Collections.singletonList(new MultipleEffectsProperty(getId() + ".property.list.effects", Arrays.asList(AntimagicFieldSpellEffects.TARGETED_EFFECTS, AntimagicFieldSpellEffects.AREAS_OF_MAGIC, AntimagicFieldSpellEffects.SPELLS, AntimagicFieldSpellEffects.MAGIC_ITEMS, AntimagicFieldSpellEffects.MAGICAL_TRAVEL, AntimagicFieldSpellEffects.CREATURES_AND_OBJECTS, AntimagicFieldSpellEffects.DISPEL_MAGIC)));
         }
     }
 
@@ -282,7 +286,7 @@ public class Spells
             range = 60;
             spellComponents = new SpellComponents(true, true, "either a lump of alum soaked in vinegar for the Antipathy effect or a drop of honey for the Sympathy effect");
             spellDuration = new SpellDuration(ActionTimes.ONE_DAY * 10);
-            properties = Collections.singletonList(new ListProperty<>(getId() + ".property.list.effects", Arrays.asList(AntipathySympathySpellEffects.ANTIPATHY, AntipathySympathySpellEffects.SYMPATHY, AntipathySympathySpellEffects.ENDING_THE_EFFECT)));
+            properties = Collections.singletonList(new MultipleEffectsProperty(getId() + ".property.list.effects", Arrays.asList(AntipathySympathySpellEffects.ANTIPATHY, AntipathySympathySpellEffects.SYMPATHY, AntipathySympathySpellEffects.ENDING_THE_EFFECT)));
         }
     }
 
@@ -325,7 +329,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             spellComponents = new SpellComponents(true, true, "a cup of water");
             spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
-            properties = Arrays.asList(new MappedProperty<>(getId() + ".property.map.spellLevel_integer", CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, spellLevel -> spellLevel.getValue() * 5)), new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageTypes.COLD));
+            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, spellLevel -> spellLevel.getValue() * 5)), new DamageTypeProperty(getId(), DamageTypes.COLD));
         }
     }
 
@@ -337,7 +341,7 @@ public class Spells
             spellType = SpellTypes.CONJURATION;
             spellLevel = SpellLevels.L1;
             spellComponents = new SpellComponents(true, true);
-            properties = Collections.singletonList(new ScaleableDamageProperty<>(getId() + ".property.scaleable_damage", DamageTypes.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 1)));
+            properties = Collections.singletonList(new ScalableDamageProperty<>(getId(), DamageTypes.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 1)));
         }
     }
 
@@ -374,7 +378,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             spellComponents = new SpellComponents(true, false);
             spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
-            properties = Collections.singletonList(new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageTypes.NECROTIC));
+            properties = Collections.singletonList(new DamageTypeProperty(getId(), DamageTypes.NECROTIC));
         }
     }
 
@@ -387,7 +391,108 @@ public class Spells
             spellLevel = SpellLevels.L4;
             spellComponents = new SpellComponents(true, false);
             spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
-            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single_value.damage_type", DamageTypes.POISON), new ListProperty<>(getId() + ".property.list.condition", Arrays.asList(Conditions.BLINDED, Conditions.CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED)));
+            properties = Arrays.asList(new DamageTypeProperty(getId(), DamageTypes.POISON), new ListProperty<>(getId() + ".property.list.condition", Arrays.asList(Conditions.BLINDED, Conditions.CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED)));
+        }
+    }
+
+    public static class BarkskinSpell extends Spell
+    {
+        private BarkskinSpell()
+        {
+            super(Spell.PREFIX + "barkskin", "Barkskin", "You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16, regardless of what kind of armor it is wearing.");
+            spellType = SpellTypes.TRANSMUTATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true, "a handful of oak bark");
+            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+        }
+    }
+
+    public static class BeaconOfHopeSpell extends Spell
+    {
+        private BeaconOfHopeSpell()
+        {
+            super(Spell.PREFIX + "beacon_of_hope", "Beacon of Hope", "This spell bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing.");
+            spellType = SpellTypes.ABJURATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+        }
+    }
+
+    public static class BeastSenseSpell extends Spell
+    {
+        private BeastSenseSpell()
+        {
+            super(Spell.PREFIX + "beast_sense", "Beast Sense", "You touch a willing beast. For the duration of the spell, you can use your action to see through the beast's eyes and hear what it hears, and continue to do so until you use your action to return to your normal senses.", "While perceiving through the beast's senses, you gain the benefits of any special senses possessed by that creature, though you are blinded and deafened to your own surroundings.");
+            isRitual = true;
+            spellType = SpellTypes.DIVINATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(false, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+        }
+    }
+
+    public static class BlessSpell extends Spell
+    {
+        private BlessSpell()
+        {
+            super(Spell.PREFIX + "bless", "Bless", "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.");
+            spellType = SpellTypes.ENCHANTMENT;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, true, "a sprinkling of holy water");
+            spellDuration = new SpellDuration(60, true);
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, SpellLevel::getValue)));
+        }
+    }
+
+    public static class BurningHandsSpell extends Spell
+    {
+        private BurningHandsSpell()
+        {
+            super(Spell.PREFIX + "burning_hands", "Burning Hands", "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.", "The fire ignites any flammable objects in the area that aren't being worn or carried.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.");
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            range = 15;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(0);
+            properties = Collections.singletonList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(SpellLevels.L1, 6, level -> level.getValue() + 2)));
+        }
+    }
+
+    public static class CallLightningSpell extends Spell
+    {
+        private CallLightningSpell()
+        {
+            super(Spell.PREFIX + "call_lightning", "Call Lightning", "A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see 100 feet directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you in a room that can't accommodate the cloud).", "When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down from the cloud from that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.", "If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10.", "At Higher Levels: When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.");
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 120;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(600, true);
+            properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(SpellLevels.L5, 10, level -> level.getValue() - 1)), new DamageTypeProperty(getId(), DamageTypes.LIGHTNING), new SavingThrowProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    }
+
+    public static class CommandSpell extends Spell
+    {
+        private CommandSpell()
+        {
+            super(Spell.PREFIX + "command", "Command", "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it.", "Some typical commands and their effects follow You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target can't follow your command, the spell ends.", "- Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet you.", "- Drop: The target drops whatever it is holding end then ends its turn.", "- Flee: The target spends its turn moving away from you by the fastest available means.", "- Grovel: The target falls prone and then ends its turn.", "- Halt: The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.");
+            spellType = SpellTypes.ENCHANTMENT;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, false);
+            spellDuration = new SpellDuration(6);
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, SpellLevel::getValue)));
         }
     }
 }

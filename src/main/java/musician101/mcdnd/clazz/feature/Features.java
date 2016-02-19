@@ -43,6 +43,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+//TODO implement Properties
 public class Features
 {
     private static final HitDice D8 = new HitDice(8);

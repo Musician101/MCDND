@@ -18,8 +18,6 @@ public class Interfaces
 {
     public interface AbilityScoreDCSave
     {
-        AbilityScoreType getAbilityScoreType();
-
         int getDCSave(AbilityScore score, int... bonuses);
     }
 

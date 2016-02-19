@@ -2,18 +2,17 @@ package musician101.mcdnd.property;
 
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
-import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 
 import java.util.Map;
 
-public class ScaleableDamageProperty<K> extends MappedProperty<K, Dice>
+public class ScalableDamageProperty<K> extends MapProperty<K, Dice>
 {
     DamageType damageType;
 
-    public ScaleableDamageProperty(String id, DamageType damageType, Map<K, Dice> map)
+    public ScalableDamageProperty(String idPrefix, DamageType damageType, Map<K, Dice> map)
     {
-        super(id, map);
+        super(idPrefix + ".property.scalable_damage", map);
         this.damageType = damageType;
     }
 
