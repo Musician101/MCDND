@@ -45,7 +45,7 @@ public class MapProperty<K, V> extends Property implements Mapped<K, V>
     {
         protected SpellLevelProperty(String idPrefix, String numberName, Map<SpellLevel, V> map)
         {
-            super(idPrefix + "property.spell-level_" + numberName, map);
+            super(idPrefix + "property.map.spell-level_" + numberName, map);
         }
 
         public static class SpellLevelIntegerProperty extends SpellLevelProperty<Integer>

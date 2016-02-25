@@ -4,6 +4,7 @@ import musician101.mcdnd.util.CustomMap;
 
 import java.util.Map;
 
+@Deprecated
 public class ScryingSpell extends Spell
 {
     private final Map<String, Integer> connectionMap;

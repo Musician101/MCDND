@@ -6,6 +6,7 @@ import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import musician101.mcdnd.util.Interfaces.DamageDealer;
 
+@Deprecated
 public class AbilityScoreDCSaveSpell extends Spell implements AbilityScoreDCSave
 {
     private final AbilityScoreType type;
@@ -36,6 +37,7 @@ public class AbilityScoreDCSaveSpell extends Spell implements AbilityScoreDCSave
         return save;
     }
 
+    @Deprecated
     public static class DamageDealingAbilityScoreDCSaveSpell extends AbilityScoreDCSaveSpell implements DamageDealer
     {
         Damage damage;

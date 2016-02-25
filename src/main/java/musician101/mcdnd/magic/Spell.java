@@ -6,6 +6,7 @@ import musician101.mcdnd.skill.Skill;
 import musician101.mcdnd.skill.SkillTypes;
 import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Described;
+import musician101.mcdnd.util.Interfaces.HasProperties;
 import musician101.mcdnd.util.Interfaces.Identified;
 import musician101.mcdnd.util.Interfaces.Named;
 import musician101.mcdnd.util.Interfaces.SkillDCSave;
@@ -13,9 +14,8 @@ import musician101.mcdnd.util.Interfaces.SkillDCSave;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Spell implements Described, Named, Identified
+public class Spell implements Described, HasProperties, Identified, Named
 {
-    protected final String PREFIX = "spell.";
     protected boolean isRitual = false;
     protected double castingTime = 0;
     protected int range = 0;
@@ -30,7 +30,7 @@ public class Spell implements Described, Named, Identified
 
     protected Spell(String id, String name, String... description)
     {
-        this.id = id;
+        this.id = "spell." + id;
         this.name = name;
         this.description = description;
     }
@@ -167,6 +167,7 @@ public class Spell implements Described, Named, Identified
 
     /** Obsolete classes currently being kept for reference purposes
      * Other classes include AbilityScoreDCSaveSpell, ConfusionSpell, ListSpell, MappedSpell, MultiEffectSpell, and ScryingSpell */
+    @Deprecated
     public static class DamagePerDistanceSkillDCSaveSpell extends Spell implements DamageDealer, SkillDCSave
     {
         Damage damage;
@@ -212,6 +213,7 @@ public class Spell implements Described, Named, Identified
         }
     }
 
+    @Deprecated
     public static class CastTimeChoiceSpell extends Spell
     {
         int castTime2;

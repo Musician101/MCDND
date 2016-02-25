@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO needs rewrite
 public abstract class Shape implements Described, EffectsArea, Named
 {
     private final String[] description;

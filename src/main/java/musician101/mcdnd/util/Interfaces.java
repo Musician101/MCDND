@@ -6,6 +6,7 @@ import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.currency.CurrencyHolder.Cost;
 import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
+import musician101.mcdnd.skill.SkillType;
 import musician101.mcdnd.skill.SkillTypes;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.world.Location;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 public class Interfaces
 {
-    public interface AbilityScoreDCSave
+    public interface AbilityScoreDCSave extends SingleValue<AbilityScoreType>
     {
         int getDCSave(AbilityScore score, int... bonuses);
     }
@@ -81,11 +82,9 @@ public class Interfaces
         T getValue();
     }
 
-    public interface SkillDCSave
+    public interface SkillDCSave extends SingleValue<SkillType>
     {
         int getDCSave(Skill skill, int... bonuses);
-
-        SkillTypes getSkillSaveType();
     }
 
     public interface Weighable

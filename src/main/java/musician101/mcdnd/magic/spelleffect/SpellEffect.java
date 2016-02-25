@@ -5,25 +5,38 @@ import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.dice.Dice;
+import musician101.mcdnd.property.Property;
 import musician101.mcdnd.skill.Skill;
+import musician101.mcdnd.skill.SkillType;
 import musician101.mcdnd.skill.SkillTypes;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import musician101.mcdnd.util.Interfaces.DamageDealer;
 import musician101.mcdnd.util.Interfaces.Described;
+import musician101.mcdnd.util.Interfaces.HasProperties;
+import musician101.mcdnd.util.Interfaces.Identified;
 import musician101.mcdnd.util.Interfaces.Mapped;
 import musician101.mcdnd.util.Interfaces.Named;
+import musician101.mcdnd.util.Interfaces.SingleValue;
 import musician101.mcdnd.util.Interfaces.SkillDCSave;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /** SpellEffects also need to be rewritten to use the new Identified interface and Property classes. */
-public class SpellEffect implements Described, Named
+public class SpellEffect implements Described, HasProperties, Identified, Named
 {
+    List<Property> properties = new ArrayList<>();
+    String id;
     String name;
     String[] description;
 
-    protected SpellEffect(){}
+    protected SpellEffect(String id, String name, String... description)
+    {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 
     @Override
     public String[] getDescription()
@@ -32,21 +45,32 @@ public class SpellEffect implements Described, Named
     }
 
     @Override
+    public String getId()
+    {
+        return id;
+    }
+
+    @Override
     public String getName()
     {
         return name;
     }
 
+    @Override
+    public List<Property> getProperties()
+    {
+        return properties;
+    }
+
+    @Deprecated
     public static class AbilityScoreDCSaveSpellEffect extends SpellEffect implements AbilityScoreDCSave
     {
         AbilityScoreType type;
 
-        protected AbilityScoreDCSaveSpellEffect(){}
-
-        @Override
-        public AbilityScoreType getAbilityScoreType()
+        public AbilityScoreDCSaveSpellEffect(String id, String name, AbilityScoreType type, String... description)
         {
-            return type;
+            super(id, name, description);
+            this.type = type;
         }
 
         @Override
@@ -61,14 +85,24 @@ public class SpellEffect implements Described, Named
 
             return save;
         }
+
+        @Override
+        public AbilityScoreType getValue()
+        {
+            return type;
+        }
     }
 
+    @Deprecated
     public static class DamageDealingSkillDCSaveSpellEffect extends SpellEffect implements DamageDealer, SkillDCSave
     {
         Damage damage;
-        SkillTypes skillType;
+        SkillType skillType;
 
-        protected DamageDealingSkillDCSaveSpellEffect(){}
+        public DamageDealingSkillDCSaveSpellEffect(String id, String name, String... description)
+        {
+            super(id, name, description);
+        }
 
         @Override
         public Damage getDamage()
@@ -77,7 +111,7 @@ public class SpellEffect implements Described, Named
         }
 
         @Override
-        public SkillTypes getSkillSaveType()
+        public SkillType getValue()
         {
             return skillType;
         }
@@ -93,6 +127,7 @@ public class SpellEffect implements Described, Named
         }
     }
 
+    @Deprecated
     public static class DamageDealingMultiDamageTypeSpellEffect extends SpellEffect
     {
         Dice damageAmount;
@@ -111,6 +146,7 @@ public class SpellEffect implements Described, Named
         }
     }
 
+    @Deprecated
     public static class MappedSpellEffect<K, V> extends SpellEffect implements Mapped<K, V>
     {
         Map<K, V> map;

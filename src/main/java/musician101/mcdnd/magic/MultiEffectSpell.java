@@ -5,6 +5,7 @@ import musician101.mcdnd.util.Interfaces.Listed;
 
 import java.util.List;
 
+@Deprecated
 public class MultiEffectSpell extends Spell implements Listed<SpellEffect>
 {
     protected List<SpellEffect> effects;

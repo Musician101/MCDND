@@ -9,9 +9,9 @@ public class ListProperty<T> extends Property implements Listed<T>
 {
     protected List<T> list;
 
-    public ListProperty(String idPrefix, List<T> list)
+    public ListProperty(String id, List<T> list)
     {
-        super(idPrefix + ".property.list");
+        super(id);
         this.list = list;
     }
 
@@ -31,7 +31,7 @@ public class ListProperty<T> extends Property implements Listed<T>
     {
         public MultipleEffectsProperty(String idPrefix, List<SpellEffect> list)
         {
-            super(idPrefix + ".property.list.effects", list);
+            super(idPrefix + ".property.list.effect", list);
         }
     }
 }

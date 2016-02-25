@@ -4,17 +4,13 @@ import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 
+//TODO move to SingleValueProperty class
+@Deprecated
 public class AbilityScoreDCSaveProperty extends SingleValueProperty<AbilityScoreType> implements AbilityScoreDCSave
 {
     public AbilityScoreDCSaveProperty(String idPrefix, AbilityScoreType abilityScoreType)
     {
-        super(idPrefix + ".single_value.dc_save_property", abilityScoreType);
-    }
-
-    @Override
-    public AbilityScoreType getAbilityScoreType()
-    {
-        return getValue();
+        super(idPrefix + ".property.ability_score_dc_save", abilityScoreType);
     }
 
     @Override

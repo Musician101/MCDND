@@ -12,6 +12,7 @@ import musician101.mcdnd.util.Interfaces.Mapped;
 import java.util.List;
 import java.util.Map;
 
+@Deprecated
 public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
 {
     protected Map<K, V> map;
@@ -48,6 +49,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
             return new Damage(damageType, map.get(key));
         }
 
+        @Deprecated
         public static class ScaleableDamageAbilityScoreDCSaveSpell<K> extends ScaleableDamageSpell<K> implements AbilityScoreDCSave
         {
             AbilityScoreType scoreType;
@@ -74,6 +76,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
                 return 8 + mod;
             }
 
+            @Deprecated
             public static class MultiDamageScaleableAbilityScoreDCSaveSpell<K> extends MappedSpell<K, Dice> implements AbilityScoreDCSave, Listed<DamageTypes>
             {
                 AbilityScoreType scoreType;
@@ -117,6 +120,7 @@ public class MappedSpell<K, V> extends Spell implements Mapped<K, V>
         }
     }
 
+    @Deprecated
     public class BehaviorSpell extends MappedSpell<Integer, String>
     {
         public BehaviorSpell(String name, SpellTypes type, SpellLevels level, double castingTime, int range, boolean isVerbal, boolean isSomatic, String materials, int duration, boolean needsConcentration, Map<Integer, String> map, String... description)
