@@ -77,7 +77,7 @@ public class SingleValueProperty<T> extends Property implements SingleValue<T>
         public int getDCSave(Skill skill, int... bonuses)
         {
             if (skill.getType() != getValue())
-                throw new IllegalArgumentException("Invalid AbilityScore type for DC saving throw.");
+                throw new IllegalArgumentException("Invalid Skill type for DC saving throw.");
 
             int save = 8 + skill.getMod();
             for (int bonus : bonuses)
