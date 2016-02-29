@@ -18,13 +18,13 @@ public class SkillCarrier
 
     public int getSkillMod(SkillType skill)
     {
-        return skills.get(skill).getSkillMod();
+        return skills.get(skill).getMod();
     }
 
     public void updateSkill(Skill... skills)
     {
         for (Skill skill : skills)
-            this.skills.put(skill.getSkill(), skill);
+            this.skills.put(skill.getType(), skill);
     }
 
     public int rollSkill(SkillType skill)

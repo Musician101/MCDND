@@ -9,6 +9,7 @@ public class ActionTimes
     public static final double ONE_DAY = 86400;
     public static final double ONE_HOUR = 3600;
     public static final double ONE_MINUTE = 60;
+    public static final double REACTION = 0.5;
     public static final double TURN = 6;
     public static final double TWO_DAYS = 172800;
 }

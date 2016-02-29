@@ -1,32 +1,26 @@
 package musician101.mcdnd.magic;
 
-import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.abilityscore.AbilityScoreTypes;
 import musician101.mcdnd.combat.Damage;
 import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.condition.Conditions;
 import musician101.mcdnd.dice.Dice;
-import musician101.mcdnd.magic.AbilityScoreDCSaveSpell.DamageDealingAbilityScoreDCSaveSpell;
-import musician101.mcdnd.magic.MappedSpell.ScaleableDamageSpell;
-import musician101.mcdnd.magic.MappedSpell.ScaleableDamageSpell.ScaleableDamageAbilityScoreDCSaveSpell;
-import musician101.mcdnd.magic.MappedSpell.ScaleableDamageSpell.ScaleableDamageAbilityScoreDCSaveSpell.MultiDamageScaleableAbilityScoreDCSaveSpell;
-import musician101.mcdnd.magic.Spell.CastTimeChoiceSpell;
-import musician101.mcdnd.magic.Spell.DamagePerDistanceSkillDCSaveSpell;
 import musician101.mcdnd.magic.spelleffect.SpellEffects.AlterSpellEffects;
 import musician101.mcdnd.magic.spelleffect.SpellEffects.AntimagicFieldSpellEffects;
 import musician101.mcdnd.magic.spelleffect.SpellEffects.AntipathySympathySpellEffects;
 import musician101.mcdnd.magic.spelleffect.SpellEffects.ControlWaterSpellEffects;
-import musician101.mcdnd.property.AbilityScoreDCSaveProperty;
 import musician101.mcdnd.property.ListProperty;
 import musician101.mcdnd.property.ListProperty.MultipleEffectsProperty;
 import musician101.mcdnd.property.MapProperty;
 import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelDiceProperty;
 import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelDoubleProperty;
 import musician101.mcdnd.property.MapProperty.SpellLevelProperty.SpellLevelIntegerProperty;
-import musician101.mcdnd.property.ScalableDamageProperty;
+import musician101.mcdnd.property.ScalableDamageProperty.IntegerScalableDamageProperty;
+import musician101.mcdnd.property.ScalableDamageProperty.SpellLevelScalableDamageProperty;
 import musician101.mcdnd.property.SingleValueProperty;
+import musician101.mcdnd.property.SingleValueProperty.AbilityScoreDCSaveProperty;
 import musician101.mcdnd.property.SingleValueProperty.DamageTypeProperty;
-import musician101.mcdnd.property.SingleValueProperty.SavingThrowProperty;
+import musician101.mcdnd.property.SingleValueProperty.SkillDCSaveProperty;
 import musician101.mcdnd.race.Race.CharacterSize;
 import musician101.mcdnd.skill.SkillTypes;
 import musician101.mcdnd.util.ActionTimes;
@@ -49,7 +43,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             range = 60;
             spellComponents = new SpellComponents(true, true);
-            properties = Collections.singletonList(new ScalableDamageProperty<>(getId(), DamageTypes.ACID, new CustomMap<Integer, Dice>().add(1, new Dice(6)).add(5, new Dice(6, 2)).add(11, new Dice(6, 3)).add(17, new Dice(6, 4))));
+            properties = Collections.singletonList(new IntegerScalableDamageProperty(getId(), DamageTypes.ACID, new CustomMap<Integer, Dice>().add(1, new Dice(6)).add(5, new Dice(6, 2)).add(11, new Dice(6, 3)).add(17, new Dice(6, 4))));
         }
     };
     public static final Spell AID = new Spell("aid", "Aid", "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd.")
@@ -211,7 +205,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             spellComponents = new SpellComponents(true, true, "a cup of water");
             spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
-            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, spellLevel -> spellLevel.getValue() * 5)), new DamageTypeProperty(getId(), DamageTypes.COLD));
+            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 5)), new DamageTypeProperty(getId(), DamageTypes.COLD));
         }
     };
     public static final Spell ARMS_OF_HADAR = new Spell("arms_of_hadar", "Arms of Hadar", "You invoke the power of Hadar, the Dark Hunger. Tendrils of dark energy erupt from you and batter all creatures within 10 feet of you. Each creature in that area must make a Strength saving throw. On a failed save, a target takes 2d6 necrotic damage and can't take reactions until its next turn. On a successful save, the creature takes half damage, but suffers no other effect.", "At HigherLevels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.")
@@ -220,7 +214,7 @@ public class Spells
             spellType = SpellTypes.CONJURATION;
             spellLevel = SpellLevels.L1;
             spellComponents = new SpellComponents(true, true);
-            properties = Collections.singletonList(new ScalableDamageProperty<>(getId(), DamageTypes.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 1)));
+            properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 1)));
         }
     };
     public static final Spell ASTRAL_PROJECTION = new Spell("astral_projection", "Astral Projection", "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell fails and the casting is wasted if you are already on that plane). The material body you leave behind is unconscious and in a state of suspended animation; it doesn't need food or air and doesn't age.", "Your astral body resembles your mortal form in almost every way, replicating your game statistics and possessions. The principal difference is the addition of a silvery cord that extends from between your shoulder blades and trails behind you, fading to invisibility after 1 foot. This cord is your tether to your material body. As long as the thether remains intact, you can find your way home. If the cord is cut-something that can happen only when an effect specifically states that it does-your soul and body are separated, killing you instantly.", "Your astral form can freely travel through the Astral Plane and can pass through portals there leading to any other plane. If you enter a new plane or return to the plane you were on when casting this spell, your body and possesions are transported along the silver cord, allowing you to re-enter your body as you enter the new plane. Your astral form is a separate incarnation. Any damage or other effects that apply to it have no effect on your physical body nor do they persist when you return to it.", "The spell ends for you and your companions when you use your action to dismiss it. When the spell ends, the affected creature returns to its physical body, and it awakens.", "The spell might also end early for you or one of your companions. A successful Dispel Magic spell used against an astral or physical body ends the spell for that creature. If a creature's original body or its astral form drops to 0 hit points, the spell ends for that creature. If the spell ends and the silver cord is intact, the cord pulls the creature's astral form back to its body, ending its state of suspended animation.", "If you are returned to your body prematurely, your companions remain in their astral forms and must find their own way back to their bodies, usually by dropping to 0 hit points.")
@@ -302,7 +296,7 @@ public class Spells
             range = 30;
             spellComponents = new SpellComponents(true, true, "a sprinkling of holy water");
             spellDuration = new SpellDuration(60, true);
-            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, SpellLevel::getValue)));
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
     public static final Spell BURNING_HANDS = new Spell("burning_hands", "Burning Hands", "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.", "The fire ignites any flammable objects in the area that aren't being worn or carried.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.")
@@ -313,8 +307,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             range = 15;
             spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(0);
-            properties = Collections.singletonList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(SpellLevels.L1, 6, level -> level.getValue() + 2)));
+            properties = Collections.singletonList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 2)));
         }
     };
     public static final Spell CALL_LIGHTNING = new Spell("call_lightning", "Call Lightning", "A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see 100 feet directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you in a room that can't accommodate the cloud).", "When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down from the cloud from that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.", "If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10.", "At Higher Levels: When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.")
@@ -326,7 +319,7 @@ public class Spells
             range = 120;
             spellComponents = new SpellComponents(true, true);
             spellDuration = new SpellDuration(600, true);
-            properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(SpellLevels.L5, 10, level -> level.getValue() - 1)), new DamageTypeProperty(getId(), DamageTypes.LIGHTNING), new SavingThrowProperty(getId(), AbilityScoreTypes.DEX));
+            properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() - 1)), new DamageTypeProperty(getId(), DamageTypes.LIGHTNING), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
     public static final Spell COMMAND = new Spell("command", "Command", "You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn't understand your language, or if your command is directly harmful to it.", "Some typical commands and their effects follow You might issue a command other than one described here. If you do so, the DM determines how the target behaves. If the target can't follow your command, the spell ends.", "- Approach: The target moves toward you by the shortest and most direct route, ending its turn if it moves within 5 feet you.", "- Drop: The target drops whatever it is holding end then ends its turn.", "- Flee: The target spends its turn moving away from you by the fastest available means.", "- Grovel: The target falls prone and then ends its turn.", "- Halt: The target doesn't move and takes no actions. A flying creature stays aloft, provided that it is able to do so. If it must move to stay aloft, it flies the minimum distance needed to remain in the air.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can affect one additional creature for each slot level above 1st. The creatures must be within 30 feet of each other when you target them.")
@@ -338,7 +331,7 @@ public class Spells
             range = 60;
             spellComponents = new SpellComponents(true, false);
             spellDuration = new SpellDuration(6);
-            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, SpellLevel::getValue)));
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
     public static final Spell COMMUNE_WITH_NATURE = new Spell("commune_with_nature", "Commune with Nature", "You briefly become one with nature and gain knowledge of the surrounding territory. In the outdoors, the spell gives you knowledge of the land within 3 miles of you. In caves and other natural underground settings, the radius is limited to 300 feet. The spell doesn't function where nature has been replaced by construction, such as in dungeons and towns.", "You instantly gain knowledge of up to three facts of your choice about any of the following subjects as they relate to the area:", "- terrain and bodies of water", "- prevalent plants, minerals, animals, or peoples", "- influence from other planes of existence", "- buildings", "For example, you could determine the location of powerful undead in the are, the location of major sources of safe drinking water, and the location of any nearby towns.")
@@ -349,7 +342,6 @@ public class Spells
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ONE_MINUTE;
             spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(0);
         }
     };
     public static final Spell CONFUSION = new Spell("confusion", "Confusion", "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10-foot-radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.", "An affected target can't take reactions and must roll a d10 at the start of each of its to determine its behavior for that turn.", "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.", "At Higher Levels:When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th.")
@@ -361,7 +353,7 @@ public class Spells
             range = 90;
             spellComponents = new SpellComponents(true, true, "three nut shells");
             spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
-            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L5, spellLevel -> spellLevel.getValue() * 5 + 70)), new MapProperty<>(getId() + ".property.spell-level_string",new CustomMap<Integer, String>().add(1, "The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn't take an action this turn.").add(Arrays.asList(2, 3, 4, 5, 6), "The creature doesn't move or take actions this turn.").add(Arrays.asList(7, 8), "The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn.").add(Arrays.asList(9, 10), "The creature can act and move normally.")));
+            properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 5 + 70)), new MapProperty<>(getId() + ".property.spell-level_string",new CustomMap<Integer, String>().add(1, "The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn't take an action this turn.").add(Arrays.asList(2, 3, 4, 5, 6), "The creature doesn't move or take actions this turn.").add(Arrays.asList(7, 8), "The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn.").add(Arrays.asList(9, 10), "The creature can act and move normally.")));
         }
     };
     public static final Spell CONTROL_WATER = new Spell("control_water", "Control Water", "Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.")
@@ -384,7 +376,7 @@ public class Spells
             castingTime = ActionTimes.ACTION;
             spellComponents = new SpellComponents(true, true);
             spellDuration = new SpellDuration(0, false);
-            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(SpellLevels.L1, SpellLevel::getValue)));
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
     public static final Spell DANCING_LIGHTS = new Spell("dancing_lights", "Dancing Lights", "You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius.", "As a Bonus action on your turn, you can move the lights up to 60 feet to a new spot within range. A light must be within 20 feet of anther light created by this spell, and a light winks out if it exceeds the spell's range.")
@@ -463,39 +455,377 @@ public class Spells
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
-    /** The spell fields below this point have not been updated to the new spell format */
-    public static final Spell FIREBALL = new ScaleableDamageAbilityScoreDCSaveSpell<>("Fireball", SpellTypes.EVOCATION, SpellLevels.L3, ActionTimes.ACTION, 150, true, true, "a tiny ball of bat guano and sulfur", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L3, new Dice(6, 8)).add(SpellLevels.L4, new Dice(6, 9)).add(SpellLevels.L5, new Dice(6, 10)).add(SpellLevels.L6, new Dice(6, 11)).add(SpellLevels.L7, new Dice(6, 12)).add(SpellLevels.L8, new Dice(6, 13)).add(SpellLevels.L9, new Dice(6, 14)), DamageTypes.FIRE, AbilityScoreType.DEX, "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.", "The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.", "At Higher Levels: When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.");
-    public static final Spell FLAME_STRIKE = new MultiDamageScaleableAbilityScoreDCSaveSpell<>("Flame Strike", SpellTypes.EVOCATION, SpellLevels.L5, ActionTimes.ACTION, 60, true, true, "pinch of sulfur", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L5, new Dice(6, 4)).add(SpellLevels.L6, new Dice(6, 5)).add(SpellLevels.L7, new Dice(6, 6)).add(SpellLevels.L8, new Dice(6, 7)).add(SpellLevels.L9, new Dice(6, 8)), Arrays.asList(DamageTypes.FIRE, DamageTypes.RADIANT), AbilityScoreType.DEX, "A vertical column of divine fire roars down from the heavens in a location you specify. Each creature in a 10-foot-radius, 40-foot-high cylinder centered on a point within range must make a Dexterity saving throw. A creature takes 4d6 fire damage and 4d6 radiant damage on a failed save, or half as much damage on a successful one.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the fire damage or the radiant damage (your choice) increases by 1d6 for each slot level above 5th.");
-    public static final Spell FLAMING_SPHERE = new ScaleableDamageAbilityScoreDCSaveSpell<>("Flaming Sphere", SpellTypes.CONJURATION, SpellLevels.L2, ActionTimes.ACTION, 60, true, true, "a bit of tallow, a pinch of brimstone, and a dusting of powdered iron", 60, true, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L2, new Dice(6, 2)).add(SpellLevels.L3, new Dice(6, 3)).add(SpellLevels.L4, new Dice(6, 4)).add(SpellLevels.L5, new Dice(6, 5)).add(SpellLevels.L6, new Dice(6, 6)).add(SpellLevels.L7, new Dice(6, 7)).add(SpellLevels.L8, new Dice(6, 8)).add(SpellLevels.L9, new Dice(6, 9)), DamageTypes.FIRE, AbilityScoreType.DEX, "A 5-foot-diameter sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration. Any creature that ends its turn within 5 feet of the sphere must make a Dexterity saving throw. The creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one.", "As a bonus action, you can move the sphere up to 30 feet. If you ram the sphere into a creature, that creature must take make the saving throw against the sphere's damage, and the sphere stops moving this turn.", "When you move the sphere, you can direct it over barriers up to 5 feet tall and jump it across pits up to 10 feet wide. The sphere ignites flammable objects not being worn or carried, and it sheds bright light in a 20-foot radius and dim light for an additional 20 feet.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd.");
-    public static final Spell FOG_CLOUD = new MappedSpell<>("Fog Cloud", SpellTypes.CONJURATION, SpellLevels.L1, ActionTimes.ACTION, 120, true, true, "", 3600, true, new CustomMap<SpellLevels, Integer>().add(SpellLevels.L1, 20).add(SpellLevels.L2, 40).add(SpellLevels.L3, 60).add(SpellLevels.L4, 80).add(SpellLevels.L5, 100).add(SpellLevels.L6, 120).add(SpellLevels.L7, 140).add(SpellLevels.L8, 160).add(SpellLevels.L9, 180), "You create a 20-foot-radius sphere of fog centered on a point within range. the sphere spreads around corners, and it's area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st.");
-    public static final Spell GRASPING_VINE = new AbilityScoreDCSaveSpell("Grasping Vine", SpellTypes.CONJURATION, SpellLevels.L4, ActionTimes.BONUS_ACTION, 30, true, true, "", 60, true, AbilityScoreType.DEX, "You conjure a vine that sprouts from the ground in an unoccupied space of your choice that you can see within range. When you cast this spell, you can direct the vine to lash out at a creature within 30 feet of it that you can see. That creature must succeed on a Dexterity saving throw or be pulled 20 feet directly toward the vine.", "Until the spell ends, you can direct the vine to lash out at the same creature or another one as a bonus action on each of your turns.");
-    public static final Spell GUARDIAN_OF_FAITH = new AbilityScoreDCSaveSpell("Guardian of Faith", SpellTypes.CONJURATION, SpellLevels.L4, ActionTimes.ACTION, 30, true, false, "", 28800, false, AbilityScoreType.DEX, "A Large spectral guardian appears and hovers for the duration in an unoccupied space of your choice that you can see within range. The guardian occupies that space and is indistinct except for a gleaming sword and shield emblazoned with the symbol of your deity.", "Any creature hostile to you that moves to a space within 10 feet of the guardian for the first time on a turn must succeed on a Dexterity saving throw. The creature takes 20 radiant damage on a failed save, or half as much damage on a successful one. The guardian vanishes when it has death a total of 60 damage.");
-    public static final Spell GUST_OF_WIND = new Spell("Gust of Wind", SpellTypes.EVOCATION, SpellLevels.L2, ActionTimes.ACTION, 0, true, true, "a legume seed", 60, true, "A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that starts its turn in the line must succeed on a Strength saving throw or be pushed 15 feet away from you in a direciton following the line.", "Any creature in the line must spend 2 feet of movement for every 1 foot it moves when moving closer to you.", "The gust disperses gas or vapor, and it extinguishes candles, torches, and similar unprotected flames in the area. It causes protected flames, such as those of lanterns, to dance wildly and has a 50 percent chance to extinguish them.", "As a bonus action on each of your turns before the spell ends, you can change the direction in which the line blasts from you.");
-    public static final Spell HELLISH_REBUKE = new ScaleableDamageSpell<>("Hellish Rebuke", SpellTypes.EVOCATION, SpellLevels.L1, ActionTimes.REACTION, 60, true, true, "", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L1, new Dice(10, 2)).add(SpellLevels.L2, new Dice(10, 3)).add(SpellLevels.L3, new Dice(10, 4)).add(SpellLevels.L4, new Dice(10, 5)).add(SpellLevels.L5, new Dice(10, 6)).add(SpellLevels.L6, new Dice(10, 7)).add(SpellLevels.L7, new Dice(10, 8)).add(SpellLevels.L8, new Dice(10, 9)).add(SpellLevels.L9, new Dice(10, 10)), DamageTypes.FIRE, "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.");
-    public static final Spell ICE_STORM = new ScaleableDamageAbilityScoreDCSaveSpell<>("Ice Storm", SpellTypes.EVOCATION, SpellLevels.L4, ActionTimes.ACTION, 300, true, true, "a pinch of dust and a few drops of water", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L4, new Dice(8, 2)).add(SpellLevels.L5, new Dice(8, 3)).add(SpellLevels.L6, new Dice(8, 4)).add(SpellLevels.L7, new Dice(8, 5)).add(SpellLevels.L8, new Dice(8, 6)).add(SpellLevels.L9, new Dice(8, 7)), DamageTypes.BLUDGEONING, AbilityScoreType.DEX, "A hail of rock-hard ice pounds to the ground in a 20-foot-radius, 40-foot-high cylinder centered on a point within range. Each creature in the cylinder must make a Dexterity saving throw. A creature takes 2d8 bludgeoning damage and 4d6 cold damage on a failed save, or half as much on a successful one.", "Hailstones turn the storm's area of effect into difficult terrain until the end of your next turn.", "At Higher Levels: When you cast this spell using a spell slot of 5th level or higher, the bludgeoning damage increases by 1d8 for each slot level above 4th.");
-    public static final Spell IDENTIFY = new RitualSpell("Identify", SpellTypes.DIVINATION, SpellLevels.L1, 60, 0, true, true, "a pearl worth at least 100 gp and an owl feather", 0, false, "You choose on object that you must touch throughout the casting of th spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it.", "If you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it.");
-    public static final Spell INSECT_PLAGUE = new ScaleableDamageAbilityScoreDCSaveSpell<>("Insect Plague", SpellTypes.CONJURATION, SpellLevels.L5, ActionTimes.ACTION, 300, true, true, "a few grains of sugar, some kernels of grain, and a smear of fat", 600, true, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L5, new Dice(10, 4)).add(SpellLevels.L6, new Dice(10, 5)).add(SpellLevels.L7, new Dice(10, 6)).add(SpellLevels.L8, new Dice(10, 7)).add(SpellLevels.L9, new Dice(10, 8)), DamageTypes.PIERCING, AbilityScoreType.CON, "Swarming, biting locusts fill a 20-foot-radius sphere centered on a point you choose within range. The sphere spreads around corners. The sphere remains for the duration, and its area is lightly obscured. The sphere's area is difficult terrain.", "When the area appears, each creature in it must make a Constitution saving throw. A creature takes 4d10 Piercing damage on a failed save, or half as much on a successful one. A creature must also make this saving throw when it enters the spell's area for the first time on a turn or ends its turn there.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d10 for each slot level above 5th.");
-    public static final Spell LEGEND_LORE = new Spell("Legend Lore", SpellTypes.DIVINATION, SpellLevels.L5, 600, 0, true, true, "incense worth at least 250 gp, which the spell consumes, and four ivory strips worth at least 50 gp each", 0, false, "Name or describe a person, place, or object. The spell brings to your mind a brief summary of the significant lore about the thing you named. The lore might consist of current tales, forgotten stories, or even secret lore that has never been widely known. If the thing you named isn't of legendary importance, you gain no information. The more information you already have about the thing, the more precise and detailed the information you receive is.", "The information you learn is accurate but might be couched in figurative language. For example, if you have a mysterious magic axe on hand, the spell might yield this information: \"Woe to the evildoer whose hand touches the axe, for even the haft slices the hand of the evil ones. Only a true Child of Stone, lover and beloved of Moradin, may awaken the true powers of the axe, and only with the sacred word Rudnogg on the lips.\"");
-    public static final Spell LESSER_RESTORATION = new Spell("Lesser Restoration", SpellTypes.ABJURATION, SpellLevels.L2, ActionTimes.ACTION, 0, true, true, "", 0, false, "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned.");
-    public static final Spell LIGHT = new AbilityScoreDCSaveSpell("Light", SpellTypes.EVOCATION, SpellLevels.CANTRIP, ActionTimes.ACTION, 0, true, false, "a firefly or phosphorescent moss", 3600, false, AbilityScoreType.DEX, "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.", "If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.");
-    public static final Spell MASS_CURE_WOUNDS = new ScalableEffectSpell("Mass Cure Wounds", SpellTypes.CONJURATION, SpellLevels.L5, ActionTimes.ACTION, 60, true, true, "", 0, false, new CustomMap<SpellLevels, Integer>().add(SpellLevels.L5, 3).add(SpellLevels.L6, 4).add(SpellLevels.L7, 5).add(SpellLevels.L8, 6).add(SpellLevels.L9, 7), SpellLevels.L5, "A wave of healing energy washes out from a point of your choice within range. Choose up to six creatures in a 30-foot-radius sphere centered on that point. Each target regains hit points equal to 3d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th.");
-    public static final Spell MINOR_ILLUSION = new AbilityScoreDCSaveSpell("Minor Illusion", SpellTypes.ILLUSION, SpellLevels.CANTRIP, ActionTimes.ACTION, 30, false, true, "a bit of fleece", 60, false, AbilityScoreType.INT, "You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.", "If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated thought the duration, or you can make discrete sounds at different times before the spell ends.", "If you create an image of an object-such as a chair, muddy footprints, or a small chest-it must be no larger than a 5-foot cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, because things can pass through it.", "If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.");
-    public static final Spell NONDETECTION = new Spell("Nondetection", SpellTypes.ABJURATION, SpellLevels.L3, ActionTimes.ACTION, 0, true, true, "a pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes)", 28800, false, "For the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any divination magic or perceived through magical scrying sensors.");
-    public static final Spell PLANT_GROWTH = new CastTimeChoiceSpell("Plant Growth", SpellTypes.TRANSMUTATION, SpellLevels.L3, ActionTimes.ACTION, 150, true, true, "", 0, false, 28800, "This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.", "If you cast this spell using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.", "You can exclude one or more areas of any size within the spell's area from being affected.", "If you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.");
-    public static final Spell RAISE_DEAD = new Spell("Raise Dead", SpellTypes.NECROMANCY, SpellLevels.L5, 3600, 0, true, true, "a diamond worth at least 500 gp, which the spell consumes", 0, false, "You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature's soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point.", "This spell also neutralizes any poisons and cures nonmagical diseases that affected the creature at the time it died. This spell doesn't, however, remove magical diseases, curses, or similar effects; if these aren't first removed prior to casting the spell, they take effect when the creature returns to life.", "This spell closes all mortal wounds, but it doesn't restore missing body parts. If the creature is lacking body parts or organs integral for its survival-its hea, for instance-the spell automatically fails.", "Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears.");
-    public static final Spell REVIVIFY = new Spell("Revivify", SpellTypes.CONJURATION, SpellLevels.L3, ActionTimes.ACTION, 0, true, true, "diamonds worth 300 gp, which the spell consumes", 0, false, "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.");
-    public static final Spell SCORCHING_RAY = new ScaleableDamageSpell<>("Scorching Ray", SpellTypes.EVOCATION, SpellLevels.L2, ActionTimes.ACTION, 120, true, true, "", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L2, new Dice(6, 2)).add(SpellLevels.L3, new Dice(6, 3)).add(SpellLevels.L4, new Dice(6, 4)).add(SpellLevels.L5, new Dice(6, 5)).add(SpellLevels.L6, new Dice(6, 6)).add(SpellLevels.L7, new Dice(6, 7)).add(SpellLevels.L8, new Dice(6, 8)).add(SpellLevels.L9, new Dice(6, 9)), DamageTypes.FIRE, "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several.", "Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.");
-    public static final Spell SCRYING = new ScryingSpell();
-    public static final Spell SHATTER = new ScaleableDamageAbilityScoreDCSaveSpell<>("Shatter", SpellTypes.EVOCATION, SpellLevels.L2, ActionTimes.ACTION, 60, true, true, "a chip of mica", 0, false, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L2, new Dice(8, 3)).add(SpellLevels.L3, new Dice(8, 4)).add(SpellLevels.L4, new Dice(8, 5)).add(SpellLevels.L5, new Dice(8, 6)).add(SpellLevels.L6, new Dice(8, 7)).add(SpellLevels.L7, new Dice(8, 8)).add(SpellLevels.L8, new Dice(8, 9)).add(SpellLevels.L9, new Dice(8, 10)), DamageTypes.THUNDER, AbilityScoreType.CON, "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-foot-radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. Acreature made of inorganic material such as stone, crystal, or metal has disadvantage on this saving throw.", "A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.");
-    public static final Spell SLEET_STORM = new AbilityScoreDCSaveSpell("Sleet Storm", SpellTypes.CONJURATION, SpellLevels.L3, ActionTimes.ACTION, 150, true, true, "a pinch of dust and a few drops of water", 60, true, AbilityScoreType.CON, "Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.", "The ground in the area is covered with slick ice, making it difficult terrain. When a creature enters the spell's area for the first time on a turn or starts its turn there, it makes a Dexterity saving throw. On a failed save, it falls prone.", "If a creature is concentrating in the spell's area, the creature must make a successful Constitution saving throw against your spell save DC or lose concentration.");
-    public static final Spell SPEAK_WITH_ANIMALS = new RitualSpell("Speak with Animals", SpellTypes.DIVINATION, SpellLevels.L1, ActionTimes.ACTION, 0, true, true, "", 600, false, "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion.");
-    public static final Spell SPEAK_WITH_DEAD = new Spell("Speak with Dead", SpellTypes.NECROMANCY, SpellLevels.L3, ActionTimes.ACTION, 10, true, true, "burning incense", 600, false, "You grant the semblance of life and intelligence to a corpse of your choice within range, allowing it to answer the questions you pose. The corpse must still have a and can't be undead. The spell fails if the corpse was the target of this spell within the last 10 days.", "Until the spell ends, you can ask the corpse up to five questions. The corpse knows only what it knew in life, including the languages it knew. Answers are usually brief, cryptic, or repetitive, and the corpse is under no compulsion to offer a truthful answer if you are hostile to it or it recognizes you as an enemy. This spell doesn't return the creature's soul to its body, only its animating spirit. Thus, the corpse can't learn new information, doesn't comprehend anything that has happened since it died, and can't speculate about future events.");
-    public static final Spell SPIKE_GROWTH = new DamagePerDistanceSkillDCSaveSpell("Spike Growth", SpellTypes.TRANSMUTATION, SpellLevels.L2, ActionTimes.ACTION, 150, true, true, "seven sharp thorns or seven small twigs, each sharpened to a point", 600, true, new Damage(DamageTypes.PIERCING, new Dice(4, 2)), 5, SkillTypes.PERCEPTION, "The ground in a 20-foot radius centered on a point within range twists and sprouts hard spikes and thorns. The area becomes difficult terrain for the duration. When a creature moves into or within the area, it takes 2d4 piercing damage for every 5 feet it travels.", "The transformation of the ground is camouflaged to look natural. Any creature that can't see the area at the time the spell is cast must make a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous before entering it.");
-    public static final Spell SPIRITUAL_WEAPON = new ScaleableDamageSpell<>("Spiritual Weapon", SpellTypes.EVOCATION, SpellLevels.L2, ActionTimes.BONUS_ACTION, 60, true, true, "", 60, false, new CustomMap<SpellLevels, Dice>().add(Arrays.asList(SpellLevels.L1, SpellLevels.L2, SpellLevels.L3), new Dice(8, 1)).add(SpellLevels.L4, new Dice(8, 3)).add(SpellLevels.L5, new Dice(8, 3)).add(SpellLevels.L6, new Dice(8, 5)).add(SpellLevels.L7, new Dice(8, 5)).add(Arrays.asList(SpellLevels.L8, SpellLevels.L9), new Dice(8, 7)), DamageTypes.FORCE, "You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again. When you cast the spell, you can make melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.", "As a bonus action on your turn, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it.", "The weapon can take whatever form you choose. Clerics of deities who are associated with a particular weapon (as St. Curthbert is known for his mace and Thor for his hammer) make this spell's effect resemble that weapon.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above 2nd.");
-    public static final Spell SUGGESTION = new Spell("Suggestions", SpellTypes.ENCHANTMENT, SpellLevels.L2, ActionTimes.ACTION, 30, true, false, "a snake's tongue and either a hit of honeycomb or a drop of sweet oil", 28800, true, "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can't be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself or do some other obviously harmful act ends the spell.", "The target must make a Wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do.", "You can also specify conditions that will trigger a special activity during the duration. For example, you might suggest that a knight give her warhorse to the first beggar she meets. If the condition isn't met before the spell expires, the activity isn't performed.", "If you or any of your companions damage the target, the spell ends.");
-    public static final Spell THAUMATURGY = new Spell("Thaumaturgy", SpellTypes.TRANSMUTATION, SpellLevels.CANTRIP, ActionTimes.ACTION, 30, true, false, "", 60, false, "You manifest a minor wonder, a sign of supernatural power, within range. You create one of the following magical effects within range:", "- Your voice booms up to three times as loud as normal for 1 minute.", "- You cause flames to flicker, brighten, dim, or change color for 1 minute.", "- You cause harmless tremors in the ground for 1 minute.", "- You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.", "- You instantaneously cause an unlocked door or window to fly open or slam shut.", "- You alter the appearance of your eyes for 1 minute.", "If you cast this spell multiple times, you can have up to three of its 1 minute effects active at a time, and you can dismiss such an effect as an action.");
-    public static final Spell THUNDERWAVE = new ScaleableDamageAbilityScoreDCSaveSpell<>("Thunderwave", SpellTypes.EVOCATION, SpellLevels.L1, ActionTimes.ACTION, 0, true, true, "", 60, true, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L1, new Dice(8, 2)).add(SpellLevels.L2, new Dice(8, 3)).add(SpellLevels.L3, new Dice(8, 4)).add(SpellLevels.L4, new Dice(8, 5)).add(SpellLevels.L5, new Dice(8, 6)).add(SpellLevels.L6, new Dice(8, 7)).add(SpellLevels.L7, new Dice(8, 8)).add(SpellLevels.L8, new Dice(8, 9)).add(SpellLevels.L9, new Dice(8, 10)), DamageTypes.THUNDER, AbilityScoreType.CON, "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away from. On a successful save, the creature takes half as much damage and isn't pushed.", "In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.");
-    public static final Spell TREE_STRIDE = new Spell("Tree Stride", SpellTypes.CONJURATION, SpellLevels.L5, ActionTimes.ACTION, 0, true, true, "", 60, true, "You gain the ability to enter a tree and move from inside it to inside another tree of the same kind within 500 feet. Both trees must be living and at least the same size as you. You must use 5 feet of movement to enter a tree. You instantly know the location of all other trees of the same kind within 500 feet and, as part of the move used to enter the tree, can either pass into one of those trees or step out of the tree you're in. You appear in a spot of your choice within 5 feet of the destination tree, using another 5 feet of movement. If you have no movement left, you appear within 5 feet of the tree you entered.", "You can use this transportation ability once per round for the duration. You must end each turn outside a tree.");
-    public static final Spell WALL_OF_FIRE = new ScaleableDamageAbilityScoreDCSaveSpell<>("Wall of Fire", SpellTypes.EVOCATION, SpellLevels.L4, ActionTimes.ACTION, 120, true, true, "a small piece of phosphorus", 60, true, new CustomMap<SpellLevels, Dice>().add(SpellLevels.L4, new Dice(8, 5)).add(SpellLevels.L5, new Dice(8, 6)).add(SpellLevels.L6, new Dice(8, 7)).add(SpellLevels.L7, new Dice(8, 8)).add(SpellLevels.L8, new Dice(8, 9)).add(SpellLevels.L9, new Dice(8, 10)), DamageTypes.FIRE, AbilityScoreType.DEX, "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.", "When the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.", "One side of the wall, selected by you when you cast this spell, deals 5d8 damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage.", "At Higher Levels: When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th.");
-    public static final Spell WIND_WALL = new DamageDealingAbilityScoreDCSaveSpell("Wind Wall", SpellTypes.EVOCATION, SpellLevels.L3, ActionTimes.ACTION, 120, true, true, "a tiny fan and a feather of exotic origin", 60, true, AbilityScoreType.STR, new Damage(DamageTypes.BLUDGEONING, new Dice(8, 3)), "A wall of strong wind rises from the ground at a point you choose within range. You can make the wall up to 50 feet long, 15 feet high, and 1 foot thick. You can shape the wall in any way you choose so long as it makes one continuous path along the ground. The wall lasts for the duration.", "When the wall appears each creature within its area must make a Strength saving throw. A creature takes 3d8 bludgeoning damage on a failed save, or half as much damage on a successful one.", "The strong winds keep fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and automatically miss. (Boulders hurled by giants or siege engines, and similar projectiles are unaffected.) Creatures in a gaseous form can't pass through it.");
+    public static final Spell FIREBALL = new Spell("fireball", "Fireball", "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.", "The fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.", "At Higher Levels: When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 150;
+            spellComponents = new SpellComponents(true, true, "a tiny ball of bat guano and sulfur");
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 5)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell FLAME_STRIKE = new Spell("flame_strike", "Flame Strike", "A vertical column of divine fire roars down from the heavens in a location you specify. Each creature in a 10-foot-radius, 40-foot-high cylinder centered on a point within range must make a Dexterity saving throw. A creature takes 4d6 fire damage and 4d6 radiant damage on a failed save, or half as much damage on a successful one.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the fire damage or the radiant damage (your choice) increases by 1d6 for each slot level above 5th.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = ActionTimes.ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true, "pinch of sulfur");
+            properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() - 1)), new ListProperty<>(getId() + ".property.list.damage_type", Arrays.asList(DamageTypes.FIRE, DamageTypes.RADIANT)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell FLAMING_SPHERE = new Spell("flaming_sphere", "Flaming Sphere", "A 5-foot-diameter sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration. Any creature that ends its turn within 5 feet of the sphere must make a Dexterity saving throw. The creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one.", "As a bonus action, you can move the sphere up to 30 feet. If you ram the sphere into a creature, that creature must take make the saving throw against the sphere's damage, and the sphere stops moving this turn.", "When you move the sphere, you can direct it over barriers up to 5 feet tall and jump it across pits up to 10 feet wide. The sphere ignites flammable objects not being worn or carried, and it sheds bright light in a 20-foot radius and dim light for an additional 20 feet.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true, "a bit of tallow, a pinch of brimstone, and a dusting of powdered iron");
+            spellDuration = new SpellDuration(60, true);
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, SpellLevel::getValue)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell FOG_CLOUD = new Spell("fog_cloud", "Fog Cloud", "You create a 20-foot-radius sphere of fog centered on a point within range. the sphere spreads around corners, and it's area is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            range = 120;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 20)));
+        }
+    };
+    public static final Spell GRASPING_VINE = new Spell("grasping_vine", "Grasping Vine", "You conjure a vine that sprouts from the ground in an unoccupied space of your choice that you can see within range. When you cast this spell, you can direct the vine to lash out at a creature within 30 feet of it that you can see. That creature must succeed on a Dexterity saving throw or be pulled 20 feet directly toward the vine.", "Until the spell ends, you can direct the vine to lash out at the same creature or another one as a bonus action on each of your turns.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L4;
+            castingTime = ActionTimes.BONUS_ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell GUARDIAN_OF_FAITH = new Spell("guardian_of_faith", "Guardian of Faith", "A Large spectral guardian appears and hovers for the duration in an unoccupied space of your choice that you can see within range. The guardian occupies that space and is indistinct except for a gleaming sword and shield emblazoned with the symbol of your deity.", "Any creature hostile to you that moves to a space within 10 feet of the guardian for the first time on a turn must succeed on a Dexterity saving throw. The creature takes 20 radiant damage on a failed save, or half as much damage on a successful one. The guardian vanishes when it has death a total of 60 damage.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L4;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, false);
+            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell GUST_OF_WIND = new Spell("gust_of_wind", "Gust of Wind", "A line of strong wind 60 feet long and 10 feet wide blasts from you in a direction you choose for the spell's duration. Each creature that starts its turn in the line must succeed on a Strength saving throw or be pushed 15 feet away from you in a direciton following the line.", "Any creature in the line must spend 2 feet of movement for every 1 foot it moves when moving closer to you.", "The gust disperses gas or vapor, and it extinguishes candles, torches, and similar unprotected flames in the area. It causes protected flames, such as those of lanterns, to dance wildly and has a 50 percent chance to extinguish them.", "As a bonus action on each of your turns before the spell ends, you can change the direction in which the line blasts from you.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true, "a legume seed");
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+        }
+    };
+    public static final Spell HELLISH_REBUKE = new Spell("hellish_rebuke", "Hellish Rebuke", "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.REACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true);
+            properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() + 1)));
+        }
+    };
+    public static final Spell ICE_STORM = new Spell("ice_storm", "Ice Storm", "A hail of rock-hard ice pounds to the ground in a 20-foot-radius, 40-foot-high cylinder centered on a point within range. Each creature in the cylinder must make a Dexterity saving throw. A creature takes 2d8 bludgeoning damage and 4d6 cold damage on a failed save, or half as much on a successful one.", "Hailstones turn the storm's area of effect into difficult terrain until the end of your next turn.", "At Higher Levels: When you cast this spell using a spell slot of 5th level or higher, the bludgeoning damage increases by 1d8 for each slot level above 4th.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L4;
+            castingTime = ActionTimes.ACTION;
+            range = 300;
+            spellComponents = new SpellComponents(true, true, "a pinch of dust and a few drops of water");
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.BLUDGEONING, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() - 2)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell IDENTIFY = new Spell("identify", "Identify", "You choose on object that you must touch throughout the casting of th spell. If it is a magic item or some other magic-imbued object, you learn its properties and how to use them, whether it requires attunement to use, and how many charges it has, if any. You learn whether any spells are affecting the item and what they are. If the item was created by a spell, you learn which spell created it.", "If you instead touch a creature throughout the casting, you learn what spells, if any, are currently affecting it.")
+    {
+        {
+            spellType = SpellTypes.DIVINATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ONE_MINUTE;
+            spellComponents = new SpellComponents(true, true, "a pearl worth at least 100 gp and an owl feather");
+            isRitual = true;
+        }
+    };
+    public static final Spell INSECT_PLAGUE = new Spell("insect_plague", "Insect Plague", "Swarming, biting locusts fill a 20-foot-radius sphere centered on a point you choose within range. The sphere spreads around corners. The sphere remains for the duration, and its area is lightly obscured. The sphere's area is difficult terrain.", "When the area appears, each creature in it must make a Constitution saving throw. A creature takes 4d10 Piercing damage on a failed save, or half as much on a successful one. A creature must also make this saving throw when it enters the spell's area for the first time on a turn or ends its turn there.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d10 for each slot level above 5th.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = ActionTimes.ACTION;
+            range = 300;
+            spellComponents = new SpellComponents(true, true, "a few grains of sugar, some kernels of grain, and a smear of fat");
+            spellDuration = new SpellDuration(600, true);
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.PIERCING, CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() - 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
+        }
+    };
+    public static final Spell LEGEND_LORE = new Spell("legend_lore", "Legend Lore", "Name or describe a person, place, or object. The spell brings to your mind a brief summary of the significant lore about the thing you named. The lore might consist of current tales, forgotten stories, or even secret lore that has never been widely known. If the thing you named isn't of legendary importance, you gain no information. The more information you already have about the thing, the more precise and detailed the information you receive is.", "The information you learn is accurate but might be couched in figurative language. For example, if you have a mysterious magic axe on hand, the spell might yield this information: \"Woe to the evildoer whose hand touches the axe, for even the haft slices the hand of the evil ones. Only a true Child of Stone, lover and beloved of Moradin, may awaken the true powers of the axe, and only with the sacred word Rudnogg on the lips.\"")
+    {
+        {
+            spellType = SpellTypes.DIVINATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = 600;
+            spellComponents = new SpellComponents(true, true, "incense worth at least 250 gp, which the spell consumes, and four ivory strips worth at least 50 gp each");
+        }
+    };
+    public static final Spell LESSER_RESTORATION = new Spell("lesser_restoration", "Lesser Restoration", "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned.")
+    {
+        {
+            spellType = SpellTypes.ABJURATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true);
+        }
+    };
+    public static final Spell LIGHT = new Spell("light", "Light", "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.", "If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.CANTRIP;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, false, "a firefly or phosphorescent moss");
+            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
+            properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell MASS_CURE_WOUNDS = new Spell("mass_cure_wounds", "Mass Cure Wounds", "A wave of healing energy washes out from a point of your choice within range. Choose up to six creatures in a 30-foot-radius sphere centered on that point. Each target regains hit points equal to 3d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.", "At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = ActionTimes.ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true);
+            properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() - 2)));
+        }
+    };
+    public static final Spell MINOR_ILLUSION = new Spell("minor_illusion", "Minor Illusion", "You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.", "If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated thought the duration, or you can make discrete sounds at different times before the spell ends.", "If you create an image of an object-such as a chair, muddy footprints, or a small chest-it must be no larger than a 5-foot cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, because things can pass through it.", "If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.")
+    {
+        {
+            spellType = SpellTypes.ILLUSION;
+            spellLevel = SpellLevels.CANTRIP;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(false, true, "a bit of fleece");
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+            properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.INT));
+        }
+    };
+    public static final Spell NONDETECTION = new Spell("nondetection", "Nondetection", "For the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any divination magic or perceived through magical scrying sensors.")
+    {
+        {
+            spellType = SpellTypes.ABJURATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true, "a pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes)");
+            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+        }
+    };
+    public static final Spell PLANT_GROWTH = new Spell("plant_growth", "Plant Growth", "This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.", "If you cast this spell using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.", "You can exclude one or more areas of any size within the spell's area from being affected.", "If you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.")
+    {
+        {
+            spellType = SpellTypes.TRANSMUTATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 150;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+        }
+    };
+    public static final Spell RAISE_DEAD = new Spell("raise_dead", "Raise Dead", "You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature's soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point.", "This spell also neutralizes any poisons and cures nonmagical diseases that affected the creature at the time it died. This spell doesn't, however, remove magical diseases, curses, or similar effects; if these aren't first removed prior to casting the spell, they take effect when the creature returns to life.", "This spell closes all mortal wounds, but it doesn't restore missing body parts. If the creature is lacking body parts or organs integral for its survival-its hea, for instance-the spell automatically fails.", "Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears.")
+    {
+        {
+            spellType = SpellTypes.NECROMANCY;
+            spellLevel = SpellLevels.L5;
+            castingTime = ActionTimes.ONE_HOUR;
+            spellComponents = new SpellComponents(true, true, "a diamond worth at least 500 gp, which the spell consumes");
+        }
+    };
+    public static final Spell REVIVIFY = new Spell("revivify", "Revivify", "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true, "diamonds worth 300 gp, which the spell consumes");
+        }
+    };
+    public static final Spell SCORCHING_RAY = new Spell("scorching_ray", "Scorching Ray", "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several.", "Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            range = 120;
+            spellComponents = new SpellComponents(true, true);
+            properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, SpellLevel::getValue)));
+        }
+    };
+    public static final Spell SCRYING = new Spell("scrying", "Scrying", "You can see and hear a particular creature you choose that is on the same plane of existence as you. The target must make a Wisdom saving throw, which is modified by how well you know the target and the sort of physical connection you have to it. If a target knows you're casting this spell, it can fail the saving throw voluntarily if it wants to be observed.", "On a successful save, the target isn't affected, and you can't use this spell against it again for 24 hours.", "On a failed save, the spell creates an invisible sensor within 10 feet of the target. You can see and hear through the sensor as if you were there. The sensor moves with the target, remaining within 10 feet of it for the duration. A creature that can see invisible objects sees the sensor as a luminous orb about the size of your fist.", "Instead of targeting a creature, you can choose a location you have seen before as the target of this spell. When you do, the sensor appears at that location and doesn't move.")
+    {
+        {
+            spellType = SpellTypes.DIVINATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = 600;
+            spellComponents = new SpellComponents(true, true, "a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water");
+            spellDuration = new SpellDuration(600, true);
+            properties = Arrays.asList(new MapProperty<>(getId() + ".property.map.connection", new CustomMap<String, Integer>().add("Likeness", -2).add("Possession", -4).add("Body part", -10)), new MapProperty<>(getId() + ".property.map.knowledge", new CustomMap<String, Integer>().add("Secondhand", 5).add("Firsthand", 0).add("Familiar", -5)));
+        }
+    };
+    public static final Spell SHATTER = new Spell("shatter", "Shatter", "A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-foot-radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. Acreature made of inorganic material such as stone, crystal, or metal has disadvantage on this saving throw.", "A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true, "a chip of mica");
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.THUNDER, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
+        }
+    };
+    public static final Spell SLEET_STORM = new Spell("sleet_storm", "Sleet Storm", "Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.", "The ground in the area is covered with slick ice, making it difficult terrain. When a creature enters the spell's area for the first time on a turn or starts its turn there, it makes a Dexterity saving throw. On a failed save, it falls prone.", "If a creature is concentrating in the spell's area, the creature must make a successful Constitution saving throw against your spell save DC or lose concentration.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 150;
+            spellComponents = new SpellComponents(true, true, "a pinch of dust and a few drops of water");
+            spellDuration = new SpellDuration(60, true);
+            properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
+        }
+    };
+    public static final Spell SPEAK_WITH_ANIMALS = new Spell("speak_with_animals", "Speak with Animals", "You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion.")
+    {
+        {
+            spellType = SpellTypes.DIVINATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(600);
+            isRitual = true;
+        }
+    };
+    public static final Spell SPEAK_WITH_DEAD = new Spell("speak_with_dead", "Speak with Dead", "You grant the semblance of life and intelligence to a corpse of your choice within range, allowing it to answer the questions you pose. The corpse must still have a and can't be undead. The spell fails if the corpse was the target of this spell within the last 10 days.", "Until the spell ends, you can ask the corpse up to five questions. The corpse knows only what it knew in life, including the languages it knew. Answers are usually brief, cryptic, or repetitive, and the corpse is under no compulsion to offer a truthful answer if you are hostile to it or it recognizes you as an enemy. This spell doesn't return the creature's soul to its body, only its animating spirit. Thus, the corpse can't learn new information, doesn't comprehend anything that has happened since it died, and can't speculate about future events.")
+    {
+        {
+            spellType = SpellTypes.NECROMANCY;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 10;
+            spellComponents = new SpellComponents(true, true, "burning incense");
+            spellDuration = new SpellDuration(600);
+        }
+    };
+    public static final Spell SPIKE_GROWTH = new Spell("spike_growth", "Spike Growth", "The ground in a 20-foot radius centered on a point within range twists and sprouts hard spikes and thorns. The area becomes difficult terrain for the duration. When a creature moves into or within the area, it takes 2d4 piercing damage for every 5 feet it travels.", "The transformation of the ground is camouflaged to look natural. Any creature that can't see the area at the time the spell is cast must make a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous before entering it.")
+    {
+        {
+            spellType = SpellTypes.TRANSMUTATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            range = 150;
+            spellComponents = new SpellComponents(true, true, "seven sharp thorns or seven small twigs, each sharpened to a point");
+            spellDuration = new SpellDuration(600, true);
+            properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single.damage", new Damage(DamageTypes.PIERCING, new Dice(4, 2))), new SingleValueProperty<>(getId() + ".property.single.integer", 5), new SkillDCSaveProperty(getId(), SkillTypes.PERCEPTION));
+        }
+    };
+    public static final Spell SPIRITUAL_WEAPON = new Spell("spiritual_weapon", "Spiritual Weapon", "You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again. When you cast the spell, you can make melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.", "As a bonus action on your turn, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it.", "The weapon can take whatever form you choose. Clerics of deities who are associated with a particular weapon (as St. Curthbert is known for his mace and Thor for his hammer) make this spell's effect resemble that weapon.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above 2nd.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.BONUS_ACTION;
+            range = 60;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+            properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FORCE, new CustomMap<SpellLevel, Dice>().add(Arrays.asList(SpellLevels.L1, SpellLevels.L2, SpellLevels.L3), new Dice(8, 1)).add(SpellLevels.L4, new Dice(8, 3)).add(SpellLevels.L5, new Dice(8, 3)).add(SpellLevels.L6, new Dice(8, 5)).add(SpellLevels.L7, new Dice(8, 5)).add(Arrays.asList(SpellLevels.L8, SpellLevels.L9), new Dice(8, 7))));
+        }
+    };
+    public static final Spell SUGGESTION = new Spell("suggestion", "Suggestions", "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can't be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself or do some other obviously harmful act ends the spell.", "The target must make a Wisdom saving throw. On a failed save, it pursues the course of action you described to the best of its ability. The suggested course of action can continue for the duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do.", "You can also specify conditions that will trigger a special activity during the duration. For example, you might suggest that a knight give her warhorse to the first beggar she meets. If the condition isn't met before the spell expires, the activity isn't performed.", "If you or any of your companions damage the target, the spell ends.")
+    {
+        {
+            spellType = SpellTypes.ENCHANTMENT;
+            spellLevel = SpellLevels.L2;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, false, "a snake's tongue and either a hit of honeycomb or a drop of sweet oil");
+            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS, true);
+        }
+    };
+    public static final Spell THAUMATURGY = new Spell("thaumaturgy", "Thaumaturgy", "You manifest a minor wonder, a sign of supernatural power, within range. You create one of the following magical effects within range:", "- Your voice booms up to three times as loud as normal for 1 minute.", "- You cause flames to flicker, brighten, dim, or change color for 1 minute.", "- You cause harmless tremors in the ground for 1 minute.", "- You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.", "- You instantaneously cause an unlocked door or window to fly open or slam shut.", "- You alter the appearance of your eyes for 1 minute.", "If you cast this spell multiple times, you can have up to three of its 1 minute effects active at a time, and you can dismiss such an effect as an action.")
+    {
+        {
+            spellType = SpellTypes.TRANSMUTATION;
+            spellLevel = SpellLevels.CANTRIP;
+            castingTime = ActionTimes.ACTION;
+            range = 30;
+            spellComponents = new SpellComponents(true, false, "");
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+        }
+    };
+    public static final Spell THUNDERWAVE = new Spell("thunderwave", "Thunderwave", "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away from. On a successful save, the creature takes half as much damage and isn't pushed.", "In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L1;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.THUNDER, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
+        }
+    };
+    public static final Spell TREE_STRIDE = new Spell("tree_stride", "Tree Stride", "You gain the ability to enter a tree and move from inside it to inside another tree of the same kind within 500 feet. Both trees must be living and at least the same size as you. You must use 5 feet of movement to enter a tree. You instantly know the location of all other trees of the same kind within 500 feet and, as part of the move used to enter the tree, can either pass into one of those trees or step out of the tree you're in. You appear in a spot of your choice within 5 feet of the destination tree, using another 5 feet of movement. If you have no movement left, you appear within 5 feet of the tree you entered.", "You can use this transportation ability once per round for the duration. You must end each turn outside a tree.")
+    {
+        {
+            spellType = SpellTypes.CONJURATION;
+            spellLevel = SpellLevels.L5;
+            castingTime = ActionTimes.ACTION;
+            spellComponents = new SpellComponents(true, true);
+            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+        }
+    };
+    public static final Spell WALL_OF_FIRE = new Spell("wall_of_fire", "Wall of Fire", "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.", "When the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.", "One side of the wall, selected by you when you cast this spell, deals 5d8 damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage.", "At Higher Levels: When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L4;
+            castingTime = ActionTimes.ACTION;
+            range = 120;
+            spellComponents = new SpellComponents(true, true, "a small piece of phosphorus");
+            spellDuration = new SpellDuration(60, true);
+            properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
+        }
+    };
+    public static final Spell WIND_WALL = new Spell("wind_wall", "Wind Wall", "A wall of strong wind rises from the ground at a point you choose within range. You can make the wall up to 50 feet long, 15 feet high, and 1 foot thick. You can shape the wall in any way you choose so long as it makes one continuous path along the ground. The wall lasts for the duration.", "When the wall appears each creature within its area must make a Strength saving throw. A creature takes 3d8 bludgeoning damage on a failed save, or half as much damage on a successful one.", "The strong winds keep fog, smoke, and other gases at bay. Small or smaller flying creatures or objects can't pass through the wall. loose, lightweight materials brought into the wall fly upward. Arrows, bolts, and other ordinary projectiles launched at targets behind the wall are deflected upward and automatically miss. (Boulders hurled by giants or siege engines, and similar projectiles are unaffected.) Creatures in a gaseous form can't pass through it.")
+    {
+        {
+            spellType = SpellTypes.EVOCATION;
+            spellLevel = SpellLevels.L3;
+            castingTime = ActionTimes.ACTION;
+            range = 120;
+            spellComponents = new SpellComponents(true, true, "a tiny fan and a feather of exotic origin");
+            spellDuration = new SpellDuration(60, true);
+            properties = Arrays.asList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.STR), new SingleValueProperty<>(getId() + ".property.single.damage", new Damage(DamageTypes.BLUDGEONING, new Dice(8, 3))));
+        }
+    };
 }

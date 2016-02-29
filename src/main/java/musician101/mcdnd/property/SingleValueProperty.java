@@ -3,8 +3,11 @@ package musician101.mcdnd.property;
 import musician101.mcdnd.abilityscore.AbilityScore;
 import musician101.mcdnd.abilityscore.AbilityScoreType;
 import musician101.mcdnd.combat.DamageType;
+import musician101.mcdnd.skill.Skill;
+import musician101.mcdnd.skill.SkillType;
 import musician101.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import musician101.mcdnd.util.Interfaces.SingleValue;
+import musician101.mcdnd.util.Interfaces.SkillDCSave;
 
 public class SingleValueProperty<T> extends Property implements SingleValue<T>
 {
@@ -30,11 +33,14 @@ public class SingleValueProperty<T> extends Property implements SingleValue<T>
         }
     }
 
-    public static class SavingThrowProperty extends SingleValueProperty<AbilityScoreType> implements AbilityScoreDCSave
+    public static class AbilityScoreDCSaveProperty extends Property implements AbilityScoreDCSave
     {
-        public SavingThrowProperty(String idPrefix, AbilityScoreType abilityScoreType)
+        AbilityScoreType abilityScoreType;
+
+        public AbilityScoreDCSaveProperty(String idPrefix, AbilityScoreType abilityScoreType)
         {
-            super(idPrefix + ".property.saving_throw", abilityScoreType);
+            super(idPrefix + ".property.ability_saving_throw");
+            this.abilityScoreType = abilityScoreType;
         }
 
         @Override
@@ -48,6 +54,42 @@ public class SingleValueProperty<T> extends Property implements SingleValue<T>
                 save =+ bonus;
 
             return save;
+        }
+
+        @Override
+        public AbilityScoreType getValue()
+        {
+            return abilityScoreType;
+        }
+    }
+
+    public static class SkillDCSaveProperty extends Property implements SkillDCSave
+    {
+        SkillType skillType;
+
+        public SkillDCSaveProperty(String idPrefix, SkillType skillType)
+        {
+            super(idPrefix + ".property.skill_saving_throw");
+            this.skillType = skillType;
+        }
+
+        @Override
+        public int getDCSave(Skill skill, int... bonuses)
+        {
+            if (skill.getType() != getValue())
+                throw new IllegalArgumentException("Invalid AbilityScore type for DC saving throw.");
+
+            int save = 8 + skill.getMod();
+            for (int bonus : bonuses)
+                save =+ bonus;
+
+            return save;
+        }
+
+        @Override
+        public SkillType getValue()
+        {
+            return skillType;
         }
     }
 }

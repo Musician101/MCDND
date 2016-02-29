@@ -19,7 +19,7 @@ public class Skill
         this.skillMod = calcSkillMod(scores);
     }
 
-    public SkillType getSkill()
+    public SkillType getType()
     {
         return skill;
     }
@@ -39,7 +39,7 @@ public class Skill
         return skill.getName();
     }
 
-    public int getSkillMod()
+    public int getMod()
     {
         return skillMod;
     }
