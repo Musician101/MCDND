@@ -5,17 +5,17 @@ public class SpellDuration
     double duration;
     boolean needsConcentration;
 
-    public SpellDuration()
+    private SpellDuration()
     {
         this(0);
     }
 
-    public SpellDuration(double duration)
+    private SpellDuration(double duration)
     {
         this(duration, false);
     }
 
-    public SpellDuration(double duration, boolean needsConcentration)
+    private SpellDuration(double duration, boolean needsConcentration)
     {
         this.duration = duration;
         this.needsConcentration = needsConcentration;
@@ -30,5 +30,20 @@ public class SpellDuration
     public double getDuration()
     {
         return duration;
+    }
+
+    public static SpellDuration of()
+    {
+        return new SpellDuration();
+    }
+
+    public static SpellDuration of(double duration)
+    {
+        return new SpellDuration(duration);
+    }
+
+    public static SpellDuration of(double duration, boolean needsConcentration)
+    {
+        return new SpellDuration(duration, needsConcentration);
     }
 }

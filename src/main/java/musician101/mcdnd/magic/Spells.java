@@ -42,7 +42,7 @@ public class Spells
             spellLevel = SpellLevels.CANTRIP;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new IntegerScalableDamageProperty(getId(), DamageTypes.ACID, new CustomMap<Integer, Dice>().add(1, new Dice(6)).add(5, new Dice(6, 2)).add(11, new Dice(6, 3)).add(17, new Dice(6, 4))));
         }
     };
@@ -53,8 +53,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a tiny strip of white cloth");
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, true, "a tiny strip of white cloth");
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
             properties = Collections.singletonList(new MapProperty<>(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> 5 * (level.getValue() - 1))));
         }
     };
@@ -65,8 +65,8 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ONE_MINUTE;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a tiny bell and a piece of fine silver wire");
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, true, "a tiny bell and a piece of fine silver wire");
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
         }
     };
     public static final Spell ALTER_SELF = new Spell("alter_self", "Alter Self", "You assume a different form. When you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. While the spell lasts, you can end on option as an action to gain the benefits of a different one.")
@@ -76,8 +76,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
             properties = Collections.singletonList(new ListProperty<>(getId(), Arrays.asList(AlterSpellEffects.AQUATIC_ADAPTATION, AlterSpellEffects.CHANGE_APPEARANCE, AlterSpellEffects.NATURAL_WEAPONS)));
         }
     };
@@ -88,8 +88,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a morsel of food");
-            spellDuration = new SpellDuration(ActionTimes.ONE_DAY);
+            spellComponents = SpellComponents.of(true, true, "a morsel of food");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_DAY);
             properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.WIS));
         }
     };
@@ -101,9 +101,9 @@ public class Spells
             isRitual = true;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a morsel of food");
+            spellComponents = SpellComponents.of(true, true, "a morsel of food");
             //This spell has a special condition that changes duration based on the Spell Slot used to cast the spell.
-            spellDuration = new SpellDuration(-1);
+            spellDuration = SpellDuration.of(-1);
             properties = Collections.singletonList(new SpellLevelDoubleProperty(getId(), CustomMap.populateSpellLevelDoubleMap(spellLevel, level -> ActionTimes.ONE_DAY + (level.getValue() - 2) * ActionTimes.TWO_DAYS)));
         }
     };
@@ -114,8 +114,8 @@ public class Spells
             spellLevel = SpellLevels.L8;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_DAY, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_DAY, true);
         }
     };
     public static final Spell ANIMATE_DEAD = new Spell("animate_dead", "Animate Dead", "This spell creates an undead servant. Choose a pile of bones or a corpse of Medium or Small humanoid within range. Your spell imbues the target with a foul mimicry of life, raising it as an undead creature. The target becomes a skeleton if you chose bones or a zombie if you chose a corpse (the DM has the creature's game statistics).", "On each of your turns, you can use a bonus action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any or all of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move during its next turn, or you can issue a general command, such as to guard a particular chamber or corridor. If you issue no commands, the creature only defends itself against hostile creatures. Once given an order, the creature continues to follow it until its task is complete.", "The creature is under your control for 24 hours, after which it stops obeying any command you've given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell, rather than animating a new one.", "At Higher Levels: When you cast this spell using a spell slot of 4th level or higher, you animate or reassert control over two additional undead creatures for each slot level above 3rd. Each of the creatures must come from a different corpse or pile of bones.")
@@ -125,7 +125,7 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ONE_MINUTE;
             range = 10;
-            spellComponents = new SpellComponents(true, true, "a drop of blood, a piece of flesh, and a pinch of bone dust");
+            spellComponents = SpellComponents.of(true, true, "a drop of blood, a piece of flesh, and a pinch of bone dust");
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() - 2)));
         }
     };
@@ -136,8 +136,8 @@ public class Spells
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
             properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 2)), new SingleValueProperty<>(getId() + ".property.single_value.table", new Table("Animated Object Statistics", new Column<>("Size", CharacterSize.TINY, CharacterSize.SMALL, CharacterSize.MEDIUM, CharacterSize.LARGE, CharacterSize.HUGE), new Column<>("HP", 20, 25, 40, 50, 80), new Column<>("AC", 18, 16, 13, 10, 10), new Column<>("Attack", "+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"), new Column<>("Str", 4, 6, 10, 14, 18), new Column<>("Dex", 18, 14, 12, 10, 6))));
         }
     };
@@ -147,8 +147,8 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
         }
     };
     public static final Spell ANTIMAGIC_FILED = new Spell("antimagic_field", "Antimagic Field", "A 10-foot-radius invisible sphere of antimagic surrounds you. This area is divorced from the magical energy that suffuses the multiverse. Within the sphere, spells can't be cast, summoned creatures disappear, and even magic items become mundane. Until the spell ends, the sphere moves with you, centered on you.", "Spells and other magical effects, except those created by an artifact or a deity, are suppressed in the sphere and can't protrude into it. A slot expended to cast a suppressed spell is consumed. While an effect is suppressed, it doesn't function, but the time it spends suppressed counts against its duration.")
@@ -157,8 +157,8 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L8;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "a pinch of powdered iron or iron filings");
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true, "a pinch of powdered iron or iron filings");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
             properties = Collections.singletonList(new MultipleEffectsProperty(getId(), AntimagicFieldSpellEffects.ALL));
         }
     };
@@ -169,8 +169,8 @@ public class Spells
             spellLevel = SpellLevels.L8;
             castingTime = ActionTimes.ONE_HOUR;
             range = 60;
-            spellComponents = new SpellComponents(true, true, "either a lump of alum soaked in vinegar for the Antipathy effect or a drop of honey for the Sympathy effect");
-            spellDuration = new SpellDuration(ActionTimes.ONE_DAY * 10);
+            spellComponents = SpellComponents.of(true, true, "either a lump of alum soaked in vinegar for the Antipathy effect or a drop of honey for the Sympathy effect");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_DAY * 10);
             properties = Collections.singletonList(new MultipleEffectsProperty(getId(), AntipathySympathySpellEffects.ALL));
         }
     };
@@ -181,8 +181,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a bit of bat fur");
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true, "a bit of bat fur");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
         }
     };
     public static final Spell ARCANE_LOCK = new Spell("arcane_lock", "Arcane Lock", "You touch a closed door, window, gate, chest, or other entryway, and it becomes locked for the duration. You and the creatures you designate when you cast this spell can open the object normally. You can also set a password that, when spoken within 5 feet of the object, supresses this spell for 1 minute. Otherwise, it is impassible until it is broken or the spell is dispelled or suppresed. Casting Knock on the object suppresses Arcane Lock for 10 minutes.", "While affected by this spell, the object is more difficult to break or force open; the DC to break it or pick any locks on it increases by 10.")
@@ -191,9 +191,9 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "gold dust worth at least 25 gp, which the spell consumes");
+            spellComponents = SpellComponents.of(true, true, "gold dust worth at least 25 gp, which the spell consumes");
             /** Spell ends when dispelled */
-            spellDuration = new SpellDuration(-1);
+            spellDuration = SpellDuration.of(-1);
             properties = Collections.singletonList(new SingleValueProperty<Function<Integer, Integer>>(getId() + ".property.single_value.function", dc -> dc + 10));
         }
     };
@@ -203,8 +203,8 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "a cup of water");
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
+            spellComponents = SpellComponents.of(true, true, "a cup of water");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR);
             properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 5)), new DamageTypeProperty(getId(), DamageTypes.COLD));
         }
     };
@@ -213,7 +213,7 @@ public class Spells
         {
             spellType = SpellTypes.CONJURATION;
             spellLevel = SpellLevels.L1;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.NECROTIC, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 1)));
         }
     };
@@ -222,9 +222,9 @@ public class Spells
         {
             spellType = SpellTypes.NECROMANCY;
             spellLevel = SpellLevels.L9;
-            spellComponents = new SpellComponents(true, true, "for each creature you affect with this spell, you must provide one jacinth worth at least 1,000 gp and one ornately carved bar of silver worth at least 100 gp, all of which the spell consumes");
+            spellComponents = SpellComponents.of(true, true, "for each creature you affect with this spell, you must provide one jacinth worth at least 1,000 gp and one ornately carved bar of silver worth at least 100 gp, all of which the spell consumes");
             /** Special Conditions */
-            spellDuration = new SpellDuration(-1);
+            spellDuration = SpellDuration.of(-1);
         }
     };
     public static final Spell AUGURY = new Spell("augury", "Augury", "By casting gem-inlaid sticks, rolling dragon bones, laying out ornate cards, or employing some other divining tool, you receive an omen from an otherworldly entity about the results of a specific course of action that you plan to take within the next 30 minutes. The DM chooses from the following possible omens:", "- Weal, for good results", "- Woe, for bad results", "- Weal and woe, for both good and bad results", "- Nothing, for results that aren't especially good or bad", "The spell doesn't take into account any possible circumstances that might change the outcome, such as the casting of additional spells or the loss or gain of a companion.", "If you cast the spell two or more times before completing your next long rest, there is a cumulative 25 percent chance for each casting after the first that you get a random reading. The DM makes this roll in secret.")
@@ -233,15 +233,15 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ONE_MINUTE;
-            spellComponents = new SpellComponents(true, true, "specially marked sticks, bones, or similar tokens worth at least 25 gp");
+            spellComponents = SpellComponents.of(true, true, "specially marked sticks, bones, or similar tokens worth at least 25 gp");
         }
     };
     public static final Spell AURA_OF_LIFE = new Spell("aura_of_life", "Aura of Life", "Life-preserving energy radiates from you in an aura with a 30-foot radius. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) has resistance to necrotic damage, and its hit point maximum can't be reduced. In addition, a nonhostile, living creature regains 1 hit point when it starts its turn in the aura with 0 hit points.")
     {
         {
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, false);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
+            spellComponents = SpellComponents.of(true, false);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE * 10, true);
             properties = Collections.singletonList(new DamageTypeProperty(getId(), DamageTypes.NECROTIC));
         }
     };
@@ -250,8 +250,8 @@ public class Spells
         {
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L4;
-            spellComponents = new SpellComponents(true, false);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE * 10, true);
+            spellComponents = SpellComponents.of(true, false);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE * 10, true);
             properties = Arrays.asList(new DamageTypeProperty(getId(), DamageTypes.POISON), new ListProperty<>(getId() + ".property.list.condition", Arrays.asList(Conditions.BLINDED, Conditions.CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED)));
         }
     };
@@ -261,8 +261,8 @@ public class Spells
             spellType = SpellTypes.TRANSMUTATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "a handful of oak bark");
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true, "a handful of oak bark");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
         }
     };
     public static final Spell BEACON_OF_HOPE = new Spell("beacon_of_hope", "Beacon of Hope", "This spell bestows hope and vitality. Choose any number of creatures within range. For the duration, each target has advantage on Wisdom saving throws and death saving throws, and regains the maximum number of hit points possible from any healing.")
@@ -272,8 +272,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
         }
     };
     public static final Spell BEAST_SENSE = new Spell("beast_sense", "Beast Sense", "You touch a willing beast. For the duration of the spell, you can use your action to see through the beast's eyes and hear what it hears, and continue to do so until you use your action to return to your normal senses.", "While perceiving through the beast's senses, you gain the benefits of any special senses possessed by that creature, though you are blinded and deafened to your own surroundings.")
@@ -283,8 +283,8 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(false, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(false, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
         }
     };
     public static final Spell BLESS = new Spell("bless", "Bless", "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.")
@@ -294,8 +294,8 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true, "a sprinkling of holy water");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a sprinkling of holy water");
+            spellDuration = SpellDuration.of(60, true);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
@@ -306,7 +306,7 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 15;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 2)));
         }
     };
@@ -317,8 +317,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(600, true);
             properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() - 1)), new DamageTypeProperty(getId(), DamageTypes.LIGHTNING), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -329,8 +329,8 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, false);
-            spellDuration = new SpellDuration(6);
+            spellComponents = SpellComponents.of(true, false);
+            spellDuration = SpellDuration.of(6);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
@@ -341,7 +341,7 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ONE_MINUTE;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
         }
     };
     public static final Spell CONFUSION = new Spell("confusion", "Confusion", "This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10-foot-radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.", "An affected target can't take reactions and must roll a d10 at the start of each of its to determine its behavior for that turn.", "At the end of each of its turns, an affected target can make a Wisdom saving throw. If it succeeds, this effect ends for that target.", "At Higher Levels:When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each slot level above 4th.")
@@ -351,8 +351,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 90;
-            spellComponents = new SpellComponents(true, true, "three nut shells");
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true, "three nut shells");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
             properties = Arrays.asList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 5 + 70)), new MapProperty<>(getId() + ".property.spell-level_string",new CustomMap<Integer, String>().add(1, "The creature uses all its movement to move in a random direction. To determine the direction, roll a d8 and assign a direction to each die face. The creature doesn't take an action this turn.").add(Arrays.asList(2, 3, 4, 5, 6), "The creature doesn't move or take actions this turn.").add(Arrays.asList(7, 8), "The creature uses its action to make a melee attack against a randomly determined creature within its reach. If there is no creature within its reach, the creature does nothing this turn.").add(Arrays.asList(9, 10), "The creature can act and move normally.")));
         }
     };
@@ -363,8 +363,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 300;
-            spellComponents = new SpellComponents(true, true, "a drop of water and a pinch of dust");
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, true, "a drop of water and a pinch of dust");
+            spellDuration = SpellDuration.of(600, true);
             properties = Collections.singletonList(new MultipleEffectsProperty(getId(), ControlWaterSpellEffects.ALL));
         }
     };
@@ -374,8 +374,8 @@ public class Spells
             spellType = SpellTypes.EVOCATION;
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(0, false);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(0, false);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, SpellLevel::getValue)));
         }
     };
@@ -386,8 +386,8 @@ public class Spells
             spellLevel = SpellLevels.CANTRIP;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true, "a bit of phosphorus or wychwood, or a glowworm");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a bit of phosphorus or wychwood, or a glowworm");
+            spellDuration = SpellDuration.of(60, true);
         }
     };
     public static final Spell DARKNESS = new Spell("darkness", "Darkness", "Magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.", "If the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness.", "If any of this spell's are overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.")
@@ -397,8 +397,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, false, "bat fur and a drop of pitch or piece of coal");
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, false, "bat fur and a drop of pitch or piece of coal");
+            spellDuration = SpellDuration.of(600, true);
         }
     };
     public static final Spell DAYLIGHT = new Spell("daylight", "Daylight", "A 60-foot-radius sphere of light spreads out from a point you choose within range. The sphere is bright light and sheds dim light for an additional 60 feet.", "If you chose a point on an object you are holding or one that isn't being worn or carried, the light shines from the object and moves with it. Completely covering the affected object with an opaque object, such as a bowl, or a helm, blocks the light.", "if any of this spell's area overlaps with an area of darkness created by a spell of 3rd level or lower, the spell that created the darkness is dispelled.")
@@ -408,8 +408,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR);
         }
     };
     public static final Spell DEATH_WARD = new Spell("death_ward", "Death Ward", "You touch a creature and grant it a measure of protection from death.", "The first time the target would drop to 0 hit points as a result of taking damage, the target instead drops to 1 hit point, and the spell ends.", "If the spell is still in effect when the target is subjected to an effect that would kill it instantaneously without dealing damage, that effect is instead negated against the target, and the spell ends.")
@@ -418,8 +418,8 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
         }
     };
     public static final Spell DESTRUCTIVE_WAVE = new Spell("destructive_wave", "Destructive Wave", "You strike the ground, creating a burst of divine energy that ripples outward from you. Each creature you choose within 30 feet of you must succeed on a Constitution saving throw or take 5d6 thunder damage, as well as 5d6 radiant or necrotic damage (your choice), and be knocked prone. A ccreature that succeeds on its saving throw takes half as much damage and isn't knocked prone.")
@@ -428,8 +428,8 @@ public class Spells
             spellType = SpellTypes.EVOCATION;
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, false);
-            spellDuration = new SpellDuration(0);
+            spellComponents = SpellComponents.of(true, false);
+            spellDuration = SpellDuration.of(0);
         }
     };
     public static final Spell DOMINATE_BEAST = new Spell("dominate_beast", "Dominate Beast", "You attempt to beguile a beast that you can see within range. It must succeed on a Wisdom saving throw or be charmed by you for the duration. If you or creatures that are friendly to you are fighting it, it has advantage on the saving throw.", "While the beast is charmed, you have a telepathic link with it as long as the two of you are on the same plane of existence. You can use this telepathic link to issue commands to the creature while you are conscious (no action required), which it does its best to obey. You can specify a simple and general course of action, such as \"Attack that creature,\" \"Run over there,\", or \"Fetch that object.\" If the creature completes the order and doesn't receive further direction from you, it defends and preserves itself to the best of its ability.", "You can use your action to take total and precise control of the target. until the end of your next turn, the creature takes only the actions you choose, and doesn't do anything that you don't allow it to do. During this time, you can also cause the creature to use a reaction, but this requires you to use your own reaction as well.", "Each time the target takes damage, it makes a new Wisdom saving throw against the spell. If the saving throw succeeds, the spell ends.", "At Higher Levels: When you cast this spell with a 5th-level spell slot, the duration is concentration, up to 10 minutes. When you use a 6th-level spell slot, the duration is concentration, up to 1hour. When you use a spell slot of 7th level or higher, the duration is concentration, up to 8 hours.")
@@ -439,8 +439,8 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
-            new SpellDuration(ActionTimes.ONE_MINUTE);
+            spellComponents = SpellComponents.of(true, true);
+            SpellDuration.of(ActionTimes.ONE_MINUTE);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), new CustomMap<SpellLevel, Integer>().add(SpellLevels.L4, 60).add(SpellLevels.L5, 600).add(SpellLevels.L6, 3600).add(Arrays.asList(SpellLevels.L7, SpellLevels.L8, SpellLevels.L9), 28800)));
         }
     };
@@ -451,7 +451,7 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellDuration = new SpellDuration(60, true);
+            spellDuration = SpellDuration.of(60, true);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -462,7 +462,7 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 150;
-            spellComponents = new SpellComponents(true, true, "a tiny ball of bat guano and sulfur");
+            spellComponents = SpellComponents.of(true, true, "a tiny ball of bat guano and sulfur");
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() + 5)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -473,7 +473,7 @@ public class Spells
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true, "pinch of sulfur");
+            spellComponents = SpellComponents.of(true, true, "pinch of sulfur");
             properties = Arrays.asList(new SpellLevelDiceProperty(getId(), CustomMap.populateSpellLevelDiceMap(spellLevel, 6, level -> level.getValue() - 1)), new ListProperty<>(getId() + ".property.list.damage_type", Arrays.asList(DamageTypes.FIRE, DamageTypes.RADIANT)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -484,8 +484,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true, "a bit of tallow, a pinch of brimstone, and a dusting of powdered iron");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a bit of tallow, a pinch of brimstone, and a dusting of powdered iron");
+            spellDuration = SpellDuration.of(60, true);
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, SpellLevel::getValue)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -496,8 +496,8 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR, true);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() * 20)));
         }
     };
@@ -508,8 +508,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.BONUS_ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -520,8 +520,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, false);
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, false);
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -531,8 +531,8 @@ public class Spells
             spellType = SpellTypes.EVOCATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "a legume seed");
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true, "a legume seed");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
         }
     };
     public static final Spell HELLISH_REBUKE = new Spell("hellish_rebuke", "Hellish Rebuke", "You point your finger, and the creature that damaged you is momentarily surrounded by hellish flames. The creature must make a Dexterity saving throw. It takes 2d10 fire damage on a failed save, or half as much damage on a successful one.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st.")
@@ -542,7 +542,7 @@ public class Spells
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.REACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() + 1)));
         }
     };
@@ -553,7 +553,7 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 300;
-            spellComponents = new SpellComponents(true, true, "a pinch of dust and a few drops of water");
+            spellComponents = SpellComponents.of(true, true, "a pinch of dust and a few drops of water");
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.BLUDGEONING, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() - 2)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -563,7 +563,7 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ONE_MINUTE;
-            spellComponents = new SpellComponents(true, true, "a pearl worth at least 100 gp and an owl feather");
+            spellComponents = SpellComponents.of(true, true, "a pearl worth at least 100 gp and an owl feather");
             isRitual = true;
         }
     };
@@ -574,8 +574,8 @@ public class Spells
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
             range = 300;
-            spellComponents = new SpellComponents(true, true, "a few grains of sugar, some kernels of grain, and a smear of fat");
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, true, "a few grains of sugar, some kernels of grain, and a smear of fat");
+            spellDuration = SpellDuration.of(600, true);
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.PIERCING, CustomMap.populateSpellLevelDiceMap(spellLevel, 10, level -> level.getValue() - 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
         }
     };
@@ -585,7 +585,7 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L5;
             castingTime = 600;
-            spellComponents = new SpellComponents(true, true, "incense worth at least 250 gp, which the spell consumes, and four ivory strips worth at least 50 gp each");
+            spellComponents = SpellComponents.of(true, true, "incense worth at least 250 gp, which the spell consumes, and four ivory strips worth at least 50 gp each");
         }
     };
     public static final Spell LESSER_RESTORATION = new Spell("lesser_restoration", "Lesser Restoration", "You touch a creature and can end either one disease or one condition afflicting it. The condition can be blinded, deafened, paralyzed, or poisoned.")
@@ -594,7 +594,7 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
         }
     };
     public static final Spell LIGHT = new Spell("light", "Light", "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.", "If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.")
@@ -603,8 +603,8 @@ public class Spells
             spellType = SpellTypes.EVOCATION;
             spellLevel = SpellLevels.CANTRIP;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, false, "a firefly or phosphorescent moss");
-            spellDuration = new SpellDuration(ActionTimes.ONE_HOUR);
+            spellComponents = SpellComponents.of(true, false, "a firefly or phosphorescent moss");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_HOUR);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -615,7 +615,7 @@ public class Spells
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new SpellLevelIntegerProperty(getId(), CustomMap.populateSpellLevelIntegerMap(spellLevel, level -> level.getValue() - 2)));
         }
     };
@@ -626,8 +626,8 @@ public class Spells
             spellLevel = SpellLevels.CANTRIP;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(false, true, "a bit of fleece");
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+            spellComponents = SpellComponents.of(false, true, "a bit of fleece");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.INT));
         }
     };
@@ -637,8 +637,8 @@ public class Spells
             spellType = SpellTypes.ABJURATION;
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "a pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes)");
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, true, "a pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes)");
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
         }
     };
     public static final Spell PLANT_GROWTH = new Spell("plant_growth", "Plant Growth", "This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.", "If you cast this spell using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.", "You can exclude one or more areas of any size within the spell's area from being affected.", "If you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.")
@@ -648,8 +648,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 150;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS);
         }
     };
     public static final Spell RAISE_DEAD = new Spell("raise_dead", "Raise Dead", "You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature's soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point.", "This spell also neutralizes any poisons and cures nonmagical diseases that affected the creature at the time it died. This spell doesn't, however, remove magical diseases, curses, or similar effects; if these aren't first removed prior to casting the spell, they take effect when the creature returns to life.", "This spell closes all mortal wounds, but it doesn't restore missing body parts. If the creature is lacking body parts or organs integral for its survival-its hea, for instance-the spell automatically fails.", "Coming back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears.")
@@ -658,7 +658,7 @@ public class Spells
             spellType = SpellTypes.NECROMANCY;
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ONE_HOUR;
-            spellComponents = new SpellComponents(true, true, "a diamond worth at least 500 gp, which the spell consumes");
+            spellComponents = SpellComponents.of(true, true, "a diamond worth at least 500 gp, which the spell consumes");
         }
     };
     public static final Spell REVIVIFY = new Spell("revivify", "Revivify", "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.")
@@ -667,7 +667,7 @@ public class Spells
             spellType = SpellTypes.CONJURATION;
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true, "diamonds worth 300 gp, which the spell consumes");
+            spellComponents = SpellComponents.of(true, true, "diamonds worth 300 gp, which the spell consumes");
         }
     };
     public static final Spell SCORCHING_RAY = new Spell("scorching_ray", "Scorching Ray", "You create three rays of fire and hurl them at targets within range. You can hurl them at one target or several.", "Make a ranged spell attack for each ray. On a hit, the target takes 2d6 fire damage.", "At Higher Levels: When you cast this spell using a spell slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.")
@@ -677,7 +677,7 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true);
+            spellComponents = SpellComponents.of(true, true);
             properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 6, SpellLevel::getValue)));
         }
     };
@@ -687,8 +687,8 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L5;
             castingTime = 600;
-            spellComponents = new SpellComponents(true, true, "a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water");
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, true, "a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water");
+            spellDuration = SpellDuration.of(600, true);
             properties = Arrays.asList(new MapProperty<>(getId() + ".property.map.connection", new CustomMap<String, Integer>().add("Likeness", -2).add("Possession", -4).add("Body part", -10)), new MapProperty<>(getId() + ".property.map.knowledge", new CustomMap<String, Integer>().add("Secondhand", 5).add("Firsthand", 0).add("Familiar", -5)));
         }
     };
@@ -699,7 +699,7 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true, "a chip of mica");
+            spellComponents = SpellComponents.of(true, true, "a chip of mica");
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.THUNDER, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
         }
     };
@@ -710,8 +710,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 150;
-            spellComponents = new SpellComponents(true, true, "a pinch of dust and a few drops of water");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a pinch of dust and a few drops of water");
+            spellDuration = SpellDuration.of(60, true);
             properties = Collections.singletonList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
         }
     };
@@ -721,8 +721,8 @@ public class Spells
             spellType = SpellTypes.DIVINATION;
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(600);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(600);
             isRitual = true;
         }
     };
@@ -733,8 +733,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 10;
-            spellComponents = new SpellComponents(true, true, "burning incense");
-            spellDuration = new SpellDuration(600);
+            spellComponents = SpellComponents.of(true, true, "burning incense");
+            spellDuration = SpellDuration.of(600);
         }
     };
     public static final Spell SPIKE_GROWTH = new Spell("spike_growth", "Spike Growth", "The ground in a 20-foot radius centered on a point within range twists and sprouts hard spikes and thorns. The area becomes difficult terrain for the duration. When a creature moves into or within the area, it takes 2d4 piercing damage for every 5 feet it travels.", "The transformation of the ground is camouflaged to look natural. Any creature that can't see the area at the time the spell is cast must make a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous before entering it.")
@@ -744,8 +744,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 150;
-            spellComponents = new SpellComponents(true, true, "seven sharp thorns or seven small twigs, each sharpened to a point");
-            spellDuration = new SpellDuration(600, true);
+            spellComponents = SpellComponents.of(true, true, "seven sharp thorns or seven small twigs, each sharpened to a point");
+            spellDuration = SpellDuration.of(600, true);
             properties = Arrays.asList(new SingleValueProperty<>(getId() + ".property.single.damage", new Damage(DamageTypes.PIERCING, new Dice(4, 2))), new SingleValueProperty<>(getId() + ".property.single.integer", 5), new SkillDCSaveProperty(getId(), SkillTypes.PERCEPTION));
         }
     };
@@ -756,8 +756,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.BONUS_ACTION;
             range = 60;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE);
             properties = Collections.singletonList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FORCE, new CustomMap<SpellLevel, Dice>().add(Arrays.asList(SpellLevels.L1, SpellLevels.L2, SpellLevels.L3), new Dice(8, 1)).add(SpellLevels.L4, new Dice(8, 3)).add(SpellLevels.L5, new Dice(8, 3)).add(SpellLevels.L6, new Dice(8, 5)).add(SpellLevels.L7, new Dice(8, 5)).add(Arrays.asList(SpellLevels.L8, SpellLevels.L9), new Dice(8, 7))));
         }
     };
@@ -768,8 +768,8 @@ public class Spells
             spellLevel = SpellLevels.L2;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, false, "a snake's tongue and either a hit of honeycomb or a drop of sweet oil");
-            spellDuration = new SpellDuration(ActionTimes.EIGHT_HOURS, true);
+            spellComponents = SpellComponents.of(true, false, "a snake's tongue and either a hit of honeycomb or a drop of sweet oil");
+            spellDuration = SpellDuration.of(ActionTimes.EIGHT_HOURS, true);
         }
     };
     public static final Spell THAUMATURGY = new Spell("thaumaturgy", "Thaumaturgy", "You manifest a minor wonder, a sign of supernatural power, within range. You create one of the following magical effects within range:", "- Your voice booms up to three times as loud as normal for 1 minute.", "- You cause flames to flicker, brighten, dim, or change color for 1 minute.", "- You cause harmless tremors in the ground for 1 minute.", "- You create an instantaneous sound that originates from a point of your choice within range, such as a rumble of thunder, the cry of a raven, or ominous whispers.", "- You instantaneously cause an unlocked door or window to fly open or slam shut.", "- You alter the appearance of your eyes for 1 minute.", "If you cast this spell multiple times, you can have up to three of its 1 minute effects active at a time, and you can dismiss such an effect as an action.")
@@ -779,8 +779,8 @@ public class Spells
             spellLevel = SpellLevels.CANTRIP;
             castingTime = ActionTimes.ACTION;
             range = 30;
-            spellComponents = new SpellComponents(true, false, "");
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE);
+            spellComponents = SpellComponents.of(true, false, "");
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE);
         }
     };
     public static final Spell THUNDERWAVE = new Spell("thunderwave", "Thunderwave", "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a Constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away from. On a successful save, the creature takes half as much damage and isn't pushed.", "In addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.")
@@ -789,8 +789,8 @@ public class Spells
             spellType = SpellTypes.EVOCATION;
             spellLevel = SpellLevels.L1;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.THUNDER, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.CON));
         }
     };
@@ -800,8 +800,8 @@ public class Spells
             spellType = SpellTypes.CONJURATION;
             spellLevel = SpellLevels.L5;
             castingTime = ActionTimes.ACTION;
-            spellComponents = new SpellComponents(true, true);
-            spellDuration = new SpellDuration(ActionTimes.ONE_MINUTE, true);
+            spellComponents = SpellComponents.of(true, true);
+            spellDuration = SpellDuration.of(ActionTimes.ONE_MINUTE, true);
         }
     };
     public static final Spell WALL_OF_FIRE = new Spell("wall_of_fire", "Wall of Fire", "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.", "When the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.", "One side of the wall, selected by you when you cast this spell, deals 5d8 damage to each creature that ends its turn within 10 feet of that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage.", "At Higher Levels: When you cast this spell using a spell slot of 5th level or higher, the damage increases by 1d8 for each slot level above 4th.")
@@ -811,8 +811,8 @@ public class Spells
             spellLevel = SpellLevels.L4;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true, "a small piece of phosphorus");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a small piece of phosphorus");
+            spellDuration = SpellDuration.of(60, true);
             properties = Arrays.asList(new SpellLevelScalableDamageProperty(getId(), DamageTypes.FIRE, CustomMap.populateSpellLevelDiceMap(spellLevel, 8, level -> level.getValue() + 1)), new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.DEX));
         }
     };
@@ -823,8 +823,8 @@ public class Spells
             spellLevel = SpellLevels.L3;
             castingTime = ActionTimes.ACTION;
             range = 120;
-            spellComponents = new SpellComponents(true, true, "a tiny fan and a feather of exotic origin");
-            spellDuration = new SpellDuration(60, true);
+            spellComponents = SpellComponents.of(true, true, "a tiny fan and a feather of exotic origin");
+            spellDuration = SpellDuration.of(60, true);
             properties = Arrays.asList(new AbilityScoreDCSaveProperty(getId(), AbilityScoreTypes.STR), new SingleValueProperty<>(getId() + ".property.single.damage", new Damage(DamageTypes.BLUDGEONING, new Dice(8, 3))));
         }
     };

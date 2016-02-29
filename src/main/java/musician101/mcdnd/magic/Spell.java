@@ -15,8 +15,8 @@ public class Spell implements Described, HasProperties, Identified, Named
     protected double castingTime = 0;
     protected int range = 0;
     protected List<Property> properties = new ArrayList<>();
-    protected SpellComponents spellComponents = new SpellComponents();
-    protected SpellDuration spellDuration = new SpellDuration();
+    protected SpellComponents spellComponents = SpellComponents.of();
+    protected SpellDuration spellDuration = SpellDuration.of();
     protected SpellLevel spellLevel;
     protected SpellType spellType;
     private String id;
