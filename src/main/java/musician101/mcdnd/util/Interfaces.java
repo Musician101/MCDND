@@ -9,6 +9,7 @@ import musician101.mcdnd.skill.Skill;
 import musician101.mcdnd.skill.SkillType;
 import musician101.mcdnd.skill.SkillTypes;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.util.Direction;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -39,9 +40,9 @@ public class Interfaces
 
     public interface EffectsArea
     {
-        /** Needs to consider diagonals and the choice to include point of origin */
+        /** Location parameter can refer to the spell's origin and/or center point */
         @Deprecated
-        List<Location<World>> getArea(Entity entity);
+        List<Location<World>> getArea(Direction direction, Location<World> location);
     }
 
     public interface Identified

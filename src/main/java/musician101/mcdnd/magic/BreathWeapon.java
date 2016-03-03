@@ -1,8 +1,10 @@
 package musician101.mcdnd.magic;
 
 import musician101.mcdnd.abilityscore.AbilityScore;
-import musician101.mcdnd.abilityscore.AbilityScore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreType;
+import musician101.mcdnd.abilityscore.AbilityScoreTypes;
 import musician101.mcdnd.combat.Damage;
+import musician101.mcdnd.combat.DamageType;
 import musician101.mcdnd.combat.DamageTypes;
 import musician101.mcdnd.dice.Dice;
 import musician101.mcdnd.magic.Shape.Cone;
@@ -15,16 +17,18 @@ import java.util.Map;
 
 public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, Mapped<Integer, Damage>
 {
-    private final AbilityScoreType saveType;
+    private final AbilityScoreType abilityScoreType;
     private final Map<Integer, Damage> damageMap = new HashMap<>();
     private final Shape shape;
 
     /** This will be rewritten to the new Spell format once all of the other spells are finished */
-    protected BreathWeapon(DamageTypes damageType, AbilityScoreType saveType, Shape shape)
+    protected BreathWeapon(DamageType damageType, AbilityScoreType abilityScoreType, Shape shape)
     {
-        super("Breath Weapon", SpellTypes.EVOCATION, SpellLevels.CANTRIP, 0, 0, false, false, "", 0, false, "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation", "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at the 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breath weapon, you can't use it again until you complete a short or long rest.");
+        super("breath_weapon", "Breath Weapon", "You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation", "When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at the 6th level, 4d6 at 11th level, and 5d6 at 16th level.", "After you use your breath weapon, you can't use it again until you complete a short or long rest.");
+        spellType = SpellTypes.EVOCATION;
+        spellLevel = SpellLevels.CANTRIP;
         this.shape = shape;
-        this.saveType = saveType;
+        this.abilityScoreType = abilityScoreType;
         damageMap.put(1, new Damage(damageType, new Dice(6, 2)));
         damageMap.put(6, new Damage(damageType, new Dice(6, 3)));
         damageMap.put(11, new Damage(damageType, new Dice(6, 4)));
@@ -32,9 +36,10 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
     }
 
     @Override
-    public AbilityScoreType getAbilitySaveType()
+    public BreathWeapon add(Integer key, Damage value)
     {
-        return saveType;
+        damageMap.put(key, value);
+        return this;
     }
 
     @Override
@@ -52,7 +57,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
     @Override
     public int getDCSave(AbilityScore score, int... bonuses)
     {
-        if (score.getType() != AbilityScoreType.CON)
+        if (score.getType() != AbilityScoreTypes.CON)
             throw new IllegalArgumentException("Breath Weapon DC requires Constitution modifier!");
 
         int save = 8 + score.getMod();
@@ -73,11 +78,17 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         return shape;
     }
 
+    @Override
+    public AbilityScoreType getValue()
+    {
+        return abilityScoreType;
+    }
+
     public static abstract class LineBreathWeapon extends BreathWeapon
     {
-        protected LineBreathWeapon(DamageTypes damageType)
+        protected LineBreathWeapon(DamageType damageType)
         {
-            super(damageType, AbilityScoreType.DEX, new Line(5, 30));
+            super(damageType, AbilityScoreTypes.DEX, new Line(5, 30));
         }
 
         public static class AcidLineBreathWeapon extends LineBreathWeapon
@@ -107,7 +118,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
 
     public static abstract class ConeBreathWeapon extends BreathWeapon
     {
-        protected ConeBreathWeapon(DamageTypes damageType, AbilityScoreType scoreType)
+        protected ConeBreathWeapon(DamageType damageType, AbilityScoreType scoreType)
         {
             super(damageType, scoreType, new Cone(15));
         }
@@ -116,7 +127,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public ColdConeBreathWeapon()
             {
-                super(DamageTypes.COLD, AbilityScoreType.CON);
+                super(DamageTypes.COLD, AbilityScoreTypes.CON);
             }
         }
 
@@ -124,7 +135,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public FireConeBreathWeapon()
             {
-                super(DamageTypes.FIRE, AbilityScoreType.DEX);
+                super(DamageTypes.FIRE, AbilityScoreTypes.DEX);
             }
         }
 
@@ -132,7 +143,7 @@ public abstract class BreathWeapon extends Spell implements AbilityScoreDCSave, 
         {
             public PoisonConeBreathWeapon()
             {
-                super(DamageTypes.POISON, AbilityScoreType.CON);
+                super(DamageTypes.POISON, AbilityScoreTypes.CON);
             }
         }
     }
