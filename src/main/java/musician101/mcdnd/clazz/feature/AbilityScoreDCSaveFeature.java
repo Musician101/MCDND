@@ -20,7 +20,7 @@ public class AbilityScoreDCSaveFeature extends Feature implements AbilityScoreDC
     }
 
     @Override
-    public AbilityScoreType getAbilityScoreType()
+    public AbilityScoreType getValue()
     {
         return scoreType;
     }

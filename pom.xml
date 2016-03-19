@@ -28,26 +28,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>musician101</groupId>
-            <artifactId>common</artifactId>
+            <groupId>musician101.common.java.minecraft</groupId>
+            <artifactId>sponge</artifactId>
             <version>2.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.spigotmc</groupId>
-                    <artifactId>spigot-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>Common-Maven-Repo</id>
-            <url>https://raw.github.com/Musician101/Common/mvn-repo</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
+            <id>Common-Sponge</id>
+            <url>https://raw.github.com/Musician101/Common/sponge-repo</url>
         </repository>
     </repositories>
 </project>

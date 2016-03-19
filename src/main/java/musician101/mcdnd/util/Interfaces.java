@@ -41,7 +41,6 @@ public class Interfaces
     public interface EffectsArea
     {
         /** Location parameter can refer to the spell's origin and/or center point */
-        @Deprecated
         List<Location<World>> getArea(Direction direction, Location<World> location);
     }
 

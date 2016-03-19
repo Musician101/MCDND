@@ -241,7 +241,6 @@ public abstract class Shape implements Described, EffectsArea, Named
         public List<Location<World>> getArea(Direction direction, Location<World> location)
         {
             World world = location.getExtent();
-            Vector3d directionVector = direction.toVector3d();
             Vector3d startingLocation = location.getPosition();
             List<Location<World>> locations = Collections.singletonList(new Location<>(world, startingLocation));
             int xCenter = startingLocation.getFloorX();
