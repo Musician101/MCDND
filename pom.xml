@@ -1,8 +1,8 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>musician101</groupId>
+    <groupId>io.musician101.sponge</groupId>
     <artifactId>mcdnd</artifactId>
-    <version>0.1</version>
+    <version>ALPHA-1.0</version>
     <name>Minecraft Dungeons and Dragons</name>
     <description>A mod for Minecraft that allows players to play the ever popular Dungeons and Dragons (5th Edition only).</description>
 
@@ -23,21 +23,50 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <finalName>${project.name}-${project.version}</finalName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <artifactSet>
+                                <includes>
+                                    <include>musician101.common.java.minecraft:sponge</include>
+                                </includes>
+                            </artifactSet>
+                            <filters>
+                                <filter>
+                                    <artifact>musician101.common.java.minecraft:sponge</artifact>
+                                    <includes>
+                                        <include>musician101/common/java/minecraft/command/**</include>
+                                        <include>musician101/common/java/minecraft/sponge/command/**</include>
+                                    </includes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
         <dependency>
-            <groupId>musician101.common.java.minecraft</groupId>
+            <groupId>io.musician101.common.java.minecraft</groupId>
             <artifactId>sponge</artifactId>
-            <version>2.0-SNAPSHOT</version>
+            <version>3.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>Common-Sponge</id>
-            <url>https://raw.github.com/Musician101/Common/sponge-repo</url>
-        </repository>
-    </repositories>
 </project>
