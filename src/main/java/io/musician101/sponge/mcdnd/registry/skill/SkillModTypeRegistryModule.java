@@ -1,4 +1,4 @@
-package io.musician101.sponge.mcdnd.registry;
+package io.musician101.sponge.mcdnd.registry.skill;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;

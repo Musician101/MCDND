@@ -25,6 +25,6 @@ public class AbilityScoreImprovementProperty extends ListProperty<Integer>
     public DataContainer toContainer()
     {
         return new MemoryDataContainer()
-                .set(MCDNDKeys.INTEGER_LIST, list);
+                .set(MCDNDKeys.INTEGERS, list);
     }
 }

@@ -1,6 +1,6 @@
 package io.musician101.sponge.mcdnd.currency;
 
-import io.musician101.sponge.mcdnd.util.CustomMap;
+import io.musician101.sponge.mcdnd.util.MapUtils;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ public abstract class CurrencyHolder
 
     protected CurrencyHolder()
     {
-        currency = new CustomMap<CurrencyType, Integer>().add(CurrencyTypes.COPPER, 0).add(CurrencyTypes.SILVER, 0)
+        currency = new MapUtils<CurrencyType, Integer>().add(CurrencyTypes.COPPER, 0).add(CurrencyTypes.SILVER, 0)
                 .add(CurrencyTypes.ELECTRUM, 0).add(CurrencyTypes.GOLD, 0).add(CurrencyTypes.PLATINUM, 0);
     }
 

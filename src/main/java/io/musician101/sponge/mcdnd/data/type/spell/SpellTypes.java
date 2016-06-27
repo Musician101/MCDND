@@ -1,4 +1,4 @@
-package io.musician101.sponge.mcdnd.magic;
+package io.musician101.sponge.mcdnd.data.type.spell;
 
 public class SpellTypes
 {

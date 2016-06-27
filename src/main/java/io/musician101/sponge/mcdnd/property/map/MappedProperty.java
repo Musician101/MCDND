@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.property.map;
 
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.magic.SpellLevel;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.property.Property;
 import io.musician101.sponge.mcdnd.util.Interfaces.Mapped;
 

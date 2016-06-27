@@ -14,7 +14,7 @@ import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 public class LightDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Light Domain Spells")
-            .addProperty(MCDNDKeys.SPELL_LIST_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.BURNING_HANDS, Spells.FAERIE_FIRE))).put(3, of(Arrays.asList(Spells.FLAMING_SPHERE, Spells.SCORCHING_RAY))).put(5, of(Arrays.asList(Spells.DAYLIGHT, Spells.FIREBALL))).put(7, of(Arrays.asList(Spells.GUARDIAN_OF_FAITH, Spells.WALL_OF_FIRE))).put(9, of(Arrays.asList(Spells.FLAME_STRIKE, Spells.SCRYING))).build())
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.BURNING_HANDS, Spells.FAERIE_FIRE))).put(3, of(Arrays.asList(Spells.FLAMING_SPHERE, Spells.SCORCHING_RAY))).put(5, of(Arrays.asList(Spells.DAYLIGHT, Spells.FIREBALL))).put(7, of(Arrays.asList(Spells.GUARDIAN_OF_FAITH, Spells.WALL_OF_FIRE))).put(9, of(Arrays.asList(Spells.FLAME_STRIKE, Spells.SCRYING))).build())
             .build();
     public static final Feature BONUS_CANTRIP = builder().name("Bonus Cantrip")
             .description("When you choose this domain at 1st level, you gain the Light Cantrip if you don't already know it.")

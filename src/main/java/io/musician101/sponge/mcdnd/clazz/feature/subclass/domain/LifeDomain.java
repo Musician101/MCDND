@@ -16,7 +16,7 @@ import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 public class LifeDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Life Domain Spells")
-            .addProperty(MCDNDKeys.SPELL_LIST_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.BLESS, Spells.CURE_WOUNDS))).put(3, of(Arrays.asList(Spells.LESSER_RESTORATION, Spells.SPIRITUAL_WEAPON))).put(5, of(Arrays.asList(Spells.BEACON_OF_HOPE, Spells.REVIVIFY))).put(7, of(Arrays.asList(Spells.DEATH_WARD, Spells.GUARDIAN_OF_FAITH))).put(9, of(Arrays.asList(Spells.MASS_CURE_WOUNDS, Spells.RAISE_DEAD))).build())
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.BLESS, Spells.CURE_WOUNDS))).put(3, of(Arrays.asList(Spells.LESSER_RESTORATION, Spells.SPIRITUAL_WEAPON))).put(5, of(Arrays.asList(Spells.BEACON_OF_HOPE, Spells.REVIVIFY))).put(7, of(Arrays.asList(Spells.DEATH_WARD, Spells.GUARDIAN_OF_FAITH))).put(9, of(Arrays.asList(Spells.MASS_CURE_WOUNDS, Spells.RAISE_DEAD))).build())
             .build();
     public static final Feature BONUS_PROFICIENCY = builder().name("Bonus Feature")
             .description("When you choose this domain at 1st level, you gain proficiency with heavy armor.")

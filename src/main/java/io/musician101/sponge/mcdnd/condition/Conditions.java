@@ -4,8 +4,8 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.combat.DamageTypes;
 import io.musician101.sponge.mcdnd.property.list.ListProperty;
 import io.musician101.sponge.mcdnd.property.single.SingleValueProperty;
-import io.musician101.sponge.mcdnd.util.Table;
-import io.musician101.sponge.mcdnd.util.Table.Column;
+import io.musician101.sponge.mcdnd.util.table.Table;
+import io.musician101.sponge.mcdnd.util.table.Table.Column;
 
 import java.util.Arrays;
 import java.util.Collections;

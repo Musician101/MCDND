@@ -40,6 +40,6 @@ public class EquipmentChoices extends ListProperty<EquipmentChoice> implements D
     {
         return new MemoryDataContainer()
                 .set(MCDNDKeys.DESCRIPTION, description)
-                .set(MCDNDKeys.EQUIPMENT_CHOICE_LIST, list);
+                .set(MCDNDKeys.EQUIPMENT_CHOICES, list);
     }
 }

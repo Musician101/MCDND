@@ -16,8 +16,8 @@ import io.musician101.sponge.mcdnd.equipment.pack.Packs;
 import io.musician101.sponge.mcdnd.equipment.tool.Tools;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
-import io.musician101.sponge.mcdnd.magic.SpellLevel;
-import io.musician101.sponge.mcdnd.magic.SpellLevels;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.single.HitPointsProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellsKnownSpellcastingProperty;
@@ -83,7 +83,7 @@ public class BardFeatures
             .build();
     public static final Feature MAGICAL_SECRETS = builder().name("Magical Secrets").levelRequirement(10)
             .description("By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip.", "The chosen spells count as bard spells for you and are included in the Spells Known column of the Bard table.", "You learn two additional spells from any class at 14th level and again at 18th level.")
-            .addProperty(MCDNDKeys.INTEGER_LIST, Arrays.asList(10, 14, 18)).build();
+            .addProperty(MCDNDKeys.INTEGERS, Arrays.asList(10, 14, 18)).build();
     public static final Feature SUPERIOR_INSPIRATION = builder().name("Superior Inspiration").levelRequirement(20)
             .description("At 20th level, when you roll initiative and have no uses of Bardic Inspiration left, you regain one use.").build();
 

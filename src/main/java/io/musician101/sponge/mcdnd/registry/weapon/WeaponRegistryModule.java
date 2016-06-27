@@ -1,4 +1,4 @@
-package io.musician101.sponge.mcdnd.registry;
+package io.musician101.sponge.mcdnd.registry.weapon;
 
 import com.google.common.collect.ImmutableList;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;

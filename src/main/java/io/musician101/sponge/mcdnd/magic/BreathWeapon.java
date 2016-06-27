@@ -5,6 +5,8 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.combat.Damage;
 import io.musician101.sponge.mcdnd.combat.DamageType;
 import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.magic.Shape.Cone;
 import io.musician101.sponge.mcdnd.magic.Shape.Line;

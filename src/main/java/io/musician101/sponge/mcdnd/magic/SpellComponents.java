@@ -1,10 +1,17 @@
 package io.musician101.sponge.mcdnd.magic;
 
-public class SpellComponents
+import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
+
+import javax.annotation.Nonnull;
+
+public class SpellComponents implements DataSerializable
 {
-    boolean isVerbal;
-    boolean isSomatic;
-    String materials;
+    private final boolean isVerbal;
+    private final boolean isSomatic;
+    private final String materials;
 
     private SpellComponents()
     {
@@ -36,6 +43,22 @@ public class SpellComponents
     public String getMaterials()
     {
         return materials;
+    }
+
+    @Override
+    public int getContentVersion()
+    {
+        return 1;
+    }
+
+    @Nonnull
+    @Override
+    public DataContainer toContainer()
+    {
+        return new MemoryDataContainer()
+                .set(MCDNDKeys.IS_VERBAL, isVerbal)
+                .set(MCDNDKeys.IS_SOMATIC, isSomatic)
+                .set(MCDNDKeys.MATERIALS, materials);
     }
 
     public static SpellComponents of()

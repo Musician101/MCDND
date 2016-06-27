@@ -48,6 +48,6 @@ public class SubClassFeature extends Feature implements Mapped<Integer, FeatureL
     @Override
     public DataContainer toContainer()
     {
-        return super.toContainer().set(MCDNDKeys.FEATURE_LIST_MAP, map);
+        return super.toContainer().set(MCDNDKeys.FEATURES_MAP, map);
     }
 }

@@ -1,9 +1,16 @@
 package io.musician101.sponge.mcdnd.magic;
 
-public class SpellDuration
+import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
+
+import javax.annotation.Nonnull;
+
+public class SpellDuration implements DataSerializable
 {
-    double duration;
-    boolean needsConcentration;
+    private final double duration;
+    private final boolean needsConcentration;
 
     private SpellDuration()
     {
@@ -26,10 +33,24 @@ public class SpellDuration
         return needsConcentration;
     }
 
-    /** In seconds */
     public double getDuration()
     {
         return duration;
+    }
+
+    @Override
+    public int getContentVersion()
+    {
+        return 1;
+    }
+
+    @Nonnull
+    @Override
+    public DataContainer toContainer()
+    {
+        return new MemoryDataContainer()
+                .set(MCDNDKeys.DURATION, duration)
+                .set(MCDNDKeys.NEEDS_CONCENTRATION, needsConcentration);
     }
 
     public static SpellDuration of()

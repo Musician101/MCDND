@@ -107,16 +107,16 @@ public class ProficienciesProperty extends Property
     public DataContainer toContainer()
     {
         return new MemoryDataContainer()
-                .set(MCDNDKeys.ARMOR_TYPE_LIST, armor)
+                .set(MCDNDKeys.ARMOR_TYPES, armor)
                 .set(MCDNDKeys.ARMOR_STRING, armorString)
-                .set(MCDNDKeys.ABILITY_SCORE_TYPE_LIST, savingThrows)
+                .set(MCDNDKeys.ABILITY_SCORE_TYPES, savingThrows)
                 .set(MCDNDKeys.SAVING_THROW_STRING, savingThrowString)
-                .set(MCDNDKeys.SKILL_TYPE_LIST, skills)
+                .set(MCDNDKeys.SKILL_TYPES, skills)
                 .set(MCDNDKeys.SKILL_AMOUNT, skillAmount)
                 .set(MCDNDKeys.SKILL_STRING, skillString)
                 .set(MCDNDKeys.TOOL_LIST, tools)
                 .set(MCDNDKeys.TOOL_STRING, toolString)
-                .set(MCDNDKeys.WEAPON_LIST, weapons)
+                .set(MCDNDKeys.WEAPONS, weapons)
                 .set(MCDNDKeys.WEAPON_STRING, weaponString);
     }
 

@@ -13,8 +13,8 @@ public class ValorCollege
 {
     public static final Feature BONUS_PROFICIENCIES = builder().name("Bonus Proficiencies").levelRequirement(3)
             .description("When you join the college of Valor at 3rd level, you gain proficiency with medium armor, shields, and martial weapons.")
-            .addProperty(MCDNDKeys.ARMOR_LIST, Lists.asList(Armors.SHIELD, Armors.getMediumArmor().toArray(new Armor[Armors.getMediumArmor().size()])))
-            .addProperty(MCDNDKeys.WEAPON_LIST, Weapons.getMartialWeapons()).build();
+            .addProperty(MCDNDKeys.ARMORS, Lists.asList(Armors.SHIELD, Armors.getMediumArmor().toArray(new Armor[Armors.getMediumArmor().size()])))
+            .addProperty(MCDNDKeys.WEAPONS, Weapons.getMartialWeapons()).build();
     public static final Feature COMBAT_INSPIRATION = builder().name("Combat Inspiration").levelRequirement(3)
             .description("Also at 3rd level, you learn to inspire others in battle. A creature that has a Bardic Inspiration die from you can roll that die and add the number rolled to a weapon damage roll it just made. Alternatively, when an attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against that attack, after seeing the roll but before knowing whether it hits or misses.")
             .build();

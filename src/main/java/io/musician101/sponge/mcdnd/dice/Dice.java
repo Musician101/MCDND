@@ -24,6 +24,11 @@ public class Dice implements DataSerializable
         this.amount = amount;
     }
 
+    public int getAverageRoll()
+    {
+        return amount * sides / 2 + 1;
+    }
+
     public int getAmount()
     {
         return amount;

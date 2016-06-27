@@ -3,7 +3,7 @@ package io.musician101.sponge.mcdnd.property.map;
 import io.musician101.sponge.mcdnd.combat.Damage;
 import io.musician101.sponge.mcdnd.combat.DamageType;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.magic.SpellLevel;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.util.Interfaces.SingleValue;
 
 import java.util.Map;

@@ -10,6 +10,7 @@ public interface Race
 
     String getName();
 
+    //TODO remove enum
     enum CharacterSize
     {
         TINY("Tiny"),

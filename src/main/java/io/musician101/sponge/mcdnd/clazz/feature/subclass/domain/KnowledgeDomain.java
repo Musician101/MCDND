@@ -5,7 +5,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
-import io.musician101.sponge.mcdnd.magic.SpellLevels;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.util.list.SpellList;
 
@@ -17,11 +17,11 @@ import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 public class KnowledgeDomain
 {
     public static final Feature KNOWLEDGE_DOMAIN_SPELLS = builder().name("Knowledge")
-            .addProperty(MCDNDKeys.SPELL_LIST_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.COMMAND, Spells.IDENTIFY))).put(3, of(Arrays.asList(Spells.AUGURY, Spells.SUGGESTION))).put(5, of(Arrays.asList(Spells.NONDETECTION, Spells.SPEAK_WITH_DEAD))).put(7, of(Arrays.asList(Spells.ARCANE_EYE, Spells.CONFUSION))).put(9, of(Arrays.asList(Spells.LEGEND_LORE, Spells.SCRYING))).build())
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.COMMAND, Spells.IDENTIFY))).put(3, of(Arrays.asList(Spells.AUGURY, Spells.SUGGESTION))).put(5, of(Arrays.asList(Spells.NONDETECTION, Spells.SPEAK_WITH_DEAD))).put(7, of(Arrays.asList(Spells.ARCANE_EYE, Spells.CONFUSION))).put(9, of(Arrays.asList(Spells.LEGEND_LORE, Spells.SCRYING))).build())
             .build();
     public static final Feature BLESSINGS_OF_KNOWLEDGE = builder().name("Blessings of Knowledge")
             .description("At 1st level, you learn two languages of your choice. You also become proficient in your choice of two of the following skills: Arcana, History, Nature, or Religion.", "Your proficiency bonus is double for any ability check you make that uses either of those skills.")
-            .addProperty(MCDNDKeys.SKILL_TYPE_LIST, Arrays.asList(SkillTypes.ARCANA, SkillTypes.HISTORY, SkillTypes.NATURE, SkillTypes.RELIGION)).build();
+            .addProperty(MCDNDKeys.SKILL_TYPES, Arrays.asList(SkillTypes.ARCANA, SkillTypes.HISTORY, SkillTypes.NATURE, SkillTypes.RELIGION)).build();
     public static final Feature KNOWLEDGE_OF_THE_AGES = builder().name("Channel Divinity: Knowledge of the Ages").levelRequirement(2)
             .description("Starting at 2nd level, you can use your Channel Divinity to tap into a divine well of knowledge. As an action you choose one skill or tool. For 10 minutes, you have proficiency with the chosen skill or tool.").build();
     public static final Feature READ_THOUGHTS = builder().name("Channel Divinity: Read Thoughts").levelRequirement(6)

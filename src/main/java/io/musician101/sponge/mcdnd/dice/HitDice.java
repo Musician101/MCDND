@@ -22,8 +22,8 @@ public class HitDice extends Dice
     public int gainHitPoints(int conMod, boolean isRolling)
     {
         if (isRolling)
-            return super.roll() + conMod;
+            return roll() + conMod;
 
-        return (sides() / 2) + 1 + conMod;
+        return getAverageRoll() + conMod;
     }
 }

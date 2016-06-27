@@ -18,10 +18,10 @@ import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 public class NatureDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Nature Domain Spells")
-            .addProperty(MCDNDKeys.SPELL_LIST_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.ANIMAL_FRIENDSHIP, Spells.SPEAK_WITH_ANIMALS))).put(3, of(Arrays.asList(Spells.BARKSKIN, Spells.SPIKE_GROWTH))).put(5, of(Arrays.asList(Spells.PLANT_GROWTH, Spells.WIND_WALL))).put(7, of(Arrays.asList(Spells.DOMINATE_BEAST, Spells.GRASPING_VINE))).put(9, of(Arrays.asList(Spells.INSECT_PLAGUE, Spells.TREE_STRIDE))).build())
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.ANIMAL_FRIENDSHIP, Spells.SPEAK_WITH_ANIMALS))).put(3, of(Arrays.asList(Spells.BARKSKIN, Spells.SPIKE_GROWTH))).put(5, of(Arrays.asList(Spells.PLANT_GROWTH, Spells.WIND_WALL))).put(7, of(Arrays.asList(Spells.DOMINATE_BEAST, Spells.GRASPING_VINE))).put(9, of(Arrays.asList(Spells.INSECT_PLAGUE, Spells.TREE_STRIDE))).build())
             .build();
     public static final Feature ACOLYTE_OF_NATURE = builder().name("Acolyte of Nature").description("At 1st level, you learn one druid cantrip of your choice. You also gain proficiency in one of the following skills of your choice: Animal Handling, Nature, or Survival.")
-            .addProperty(MCDNDKeys.SKILL_TYPE_LIST, Arrays.asList(SkillTypes.ANIMAL_HANDLING, SkillTypes.NATURE, SkillTypes.SURVIVAL))
+            .addProperty(MCDNDKeys.SKILL_TYPES, Arrays.asList(SkillTypes.ANIMAL_HANDLING, SkillTypes.NATURE, SkillTypes.SURVIVAL))
             .build();
     public static final Feature BONUS_PROFICIENCY = builder().name("Bonus Feature").description("When you choose this domain at 1st level, you gain proficiency with heavy armor.").addProperty(MCDNDKeys.ARMOR_TYPE, ArmorTypes.HEAVY).build();
     public static final Feature CHARM_ANIMALS_AND_PLANTS = builder().name("Channel Divinity: Charm Animals and Plants").levelRequirement(2)
