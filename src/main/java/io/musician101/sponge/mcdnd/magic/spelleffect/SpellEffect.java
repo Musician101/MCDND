@@ -1,38 +1,40 @@
 package io.musician101.sponge.mcdnd.magic.spelleffect;
 
-import io.musician101.sponge.mcdnd.property.Property;
+import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import io.musician101.sponge.mcdnd.util.Interfaces.HasProperties;
-import io.musician101.sponge.mcdnd.util.Interfaces.Identified;
 import io.musician101.sponge.mcdnd.util.Interfaces.Named;
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
 
-import java.util.ArrayList;
+import javax.annotation.Nonnull;
 import java.util.List;
 
-public class SpellEffect implements Described, HasProperties, Identified, Named
+public class SpellEffect implements DataSerializable, Described, HasProperties, Named
 {
-    List<Property> properties = new ArrayList<>();
-    String id;
-    String name;
-    String[] description;
+    private final DataContainer properties;
+    private final List<String> description;
+    private final String name;
 
-    protected SpellEffect(String id, String name, String... description)
+    protected SpellEffect(String name, DataContainer properties, List<String> description)
     {
-        this.id = id;
         this.name = name;
+        this.properties = properties;
         this.description = description;
     }
 
     @Override
-    public String[] getDescription()
+    public DataContainer getProperties()
     {
-        return description;
+        return properties;
     }
 
     @Override
-    public String getId()
+    public List<String> getDescription()
     {
-        return id;
+        return description;
     }
 
     @Override
@@ -42,8 +44,23 @@ public class SpellEffect implements Described, HasProperties, Identified, Named
     }
 
     @Override
-    public List<Property> getProperties()
+    public int getContentVersion()
     {
-        return properties;
+        return 1;
+    }
+
+    @Nonnull
+    @Override
+    public DataContainer toContainer()
+    {
+        return new MemoryDataContainer()
+                .set(MCDNDKeys.NAME, name)
+                .set(MCDNDKeys.DESCRIPTION, description)
+                .set(MCDNDKeys.PROPERTIES, properties);
+    }
+
+    public static SpellEffectBuilder builder()
+    {
+        return Sponge.getRegistry().createBuilder(SpellEffectBuilder.class);
     }
 }

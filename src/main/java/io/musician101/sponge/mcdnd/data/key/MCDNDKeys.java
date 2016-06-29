@@ -10,6 +10,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.PrimalPath
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.totem.Totem;
 import io.musician101.sponge.mcdnd.combat.Damage;
 import io.musician101.sponge.mcdnd.combat.DamageType;
+import io.musician101.sponge.mcdnd.condition.Condition;
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.Alignment;
@@ -63,6 +64,7 @@ import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
 public class MCDNDKeys
 {
+    public static final Key<Value<Dice>> DICE = makeSingleKey(Dice.class, Value.class, of("Dice"));
     public static final Key<Value<Integer>> ABILITY_SCORE = makeSingleKey(Integer.class, Value.class, of("AbilityScore"));
     public static final Key<Value<AbilityScoreDCSaveProperty>> ABILITY_SCORE_DC_SAVE_PROPERTY = makeSingleKey(AbilityScoreDCSaveProperty.class, Value.class, of("AbilityScoreDCSaveProperty"));
     public static final Key<Value<AbilityScoreImprovementProperty>> ABILITY_SCORE_IMPROVEMENT_PROPERTY = makeSingleKey(AbilityScoreImprovementProperty.class, Value.class, of("AbilityScoreImprovementProperty"));
@@ -182,6 +184,13 @@ public class MCDNDKeys
     public static final Key<ListValue<Integer>> STR_COLUMN = makeListKey(Integer.class, of("StrColumn"));
     public static final Key<ListValue<Integer>> DEX_COLUMN = makeListKey(Integer.class, of("DexColumn"));
     public static final Key<Value<DualIntegerFunction>> FUNCTION = makeSingleKey(DualIntegerFunction.class, Value.class, of("Function"));
+    public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap"));
+    public static final Key<ListValue<Condition>> CONDITIONS = makeListKey(Condition.class, of("Conditions"));
+    public static final Key<MapValue<Integer, String>> INTEGER_STRING_MAP = makeMapKey(Integer.class, String.class, of("IntegerStringMap"));
+    public static final Key<ListValue<Table>> TABLES = makeListKey(Table.class, of("Tables"));
+    public static final Key<ListValue<String>> CONNECTION_COLUMN = makeListKey(String.class, of("ConnectionColumn"));
+    public static final Key<ListValue<Integer>> SAVE_MODIFIER_COLUMN = makeListKey(Integer.class, of("SaveModifierColumn"));
+    public static final Key<ListValue<String>> KNOWLEDGE_COLUMN = makeListKey(String.class, of("KnowledgeColumn"));
 
     private MCDNDKeys()
     {

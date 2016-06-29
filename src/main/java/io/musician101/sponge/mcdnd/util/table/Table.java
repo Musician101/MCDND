@@ -9,6 +9,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 
+//TODO add class tables as features
 public class Table implements DataSerializable, Named
 {
     private final String name;

@@ -44,6 +44,7 @@ import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellType;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
 import io.musician101.sponge.mcdnd.magic.SpellBuilder;
+import io.musician101.sponge.mcdnd.magic.spelleffect.SpellEffectBuilder;
 import io.musician101.sponge.mcdnd.race.trait.TraitBuilder;
 import io.musician101.sponge.mcdnd.registry.AbilityScoreTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.AlignmentRegistryModule;
@@ -80,6 +81,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         Sponge.getRegistry().registerBuilderSupplier(FeatureBuilder.class, FeatureBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(PrimalPathBuilder.class, PrimalPathBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(SpellBuilder.class, SpellBuilder::new);
+        Sponge.getRegistry().registerBuilderSupplier(SpellEffectBuilder.class, SpellEffectBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(TableBuilder.class, TableBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(TraitBuilder.class, TraitBuilder::new);
     }
