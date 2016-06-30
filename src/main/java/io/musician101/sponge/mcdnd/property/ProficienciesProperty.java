@@ -12,7 +12,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ProficienciesProperty extends Property
+public class ProficienciesProperty extends MCDNDProperty
 {
     private final int skillAmount;
     private final List<ArmorTypes> armor;
@@ -114,7 +114,7 @@ public class ProficienciesProperty extends Property
                 .set(MCDNDKeys.SKILL_TYPES, skills)
                 .set(MCDNDKeys.SKILL_AMOUNT, skillAmount)
                 .set(MCDNDKeys.SKILL_STRING, skillString)
-                .set(MCDNDKeys.TOOL_LIST, tools)
+                .set(MCDNDKeys.TOOLS, tools)
                 .set(MCDNDKeys.TOOL_STRING, toolString)
                 .set(MCDNDKeys.WEAPONS, weapons)
                 .set(MCDNDKeys.WEAPON_STRING, weaponString);

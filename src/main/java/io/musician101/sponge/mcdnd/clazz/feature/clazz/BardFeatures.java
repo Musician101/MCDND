@@ -19,7 +19,7 @@ import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
-import io.musician101.sponge.mcdnd.property.single.HitPointsProperty;
+import io.musician101.sponge.mcdnd.property.HitPointsProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellsKnownSpellcastingProperty;
 import io.musician101.sponge.mcdnd.util.DualIntegerMap;
 import org.spongepowered.api.Sponge;

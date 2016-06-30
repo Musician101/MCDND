@@ -8,7 +8,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 
-public class SizeProperty extends Property
+public class SizeProperty extends MCDNDProperty
 {
     private final CharacterSize size;
     private final Dice heightDice;

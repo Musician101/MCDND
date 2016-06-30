@@ -2,7 +2,7 @@ package io.musician101.sponge.mcdnd.property.spellcasting;
 
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
-import io.musician101.sponge.mcdnd.property.Property;
+import io.musician101.sponge.mcdnd.property.MCDNDProperty;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-public class SpellcastingProperty extends Property implements Described
+public class SpellcastingProperty extends MCDNDProperty implements Described
 {
     private final Feature cantrips;
     private final List<String> description;

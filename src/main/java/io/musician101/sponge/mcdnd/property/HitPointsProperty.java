@@ -1,30 +1,37 @@
-package io.musician101.sponge.mcdnd.property.single;
+package io.musician101.sponge.mcdnd.property;
 
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.HitDice;
+import io.musician101.sponge.mcdnd.property.MCDNDProperty;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 
-public class HitPointsProperty extends SingleValueProperty<HitDice>
+public class HitPointsProperty extends MCDNDProperty
 {
+    private final HitDice hitDice;
     private final String className;
 
-    public HitPointsProperty(HitDice dice, String className)
+    public HitPointsProperty(HitDice hitDice, String className)
     {
-        super(dice);
+        this.hitDice = hitDice;
         this.className = className;
+    }
+
+    public HitDice getHitDice()
+    {
+        return hitDice;
     }
 
     public String getHitPointsAtFirstLevel()
     {
-        return value.sides() + " + your Constitution modifier";
+        return hitDice.sides() + " + your Constitution modifier";
     }
 
     public String getHitPointsAtHigherLevels()
     {
-        return value.toString() + " (or " + (value.sides() / 2) + " + your Constitution modifier per " + className + " level";
+        return hitDice.toString() + " (or " + (hitDice.sides() / 2) + " + your Constitution modifier per " + className + " level";
     }
 
     @Override
@@ -38,7 +45,7 @@ public class HitPointsProperty extends SingleValueProperty<HitDice>
     public DataContainer toContainer()
     {
         return new MemoryDataContainer()
-                .set(MCDNDKeys.HIT_DICE_PROPERTY, value)
+                .set(MCDNDKeys.HIT_DICE, hitDice)
                 .set(MCDNDKeys.CLASS_NAME, className);
     }
 }

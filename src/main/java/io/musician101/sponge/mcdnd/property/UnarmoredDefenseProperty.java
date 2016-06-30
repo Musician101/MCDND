@@ -9,7 +9,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-public class UnarmoredDefenseProperty extends Property
+public class UnarmoredDefenseProperty extends MCDNDProperty
 {
     public Optional<Integer> getArmorClass(AbilityScoreData score)
     {

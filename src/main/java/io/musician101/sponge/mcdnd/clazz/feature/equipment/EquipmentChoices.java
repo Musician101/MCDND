@@ -1,9 +1,9 @@
 package io.musician101.sponge.mcdnd.clazz.feature.equipment;
 
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
-import io.musician101.sponge.mcdnd.property.list.ListProperty;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
@@ -11,16 +11,21 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class EquipmentChoices extends ListProperty<EquipmentChoice> implements Described
+public class EquipmentChoices implements DataSerializable, Described
 {
-    List<String> description;
+    private final List<EquipmentChoice> choices;
+    private final List<String> description;
 
     public EquipmentChoices(String description, EquipmentChoice... choices)
     {
-        super(Arrays.asList(choices));
+        this.choices = Arrays.asList(choices);
         this.description = Collections.singletonList(description);
     }
 
+    public List<EquipmentChoice> getChoices()
+    {
+        return choices;
+    }
 
     @Override
     public List<String> getDescription()
@@ -40,6 +45,6 @@ public class EquipmentChoices extends ListProperty<EquipmentChoice> implements D
     {
         return new MemoryDataContainer()
                 .set(MCDNDKeys.DESCRIPTION, description)
-                .set(MCDNDKeys.EQUIPMENT_CHOICES, list);
+                .set(MCDNDKeys.EQUIPMENT_CHOICES, choices);
     }
 }

@@ -27,7 +27,7 @@ public class Spell implements Described, HasProperties, Named, DataSerializable
     private final SpellType spellType;
     private final String name;
 
-    private Spell(String name, List<String> description, boolean isRitual, DataContainer properties, double castingTime, int range, SpellComponents spellComponents, SpellDuration spellDuration, SpellLevel spellLevel, SpellType spellType)//NOSONAR
+    protected Spell(String name, List<String> description, boolean isRitual, DataContainer properties, double castingTime, int range, SpellComponents spellComponents, SpellDuration spellDuration, SpellLevel spellLevel, SpellType spellType)//NOSONAR
     {
         this.name = name;
         this.description = description;

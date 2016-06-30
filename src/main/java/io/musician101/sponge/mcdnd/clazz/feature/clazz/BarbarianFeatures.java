@@ -18,7 +18,7 @@ import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.RageProperty;
 import io.musician101.sponge.mcdnd.property.UnarmoredDefenseProperty;
-import io.musician101.sponge.mcdnd.property.single.HitPointsProperty;
+import io.musician101.sponge.mcdnd.property.HitPointsProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
