@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.race.trait.dwarf;
 
 import com.google.common.collect.ImmutableMap;
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
@@ -50,7 +50,7 @@ public class DwarfTraits
             .build();
     public static final Trait DWARVEN_RESILIENCE = builder().name("Dwarven Resilience")
             .description("You have advantage on saving throws against poison, and you have resistance against poison damage.")
-            .addProperty(MCDNDKeys.DAMAGE_TYPE, DamageTypes.POISON)
+            .addProperty(MCDNDKeys.DAMAGE_TYPE, MCDNDDamageTypes.POISON)
             .build();
     public static final Trait STONECUNNING = builder().name("Stonecunning")
             .description("Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient int the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.")

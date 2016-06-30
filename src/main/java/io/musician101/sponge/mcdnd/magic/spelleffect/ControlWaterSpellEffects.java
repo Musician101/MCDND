@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.magic.spelleffect;
 
 import io.musician101.sponge.mcdnd.combat.Damage;
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
@@ -24,7 +24,7 @@ public class ControlWaterSpellEffects
             .build();
     public static final SpellEffect WHIRLPOOL = builder().name("Whirlpool")
             .description("This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. The whirlpool forms a vortex is pulled 10 feet toward it. A creature can swim away from the vortex by making a Strength (Athletics) check against your spell save DC.", "When a creature enters the vortex for the first time one a turn or starts its turn there, it must make a Strength saving throw. On a failed save the creature takes 2d8 bludgeoning damage and is caught in the vortex until the spell ends. On a successful save, the creature takes half damage, and isn't caught in the vortex. A creature caught in the vortex can use its action to try to swim away from the vortex as described above, but has disadvantage on the Strength (Athletics) check to do so.", "The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex.")
-            .addProperty(MCDNDKeys.DAMAGE, new Damage(DamageTypes.BLUDGEONING, new Dice(8, 2)))
+            .addProperty(MCDNDKeys.DAMAGE, new Damage(MCDNDDamageTypes.BLUDGEONING, new Dice(8, 2)))
             .addProperty(MCDNDKeys.SKILL_TYPE, SkillTypes.ATHLETICS)
             .build();
     public static final List<SpellEffect> ALL = Arrays.asList(FLOOD, PART_WATER, REDIRECT_FLOW, WHIRLPOOL);

@@ -1,6 +1,7 @@
 package io.musician101.sponge.mcdnd;
 
 import io.musician101.common.java.minecraft.sponge.AbstractSpongePlugin;
+import io.musician101.sponge.mcdnd.breathweapon.BreathWeaponBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.FeatureBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.domain.DivineDomainBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.PrimalPathBuilder;
@@ -78,6 +79,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
 
     private void registerBuilders()
     {
+        Sponge.getRegistry().registerBuilderSupplier(BreathWeaponBuilder.class, BreathWeaponBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(ConditionBuilder.class, ConditionBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(DivineDomainBuilder.class, DivineDomainBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(FeatureBuilder.class, FeatureBuilder::new);

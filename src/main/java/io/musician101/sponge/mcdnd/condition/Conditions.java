@@ -1,6 +1,6 @@
 package io.musician101.sponge.mcdnd.condition;
 
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.util.table.Table;
@@ -48,7 +48,7 @@ public class Conditions
             .addProperty(MCDNDKeys.CONDITION, INCAPACITATED)
             .addProperty(MCDNDKeys.DUAL_INTEGER_FUNCTION, num -> num * 10)
             .addProperty(MCDNDKeys.ABILITY_SCORE_TYPES, Arrays.asList(AbilityScoreTypes.STRENGTH, AbilityScoreTypes.DEXTERITY))
-            .addProperty(MCDNDKeys.DAMAGE_TYPES, DamageTypes.ALL)
+            .addProperty(MCDNDKeys.DAMAGE_TYPES, MCDNDDamageTypes.ALL)
             .build();
     public static final Condition POISONED = builder().name("Poisoned")
             .description("A poisoned creature has disadvantage on attack rolls and ability checks.")

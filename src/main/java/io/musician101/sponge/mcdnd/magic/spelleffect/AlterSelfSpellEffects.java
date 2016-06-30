@@ -1,6 +1,6 @@
 package io.musician101.sponge.mcdnd.magic.spelleffect;
 
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.Dice;
 
@@ -20,7 +20,7 @@ public class AlterSelfSpellEffects
     public static final SpellEffect NATURAL_WEAPONS = builder().name("Natural Weapons")
             .description("You grow claws, fangs, spines, horns, or a different natural weapon of your choice. Your unarmed strikes deal 1d6 bludgeoning, piercing, or slashing damage, as appropriate to the natural weapon you chose, and you are proficient with your unarmed strikes. Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it.")
             .addProperty(MCDNDKeys.DICE, new Dice(6, 1))
-            .addProperty(MCDNDKeys.DAMAGE_TYPES, Arrays.asList(DamageTypes.BLUDGEONING, DamageTypes.PIERCING, DamageTypes.SLASHING))
+            .addProperty(MCDNDKeys.DAMAGE_TYPES, Arrays.asList(MCDNDDamageTypes.BLUDGEONING, MCDNDDamageTypes.PIERCING, MCDNDDamageTypes.SLASHING))
             .build();
     public static final List<SpellEffect> ALL = Arrays.asList(AQUATIC_ADAPTATION, CHANGE_APPEARANCE, NATURAL_WEAPONS);
 }

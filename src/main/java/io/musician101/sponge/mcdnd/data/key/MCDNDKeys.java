@@ -9,7 +9,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.subclass.domain.DivineDomain;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.PrimalPath;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.totem.Totem;
 import io.musician101.sponge.mcdnd.combat.Damage;
-import io.musician101.sponge.mcdnd.combat.DamageType;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageType;
 import io.musician101.sponge.mcdnd.condition.Condition;
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
@@ -29,6 +29,7 @@ import io.musician101.sponge.mcdnd.equipment.tool.Tool;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
 import io.musician101.sponge.mcdnd.equipment.weapon.property.WeaponProperty;
 import io.musician101.sponge.mcdnd.language.Language;
+import io.musician101.sponge.mcdnd.magic.Shape;
 import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.SpellComponents;
 import io.musician101.sponge.mcdnd.magic.SpellDuration;
@@ -98,8 +99,8 @@ public class MCDNDKeys
     public static final Key<Value<String>> CLASS_NAME = makeSingleKey(String.class, Value.class, of("ClassName"));
     public static final Key<Value<Cost>> COST = makeSingleKey(Cost.class, Value.class, of("Cost"));
     public static final Key<Value<Damage>> DAMAGE = makeSingleKey(Damage.class, Value.class, of("Damage"));
-    public static final Key<Value<DamageType>> DAMAGE_TYPE = makeSingleKey(DamageType.class, Value.class, of("DamageType"));
-    public static final Key<ListValue<DamageType>> DAMAGE_TYPES = makeListKey(DamageType.class, of("DamageTypes"));
+    public static final Key<Value<MCDNDDamageType>> DAMAGE_TYPE = makeSingleKey(MCDNDDamageType.class, Value.class, of("DamageType"));
+    public static final Key<ListValue<MCDNDDamageType>> DAMAGE_TYPES = makeListKey(MCDNDDamageType.class, of("DamageTypes"));
     public static final Key<ListValue<String>> DESCRIPTION = makeListKey(String.class, of("Description"));
     public static final Key<ListValue<DivineDomain>> DIVINE_DOMAINS = makeListKey(DivineDomain.class, of("DivineDomains"));
     public static final Key<Value<Equipment>> EQUIPMENT = makeSingleKey(Equipment.class, Value.class, of("EquipmentSingle"));
@@ -194,6 +195,8 @@ public class MCDNDKeys
     public static final Key<ListValue<String>> CONNECTION_COLUMN = makeListKey(String.class, of("ConnectionColumn"));
     public static final Key<ListValue<Integer>> SAVE_MODIFIER_COLUMN = makeListKey(Integer.class, of("SaveModifierColumn"));
     public static final Key<ListValue<String>> KNOWLEDGE_COLUMN = makeListKey(String.class, of("KnowledgeColumn"));
+    public static final Key<MapValue<Integer, Damage>> INTEGER_DAMAGE_MAP = makeMapKey(Integer.class, Damage.class, of("IntegerDamageMap"));
+    public static final Key<Value<Shape>> SHAPE = makeSingleKey(Shape.class, Value.class, of("Shape"));
 
     private MCDNDKeys()
     {

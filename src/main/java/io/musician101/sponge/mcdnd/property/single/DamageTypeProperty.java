@@ -1,15 +1,15 @@
 package io.musician101.sponge.mcdnd.property.single;
 
-import io.musician101.sponge.mcdnd.combat.DamageType;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageType;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 
-public class DamageTypeProperty extends SingleValueProperty<DamageType>
+public class DamageTypeProperty extends SingleValueProperty<MCDNDDamageType>
 {
-    public DamageTypeProperty(DamageType damageType)
+    public DamageTypeProperty(MCDNDDamageType damageType)
     {
         super(damageType);
     }

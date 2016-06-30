@@ -2,7 +2,7 @@ package io.musician101.sponge.mcdnd.clazz.feature.subclass.domain;
 
 import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.armor.Armors;
@@ -36,7 +36,7 @@ public class TempestDomain
     //TODO DamageDealingScalableDamageFeature doesn't actually exist, but this serves as a reminder of what exactly it's supposed to do when used
     public static final Feature DIVINE_STRIKE = builder().name("Divine Strike").levelRequirement(8)
             .description("At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 thunder damage to the target. When you reach 14th level, the extra damage increases to 2d8.")
-            .addProperty(MCDNDKeys.INTEGER_DICE_MAP, ImmutableMap.<Integer, Dice>builder().put(8, new Dice(8)).put(14, new Dice(8, 2)).build()).addProperty(MCDNDKeys.DAMAGE_TYPE, DamageTypes.THUNDER).build();
+            .addProperty(MCDNDKeys.INTEGER_DICE_MAP, ImmutableMap.<Integer, Dice>builder().put(8, new Dice(8)).put(14, new Dice(8, 2)).build()).addProperty(MCDNDKeys.DAMAGE_TYPE, MCDNDDamageTypes.THUNDER).build();
     public static final Feature STORMBORN = builder().name("Stormborn").levelRequirement(17).description("At 17th level, you have a flying speed equal to your current walking speed whenever you are not underground or indoors.").build();
 
     private TempestDomain()

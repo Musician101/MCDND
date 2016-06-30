@@ -2,11 +2,11 @@ package io.musician101.sponge.mcdnd.combat;
 
 import io.musician101.sponge.mcdnd.util.Interfaces.Named;
 
-public class DamageType implements Named
+public class MCDNDDamageType implements Named
 {
     final String name;
 
-    public DamageType(String name)
+    public MCDNDDamageType(String name)
     {
         this.name = name;
     }

@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.race.trait;
 
 import com.google.common.collect.ImmutableMap;
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
@@ -43,7 +43,7 @@ public class TieflingTraits
             .description("Tieflings are about the same size and build as humans. Your size is Medium.")
             .build();
     public static final Trait HELLISH_RESISTANCE = builder().name("Hellish Resistance")
-            .addProperty(MCDNDKeys.DAMAGE_TYPE, DamageTypes.FIRE)
+            .addProperty(MCDNDKeys.DAMAGE_TYPE, MCDNDDamageTypes.FIRE)
             .description("You have resistance to fire damage.")
             .build();
     public static final Trait INFERNAL_LEGACY = builder().name("Infernal Legacy")

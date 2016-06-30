@@ -1,6 +1,6 @@
 package io.musician101.sponge.mcdnd.race.trait.halfling;
 
-import io.musician101.sponge.mcdnd.combat.DamageTypes;
+import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
@@ -18,7 +18,7 @@ public class StoutHalflingTraits
             .description("Your Constitution score increases by 1.")
             .build();
     public static final Trait STOUT_RESILIENCE = builder().name("Stout Resilience")
-            .addProperty(MCDNDKeys.DAMAGE_TYPE, DamageTypes.POISON)
+            .addProperty(MCDNDKeys.DAMAGE_TYPE, MCDNDDamageTypes.POISON)
             .description("You have advantage on saving throws against poison, and you have resistance against poison damage.")
             .build();
     protected static final List<Trait> ALL = Arrays.asList(ABILITY_SCORE_INCREASE, STOUT_RESILIENCE);

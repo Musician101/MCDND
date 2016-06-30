@@ -16,17 +16,17 @@ import io.musician101.sponge.mcdnd.util.table.Table;
 
 import java.util.Arrays;
 
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.ACID;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.BLUDGEONING;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.COLD;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.FIRE;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.FORCE;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.LIGHTNING;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.NECROTIC;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.PIERCING;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.POISON;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.RADIANT;
-import static io.musician101.sponge.mcdnd.combat.DamageTypes.THUNDER;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.ACID;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.BLUDGEONING;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.COLD;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.FIRE;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.FORCE;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.LIGHTNING;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.NECROTIC;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.PIERCING;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.POISON;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.RADIANT;
+import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.THUNDER;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.ABILITY_SCORE_TYPE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.AC_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.ATTACK_COLUMN;
