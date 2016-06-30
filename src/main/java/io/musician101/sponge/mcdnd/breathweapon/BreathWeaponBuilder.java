@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.combat.MCDNDDamageType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.magic.Shape;
+import io.musician101.sponge.mcdnd.shape.Shape;
 import org.spongepowered.api.util.ResettableBuilder;
 
 import javax.annotation.Nonnull;

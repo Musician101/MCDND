@@ -5,7 +5,7 @@ import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.AbilityScoreData;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.magic.Shape;
+import io.musician101.sponge.mcdnd.shape.Shape;
 import io.musician101.sponge.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import io.musician101.sponge.mcdnd.util.Interfaces.Mapped;

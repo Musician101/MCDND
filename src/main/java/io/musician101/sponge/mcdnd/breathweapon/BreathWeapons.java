@@ -3,8 +3,8 @@ package io.musician101.sponge.mcdnd.breathweapon;
 import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
-import io.musician101.sponge.mcdnd.magic.Shape.Cone;
-import io.musician101.sponge.mcdnd.magic.Shape.Line;
+import io.musician101.sponge.mcdnd.shape.Cone;
+import io.musician101.sponge.mcdnd.shape.Line;
 
 import static io.musician101.sponge.mcdnd.breathweapon.BreathWeapon.builder;
 

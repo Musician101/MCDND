@@ -29,7 +29,7 @@ import io.musician101.sponge.mcdnd.equipment.tool.Tool;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
 import io.musician101.sponge.mcdnd.equipment.weapon.property.WeaponProperty;
 import io.musician101.sponge.mcdnd.language.Language;
-import io.musician101.sponge.mcdnd.magic.Shape;
+import io.musician101.sponge.mcdnd.shape.Shape;
 import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.SpellComponents;
 import io.musician101.sponge.mcdnd.magic.SpellDuration;
@@ -63,6 +63,10 @@ import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
 public class MCDNDKeys
 {
+    public static final Key<Value<Integer>> HEIGHT = makeSingleKey(Integer.class, Value.class, of("Height"));
+    public static final Key<Value<Integer>> RADIUS = makeSingleKey(Integer.class, Value.class, of("Radius"));
+    public static final Key<Value<Integer>> WIDTH = makeSingleKey(Integer.class, Value.class, of("Width"));
+    public static final Key<Value<Integer>> LENGTH = makeSingleKey(Integer.class, Value.class, of("Length"));
     public static final Key<ListValue<String>> EFFECT_COLUMN = makeListKey(String.class, of("EffectColumn"));
     public static final Key<ListValue<Integer>> LEVEL_COLUMN = makeListKey(Integer.class, of("LevelColumn"));
     public static final Key<Value<Dice>> DICE = makeSingleKey(Dice.class, Value.class, of("Dice"));
