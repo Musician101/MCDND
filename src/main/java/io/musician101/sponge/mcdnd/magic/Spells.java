@@ -170,7 +170,7 @@ public class Spells
             .components(SpellComponents.of(true, true, "gold dust worth at least 25 gp, which the spell consumes"))
             /** Spell ends when dispelled */
             .duration(SpellDuration.of(-1))
-            .addProperty(MCDNDKeys.FUNCTION, dc -> dc + 10)
+            .addProperty(MCDNDKeys.DUAL_INTEGER_FUNCTION, dc -> dc + 10)
             .build();
     public static final Spell ARMOR_OF_AGATHYS = builder().name("Armor of Agathys")
             .description("A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 temporary hit points for the duration. If a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage.", "At Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, both the temporary hit points and the cold damage increase by 5 for each slot level above 1st.")

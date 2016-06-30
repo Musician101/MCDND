@@ -4,6 +4,7 @@ import io.musician101.common.java.minecraft.sponge.AbstractSpongePlugin;
 import io.musician101.sponge.mcdnd.clazz.feature.FeatureBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.domain.DivineDomainBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.PrimalPathBuilder;
+import io.musician101.sponge.mcdnd.condition.ConditionBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AbilityScoreDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AbilityScoreIncreaseDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AlignmentDataBuilder;
@@ -77,6 +78,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
 
     private void registerBuilders()
     {
+        Sponge.getRegistry().registerBuilderSupplier(ConditionBuilder.class, ConditionBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(DivineDomainBuilder.class, DivineDomainBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(FeatureBuilder.class, FeatureBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(PrimalPathBuilder.class, PrimalPathBuilder::new);

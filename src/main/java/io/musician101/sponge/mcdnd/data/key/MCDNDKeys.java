@@ -64,6 +64,8 @@ import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
 public class MCDNDKeys
 {
+    public static final Key<ListValue<String>> EFFECT_COLUMN = makeListKey(String.class, of("EffectColumn"));
+    public static final Key<ListValue<Integer>> LEVEL_COLUMN = makeListKey(Integer.class, of("LevelColumn"));
     public static final Key<Value<Dice>> DICE = makeSingleKey(Dice.class, Value.class, of("Dice"));
     public static final Key<Value<Integer>> ABILITY_SCORE = makeSingleKey(Integer.class, Value.class, of("AbilityScore"));
     public static final Key<Value<AbilityScoreDCSaveProperty>> ABILITY_SCORE_DC_SAVE_PROPERTY = makeSingleKey(AbilityScoreDCSaveProperty.class, Value.class, of("AbilityScoreDCSaveProperty"));
@@ -183,8 +185,9 @@ public class MCDNDKeys
     public static final Key<ListValue<String>> ATTACK_COLUMN = makeListKey(String.class, of("AttackColumn"));
     public static final Key<ListValue<Integer>> STR_COLUMN = makeListKey(Integer.class, of("StrColumn"));
     public static final Key<ListValue<Integer>> DEX_COLUMN = makeListKey(Integer.class, of("DexColumn"));
-    public static final Key<Value<DualIntegerFunction>> FUNCTION = makeSingleKey(DualIntegerFunction.class, Value.class, of("Function"));
+    public static final Key<Value<DualIntegerFunction>> DUAL_INTEGER_FUNCTION = makeSingleKey(DualIntegerFunction.class, Value.class, of("Function"));
     public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap"));
+    public static final Key<Value<Condition>> CONDITION = makeSingleKey(Condition.class, Value.class, of("Condition"));
     public static final Key<ListValue<Condition>> CONDITIONS = makeListKey(Condition.class, of("Conditions"));
     public static final Key<MapValue<Integer, String>> INTEGER_STRING_MAP = makeMapKey(Integer.class, String.class, of("IntegerStringMap"));
     public static final Key<ListValue<Table>> TABLES = makeListKey(Table.class, of("Tables"));
