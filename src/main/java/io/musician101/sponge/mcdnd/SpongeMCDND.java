@@ -39,6 +39,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.mutable.WeaponProficiencyDat
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.Alignment;
 import io.musician101.sponge.mcdnd.data.type.CharacterClassType;
+import io.musician101.sponge.mcdnd.data.type.CurrencyType;
 import io.musician101.sponge.mcdnd.data.type.WeaponType;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillModType;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillType;
@@ -51,6 +52,7 @@ import io.musician101.sponge.mcdnd.race.trait.TraitBuilder;
 import io.musician101.sponge.mcdnd.registry.AbilityScoreTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.AlignmentRegistryModule;
 import io.musician101.sponge.mcdnd.registry.CharacterClassTypeRegistryModule;
+import io.musician101.sponge.mcdnd.registry.CurrencyTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.skill.SkillModTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.skill.SkillTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.spell.SpellLevelRegistryModule;
@@ -95,6 +97,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         Sponge.getRegistry().registerModule(AbilityScoreType.class, new AbilityScoreTypeRegistryModule());
         Sponge.getRegistry().registerModule(Alignment.class, new AlignmentRegistryModule());
         Sponge.getRegistry().registerModule(CharacterClassType.class, new CharacterClassTypeRegistryModule());
+        Sponge.getRegistry().registerModule(CurrencyType.class, new CurrencyTypeRegistryModule());
         Sponge.getRegistry().registerModule(SkillModType.class, new SkillModTypeRegistryModule());
         Sponge.getRegistry().registerModule(SkillType.class, new SkillTypeRegistryModule());
         Sponge.getRegistry().registerModule(SpellType.class, new SpellTypeRegistryModule());

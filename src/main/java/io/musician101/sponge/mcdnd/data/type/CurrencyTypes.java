@@ -1,4 +1,7 @@
-package io.musician101.sponge.mcdnd.currency;
+package io.musician101.sponge.mcdnd.data.type;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CurrencyTypes
 {
@@ -7,4 +10,5 @@ public class CurrencyTypes
     public static final CurrencyType ELECTRUM = new CurrencyType("Electrum");
     public static final CurrencyType GOLD = new CurrencyType("Gold");
     public static final CurrencyType PLATINUM = new CurrencyType("Platinum");
+    public static final List<CurrencyType> ALL = Arrays.asList(COPPER, SILVER, ELECTRUM, GOLD, PLATINUM);
 }

@@ -1,8 +1,7 @@
 package io.musician101.sponge.mcdnd.equipment.gear;
 
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
-import io.musician101.sponge.mcdnd.currency.CurrencyType;
-import io.musician101.sponge.mcdnd.currency.CurrencyTypes;
+import io.musician101.sponge.mcdnd.data.type.CurrencyTypes;
 import io.musician101.sponge.mcdnd.equipment.gear.Gear.AmmunitionGear;
 import io.musician101.sponge.mcdnd.equipment.gear.Gear.ArcaneFocusGear;
 import io.musician101.sponge.mcdnd.equipment.gear.Gear.BundledGear;

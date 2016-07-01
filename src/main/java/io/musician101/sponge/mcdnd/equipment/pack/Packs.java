@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.equipment.pack;
 
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
-import io.musician101.sponge.mcdnd.currency.CurrencyTypes;
+import io.musician101.sponge.mcdnd.data.type.CurrencyTypes;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
 import io.musician101.sponge.mcdnd.equipment.gear.AdventuringGear;
 import io.musician101.sponge.mcdnd.equipment.tool.Tools;

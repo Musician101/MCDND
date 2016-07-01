@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import io.musician101.sponge.mcdnd.combat.Damage;
 import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
-import io.musician101.sponge.mcdnd.currency.CurrencyTypes;
+import io.musician101.sponge.mcdnd.data.type.CurrencyTypes;
 import io.musician101.sponge.mcdnd.data.type.WeaponTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.weapon.property.WeaponProperties;

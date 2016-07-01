@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class ArmorClass implements DataSerializable
 {
-    //TODO create datamanipulators for this
     private final Armor armor;
     private final Armor shield;
     private final int bonus;

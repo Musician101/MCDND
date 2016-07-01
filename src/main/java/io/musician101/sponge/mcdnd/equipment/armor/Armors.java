@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.equipment.armor;
 
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
-import io.musician101.sponge.mcdnd.currency.CurrencyTypes;
+import io.musician101.sponge.mcdnd.data.type.CurrencyTypes;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
 
 import java.util.Arrays;
