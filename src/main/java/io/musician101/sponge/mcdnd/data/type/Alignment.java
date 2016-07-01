@@ -3,17 +3,20 @@ package io.musician101.sponge.mcdnd.data.type;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
+import java.util.Arrays;
+import java.util.List;
+
 @CatalogedBy(Alignments.class)
 public class Alignment extends MCDNDCatalogType implements Described
 {
     private final String abbreviation;
-    private final String[] description;
+    private final List<String> description;
 
     public Alignment(String name, String abbreviation, String... description)
     {
         super(name);
         this.abbreviation = abbreviation;
-        this.description = description;
+        this.description = Arrays.asList(description);
     }
 
     public String getAbbreviation()
@@ -21,7 +24,8 @@ public class Alignment extends MCDNDCatalogType implements Described
         return abbreviation;
     }
 
-    public String[] getDescription()
+    @Override
+    public List<String> getDescription()
     {
         return description;
     }
