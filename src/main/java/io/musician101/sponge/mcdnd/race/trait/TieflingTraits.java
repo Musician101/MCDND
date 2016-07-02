@@ -5,13 +5,13 @@ import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellcastingTraitProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +39,7 @@ public class TieflingTraits
             .addProperty(MCDNDKeys.INTEGER, 30)
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSizes.MEDIUM))
             .description("Tieflings are about the same size and build as humans. Your size is Medium.")
             .build();
     public static final Trait HELLISH_RESISTANCE = builder().name("Hellish Resistance")

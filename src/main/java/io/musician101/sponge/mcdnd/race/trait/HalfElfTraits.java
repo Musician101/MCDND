@@ -2,10 +2,10 @@ package io.musician101.sponge.mcdnd.race.trait;
 
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,7 +33,7 @@ public class HalfElfTraits
             .description("Your movement speed is 30 feet.")
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 9, new Dice(8, 2), 110, new Dice(4, 2), CharacterSizes.MEDIUM))
             .description("Half-elves are about the same size as humans, ranging from 5 to 6 feet tall. Your size is Medium.")
             .build();
     public static final Trait SKILL_VERSATILITY = builder().name("Skill Versatility")

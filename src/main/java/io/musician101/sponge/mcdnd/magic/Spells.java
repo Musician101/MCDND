@@ -4,13 +4,13 @@ import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.combat.Damage;
 import io.musician101.sponge.mcdnd.condition.Conditions;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.magic.spelleffect.AlterSelfSpellEffects;
 import io.musician101.sponge.mcdnd.magic.spelleffect.AntimagicFieldSpellEffects;
 import io.musician101.sponge.mcdnd.magic.spelleffect.AntipathySympathySpellEffects;
 import io.musician101.sponge.mcdnd.magic.spelleffect.ControlWaterSpellEffects;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
 import io.musician101.sponge.mcdnd.util.ActionTimes;
 import io.musician101.sponge.mcdnd.util.table.Table;
 
@@ -136,7 +136,7 @@ public class Spells
             .components(SpellComponents.of(true, true)).duration(SpellDuration.of(ActionTimes.ONE_MINUTE, true))
             .addProperty(SPELL_LEVEL_INTEGER_MAP, populateSpellLevelIntegerMap(L5, level -> level.getValue() * 2))
             .addProperty(TABLE, Table.builder().name("Animated Object Statistics")
-                    .addColumn(SIZE_COLUMN, Arrays.asList(CharacterSize.TINY, CharacterSize.SMALL, CharacterSize.MEDIUM, CharacterSize.LARGE, CharacterSize.HUGE))
+                    .addColumn(SIZE_COLUMN, Arrays.asList(CharacterSizes.TINY, CharacterSizes.SMALL, CharacterSizes.MEDIUM, CharacterSizes.LARGE, CharacterSizes.HUGE))
                     .addColumn(HP_COLUMN, Arrays.asList(20, 25, 40, 50, 80)).addColumn(AC_COLUMN, Arrays.asList(18, 16, 13, 10, 10))
                     .addColumn(ATTACK_COLUMN, Arrays.asList("+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"))
                     .addColumn(STR_COLUMN, Arrays.asList(4, 6, 10, 14, 18)).addColumn(DEX_COLUMN, Arrays.asList(18, 14, 12, 10, 6))

@@ -6,7 +6,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 import io.musician101.sponge.mcdnd.util.list.TraitList;
 
@@ -45,7 +45,7 @@ public class GnomeTraits
             .addProperty(MCDNDKeys.INTEGER, 25)
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(2 * 12 + 11, new Dice(4, 2), 35, new Dice(1), CharacterSize.SMALL))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(2 * 12 + 11, new Dice(4, 2), 35, new Dice(1), CharacterSizes.SMALL))
             .description("Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.")
             .build();
     public static final Trait SUBRACES = builder().name("Subraces")

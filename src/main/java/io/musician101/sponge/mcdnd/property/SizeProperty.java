@@ -2,7 +2,7 @@ package io.musician101.sponge.mcdnd.property;
 
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSize;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 

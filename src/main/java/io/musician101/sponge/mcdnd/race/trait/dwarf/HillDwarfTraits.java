@@ -4,9 +4,9 @@ import com.google.common.collect.ImmutableList;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class HillDwarfTraits
             .build();
     public static final Trait SIZE = builder().name("Size")
             .description("Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(3 * 12 + 8, new Dice(4, 2), 115, new Dice(6, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(3 * 12 + 8, new Dice(4, 2), 115, new Dice(6, 2), CharacterSizes.MEDIUM))
             .build();
     public static final Trait DWARVEN_TOUGHNESS = builder().name("Dwarven Toughness")
             .description("Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.")

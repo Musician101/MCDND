@@ -7,7 +7,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,7 +32,7 @@ public class HumanTraits
             .addProperty(MCDNDKeys.INTEGER, 30)
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 8, new Dice(10, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 8, new Dice(10, 2), 110, new Dice(4, 2), CharacterSizes.MEDIUM))
             .description("Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.")
             .build();
     public static final Trait LANGUAGES = builder().name("Languages")

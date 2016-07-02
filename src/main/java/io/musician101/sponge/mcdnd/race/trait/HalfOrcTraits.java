@@ -8,7 +8,7 @@ import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +36,7 @@ public class HalfOrcTraits
             .description("Your movement speed is 30 feet.")
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 10, new Dice(10, 2), 140, new Dice(6, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 10, new Dice(10, 2), 140, new Dice(6, 2), CharacterSizes.MEDIUM))
             .description("Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.")
             .build();
     public static final Trait MENACING = builder().name("Menacing")

@@ -5,7 +5,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class WoodElfTraits
             .description("Your Wisdom score increases by 1.")
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 6, new Dice(10, 2), 100, new Dice(6, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 6, new Dice(10, 2), 100, new Dice(6, 2), CharacterSizes.MEDIUM))
             .description("Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.")
             .build();
     public static final Trait FLEET_OF_FOOT = builder().name("Fleet of Foot")

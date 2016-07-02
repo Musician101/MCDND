@@ -5,7 +5,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Arrays;
@@ -26,7 +26,7 @@ public class MountainDwarfTraits
             .build();
     public static final Trait SIZE = builder().name("Size")
             .description("Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12, new Dice(4, 2), 130, new Dice(6, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12, new Dice(4, 2), 130, new Dice(6, 2), CharacterSizes.MEDIUM))
             .build();
     protected static final List<Trait> DWARF_MOUNTAIN_TRAITS = Arrays.asList(ABILITY_SCORE_INCREASE, DWARVEN_ARMOR_TRAINING, SIZE);
 }

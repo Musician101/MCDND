@@ -3,10 +3,10 @@ package io.musician101.sponge.mcdnd.race.trait.halfling;
 import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 import io.musician101.sponge.mcdnd.util.list.TraitList;
 
@@ -33,7 +33,7 @@ public class HalflingTraits
             .addProperty(MCDNDKeys.INTEGER, 25)
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(2 * 12 + 7, new Dice(4, 2), 35, new Dice(1), CharacterSize.SMALL))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(2 * 12 + 7, new Dice(4, 2), 35, new Dice(1), CharacterSizes.SMALL))
             .description("Halflings average about 3 feet tall and weight about 40 pounds. Your size is Small.")
             .build();
     public static final Trait LUCKY = builder().name("Lucky")

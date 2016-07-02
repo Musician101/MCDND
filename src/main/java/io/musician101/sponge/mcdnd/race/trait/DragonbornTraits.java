@@ -4,11 +4,10 @@ import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
-import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +32,7 @@ public class DragonbornTraits
             .build();
     public static final Trait SIZE = builder().name("Size")
             .description("Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(5 * 12 + 6, new Dice(8, 2), 110, new Dice(4, 2), CharacterSizes.MEDIUM))
             .build();
     public static final Trait DRACONIC_ANCESTRY = builder().name("Draconic Ancestry")
             .description("You hae draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and the damage resistance are determined by the dragon type, as shown in the table.")

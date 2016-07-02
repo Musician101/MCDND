@@ -10,7 +10,7 @@ import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellcastingTraitProperty;
-import io.musician101.sponge.mcdnd.race.Race.CharacterSize;
+import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class DarkElfTraits
             .description("Your darkvision has a radius of 120 feet.")
             .build();
     public static final Trait SIZE = builder().name("Size")
-            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 5, new Dice(6, 2), 75, new Dice(4, 2), CharacterSize.MEDIUM))
+            .addProperty(MCDNDKeys.SIZE_PROPERTY, new SizeProperty(4 * 12 + 5, new Dice(6, 2), 75, new Dice(4, 2), CharacterSizes.MEDIUM))
             .description("Elves range from under 5 to over 6 feet tall and have slender builds. Your size is Medium.")
             .build();
     public static final Trait SPEED = builder().name("Speed")
