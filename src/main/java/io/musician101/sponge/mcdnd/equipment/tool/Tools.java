@@ -5,8 +5,11 @@ import io.musician101.sponge.mcdnd.data.type.CurrencyTypes;
 import io.musician101.sponge.mcdnd.equipment.tool.Tool.ArtisanTool;
 import io.musician101.sponge.mcdnd.equipment.tool.Tool.GamingSet;
 import io.musician101.sponge.mcdnd.equipment.tool.Tool.MusicalInstrument;
-import io.musician101.sponge.mcdnd.util.CustomList;
 
+import java.util.Arrays;
+import java.util.List;
+
+//TODO separate into multiple classes
 public class Tools
 {
     public static final Tool ALCHEMISTS_SUPPLIES = new ArtisanTool("Alchemist's Supplies", new Cost(CurrencyTypes.GOLD, 50), 8);
@@ -50,23 +53,23 @@ public class Tools
     public static final Tool POISONERS_KIT = new Tool("Poisoner's Kit", new Cost(CurrencyTypes.GOLD, 50), 2);
     public static final Tool THIEVES_TOOLS = new Tool("Thieve's Tools", new Cost(CurrencyTypes.GOLD, 25), 1);
 
-    public static CustomList<Tool> getArtisanTools()
+    public static List<Tool> getArtisanTools()
     {
-        return new CustomList<>(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS,    COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS,    MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS,    WOODCARVERS_TOOLS);
+        return Arrays.asList(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS, CARTOGRAPHERS_TOOLS, COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS,    MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS,    WOODCARVERS_TOOLS);
     }
 
-    public static CustomList<Tool> getGamingSets()
+    public static List<Tool> getGamingSets()
     {
-        return new CustomList<>(DICE_SET, DRAGONCHESS_SET, PLAYING_CARD_SET, THREE_DRAGON_ANTE_SET);
+        return Arrays.asList(DICE_SET, DRAGONCHESS_SET, PLAYING_CARD_SET, THREE_DRAGON_ANTE_SET);
     }
 
-    public static CustomList<Tool> getMusicalInstruments()
+    public static List<Tool> getMusicalInstruments()
     {
-        return new CustomList<>(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL);
+        return Arrays.asList(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL);
     }
 
-    public static CustomList<Tool> getMiscTools()
+    public static List<Tool> getMiscTools()
     {
-        return new CustomList<>(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT,    THIEVES_TOOLS);
+        return Arrays.asList(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT,    THIEVES_TOOLS);
     }
 }
