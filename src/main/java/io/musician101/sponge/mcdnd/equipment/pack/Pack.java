@@ -7,6 +7,7 @@ import org.spongepowered.api.data.DataContainer;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Pack extends Equipment
 {
@@ -27,8 +28,8 @@ public class Pack extends Equipment
     public double getWeight()
     {
         double weight = 0;
-        for (Equipment equipment : contents.keySet())
-            weight =+ (weight * contents.get(equipment));
+        for (Entry<Equipment, Integer> entry : contents.entrySet())
+            weight =+ (entry.getKey().getWeight() * entry.getValue());
 
         return weight;
     }

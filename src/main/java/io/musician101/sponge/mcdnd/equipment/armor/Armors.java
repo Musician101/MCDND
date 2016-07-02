@@ -12,7 +12,7 @@ public class Armors
     public static final Armor LEATHER = new Armor("Leather", ArmorTypes.LIGHT, new Cost(CurrencyTypes.GOLD, 10), 11, 0, false, 10);
     public static final Armor SCALE_MAIL = new Armor("Scale Mail", ArmorTypes.MEDIUM, new Cost(CurrencyTypes.GOLD, 50), 14, 0, false, 20);
     public static final Armor CHAIN_MAIL = new Armor("Chain Mail", ArmorTypes.HEAVY, new Cost(CurrencyTypes.GOLD, 75), 16, 0, false, 20);
-    public static final Armor NO_ARMOR = new Armor("No Armor", ArmorTypes.UNARMORED, new Cost(), 11, 0, false, 0);
+    public static final Armor NO_ARMOR = new Armor("No Armor", ArmorTypes.UNARMORED, new Cost(), 0, 0, false, 0);
     public static final Armor SHIELD = new Armor("Shield", ArmorTypes.SHIELD, new Cost(CurrencyTypes.GOLD, 10), 2, 0, false, 20);
     public static final Armor NO_SHIELD = new Armor("No Shield", ArmorTypes.UNARMORED, new Cost(), 0, 0, false, 0);
     private static final Armor PADDED = new Armor("Padded", ArmorTypes.LIGHT, new Cost(CurrencyTypes.GOLD, 5), 11, 0, true, 8);

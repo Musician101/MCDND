@@ -13,23 +13,23 @@ import org.spongepowered.api.data.Queries;
 import javax.annotation.Nonnull;
 import java.util.Map;
 
-public class ArmorClass implements DataSerializable
+public class CharacterArmorClass implements DataSerializable
 {
     private final Armor armor;
     private final Armor shield;
     private final int bonus;
 
-    public ArmorClass(Armor armor)
+    public CharacterArmorClass(Armor armor)
     {
         this(armor, null);
     }
 
-    public ArmorClass(Armor armor, Armor shield)
+    public CharacterArmorClass(Armor armor, Armor shield)
     {
         this(armor, shield, 0);
     }
 
-    public ArmorClass(Armor armor, Armor shield, int bonus)
+    public CharacterArmorClass(Armor armor, Armor shield, int bonus)
     {
         this.armor = armor;
         this.shield = shield;

@@ -1,6 +1,6 @@
 package io.musician101.sponge.mcdnd.data.key;
 
-import io.musician101.sponge.mcdnd.armor.ArmorClass;
+import io.musician101.sponge.mcdnd.armor.CharacterArmorClass;
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.clazz.feature.equipment.EquipmentChoice;
 import io.musician101.sponge.mcdnd.clazz.feature.equipment.EquipmentChoices;
@@ -64,6 +64,11 @@ import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
 public class MCDNDKeys
 {
+    public static final Key<Value<Integer>> MAX_RANGE = makeSingleKey(Integer.class, Value.class, of("MinRange"));
+    public static final Key<Value<Integer>> MIN_RANGE = makeSingleKey(Integer.class, Value.class, of("MaxRange"));
+    public static final Key<Value<Integer>> REQUIRED_STRENGTH = makeSingleKey(Integer.class, Value.class, of("RequiredStrength"));
+    public static final Key<Value<Integer>> ARMOR_CLASS = makeSingleKey(Integer.class, Value.class, of("ArmorClass"));
+    public static final Key<Value<Boolean>> STEALTH_DISADVANTAGE = makeSingleKey(Boolean.class, Value.class, of("StealthDisadvantage"));
     public static final Key<MapValue<CurrencyType, Integer>> CURRENCY_AMOUNTS = makeMapKey(CurrencyType.class, Integer.class, of("CurrencyAmounts"));
     public static final Key<Value<Integer>> HEIGHT = makeSingleKey(Integer.class, Value.class, of("Height"));
     public static final Key<Value<Integer>> RADIUS = makeSingleKey(Integer.class, Value.class, of("Radius"));
@@ -81,7 +86,7 @@ public class MCDNDKeys
     public static final Key<Value<Alignment>> ALIGNMENT = makeSingleKey(Alignment.class, Value.class, of("Alignment"));
     public static final Key<Value<Integer>> AMOUNT = makeSingleKey(Integer.class, Value.class, of("Amount"));
     public static final Key<Value<Armor>> ARMOR = makeSingleKey(Armor.class, Value.class, of("Armor"));
-    public static final Key<Value<ArmorClass>> ARMOR_CLASS = makeSingleKey(ArmorClass.class, Value.class, of("ArmorClass"));
+    public static final Key<Value<CharacterArmorClass>> CHARACTER_ARMOR_CLASS = makeSingleKey(CharacterArmorClass.class, Value.class, of("ArmorClass"));
     public static final Key<Value<Integer>> ARMOR_CLASS_BONUS = makeSingleKey(Integer.class, Value.class, of("ArmorClassBonus"));
     public static final Key<ListValue<Armor>> ARMORS = makeListKey(Armor.class, of("Armors"));
     public static final Key<ListValue<Armor>> ARMOR_PROFICIENCIES = makeListKey(Armor.class, of("ArmorProficiencies"));

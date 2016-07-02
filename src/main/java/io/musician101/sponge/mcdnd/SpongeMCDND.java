@@ -9,7 +9,7 @@ import io.musician101.sponge.mcdnd.condition.ConditionBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AbilityScoreDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AbilityScoreIncreaseDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AlignmentDataBuilder;
-import io.musician101.sponge.mcdnd.data.manipulator.builder.ArmorClassDataBuilder;
+import io.musician101.sponge.mcdnd.data.manipulator.builder.CharacterArmorClassDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.ArmorProficiencyDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.CharacterClassDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.HitDiceDataBuilder;
@@ -19,7 +19,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.builder.WeaponProficiencyDat
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableAbilityScoreData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableAbilityScoreIncreaseData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableAlignmentData;
-import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableArmorClassData;
+import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableCharacterArmorClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableArmorProficiencyData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableCharacterClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableHitDiceData;
@@ -29,7 +29,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableWeaponPro
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.AbilityScoreData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.AbilityScoreIncreaseData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.AlignmentData;
-import io.musician101.sponge.mcdnd.data.manipulator.mutable.ArmorClassData;
+import io.musician101.sponge.mcdnd.data.manipulator.mutable.CharacterArmorClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.ArmorProficiencyData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.CharacterClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.HitDiceData;
@@ -111,7 +111,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         Sponge.getDataManager().register(AbilityScoreData.class, ImmutableAbilityScoreData.class, new AbilityScoreDataBuilder());
         Sponge.getDataManager().register(AbilityScoreIncreaseData.class, ImmutableAbilityScoreIncreaseData.class, new AbilityScoreIncreaseDataBuilder());
         Sponge.getDataManager().register(AlignmentData.class, ImmutableAlignmentData.class, new AlignmentDataBuilder());
-        Sponge.getDataManager().register(ArmorClassData.class, ImmutableArmorClassData.class, new ArmorClassDataBuilder());
+        Sponge.getDataManager().register(CharacterArmorClassData.class, ImmutableCharacterArmorClassData.class, new CharacterArmorClassDataBuilder());
         Sponge.getDataManager().register(ArmorProficiencyData.class, ImmutableArmorProficiencyData.class, new ArmorProficiencyDataBuilder());
         Sponge.getDataManager().register(AbilityScoreData.class, ImmutableAbilityScoreData.class, new AbilityScoreDataBuilder());
         Sponge.getDataManager().register(CharacterClassData.class, ImmutableCharacterClassData.class, new CharacterClassDataBuilder());

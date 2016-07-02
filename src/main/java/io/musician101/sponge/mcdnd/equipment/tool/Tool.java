@@ -10,6 +10,12 @@ public class Tool extends Equipment
         super(name, cost, weight);
     }
 
+    @Override
+    public int getContentVersion()
+    {
+        return 1;
+    }
+
     public static class ArtisanTool extends Tool
     {
         public ArtisanTool(String name, Cost cost, double weight)

@@ -1,25 +1,30 @@
 package io.musician101.sponge.mcdnd.equipment.gear;
 
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
+import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
+import org.spongepowered.api.data.DataContainer;
+
+import javax.annotation.Nonnull;
 
 public class Gear extends Equipment
 {
-    Cost cost;
-    double amount;
-    double weight;
-    String name;
-
     public Gear(String name, Cost cost, double weight)
     {
         super(name, cost, weight);
     }
 
+    @Override
+    public int getContentVersion()
+    {
+        return 1;
+    }
+
     public static class AmmunitionGear extends BundledGear
     {
-        public AmmunitionGear(String name, double amount, Cost cost, double weight)
+        public AmmunitionGear(String name, int amount, Cost cost, double weight)
         {
-            super(name + " (" + (int) amount + ")", amount, cost, weight);
+            super(name + " (" + amount + ")", amount, cost, weight);
         }
     }
 
@@ -33,9 +38,9 @@ public class Gear extends Equipment
 
     public static class BundledGear extends Gear
     {
-        double amount;
+        int amount;
 
-        public BundledGear(String name, double amount, Cost cost, double weight)
+        public BundledGear(String name, int amount, Cost cost, double weight)
         {
             super(name, cost, weight);
             this.amount = amount;
@@ -44,6 +49,20 @@ public class Gear extends Equipment
         public double getAmount()
         {
             return amount;
+        }
+
+        @Override
+        public int getContentVersion()
+        {
+            return 1;
+        }
+
+        @Nonnull
+        @Override
+        public DataContainer toContainer()
+        {
+            return super.toContainer()
+                    .set(MCDNDKeys.AMOUNT, amount);
         }
     }
 

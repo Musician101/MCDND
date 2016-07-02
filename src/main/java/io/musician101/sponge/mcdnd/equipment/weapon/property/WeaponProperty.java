@@ -1,22 +1,30 @@
 package io.musician101.sponge.mcdnd.equipment.weapon.property;
 
+import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
 import io.musician101.sponge.mcdnd.util.Interfaces.Named;
+import org.spongepowered.api.data.DataContainer;
+import org.spongepowered.api.data.DataSerializable;
+import org.spongepowered.api.data.MemoryDataContainer;
 
-public class WeaponProperty implements Described, Named
+import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.List;
+
+public class WeaponProperty implements DataSerializable, Described, Named
 {
-    private final String[] description;
+    private final List<String> description;
     private final String name;
 
     public WeaponProperty(String name, String... description)
     {
         this.name = name;
-        this.description = description;
+        this.description = Arrays.asList(description);
     }
 
     @Override
-    public String[] getDescription()
+    public List<String> getDescription()
     {
         return description;
     }
@@ -25,6 +33,21 @@ public class WeaponProperty implements Described, Named
     public String getName()
     {
         return name;
+    }
+
+    @Override
+    public int getContentVersion()
+    {
+        return 1;
+    }
+
+    @Nonnull
+    @Override
+    public DataContainer toContainer()
+    {
+        return new MemoryDataContainer()
+                .set(MCDNDKeys.NAME, name)
+                .set(MCDNDKeys.DESCRIPTION, description);
     }
 
     public static class RangeWeaponProperty extends WeaponProperty
@@ -48,6 +71,21 @@ public class WeaponProperty implements Described, Named
         {
             return min;
         }
+
+        @Override
+        public int getContentVersion()
+        {
+            return 1;
+        }
+
+        @Nonnull
+        @Override
+        public DataContainer toContainer()
+        {
+            return super.toContainer()
+                    .set(MCDNDKeys.MIN_RANGE, min)
+                    .set(MCDNDKeys.MAX_RANGE, max);
+        }
     }
 
     public static class VersatileWeaponProperty extends WeaponProperty
@@ -63,6 +101,20 @@ public class WeaponProperty implements Described, Named
         public Dice getDice()
         {
             return dice;
+        }
+
+        @Override
+        public int getContentVersion()
+        {
+            return 1;
+        }
+
+        @Nonnull
+        @Override
+        public DataContainer toContainer()
+        {
+            return super.toContainer()
+                    .set(MCDNDKeys.DICE, dice);
         }
     }
 }
