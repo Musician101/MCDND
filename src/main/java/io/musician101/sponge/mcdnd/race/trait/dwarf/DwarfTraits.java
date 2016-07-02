@@ -5,7 +5,7 @@ import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
-import io.musician101.sponge.mcdnd.equipment.tool.Tools;
+import io.musician101.sponge.mcdnd.equipment.tool.ArtisanTools;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
@@ -38,7 +38,7 @@ public class DwarfTraits
             .build();
     public static final Trait TOOL_PROFICIENCY = builder().name("Tool Proficiency")
             .description("You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools.")
-            .addProperty(MCDNDKeys.TOOLS, Arrays.asList(Tools.BREWERS_SUPPLIES, Tools.MASONS_TOOLS, Tools.SMITHS_TOOLS))
+            .addProperty(MCDNDKeys.TOOLS, Arrays.asList(ArtisanTools.BREWERS_SUPPLIES, ArtisanTools.MASONS_TOOLS, ArtisanTools.SMITHS_TOOLS))
             .build();
     public static final Trait DWARVEN_COMBAT_TRAINING = builder().name("Dwarven Combat Training")
             .description("You have proficiency with the battleaxe, handaxe, throwing hammer, and warhammer.")

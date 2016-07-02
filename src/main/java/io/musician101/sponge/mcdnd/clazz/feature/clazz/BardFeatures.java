@@ -10,16 +10,16 @@ import io.musician101.sponge.mcdnd.clazz.feature.subclass.college.BardColleges;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillType;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;
-import io.musician101.sponge.mcdnd.equipment.tool.Tools;
+import io.musician101.sponge.mcdnd.equipment.tool.MusicalInstruments;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
-import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
-import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
-import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.HitPointsProperty;
+import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellsKnownSpellcastingProperty;
 import io.musician101.sponge.mcdnd.util.DualIntegerMap;
 import org.spongepowered.api.Sponge;
@@ -36,10 +36,10 @@ public class BardFeatures
     public static final Feature HP = builder().name("Hit Points").addProperty(MCDNDKeys.HP_PROPERTY, new HitPointsProperty(D8, "Bard")).build();
     public static final Feature EQUIPMENT = builder().name("Equipment").addProperty(MCDNDKeys.EQUIPMENT_CHOICES_LIST, Arrays.asList(new EquipmentChoices("(a) a rapier, (b) a longsword, or (c) any simple weapon", new SingleChoice(Weapons.RAPIER), new SingleChoice(Weapons.LONGSWORD), new ListChoice(Weapons.getSimpleWeapons())),
             new EquipmentChoices("(a) diplomat's pack or (b) an entertainer's pack", new SingleChoice(Packs.DIPLOMATS_PACK), new SingleChoice(Packs.ENTERTAINERS_PACK)),
-            new EquipmentChoices("(a) a lute or (b) any other musical instrument", new SingleChoice(Tools.LUTE), new ListChoice(Tools.getMusicalInstruments())))).build();
+            new EquipmentChoices("(a) a lute or (b) any other musical instrument", new SingleChoice(MusicalInstruments.LUTE), new ListChoice(MusicalInstruments.ALL)))).build();
     public static final Feature PROFICIENCIES = builder().name("Proficiencies").addProperty(MCDNDKeys.PROFICIENCIES, new ProficienciesProperty(Collections.singletonList(ArmorTypes.LIGHT), "Light armor",
             ImmutableList.<Weapon>builder().addAll(Weapons.getSimpleWeapons()).add(Weapons.HAND_CROSSBOW, Weapons.LONGSWORD, Weapons.RAPIER, Weapons.SHORTSWORD).build(), "Simple weapons, hand crossbows, longswords, rapiers, shortswords",
-            Tools.getMusicalInstruments(), "Three musical instruments of your choice", Arrays.asList(AbilityScoreTypes.DEXTERITY, AbilityScoreTypes.CHARISMA), "Dexterity, Charisma",
+            new ArrayList<>(MusicalInstruments.ALL), "Three musical instruments of your choice", Arrays.asList(AbilityScoreTypes.DEXTERITY, AbilityScoreTypes.CHARISMA), "Dexterity, Charisma",
             new ArrayList<>(Sponge.getRegistry().getAllOf(SkillType.class)), 3, "Choose any three")).build();
     public static final Feature SPELLCASTING = builder().name("Spellcasting").description("You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations.")
             .addProperty(MCDNDKeys.SPELLS_KNOWN_SPELLCASTING_PROPERTY, new SpellsKnownSpellcastingProperty(builder().name("Cantrips")
