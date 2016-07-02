@@ -23,32 +23,38 @@ public class Interfaces
         Optional<Integer> getDCSave(AbilityScoreData score, int... bonuses);
     }
 
+    @FunctionalInterface
     public interface Buyable
     {
         Cost getCost();
     }
 
+    @FunctionalInterface
     public interface DamageDealer
     {
         Damage getDamage();
     }
 
+    @FunctionalInterface
     public interface Described
     {
         List<String> getDescription();
     }
 
+    @FunctionalInterface
     public interface EffectsArea
     {
         /** Location parameter can refer to the spell's origin and/or center point */
         List<Location<World>> getArea(Direction direction, Location<World> location);
     }
 
+    @FunctionalInterface
     public interface Identified
     {
         String getId();
     }
 
+    @FunctionalInterface
     public interface HasProperties
     {
         DataContainer getProperties();
@@ -70,11 +76,13 @@ public class Interfaces
         V get(K key);
     }
 
+    @FunctionalInterface
     public interface Named
     {
         String getName();
     }
 
+    @FunctionalInterface
     public interface SingleValue<T>
     {
         T getValue();
@@ -85,6 +93,7 @@ public class Interfaces
         Optional<Integer> getDCSave(AbilityScoreData scoreData, SkillProficiencyData skillData, ProficiencyBonus bonus);
     }
 
+    @FunctionalInterface
     public interface Weighable
     {
         double getWeight();
