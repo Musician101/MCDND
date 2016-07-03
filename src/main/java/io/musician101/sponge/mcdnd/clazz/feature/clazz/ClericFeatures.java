@@ -10,18 +10,20 @@ import io.musician101.sponge.mcdnd.clazz.feature.subclass.domain.DivineDomains;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
+import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
+import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.armor.Armors;
 import io.musician101.sponge.mcdnd.equipment.gear.AdventuringGear;
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
-import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
-import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
-import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.HitPointsProperty;
+import io.musician101.sponge.mcdnd.property.ProficienciesProperty;
 import io.musician101.sponge.mcdnd.property.spellcasting.SpellcastingProperty;
 import io.musician101.sponge.mcdnd.util.DualIntegerMap;
+import io.musician101.sponge.mcdnd.util.table.Table;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -77,6 +79,24 @@ public class ClericFeatures
     public static final Feature DIVINE_DOMAIN = builder().name("Divine Domain")
             .description("Choose one domain related to your entity: Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Each domain is detailed at the end of the class description, and each one provides examples of gods associated with it. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.")
             .addProperty(MCDNDKeys.DIVINE_DOMAINS, Arrays.asList(DivineDomains.KNOWLEDGE_DOMAIN, DivineDomains.LIFE_DOMAIN, DivineDomains.LIGHT_DOMAIN, DivineDomains.NATURE_DOMAIN, DivineDomains.TEMPEST_DOMAIN))
+            .build();
+    public static final Feature CHANNEL_DIVINITY = builder().name("Channel Divinity")
+            .description("At 2nd level, you gain the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn Undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description.", "When you use your Channel Divinity, you choose which effect to create. You must then finish a short or long rest to use your Channel Divinity again.", "Some Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC.", "Beginning at 6th level, you can use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests. When you finish a short or long rest, you regain your expended uses.")
+            .addProperty(MCDNDKeys.USES, ImmutableMap.<Integer, Integer>builder().put(2, 1).put(6, 2).put(18, 3).build())
+            .addProperty(MCDNDKeys.FEATURE, builder().name("Channel Divinity: Turn Undead")
+                    .description("As an action, you present your holy symbol and speak a prayer censuring the undead. Each undead that can see or hear you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is turned for 1 minute or until it takes any damage.", "A turned creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If there's no where to move, the creature can use the Dodge action.")
+                    .addProperty(MCDNDKeys.INTEGER, 30)
+                    .addProperty(MCDNDKeys.ABILITY_SCORE_TYPE, AbilityScoreTypes.WISDOM)
+                    .build()).build();
+    public static final Feature DESTROY_UNDEAD = builder().name("Destroy Undead")
+            .description("Starting at 5th level, when an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge rating is at or below a certain threshold, as show in the Destroy Undead table.")
+            .addProperty(MCDNDKeys.TABLE, Table.builder().name("Destroy Undead")
+                    .addColumn(MCDNDKeys.CLERIC_LEVEL, Arrays.asList(5, 8, 11, 14, 17))
+                    .addColumn(MCDNDKeys.DESTROYS_UNDEAD, Arrays.asList(0.5, 1.0, 2.0, 3.0, 4.0))
+                    .build()).build();
+    public static final Feature DIVINE_INTERVENTION = builder().name("Divine Intervention")
+            .description("Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great.", "Imploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll a percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate.", "If your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.", "At 20th level, your call for intervention succeeds automatically, no roll required.")
+            .addProperty(MCDNDKeys.DICE, new Dice(100, 1))
             .build();
 
     private ClericFeatures()

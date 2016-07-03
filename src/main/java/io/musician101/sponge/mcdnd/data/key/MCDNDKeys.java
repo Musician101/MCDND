@@ -64,6 +64,10 @@ import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
 public class MCDNDKeys
 {
+    public static final Key<ListValue<Integer>> CLERIC_LEVEL = makeListKey(Integer.class, of("ClericLevel"));
+    public static final Key<ListValue<Double>> DESTROYS_UNDEAD = makeListKey(Double.class, of("DestroysUndead"));
+    public static final Key<Value<Feature>> FEATURE = makeSingleKey(Feature.class, Value.class, of("Feature"));
+    public static final Key<MapValue<Integer, Integer>> USES = makeMapKey(Integer.class, Integer.class, of("Uses"));
     public static final Key<Value<Integer>> MAX_RANGE = makeSingleKey(Integer.class, Value.class, of("MinRange"));
     public static final Key<Value<Integer>> MIN_RANGE = makeSingleKey(Integer.class, Value.class, of("MaxRange"));
     public static final Key<Value<Integer>> REQUIRED_STRENGTH = makeSingleKey(Integer.class, Value.class, of("RequiredStrength"));
