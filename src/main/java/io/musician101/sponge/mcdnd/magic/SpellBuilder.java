@@ -2,29 +2,25 @@ package io.musician101.sponge.mcdnd.magic;
 
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellType;
+import io.musician101.sponge.mcdnd.util.MCDNDBuilder;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class SpellBuilder implements ResettableBuilder<Spell, SpellBuilder>
+public class SpellBuilder extends MCDNDBuilder<Spell, SpellBuilder>
 {
     private boolean isRitual = false;
-    private DataContainer properties = new MemoryDataContainer();
     private double castingTime = 0;
     private int range = 0;
-    private List<String> description = new ArrayList<>();
     private SpellComponents spellComponents = SpellComponents.of();
     private SpellDuration spellDuration = SpellDuration.of();
     private SpellLevel spellLevel;
     private SpellType spellType;
-    private String name;
 
     public SpellBuilder castingTime(double castingTime)
     {
@@ -38,11 +34,14 @@ public class SpellBuilder implements ResettableBuilder<Spell, SpellBuilder>
         return this;
     }
 
-    public SpellBuilder description(String... description)
+    @Override
+    public SpellBuilder addLineToDescription(String line)
     {
-        return description(Arrays.asList(description));
+        description.add(line);
+        return this;
     }
 
+    @Override
     public SpellBuilder description(List<String> description)
     {
         this.description = description;
@@ -67,18 +66,21 @@ public class SpellBuilder implements ResettableBuilder<Spell, SpellBuilder>
         return this;
     }
 
+    @Override
     public SpellBuilder name(String name)
     {
         this.name = name;
         return this;
     }
 
+    @Override
     public <V> SpellBuilder addProperty(Key<? extends BaseValue<V>> key, V value)
     {
         properties.set(key, value);
         return this;
     }
 
+    @Override
     public SpellBuilder properties(DataContainer properties)
     {
         this.properties = properties;
@@ -97,6 +99,7 @@ public class SpellBuilder implements ResettableBuilder<Spell, SpellBuilder>
         return this;
     }
 
+    @Override
     public Spell build()
     {
         return new Spell(name, description, isRitual, properties, castingTime, range, spellComponents, spellDuration, spellLevel, spellType);
@@ -106,8 +109,7 @@ public class SpellBuilder implements ResettableBuilder<Spell, SpellBuilder>
     @Override
     public SpellBuilder from(@Nonnull Spell value)
     {
-        return name(value.getName()).properties(value.getProperties()).description(value.getDescription())
-                .isRitual(value.isRitual()).duration(value.getSpellDuration()).level(value.getSpellLevel())
+        return super.from(value).isRitual(value.isRitual()).duration(value.getSpellDuration()).level(value.getSpellLevel())
                 .range(value.getRange()).castingTime(value.getCastingTime()).components(value.getSpellComponents())
                 .type(value.getSpellType());
     }

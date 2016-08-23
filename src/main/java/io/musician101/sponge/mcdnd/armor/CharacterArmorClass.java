@@ -4,7 +4,7 @@ import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
+import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
@@ -44,9 +44,9 @@ public class CharacterArmorClass implements DataSerializable
 
         int ac = armor.getArmorClass();
         int dexMod = dex.getMod(scores.get(dex));
-        if (armor.getType() == ArmorTypes.LIGHT)
+        if (armor.getType() == MCDNDArmorTypes.LIGHT)
             ac =+ dexMod;
-        else if (armor.getType() == ArmorTypes.MEDIUM)
+        else if (armor.getType() == MCDNDArmorTypes.MEDIUM)
         {
             if (dexMod > 2)
                 ac =+ 2;

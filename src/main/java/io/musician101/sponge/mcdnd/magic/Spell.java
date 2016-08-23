@@ -3,36 +3,27 @@ package io.musician101.sponge.mcdnd.magic;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellType;
-import io.musician101.sponge.mcdnd.util.Interfaces.Described;
-import io.musician101.sponge.mcdnd.util.Interfaces.HasProperties;
-import io.musician101.sponge.mcdnd.util.Interfaces.Named;
+import io.musician101.sponge.mcdnd.util.MCDNDBuildable;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public class Spell implements Described, HasProperties, Named, DataSerializable
+public class Spell extends MCDNDBuildable
 {
     private final boolean isRitual;
-    private final DataContainer properties;
     private final double castingTime;
     private final int range;
-    private final List<String> description;
     private final SpellComponents spellComponents;
     private final SpellDuration spellDuration;
     private final SpellLevel spellLevel;
     private final SpellType spellType;
-    private final String name;
 
     protected Spell(String name, List<String> description, boolean isRitual, DataContainer properties, double castingTime, int range, SpellComponents spellComponents, SpellDuration spellDuration, SpellLevel spellLevel, SpellType spellType)//NOSONAR
     {
-        this.name = name;
-        this.description = description;
+        super(name, properties, description);
         this.isRitual = isRitual;
-        this.properties = properties;
         this.castingTime = castingTime;
         this.range = range;
         this.spellComponents = spellComponents;
@@ -46,12 +37,6 @@ public class Spell implements Described, HasProperties, Named, DataSerializable
         return isRitual;
     }
 
-    @Override
-    public DataContainer getProperties()
-    {
-        return properties;
-    }
-
     public double getCastingTime()
     {
         return castingTime;
@@ -60,12 +45,6 @@ public class Spell implements Described, HasProperties, Named, DataSerializable
     public int getRange()
     {
         return range;
-    }
-
-    @Override
-    public List<String> getDescription()
-    {
-        return description;
     }
 
     public SpellComponents getSpellComponents()
@@ -89,12 +68,6 @@ public class Spell implements Described, HasProperties, Named, DataSerializable
     }
 
     @Override
-    public String getName()
-    {
-        return name;
-    }
-
-    @Override
     public int getContentVersion()
     {
         return 1;
@@ -104,10 +77,7 @@ public class Spell implements Described, HasProperties, Named, DataSerializable
     @Override
     public DataContainer toContainer()
     {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.NAME, name)
-                .set(MCDNDKeys.DESCRIPTION, description)
-                .set(MCDNDKeys.PROPERTIES, properties)
+        return super.toContainer()
                 .set(MCDNDKeys.IS_RITUAL, isRitual)
                 .set(MCDNDKeys.CASTING_TIME, castingTime)
                 .set(MCDNDKeys.RANGE, range)

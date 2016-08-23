@@ -16,4 +16,9 @@ public class Tools
     public static final Tool POISONERS_KIT = new Tool("Poisoner's Kit", new Cost(CurrencyTypes.GOLD, 50), 2);
     public static final Tool THIEVES_TOOLS = new Tool("Thieve's Tools", new Cost(CurrencyTypes.GOLD, 25), 1);
     public static final List<Tool> ALL = Collections.unmodifiableList(Arrays.asList(DISGUISE_KIT, FORGERY_KIT, HERBALISM_KIT, NAVIGATORS_TOOLS, POISONERS_KIT, THIEVES_TOOLS));
+
+    private Tools()
+    {
+
+    }
 }

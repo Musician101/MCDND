@@ -1,51 +1,60 @@
 package io.musician101.sponge.mcdnd.race.trait;
 
+import io.musician101.sponge.mcdnd.util.MCDNDBuilder;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
 import org.spongepowered.api.data.value.BaseValue;
-import org.spongepowered.api.util.ResettableBuilder;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TraitBuilder implements ResettableBuilder<Trait, TraitBuilder>
+public class TraitBuilder extends MCDNDBuilder<Trait, TraitBuilder>
 {
-    private DataContainer properties = new MemoryDataContainer();
-    private List<String> description = new ArrayList<>();
-    private String name;
+    @Override
+    public TraitBuilder addLineToDescription(String line)
+    {
+        description.add(line);
+        return this;
+    }
 
+    @Override
     public TraitBuilder description(List<String> description)
     {
         this.description = description;
         return this;
     }
 
+    @Override
     public TraitBuilder description(String... description)
     {
         return description(Arrays.asList(description));
     }
 
+    @Override
     public TraitBuilder name(String name)
     {
         this.name = name;
         return this;
     }
 
+    @Override
     public TraitBuilder properties(DataContainer properties)
     {
         this.properties = properties;
         return this;
     }
 
+    @Override
     public <V> TraitBuilder addProperty(Key<? extends BaseValue<V>> key, V value)
     {
         properties.set(key, value);
         return this;
     }
 
+    @Override
     public Trait build()
     {
         return new Trait(name, properties, description);

@@ -28,4 +28,9 @@ public class ArtisanTools
     public static final ArtisanTool WEAVERS_TOOLS = new ArtisanTool("Weaver's Tools", new Cost(CurrencyTypes.GOLD, 1), 5);
     public static final ArtisanTool WOODCARVERS_TOOLS = new ArtisanTool("Woodcarver's Tools", new Cost(CurrencyTypes.GOLD, 1), 5);
     public static final List<ArtisanTool> ALL = Collections.unmodifiableList(Arrays.asList(ALCHEMISTS_SUPPLIES, BREWERS_SUPPLIES, CALLIGRAPHERS_SUPPLIES, CARPENTERS_TOOLS, CARTOGRAPHERS_TOOLS, COBBLERS_TOOLS, COOKS_UTENSILS, GLASSBLOWERS_TOOLS, JEWELERS_TOOLS, LEATHERWORKERS_TOOLS, MASONS_TOOLS, PAINTERS_SUPPLIES, POTTERS_TOOLS, SMITHS_TOOLS, TINKERS_TOOLS, WEAVERS_TOOLS, WOODCARVERS_TOOLS));
+
+    private ArtisanTools()
+    {
+
+    }
 }

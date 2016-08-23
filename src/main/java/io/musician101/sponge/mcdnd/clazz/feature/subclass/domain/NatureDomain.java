@@ -6,7 +6,7 @@ import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
+import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.util.list.SpellList;
 
@@ -23,9 +23,10 @@ public class NatureDomain
     public static final Feature ACOLYTE_OF_NATURE = builder().name("Acolyte of Nature").description("At 1st level, you learn one druid cantrip of your choice. You also gain proficiency in one of the following skills of your choice: Animal Handling, Nature, or Survival.")
             .addProperty(MCDNDKeys.SKILL_TYPES, Arrays.asList(SkillTypes.ANIMAL_HANDLING, SkillTypes.NATURE, SkillTypes.SURVIVAL))
             .build();
-    public static final Feature BONUS_PROFICIENCY = builder().name("Bonus Feature").description("When you choose this domain at 1st level, you gain proficiency with heavy armor.").addProperty(MCDNDKeys.ARMOR_TYPE, ArmorTypes.HEAVY).build();
+    public static final Feature BONUS_PROFICIENCY = builder().name("Bonus Feature").description("When you choose this domain at 1st level, you gain proficiency with heavy armor.").addProperty(MCDNDKeys.ARMOR_TYPE, MCDNDArmorTypes.HEAVY).build();
     public static final Feature CHARM_ANIMALS_AND_PLANTS = builder().name("Channel Divinity: Charm Animals and Plants").levelRequirement(2)
-            .description("Starting at 2nd level, you can use your Channel Divinity to charm animals and plants.", "As an action, you present your holy symbol invoke the name of your deity. Each beast or plant creature that can see you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is charmed by you for 1 minute or until it takes damage. While it is charmed by you, it is friendly to you and other creatures you designate.")
+            .addLineToDescription("Starting at 2nd level, you can use your Channel Divinity to charm animals and plants.")
+            .addLineToDescription("As an action, you present your holy symbol invoke the name of your deity. Each beast or plant creature that can see you within 30 feet of you must make a Wisdom saving throw. If the creature fails its saving throw, it is charmed by you for 1 minute or until it takes damage. While it is charmed by you, it is friendly to you and other creatures you designate.")
             .build();
     public static final Feature DAMPEN_ELEMENTS = builder().name("Dampen Elements").levelRequirement(6).description("Starting at 6th level, when you or a creature within 30 feet of you takes acid, cold, fire, lightning, or thunder damage, you can use your reaction to grant resistance to the creature against that instance of the damage.")
             .addProperty(MCDNDKeys.DAMAGE_TYPES, Arrays.asList(MCDNDDamageTypes.ACID, MCDNDDamageTypes.COLD, MCDNDDamageTypes.FIRE, MCDNDDamageTypes.LIGHTNING, MCDNDDamageTypes.THUNDER))

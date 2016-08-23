@@ -114,4 +114,9 @@ public class AdventuringGear
     public static final Gear VIAL = new Gear("Vial", new Cost(CurrencyTypes.GOLD, 1), 0);
     public static final Gear WATERSKIN = new Gear("Waterskin", new Cost(CurrencyTypes.SILVER, 2), 5);
     public static final Gear WHETSTONE = new Gear("Whetstone", new Cost(CurrencyTypes.COPPER, 1), 1);
+
+    private AdventuringGear()
+    {
+
+    }
 }

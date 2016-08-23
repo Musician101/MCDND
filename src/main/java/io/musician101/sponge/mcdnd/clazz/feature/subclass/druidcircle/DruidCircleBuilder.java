@@ -1,4 +1,4 @@
-package io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths;
+package io.musician101.sponge.mcdnd.clazz.feature.subclass.druidcircle;
 
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.SubClassFeatureBuilder;
 import io.musician101.sponge.mcdnd.util.list.FeatureList;
@@ -9,91 +9,84 @@ import org.spongepowered.api.data.value.BaseValue;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PrimalPathBuilder extends SubClassFeatureBuilder<PrimalPath, PrimalPathBuilder>
+public class DruidCircleBuilder extends SubClassFeatureBuilder<DruidCircle, DruidCircleBuilder>
 {
     @Override
-    public <V> PrimalPathBuilder addProperty(Key<? extends BaseValue<V>> key, V value)
-    {
-        properties.set(key, value);
-        return this;
-    }
-
-    @Override
-    public PrimalPathBuilder addLineToDescription(String line)
+    public DruidCircleBuilder addLineToDescription(String line)
     {
         description.add(line);
         return this;
     }
 
     @Override
-    public PrimalPathBuilder description(List<String> description)
+    public DruidCircleBuilder description(List<String> description)
     {
         this.description = description;
         return this;
     }
 
     @Override
-    public PrimalPathBuilder description(String... description)
-    {
-        return description(Arrays.asList(description));
-    }
-
-    @Override
-    public PrimalPathBuilder levelRequirement(int level)
-    {
-        this.level = level;
-        return this;
-    }
-
-    @Override
-    public PrimalPathBuilder map(Map<Integer, FeatureList> map)
-    {
-        this.map = map;
-        return this;
-    }
-
-    @Override
-    public PrimalPathBuilder addToMap(int key, FeatureList value)
-    {
-        map.put(key, value);
-        return this;
-    }
-
-    @Override
-    public PrimalPathBuilder name(String name)
+    public DruidCircleBuilder name(String name)
     {
         this.name = name;
         return this;
     }
 
     @Override
-    public PrimalPathBuilder properties(DataContainer properties)
+    public <V> DruidCircleBuilder addProperty(Key<? extends BaseValue<V>> key, V value)
+    {
+        properties.set(key, value);
+        return this;
+    }
+
+    @Override
+    public DruidCircleBuilder properties(DataContainer properties)
     {
         this.properties = properties;
         return this;
     }
 
     @Override
-    public PrimalPath build()
+    public DruidCircle build()
     {
-        return new PrimalPath(name, map, properties, description);
+        return new DruidCircle(name, map, properties, description);
+    }
+
+    @Override
+    public DruidCircleBuilder levelRequirement(int level)
+    {
+        this.level = level;
+        return this;
+    }
+
+    @Override
+    public DruidCircleBuilder map(Map<Integer, FeatureList> map)
+    {
+        this.map = map;
+        return this;
+    }
+
+    @Override
+    public DruidCircleBuilder addToMap(int key, FeatureList value)
+    {
+        map.put(key, value);
+        return this;
     }
 
     @Nonnull
     @Override
-    public PrimalPathBuilder from(@Nonnull PrimalPath value)
+    public DruidCircleBuilder from(@Nonnull DruidCircle value)
     {
         return super.from(value).map(value.getMap()).levelRequirement(value.getLevelRequirement());
     }
 
     @Nonnull
     @Override
-    public PrimalPathBuilder reset()
+    public DruidCircleBuilder reset()
     {
         description = new ArrayList<>();
         level = 1;

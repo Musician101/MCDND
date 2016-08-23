@@ -3,7 +3,7 @@ package io.musician101.sponge.mcdnd.race.trait.dwarf;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.ArmorTypes;
+import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
@@ -22,7 +22,7 @@ public class MountainDwarfTraits
             .build();
     public static final Trait DWARVEN_ARMOR_TRAINING = builder().name("Dwarven Armor Training")
             .description("You have proficiency with light and medium armor.")
-            .addProperty(MCDNDKeys.ARMOR_TYPES, Arrays.asList(ArmorTypes.LIGHT, ArmorTypes.MEDIUM))
+            .addProperty(MCDNDKeys.ARMOR_TYPES, Arrays.asList(MCDNDArmorTypes.LIGHT, MCDNDArmorTypes.MEDIUM))
             .build();
     public static final Trait SIZE = builder().name("Size")
             .description("Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.")

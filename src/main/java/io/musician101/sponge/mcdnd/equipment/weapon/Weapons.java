@@ -54,6 +54,11 @@ public class Weapons
     public static final Weapon LONGBOW = new Weapon("Longbow", new Cost(CurrencyTypes.GOLD, 50), new Damage(MCDNDDamageTypes.PIERCING, new Dice(8)), 2, Arrays.asList(WeaponProperties.AMMUNITION, WeaponProperties.RANGE_150_600, WeaponProperties.HEAVY, WeaponProperties.TWO_HANDED), WeaponTypes.MARTIAL_RANGED);
     public static final Weapon NET = new Weapon("Net", new Cost(CurrencyTypes.GOLD, 1), new Damage(MCDNDDamageTypes.NONE, new Dice(1)), 3, Arrays.asList(WeaponProperties.SPECIAL_NET, WeaponProperties.THROWN, WeaponProperties.RANGE_5_15), WeaponTypes.MARTIAL_RANGED);
 
+    private Weapons()
+    {
+
+    }
+
     public static List<Weapon> getSimpleMeleeWeapons()
     {
         return Arrays.asList(CLUB, DAGGER, GREATCLUB, HANDAXE, JAVELIN, LIGHT_HAMMER, MACE, QUARTERSTAFF, SICKLE,

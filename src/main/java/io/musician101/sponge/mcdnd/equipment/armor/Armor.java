@@ -9,12 +9,12 @@ import javax.annotation.Nonnull;
 
 public class Armor extends Equipment
 {
-    private final ArmorTypes type;
+    private final MCDNDArmorTypes type;
     private final boolean stealthDisadvantage;
     private final int armorClass;
     private final int strength;
 
-    public Armor(String name, ArmorTypes type, Cost cost, int armorClass, int strength, boolean stealthDisadvantage, int weight)
+    public Armor(String name, MCDNDArmorTypes type, Cost cost, int armorClass, int strength, boolean stealthDisadvantage, int weight)
     {
         super(name, cost, weight);
         this.type = type;
@@ -23,7 +23,7 @@ public class Armor extends Equipment
         this.stealthDisadvantage = stealthDisadvantage;
     }
 
-    public ArmorTypes getType()
+    public MCDNDArmorTypes getType()
     {
         return type;
     }
@@ -60,7 +60,11 @@ public class Armor extends Equipment
                 .set(MCDNDKeys.REQUIRED_STRENGTH, strength);
     }
 
-    public enum ArmorTypes
+    /**
+     * @deprecated remove enum
+     */
+    @Deprecated
+    public enum MCDNDArmorTypes
     {
         LIGHT,
         MEDIUM,

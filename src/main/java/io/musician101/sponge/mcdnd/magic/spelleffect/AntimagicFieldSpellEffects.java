@@ -20,7 +20,8 @@ public class AntimagicFieldSpellEffects
             .description("Any active spell or other magical effect on a creature or an object in the sphere is suppressed while the creature or object is in it.")
             .build();
     public static final SpellEffect MAGIC_ITEMS = builder().name("Magic Items")
-            .description("The properties and power of magic items are suppressed in the sphere. For example, a +1 Longsword in the sphere functions as a nonmagical longsword.", "A magic weapon's properties and powers are suppressed if it is used against a target in the sphere or wielded by an attacker in the sphere. If a magic weapon or a piece of magic ammunition fully leaves the sphere (for example, if you fire a magic arrow or throw a magic spear at a target outside the sphere), the magic of the item ceases to be suppressed as soon as it exits.")
+            .addLineToDescription("The properties and power of magic items are suppressed in the sphere. For example, a +1 Longsword in the sphere functions as a nonmagical longsword.")
+            .addLineToDescription("A magic weapon's properties and powers are suppressed if it is used against a target in the sphere or wielded by an attacker in the sphere. If a magic weapon or a piece of magic ammunition fully leaves the sphere (for example, if you fire a magic arrow or throw a magic spear at a target outside the sphere), the magic of the item ceases to be suppressed as soon as it exits.")
             .build();
     public static final SpellEffect MAGICAL_TRAVEL = builder().name("Magical Travel")
             .description("Teleportation and planar travel fail to work in the sphere, whether the sphere is in the destination or the departure point for such magical travel. A portal to another location, world, or plane of existence, as well as an opening to an extradimensional space such as that created by the Rope Trick spell, temporarily closes while in the sphere.")

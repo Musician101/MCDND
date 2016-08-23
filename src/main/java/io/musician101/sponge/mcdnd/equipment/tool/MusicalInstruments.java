@@ -21,4 +21,9 @@ public class MusicalInstruments
     public static final MusicalInstrument SHAWM = new MusicalInstrument("Shawm", new Cost(CurrencyTypes.GOLD, 2), 1);
     public static final MusicalInstrument VIOL = new MusicalInstrument("Viol", new Cost(CurrencyTypes.GOLD, 30), 1);
     public static final List<MusicalInstrument> ALL = Collections.unmodifiableList(Arrays.asList(BAGPIPES, DRUM, DULCIMER, FLUTE, LUTE, LYRE, HORN, PAN_FLUTE, SHAWM, VIOL));
+
+    private MusicalInstruments()
+    {
+
+    }
 }

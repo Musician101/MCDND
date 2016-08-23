@@ -6,24 +6,11 @@ import io.musician101.sponge.mcdnd.equipment.weapon.property.WeaponProperty.Vers
 
 public class WeaponProperties
 {
-    public static final WeaponProperty AMMUNITION = new WeaponProperty("Ammunition", "You can use a weapon that has " +
-            "the ammunition property to make a ranged attack only if you have ammunition to fire the weapon. Each " +
-            "time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a " +
-            "quiver case, or other container is part of the attack. At the end of the battle, you can recover half " +
-            "your expended ammunition by taking a minute to search the battle field.", "If you use a weapon that has " +
-            "the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling " +
-            "must be loaded to deal any damage when used in this way.");
-    public static final WeaponProperty FINESSE = new WeaponProperty("Finesse", "When making an attack with a finesse " +
-            "weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You " +
-            "must use the same modifier for both rolls.");
-    public static final WeaponProperty HEAVY = new WeaponProperty("Heavy", "Small creatures have disadvantage on " +
-            "attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small creature " +
-            "to use effectively.");
-    public static final WeaponProperty LIGHT = new WeaponProperty("Light", "A light weapon is small and easy to " +
-            "handle, making it ideal for use when fighting with two weapons.");
-    public static final WeaponProperty LOADING = new WeaponProperty("Loading", "Because of the time required to load " +
-            "this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or " +
-            "reaction to fire it, regardless of the number of attacks you can normally make.");
+    public static final WeaponProperty AMMUNITION = new WeaponProperty("Ammunition", "You can use a weapon that has the ammunition property to make a ranged attack only if you have ammunition to fire the weapon. Each time you attack with the weapon, you expend one piece of ammunition. Drawing the ammunition from a quiver case, or other container is part of the attack. At the end of the battle, you can recover half your expended ammunition by taking a minute to search the battle field.", "If you use a weapon that has the ammunition property to make a melee attack, you treat the weapon as an improvised weapon. A sling must be loaded to deal any damage when used in this way.");
+    public static final WeaponProperty FINESSE = new WeaponProperty("Finesse", "When making an attack with a finesse weapon, you use your choice of your Strength or Dexterity modifier for the attack and damage rolls. You must use the same modifier for both rolls.");
+    public static final WeaponProperty HEAVY = new WeaponProperty("Heavy", "Small creatures have disadvantage on attack rolls with heavy weapons. A heavy weapon's size and bulk make it too large for a Small creature to use effectively.");
+    public static final WeaponProperty LIGHT = new WeaponProperty("Light", "A light weapon is small and easy to handle, making it ideal for use when fighting with two weapons.");
+    public static final WeaponProperty LOADING = new WeaponProperty("Loading", "Because of the time required to load this weapon, you can fire only one piece of ammunition from it when you use an action, bonus action, or reaction to fire it, regardless of the number of attacks you can normally make.");
     public static final WeaponProperty RANGE_25_100 = new RangeWeaponProperty(25, 100);
     public static final WeaponProperty RANGE_30_120 = new RangeWeaponProperty(30, 120);
     public static final WeaponProperty RANGE_80_320 = new RangeWeaponProperty(80, 320);
