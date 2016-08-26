@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class BreathWeaponBuilder implements ResettableBuilder<BreathWeapon, BreathWeaponBuilder>
+public class BreathWeaponBuilder implements ResettableBuilder<BreathWeapon<?>, BreathWeaponBuilder>
 {
     private AbilityScoreType scoreType;
     private MCDNDDamageType damageType;
@@ -64,12 +64,12 @@ public class BreathWeaponBuilder implements ResettableBuilder<BreathWeapon, Brea
 
     public BreathWeapon build()
     {
-        return new BreathWeapon(name, damageType, scoreType, shape, description, diceMap);
+        return new BreathWeapon<>(name, damageType, scoreType, shape, description, diceMap);
     }
 
     @Nonnull
     @Override
-    public BreathWeaponBuilder from(@Nonnull BreathWeapon value)
+    public BreathWeaponBuilder from(@Nonnull BreathWeapon<?> value)
     {
         return name(value.getName()).abilityScoreType(value.getValue()).description(value.getDescription())
                 .damageMap(value.getMap()).damageType(value.getDamageType());

@@ -44,6 +44,7 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.ATTACK_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CHARACTER_SIZE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONDITION;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONDITIONS;
+import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONNECTION_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.DAMAGE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.DAMAGE_TYPE;
@@ -63,6 +64,7 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.INTEGER_MAP;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.INTEGER_STRING_MAP;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.KNOWLEDGE_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.LENGTH;
+import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.LINE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.MAX_RANGE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.MIN_ROLL;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.MOVEMENT;
@@ -70,7 +72,7 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.MOVEMENT_INCREASE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.RANGE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SAVE_MODIFIER_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SAVING_THROW;
-import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SHAPE;
+import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CUBE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SIGHTS;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SIZE_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SKILL_TYPE;
@@ -82,6 +84,7 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SPELL_LEVEL_DOUBLE_
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SPELL_LEVEL_DURATION_MAP;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SPELL_LEVEL_INTEGER_FUNCTION;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SPELL_LEVEL_INTEGER_MAP;
+import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SPHERE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.STR_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.TABLE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.TABLES;
@@ -348,7 +351,7 @@ public class Spells
             .addLineToDescription("A creature killed by this spell becomes a frozen statue until it thaws.")
             .addLineToDescription("At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.")
             .components(true, true, "a small crystal or glass cone")
-            .addProperty(SHAPE, new Cone(60)).addProperty(DAMAGE_TYPE, COLD)
+            .addProperty(CONE, new Cone(60)).addProperty(DAMAGE_TYPE, COLD)
             .addProperty(SPELL_LEVEL_DICE_MAP, populateSpellLevelDiceMap(L5, 8, level -> level.getValue() + 3)).build();
     public static final Spell CONFUSION = builder().name("Confusion").type(ENCHANTMENT).level(L4).castingTime(ACTION).range(90)
             .addLineToDescription("This spell assaults and twists creatures' minds, spawning delusions and provoking uncontrolled action. Each creature in a 10-foot-radius sphere centered on a point you choose within range must succeed on a Wisdom saving throw when you cast this spell or be affected by it.")
@@ -365,7 +368,7 @@ public class Spells
             .addLineToDescription("The DM has the elemental's statistics.")
             .addLineToDescription("At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th.")
             .components(true, true, "burning incense for air, soft clay for earth, sulfur and phosphorus for fire, or water and sand for water").duration(ONE_HOUR, true)
-            .addProperty(SHAPE, new Cube(10)).addProperty(DURATION, ONE_HOUR)
+            .addProperty(CUBE, new Cube(10)).addProperty(DURATION, ONE_HOUR)
             .addProperty(SPELL_LEVEL_INTEGER_MAP, populateSpellLevelIntegerMap(L5, SpellLevel::getValue)).build();
     public static final Spell CONTROL_WATER = builder().name("Control Water").type(TRANSMUTATION).level(L4).castingTime(ACTION).range(300)
             .description("Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.")
@@ -525,7 +528,7 @@ public class Spells
             .addLineToDescription("You make a natural terrain in a 150-foot cube in range look, sound, and smell like some other sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, equipment, and creatures within the are aren't changed in appearance.")
             .addLineToDescription("The tactile characteristics of the terrain are unchanged, so creatures entering the area are likely to see through the illusion. If the difference isn't obvious by touch, a creature carefully examining the illusion can attempt an Intelligence (Investigation) check against your spell save DC to disbelieve it. A creature who discerns the illusion for what it is, sees it as a vague image superimposed on the terrain.")
             .components(true, true, "a stone, a twig, and a bit of green plant").duration(ONE_DAY)
-            .addProperty(SKILL_TYPE, INVESTIGATION).addProperty(SHAPE, new Cube(150)).build();
+            .addProperty(SKILL_TYPE, INVESTIGATION).addProperty(CUBE, new Cube(150)).build();
     public static final Spell HASTE = builder().name("Haste").type(TRANSMUTATION).level(L3).castingTime(ACTION).range(30)
             .addLineToDescription("Choose a willing creature that you can see within range. Util the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on Dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action.")
             .addLineToDescription("When the spell ends, the target can't move or take actions until after its next turn, as wave of lethargy sweeps over it.")
@@ -582,7 +585,7 @@ public class Spells
             .addLineToDescription("At Higher Levels: When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.")
             .components(true, true, "a bit fur and a rod of amber, crystal, or glass")
             .addProperty(SPELL_LEVEL_DICE_MAP, populateSpellLevelDiceMap(L3, 6, level -> level.getValue() + 5))
-            .addProperty(DAMAGE_TYPE, LIGHTNING).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).addProperty(SHAPE, new Line(100, 5)).build();
+            .addProperty(DAMAGE_TYPE, LIGHTNING).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).addProperty(LINE, new Line(100, 5)).build();
     public static final Spell LOCATE_CREATURE = builder().name("Locate Creature").type(SpellTypes.DIVINATION).level(L4).castingTime(ACTION)
             .addLineToDescription("Describe or name a creature that is familiar to you. You sense the direction to the creature's location, as long as that creature is within 1,000 feet of you. If the creature is moving, you know the direction of its movement.")
             .addLineToDescription("The spell can locate a specific creature known to you, or the nearest creature of a specific kind (such as a human or a unicorn), so long as you have seen such a creature up close - within 30 feet - at least once. If the creature you described or named is in a different form, such as being under the effects of a Polymorph spell, this spell doesn't locate the creature.")
@@ -732,10 +735,9 @@ public class Spells
             .components(true, true, "a small parchment with a bit of holy text written on it").duration(TEN_MINUTES, true)
             .addProperty(DUAL_INTEGER_FUNCTION, armorClass -> armorClass + 2).build();
     public static final Spell SILENCE = builder().name("Silence").type(ILLUSION).level(L2).isRitual(true).castingTime(ACTION).range(120)
-            //TODO move all descriptions below the components and durations
             .description("For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are deafened while entirely inside it. Casting a spell that includes a verbal component is impossible there.")
             .components(true, true).duration(TEN_MINUTES, true)
-            .addProperty(SHAPE, new Sphere(20)).addProperty(DAMAGE_TYPE, THUNDER).addProperty(CONDITION, DEAFENED).build();
+            .addProperty(SPHERE, new Sphere(20)).addProperty(DAMAGE_TYPE, THUNDER).addProperty(CONDITION, DEAFENED).build();
     public static final Spell SLEET_STORM = builder().name("Sleet Storm").type(CONJURATION).level(L3).castingTime(ACTION).range(150)
             .addLineToDescription("Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.")
             .addLineToDescription("The ground in the area is covered with slick ice, making it difficult terrain. When a creature enters the spell's area for the first time on a turn or starts its turn there, it makes a Dexterity saving throw. On a failed save, it falls prone.")
@@ -748,7 +750,7 @@ public class Spells
             .addLineToDescription("If the creature attempts to cast a spell with a casting time of 1 action, roll a d20. On an 11 or higher the spell doesn't take effect until the creature's next turn, and the creature must use its action on that turn to complete the spell. If it can't, the spell is wasted.")
             .addLineToDescription("A creature affected by this spell makes another Wisdom saving throw at the end of its turn. On a successful save, the effect ends for it.")
             .components(true, true, "a drop of molasses").duration(ONE_MINUTE, true)
-            .addProperty(SHAPE, new Cube(40)).addProperty(ABILITY_SCORE_TYPE, WISDOM).addProperty(DUAL_INTEGER_FUNCTION, number -> number - 2).addProperty(DICE, new Dice(20)).build();
+            .addProperty(CUBE, new Cube(40)).addProperty(ABILITY_SCORE_TYPE, WISDOM).addProperty(DUAL_INTEGER_FUNCTION, number -> number - 2).addProperty(DICE, new Dice(20)).build();
     public static final Spell SPEAK_WITH_ANIMALS = builder().name("Speak with Animals").type(SpellTypes.DIVINATION).level(L1).castingTime(ACTION).isRitual(true)
             .description("You gain the ability to comprehend and verbally communicate with beasts for the duration. The knowledge and awareness of many beasts is limited by their intelligence, but at minimum, beasts can give you information about nearby locations and monsters, including whatever they can perceive or have perceived within the past day. You might be able to persuade a beast to perform a small favor for you, at the DM's discretion.")
             .components(true, true).duration(600).build();
@@ -782,13 +784,12 @@ public class Spells
             .components(true, true, "a holy symbol").duration(TEN_MINUTES, true)
             .addProperty(SPELL_LEVEL_DICE_MAP, populateSpellLevelDiceMap(L3, 8, SpellLevel::getValue))
             .addProperty(DAMAGE_TYPES, asList(NECROTIC, RADIANT)).build();
-    //TODO swap type and level order
     public static final Spell STINKING_CLOUD = builder().name("Stinking Cloud").level(L3).type(CONJURATION).castingTime(ACTION).range(90)
             .components(true, true, "a rotten egg or several skunk cabbage leaves").duration(ONE_MINUTE, true)
             .addLineToDescription("You create a 20-foot-radius sphere of yellow, nauseating gas centered on a point within range. The cloud spreads around corners, and its area is heavily obscured. The cloud lingers in the air for the duration.")
             .addLineToDescription("Each creature that is completely within the cloud at the start of its turn must make a Constitution saving throw against poison. On a failed save, the creature spends its action that turn retching and reeling. Creatures that don't need to breathe or are immune to poison automatically succeed on this saving throw.")
             .addLineToDescription("A moderate wind (at least 10 miles per hour) disperses the cloud after 4 rounds. A strong wind (at least 20 miles per hour) disperses it after 1 round.")
-            .addProperty(SHAPE, new Sphere(20)).addProperty(ABILITY_SCORE_TYPE, CONSTITUTION).build();
+            .addProperty(SPHERE, new Sphere(20)).addProperty(ABILITY_SCORE_TYPE, CONSTITUTION).build();
     public static final Spell STONESKIN = builder().name("Stoneskin").level(L4).type(ABJURATION).castingTime(ACTION)
             .description("This spell turns the flesh of a willing creature you touch as hard as stone. Until the spell ends, the target has resistance to nonmagical bludgeoning, piercing, and slashing damage.")
             .components(true, true, "diamond dust worth 100 gp, which the spell consumes")
@@ -864,9 +865,8 @@ public class Spells
             .addLineToDescription("If the webs aren't anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the conjured web collapses on itself, and the spell ends at the start of you next turn. Webs layered over a flat surface have a depth of 5 feet.")
             .addLineToDescription("Each creature that starts its turn in the webs or that enters them during its turn must make a Dexterity saving throw. On a failed save, the creature is restrained as long as it remains in the webs or utni lit breaks free.")
             .addLineToDescription("The webs are flammable. Any 5-foot cube of webs exposed to fire burns away in 1 round, dealing 2d4 fire damage to any creature that starts its turn in the fire.")
-            .components(true, true, "a bit of spiderweb").duration(ONE_HOUR, true)
-            //TODO every shape needs its own key
-            .addProperty(DAMAGE, new Damage(FIRE, new Dice(4, 2))).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).addProperty(DEPTH, 5).addProperty(SHAPE, new Cube(20)).build();
+            .components(true, true, "a bit of spiderweb").duration(ONE_HOUR, true).addProperty(ABILITY_SCORE_TYPE, DEXTERITY)
+            .addProperty(DAMAGE, new Damage(FIRE, new Dice(4, 2))).addProperty(DEPTH, 5).addProperty(CUBE, new Cube(20)).build();
     public static final Spell WIND_WALL = builder().name("Wind Wall").type(EVOCATION).level(L3).castingTime(ACTION).range(120)
             .addLineToDescription("A wall of strong wind rises from the ground at a point you choose within range. You can make the wall up to 50 feet long, 15 feet high, and 1 foot thick. You can shape the wall in any way you choose so long as it makes one continuous path along the ground. The wall lasts for the duration.")
             .addLineToDescription("When the wall appears each creature within its area must make a Strength saving throw. A creature takes 3d8 bludgeoning damage on a failed save, or half as much damage on a successful one.")

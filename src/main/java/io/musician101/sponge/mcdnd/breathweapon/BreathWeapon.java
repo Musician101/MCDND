@@ -5,6 +5,8 @@ import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.AbilityScoreData;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.dice.Dice;
+import io.musician101.sponge.mcdnd.shape.Cone;
+import io.musician101.sponge.mcdnd.shape.Line;
 import io.musician101.sponge.mcdnd.shape.Shape;
 import io.musician101.sponge.mcdnd.util.Interfaces.AbilityScoreDCSave;
 import io.musician101.sponge.mcdnd.util.Interfaces.Described;
@@ -20,16 +22,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class BreathWeapon implements AbilityScoreDCSave, DataSerializable, Described, Named, Mapped<Integer, Dice>
+public class BreathWeapon<S extends Shape> implements AbilityScoreDCSave, DataSerializable, Described, Named, Mapped<Integer, Dice>
 {
     private final AbilityScoreType abilityScoreType;
     private final MCDNDDamageType damageType;
     private final List<String> description;
     private final Map<Integer, Dice> diceMap;
-    private final Shape shape;
+    private final S shape;
     private final String name;
 
-    protected BreathWeapon(String name, MCDNDDamageType damageType, AbilityScoreType abilityScoreType, Shape shape, List<String> description, Map<Integer, Dice> diceMap)
+    protected BreathWeapon(String name, MCDNDDamageType damageType, AbilityScoreType abilityScoreType, S shape, List<String> description, Map<Integer, Dice> diceMap)
     {
         this.name = name;
         this.description = description;
@@ -84,7 +86,7 @@ public class BreathWeapon implements AbilityScoreDCSave, DataSerializable, Descr
         return diceMap;
     }
 
-    public Shape getShape()
+    public S getShape()
     {
         return shape;
     }
@@ -105,13 +107,19 @@ public class BreathWeapon implements AbilityScoreDCSave, DataSerializable, Descr
     @Override
     public DataContainer toContainer()
     {
-        return new MemoryDataContainer()
+        DataContainer data = new MemoryDataContainer()
                 .set(MCDNDKeys.NAME, name)
                 .set(MCDNDKeys.DESCRIPTION, description)
                 .set(MCDNDKeys.ABILITY_SCORE_TYPE, abilityScoreType)
                 .set(MCDNDKeys.INTEGER_DICE_MAP, diceMap)
-                .set(MCDNDKeys.DAMAGE_TYPE, damageType)
-                .set(MCDNDKeys.SHAPE, shape);
+                .set(MCDNDKeys.DAMAGE_TYPE, damageType);
+
+        if (shape instanceof Cone)
+            data.set(MCDNDKeys.CONE, (Cone) shape);
+        else if (shape instanceof Line)
+            data.set(MCDNDKeys.LINE, (Line) shape);
+        
+        return data;
     }
 
     public static BreathWeaponBuilder builder()
