@@ -34,6 +34,16 @@ public class SpellBuilder extends MCDNDBuilder<Spell, SpellBuilder>
         return this;
     }
 
+    public SpellBuilder components(boolean verbal, boolean somatic)
+    {
+        return components(SpellComponents.of(verbal, somatic));
+    }
+
+    public SpellBuilder components(boolean verbal, boolean somatic, String materials)
+    {
+        return components(SpellComponents.of(verbal, somatic, materials));
+    }
+
     @Override
     public SpellBuilder addLineToDescription(String line)
     {
@@ -52,6 +62,16 @@ public class SpellBuilder extends MCDNDBuilder<Spell, SpellBuilder>
     {
         this.spellDuration = spellDuration;
         return this;
+    }
+
+    public SpellBuilder duration(double duration)
+    {
+        return duration(SpellDuration.of(duration));
+    }
+
+    public SpellBuilder duration(double duration, boolean concentration)
+    {
+        return duration(SpellDuration.of(duration, concentration));
     }
 
     public SpellBuilder isRitual(boolean isRitual)
