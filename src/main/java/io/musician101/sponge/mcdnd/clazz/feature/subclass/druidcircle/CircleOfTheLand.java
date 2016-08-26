@@ -18,7 +18,7 @@ import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
 import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 //TODO replace list argument for SpellList.of() so it uses an array
-public class CircleOfTheWind
+public class CircleOfTheLand
 {
     public static final Feature BONUS_CANTRIP = builder().name("Bonus Cantrip").levelRequirement(2)
             .description("When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice.")
@@ -99,7 +99,7 @@ public class CircleOfTheWind
             .build();
     //TODO left off here pg 63
 
-    private CircleOfTheWind()
+    private CircleOfTheLand()
     {
 
     }
