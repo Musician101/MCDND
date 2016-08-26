@@ -10,16 +10,18 @@ import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.util.list.SpellList;
 
-import java.util.Arrays;
-
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
 import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 public class TempestDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Tempest Domain Spells")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.FOG_CLOUD, Spells.THUNDERWAVE))).put(3, of(Arrays.asList(Spells.GUST_OF_WIND, Spells.SHATTER))).put(5, of(Arrays.asList(Spells.CALL_LIGHTNING, Spells.SLEET_STORM))).put(7, of(Arrays.asList(Spells.CONTROL_WATER, Spells.ICE_STORM))).put(9, of(Arrays.asList(Spells.DESTRUCTIVE_WAVE, Spells.INSECT_PLAGUE))).build())
-            .build();
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
+                    .put(1, of(Spells.FOG_CLOUD, Spells.THUNDERWAVE))
+                    .put(3, of(Spells.GUST_OF_WIND, Spells.SHATTER))
+                    .put(5, of(Spells.CALL_LIGHTNING, Spells.SLEET_STORM))
+                    .put(7, of(Spells.CONTROL_WATER, Spells.ICE_STORM))
+                    .put(9, of(Spells.DESTRUCTIVE_WAVE, Spells.INSECT_PLAGUE)).build()).build();
     public static final Feature BONUS_PROFICIENCIES = builder().name("Bonus Proficiencies")
             .description("At 1st level, you gain proficiency with martial weapons and heavy armor.")
             .addProperty(MCDNDKeys.ARMORS, Armors.getHeavyArmor()).addProperty(MCDNDKeys.WEAPONS, Weapons.getMartialWeapons()).build();

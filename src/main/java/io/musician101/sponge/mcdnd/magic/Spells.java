@@ -716,7 +716,7 @@ public class Spells
             .addLineToDescription("A Remove Curse or Greater Restoration spell cast on the target restores the creature's true memory.")
             .addLineToDescription("At Higher Levels: If you cast this spell using a spell slot of 6th level or higher, you can alter the target's memories of an event that took place up to 7 days ago (6th level), 30 days ago (7th level), 1 year ago (8th level), or any time in the creature's past (9th level).")
             .components(SpellComponents.of(true, true)).duration(SpellDuration.of(ONE_MINUTE, true))
-            .addProperty(SPELLS, SpellList.of(Arrays.asList(REMOVE_CURSE, GREATER_RESTORATION)))
+            .addProperty(SPELLS, SpellList.of(REMOVE_CURSE, GREATER_RESTORATION))
             .addProperty(SPELL_LEVEL_DOUBLE_MAP, ImmutableMap.<SpellLevel, Double>builder().put(L5, ONE_DAY)
                     .put(L6, ONE_DAY * 7D).put(L7, ONE_DAY * 30D).put(L8, ONE_DAY * 365D).put(L9, -1D).build())
             .addProperty(SAVING_THROW, WISDOM).addProperty(MAX_RANGE, 24).addProperty(INTEGER, 10).build();

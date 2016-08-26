@@ -20,9 +20,9 @@ public class WarDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("War Domain Spells")
             .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
-                    .put(1, of(Arrays.asList(Spells.DIVINE_FAVOR, Spells.SHIELD_OF_FAITH)))
-                    .put(3, of(Arrays.asList(Spells.MAGIC_WEAPON, Spells.SPIRITUAL_WEAPON)))
-                    .put(5, of(Arrays.asList(Spells.CRUSADERS_MANTLE, Spells.SPIRIT_GUARDIANS)))
+                    .put(1, of(Spells.DIVINE_FAVOR, Spells.SHIELD_OF_FAITH))
+                    .put(3, of(Spells.MAGIC_WEAPON, Spells.SPIRITUAL_WEAPON))
+                    .put(5, of(Spells.CRUSADERS_MANTLE, Spells.SPIRIT_GUARDIANS))
                     .build()).build();
     public static final Feature BONUS_PROFICIENCIES = builder().name("Bonus Proficiencies")
             .description("At 1st level, you gain proficiency with martial weapons and heavy armor.")

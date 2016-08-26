@@ -17,8 +17,12 @@ import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 public class KnowledgeDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Knowledge")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder().put(1, of(Arrays.asList(Spells.COMMAND, Spells.IDENTIFY))).put(3, of(Arrays.asList(Spells.AUGURY, Spells.SUGGESTION))).put(5, of(Arrays.asList(Spells.NONDETECTION, Spells.SPEAK_WITH_DEAD))).put(7, of(Arrays.asList(Spells.ARCANE_EYE, Spells.CONFUSION))).put(9, of(Arrays.asList(Spells.LEGEND_LORE, Spells.SCRYING))).build())
-            .build();
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
+                    .put(1, of(Spells.COMMAND, Spells.IDENTIFY))
+                    .put(3, of(Spells.AUGURY, Spells.SUGGESTION))
+                    .put(5, of(Spells.NONDETECTION, Spells.SPEAK_WITH_DEAD))
+                    .put(7, of(Spells.ARCANE_EYE, Spells.CONFUSION))
+                    .put(9, of(Spells.LEGEND_LORE, Spells.SCRYING)).build()).build();
     public static final Feature BLESSINGS_OF_KNOWLEDGE = builder().name("Blessings of Knowledge")
             .addLineToDescription("At 1st level, you learn two languages of your choice. You also become proficient in your choice of two of the following skills: Arcana, History, Nature, or Religion.")
             .addLineToDescription("Your proficiency bonus is double for any ability check you make that uses either of those skills.")

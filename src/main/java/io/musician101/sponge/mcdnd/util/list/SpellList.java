@@ -3,6 +3,7 @@ package io.musician101.sponge.mcdnd.util.list;
 import io.musician101.sponge.mcdnd.magic.Spell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class SpellList extends ArrayList<Spell>
@@ -12,8 +13,8 @@ public class SpellList extends ArrayList<Spell>
         super(collection);
     }
 
-    public static SpellList of(Collection<? extends Spell> collection)
+    public static SpellList of(Spell... spells)
     {
-        return new SpellList(collection);
+        return new SpellList(Arrays.asList(spells));
     }
 }

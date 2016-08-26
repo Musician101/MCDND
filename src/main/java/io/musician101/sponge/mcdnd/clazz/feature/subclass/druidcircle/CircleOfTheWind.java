@@ -36,52 +36,52 @@ public class CircleOfTheWind
             .addLineToDescription("Once you gain access to a circle spell, you always have it prepared, and it doesn't count against the number of spells you can prepare each day. If you gain access to a spell that doesn't appear on the druid spell list, the spell is nonetheless a druid spell for you.")
             .addProperty(MCDNDKeys.TABLES, Arrays.asList(Table.builder().name("Arctic")
                     .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                    .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.HOLD_PERSON, Spells.SPIKE_GROWTH)),
-                            of(Arrays.asList(Spells.SLEET_STORM, Spells.SLOW)),
-                            of(Arrays.asList(Spells.FREEDOM_OF_MOVEMENT, Spells.ICE_STORM)),
-                            of(Arrays.asList(Spells.COMMUNE_WITH_NATURE, Spells.CONE_OF_COLD)))).build(),
+                    .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.HOLD_PERSON, Spells.SPIKE_GROWTH),
+                            of(Spells.SLEET_STORM, Spells.SLOW),
+                            of(Spells.FREEDOM_OF_MOVEMENT, Spells.ICE_STORM),
+                            of(Spells.COMMUNE_WITH_NATURE, Spells.CONE_OF_COLD))).build(),
                     Table.builder().name("Coast")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.MIRROR_IMAGE, Spells.MISTY_STEP)),
-                                    of(Arrays.asList(Spells.WATER_BREATHING, Spells.WATER_WALK)),
-                                    of(Arrays.asList(Spells.CONTROL_WATER, Spells.FREEDOM_OF_MOVEMENT)),
-                                    of(Arrays.asList(Spells.CONJURE_ELEMENTAL, Spells.SCRYING)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.MIRROR_IMAGE, Spells.MISTY_STEP),
+                                    of(Spells.WATER_BREATHING, Spells.WATER_WALK),
+                                    of(Spells.CONTROL_WATER, Spells.FREEDOM_OF_MOVEMENT),
+                                    of(Spells.CONJURE_ELEMENTAL, Spells.SCRYING))).build(),
                     Table.builder().name("Desert")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.BLUR, Spells.SILENCE)),
-                                    of(Arrays.asList(Spells.CREATE_FOOD_AND_WATER, Spells.PROTECTION_FROM_ENERGY)),
-                                    of(Arrays.asList(Spells.BLIGHT, Spells.HALLUCINATORY_TERRAIN)),
-                                    of(Arrays.asList(Spells.INSECT_PLAGUE, Spells.WALL_OF_STONE)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.BLUR, Spells.SILENCE),
+                                    of(Spells.CREATE_FOOD_AND_WATER, Spells.PROTECTION_FROM_ENERGY),
+                                    of(Spells.BLIGHT, Spells.HALLUCINATORY_TERRAIN),
+                                    of(Spells.INSECT_PLAGUE, Spells.WALL_OF_STONE))).build(),
                     Table.builder().name("Forest")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.BARKSKIN, Spells.SPIDER_CLIMB)),
-                                    of(Arrays.asList(Spells.CALL_LIGHTNING, Spells.PLANT_GROWTH)),
-                                    of(Arrays.asList(Spells.DIVINATION, Spells.FREEDOM_OF_MOVEMENT)),
-                                    of(Arrays.asList(Spells.COMMUNE_WITH_NATURE, Spells.TREE_STRIDE)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.BARKSKIN, Spells.SPIDER_CLIMB),
+                                    of(Spells.CALL_LIGHTNING, Spells.PLANT_GROWTH),
+                                    of(Spells.DIVINATION, Spells.FREEDOM_OF_MOVEMENT),
+                                    of(Spells.COMMUNE_WITH_NATURE, Spells.TREE_STRIDE))).build(),
                     Table.builder().name("Grassland")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.INVISIBILITY, Spells.PASS_WITHOUT_TRACE)),
-                                    of(Arrays.asList(Spells.DAYLIGHT, Spells.HASTE)),
-                                    of(Arrays.asList(Spells.DIVINATION, Spells.FREEDOM_OF_MOVEMENT)),
-                                    of(Arrays.asList(Spells.DREAM, Spells.INSECT_PLAGUE)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.INVISIBILITY, Spells.PASS_WITHOUT_TRACE),
+                                    of(Spells.DAYLIGHT, Spells.HASTE),
+                                    of(Spells.DIVINATION, Spells.FREEDOM_OF_MOVEMENT),
+                                    of(Spells.DREAM, Spells.INSECT_PLAGUE))).build(),
                     Table.builder().name("Mountain")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.SPIDER_CLIMB, Spells.SPIKE_GROWTH)),
-                                    of(Arrays.asList(Spells.LIGHTNING_BOLT, Spells.MELD_INTO_STONE)),
-                                    of(Arrays.asList(Spells.STONE_SHAPE, Spells.STONESKIN)),
-                                    of(Arrays.asList(Spells.PASSWALL, Spells.WALL_OF_STONE)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.SPIDER_CLIMB, Spells.SPIKE_GROWTH),
+                                    of(Spells.LIGHTNING_BOLT, Spells.MELD_INTO_STONE),
+                                    of(Spells.STONE_SHAPE, Spells.STONESKIN),
+                                    of(Spells.PASSWALL, Spells.WALL_OF_STONE))).build(),
                     Table.builder().name("Swamp")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.DARKNESS, Spells.MELFS_ACID_ARROW)),
-                                    of(Arrays.asList(Spells.WATER_WALK, Spells.STINKING_CLOUD)),
-                                    of(Arrays.asList(Spells.FREEDOM_OF_MOVEMENT, Spells.LOCATE_CREATURE)),
-                                    of(Arrays.asList(Spells.INSECT_PLAGUE, Spells.SCRYING)))).build(),
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.DARKNESS, Spells.MELFS_ACID_ARROW),
+                                    of(Spells.WATER_WALK, Spells.STINKING_CLOUD),
+                                    of(Spells.FREEDOM_OF_MOVEMENT, Spells.LOCATE_CREATURE),
+                                    of(Spells.INSECT_PLAGUE, Spells.SCRYING))).build(),
                     Table.builder().name("Underdark")
                             .addColumn(MCDNDKeys.DRUID_LEVEL, DRUID_LEVELS)
-                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Arrays.asList(Spells.SPIDER_CLIMB, Spells.WEB)),
-                                    of(Arrays.asList(Spells.GASEOUS_FORM, Spells.STINKING_CLOUD)),
-                                    of(Arrays.asList(Spells.GREATER_INVISIBILITY, Spells.STONE_SHAPE)),
-                                    of(Arrays.asList(Spells.CLOUDKILL, Spells.INSECT_PLAGUE)))).build())).build();
+                            .addColumn(MCDNDKeys.CIRCLE_SPELLS, Arrays.asList(of(Spells.SPIDER_CLIMB, Spells.WEB),
+                                    of(Spells.GASEOUS_FORM, Spells.STINKING_CLOUD),
+                                    of(Spells.GREATER_INVISIBILITY, Spells.STONE_SHAPE),
+                                    of(Spells.CLOUDKILL, Spells.INSECT_PLAGUE))).build())).build();
     public static final Feature LANDS_STRIDE = builder().name("Land's Stride").levelRequirement(6)
             .addLineToDescription("Starting 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.")
             .addLineToDescription("In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the Entangle spell.")
