@@ -23,6 +23,8 @@ public class WarDomain
                     .put(1, of(Spells.DIVINE_FAVOR, Spells.SHIELD_OF_FAITH))
                     .put(3, of(Spells.MAGIC_WEAPON, Spells.SPIRITUAL_WEAPON))
                     .put(5, of(Spells.CRUSADERS_MANTLE, Spells.SPIRIT_GUARDIANS))
+                    .put(7, of(Spells.FREEDOM_OF_MOVEMENT, Spells.STONESKIN))
+                    .put(9, of(Spells.FLAME_STRIKE, Spells.HOLD_MONSTER))
                     .build()).build();
     public static final Feature BONUS_PROFICIENCIES = builder().name("Bonus Proficiencies")
             .description("At 1st level, you gain proficiency with martial weapons and heavy armor.")
