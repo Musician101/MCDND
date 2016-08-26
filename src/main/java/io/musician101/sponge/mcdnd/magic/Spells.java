@@ -19,8 +19,6 @@ import io.musician101.sponge.mcdnd.util.ActionTimes;
 import io.musician101.sponge.mcdnd.util.list.SpellList;
 import io.musician101.sponge.mcdnd.util.table.Table;
 
-import java.util.Arrays;
-
 import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.ACID;
 import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.BLUDGEONING;
 import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.COLD;
@@ -129,6 +127,7 @@ import static io.musician101.sponge.mcdnd.util.ActionTimes.TEN_MINUTES;
 import static io.musician101.sponge.mcdnd.util.MapUtils.populateSpellLevelDiceMap;
 import static io.musician101.sponge.mcdnd.util.MapUtils.populateSpellLevelDoubleMap;
 import static io.musician101.sponge.mcdnd.util.MapUtils.populateSpellLevelIntegerMap;
+import static java.util.Arrays.asList;
 
 //TODO reread all spells for missing properties and add shape as property
 //TODO add spell lists (bard spell list, cleric spell list, etc.)
@@ -193,10 +192,10 @@ public class Spells
             .components(SpellComponents.of(true, true)).duration(SpellDuration.of(ActionTimes.ONE_MINUTE, true))
             .addProperty(SPELL_LEVEL_INTEGER_MAP, populateSpellLevelIntegerMap(L5, level -> level.getValue() * 2))
             .addProperty(TABLE, Table.builder().name("Animated Object Statistics")
-                    .addColumn(SIZE_COLUMN, Arrays.asList(CharacterSizes.TINY, CharacterSizes.SMALL, MEDIUM, CharacterSizes.LARGE, CharacterSizes.HUGE))
-                    .addColumn(HP_COLUMN, Arrays.asList(20, 25, 40, 50, 80)).addColumn(AC_COLUMN, Arrays.asList(18, 16, 13, 10, 10))
-                    .addColumn(ATTACK_COLUMN, Arrays.asList("+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"))
-                    .addColumn(STR_COLUMN, Arrays.asList(4, 6, 10, 14, 18)).addColumn(DEX_COLUMN, Arrays.asList(18, 14, 12, 10, 6))
+                    .addColumn(SIZE_COLUMN, asList(CharacterSizes.TINY, CharacterSizes.SMALL, MEDIUM, CharacterSizes.LARGE, CharacterSizes.HUGE))
+                    .addColumn(HP_COLUMN, asList(20, 25, 40, 50, 80)).addColumn(AC_COLUMN, asList(18, 16, 13, 10, 10))
+                    .addColumn(ATTACK_COLUMN, asList("+8 to hit, 1d4 + 4 damage", "+6 to hit, 1d8 + 2 damage", "+5 to hit, 2d6 + 1 damage", "+6 to hit, 2d10 + 2 damage", "+8 to hit, 2d12 + 4 damage"))
+                    .addColumn(STR_COLUMN, asList(4, 6, 10, 14, 18)).addColumn(DEX_COLUMN, asList(18, 14, 12, 10, 6))
                     .build()).build();
     public static final Spell ANTILIFE_SHELL = builder().name("Antilife").type(ABJURATION).level(L5).castingTime(ACTION)
             .addLineToDescription("A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.")
@@ -261,7 +260,7 @@ public class Spells
     public static final Spell AURA_OF_PURITY = builder().name("Aura of Purity").type(ABJURATION).level(L4)
             .description("Purifying energy radiates from you in an aura with a 30-foot radius. Until the spell ends, the aura moves with you, centered on you. Each nonhostile creature in the aura (including you) can't become diseased, has resistance to poison damage, and has advantage on saving throws against effects that cause any of the following conditions: blinded, charmed, deafened, frightened, paralyzed, poisoned, and stunned.")
             .components(SpellComponents.of(true, false)).duration(SpellDuration.of(ActionTimes.ONE_MINUTE * 10, true))
-            .addProperty(CONDITIONS, Arrays.asList(Conditions.BLINDED, CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED))
+            .addProperty(CONDITIONS, asList(Conditions.BLINDED, CHARMED, Conditions.DEAFENED, Conditions.FRIGHTENED, Conditions.PARALYZED, Conditions.POISONED, Conditions.STUNNED))
             .addProperty(DAMAGE_TYPE, POISON).build();
     public static final Spell BARKSKIN = builder().name("Barkskin").type(TRANSMUTATION).level(L2).castingTime(ACTION)
             .description("You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16, regardless of what kind of armor it is wearing.")
@@ -295,7 +294,7 @@ public class Spells
     public static final Spell BLUR = builder().name("Blur").type(ILLUSION).level(L2).castingTime(ACTION)
             .description("Your body becomes blurred, shifting and wavering ot all who can see you. For the duration, any creature has disadvantage on attack rolls against you. An attacker is immune to this effect if it doesn' rely on sight, as with blindsight, or can see through illusions, as with truesight.")
             .components(SpellComponents.of(true, false)).duration(SpellDuration.of(ONE_MINUTE, true))
-            .addProperty(SIGHTS, Arrays.asList("Blindsight", "Truesight")).build();
+            .addProperty(SIGHTS, asList("Blindsight", "Truesight")).build();
     public static final Spell BURNING_HANDS = builder().name("Burning Hands").type(EVOCATION).level(L1).castingTime(ACTION).range(15)
             .addLineToDescription("As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a Dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.")
             .addLineToDescription("The fire ignites any flammable objects in the area that aren't being worn or carried.")
@@ -477,7 +476,7 @@ public class Spells
             .addLineToDescription("At Higher Levels: When you cast this spell using a spell slot of 6th level or higher, the fire damage or the radiant damage (your choice) increases by 1d6 for each slot level above 5th.")
             .components(SpellComponents.of(true, true, "pinch of sulfur"))
             .addProperty(SPELL_LEVEL_DICE_MAP, populateSpellLevelDiceMap(L5, 6, level -> level.getValue() - 1))
-            .addProperty(DAMAGE_TYPES, Arrays.asList(FIRE, RADIANT)).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).build();
+            .addProperty(DAMAGE_TYPES, asList(FIRE, RADIANT)).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).build();
     public static final Spell FLAMING_SPHERE = builder().name("Flaming Sphere").type(CONJURATION).level(L2).castingTime(ACTION).range(60)
             .addLineToDescription("A 5-foot-diameter sphere of fire appears in an unoccupied space of your choice within range and lasts for the duration. Any creature that ends its turn within 5 feet of the sphere must make a Dexterity saving throw. The creature takes 2d6 fire damage on a failed save, or half as much damage on a successful one.")
             .addLineToDescription("As a bonus action, you can move the sphere up to 30 feet. If you ram the sphere into a creature, that creature must take make the saving throw against the sphere's damage, and the sphere stops moving this turn.")
@@ -501,7 +500,7 @@ public class Spells
             .addLineToDescription("While in this form, the target's only method of movement is a flying speed of 10 feet. The target can enter and occupy the space of another creature. The target has resistance to nonmagical damage, and it has advantage on Strength, Dexterity, and Constitution saving throws. The target can pass through small holes, narrow openeings, and even mere cracks, though it treats liquid as though they were solid surfaces. The target can't fall and remains hovering in the air even when stunned or otherwis incapacitated.")
             .addLineToDescription("While in the form of a misty cloud, the target can't talk or manipulate objects, and any objects it was carrying or holding can't be dropped, used, or otherwise interacted with. The target can't attack or cast spells.")
             .components(SpellComponents.of(true, true, "a bit of gauze and a wisp of smoke")).duration(SpellDuration.of(ONE_HOUR, true))
-            .addProperty(MOVEMENT, 10).addProperty(ABILITY_SCORE_TYPES, Arrays.asList(STRENGTH, DEXTERITY, CONSTITUTION)).build();
+            .addProperty(MOVEMENT, 10).addProperty(ABILITY_SCORE_TYPES, asList(STRENGTH, DEXTERITY, CONSTITUTION)).build();
     public static final Spell GRASPING_VINE = builder().name("Grasping Vine").type(CONJURATION).level(L4).castingTime(ActionTimes.BONUS_ACTION).range(30)
             .addLineToDescription("You conjure a vine that sprouts from the ground in an unoccupied space of your choice that you can see within range. When you cast this spell, you can direct the vine to lash out at a creature within 30 feet of it that you can see. That creature must succeed on a Dexterity saving throw or be pulled 20 feet directly toward the vine.")
             .addLineToDescription("Until the spell ends, you can direct the vine to lash out at the same creature or another one as a bonus action on each of your turns.")
@@ -661,7 +660,7 @@ public class Spells
             .addProperty(DUAL_INTEGER_FUNCTION, dexMod -> 10 + dexMod).addProperty(DICE, new Dice(20))
             .addProperty(INTEGER_MAP, ImmutableMap.<Integer, Integer>builder().put(3, 6).put(2, 8).put(1, 11).build())
             //TODO sights are stored as Strings for now
-            .addProperty(SIGHTS, Arrays.asList("Blindsight", "Truesight")).build();
+            .addProperty(SIGHTS, asList("Blindsight", "Truesight")).build();
     public static final Spell MISTY_STEP = builder().name("Misty Step").type(CONJURATION).level(L2).castingTime(BONUS_ACTION)
             .description("Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.")
             .components(SpellComponents.of(true, false)).addProperty(RANGE, 30).build();
@@ -696,8 +695,7 @@ public class Spells
     public static final Spell PROTECTION_FROM_ENERGY = builder().name("Protection From Energy").type(ABJURATION).level(L3).castingTime(ACTION)
             .description("For the duration, the willing creature you touch has resistance to one damage type of your choice: acid, cold, fire, lightning, or thunder.")
             .components(SpellComponents.of(true, true)).duration(SpellDuration.of(ONE_HOUR, true))
-            //TODO static import Arrays.asList()
-            .addProperty(DAMAGE_TYPES, Arrays.asList(ACID, COLD, FIRE, LIGHTNING, THUNDER)).build();
+            .addProperty(DAMAGE_TYPES, asList(ACID, COLD, FIRE, LIGHTNING, THUNDER)).build();
     public static final Spell RAISE_DEAD = builder().name("Raise Dead").type(NECROMANCY).level(L5).castingTime(ActionTimes.ONE_HOUR)
             .addLineToDescription("You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature's soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point.")
             .addLineToDescription("This spell also neutralizes any poisons and cures nonmagical diseases that affected the creature at the time it died. This spell doesn't, however, remove magical diseases, curses, or similar effects; if these aren't first removed prior to casting the spell, they take effect when the creature returns to life.")
@@ -742,12 +740,12 @@ public class Spells
             .addLineToDescription("Instead of targeting a creature, you can choose a location you have seen before as the target of this spell. When you do, the sensor appears at that location and doesn't move.")
             .components(SpellComponents.of(true, true, "a focus worth at least 1,000 gp, such as a crystal ball, a silver mirror, or a font filled with holy water"))
             .duration(SpellDuration.of(600, true))
-            .addProperty(TABLES, Arrays.asList(Table.builder().name("Connection")
-                            .addColumn(CONNECTION_COLUMN, Arrays.asList("Likeness or picture", "Possession or garment", "Body part, lock of hair, bit of nail, or the like"))
-                            .addColumn(SAVE_MODIFIER_COLUMN, Arrays.asList(5, 0, -5)).build(),
+            .addProperty(TABLES, asList(Table.builder().name("Connection")
+                            .addColumn(CONNECTION_COLUMN, asList("Likeness or picture", "Possession or garment", "Body part, lock of hair, bit of nail, or the like"))
+                            .addColumn(SAVE_MODIFIER_COLUMN, asList(5, 0, -5)).build(),
                     Table.builder().name("Knowledge")
-                            .addColumn(KNOWLEDGE_COLUMN, Arrays.asList("Secondhand (you have heard of the target)", "Firsthand (you have met the target)", "Familiar (you know the target well)"))
-                            .addColumn(SAVE_MODIFIER_COLUMN, Arrays.asList(-2, -4, -10)).build())).build();
+                            .addColumn(KNOWLEDGE_COLUMN, asList("Secondhand (you have heard of the target)", "Firsthand (you have met the target)", "Familiar (you know the target well)"))
+                            .addColumn(SAVE_MODIFIER_COLUMN, asList(-2, -4, -10)).build())).build();
     public static final Spell SHATTER = builder().name("Shatter").type(EVOCATION).level(L2).castingTime(ACTION).range(60)
             .addLineToDescription("A sudden loud ringing noise, painfully intense, erupts from a point of your choice within range. Each creature in a 10-foot-radius sphere centered on that point must make a Constitution saving throw. A creature takes 3d8 thunder damage on a failed save, or half as much damage on a successful one. Acreature made of inorganic material such as stone, crystal, or metal has disadvantage on this saving throw.")
             .addLineToDescription("A nonmagical object that isn't being worn or carried also takes the damage if it's in the spell's area.")
@@ -807,7 +805,7 @@ public class Spells
             .addLineToDescription("At Higher Levels: When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.")
             .components(SpellComponents.of(true, true, "a holy symbol")).duration(SpellDuration.of(TEN_MINUTES, true))
             .addProperty(SPELL_LEVEL_DICE_MAP, populateSpellLevelDiceMap(L3, 8, SpellLevel::getValue))
-            .addProperty(DAMAGE_TYPES, Arrays.asList(NECROTIC, RADIANT)).build();
+            .addProperty(DAMAGE_TYPES, asList(NECROTIC, RADIANT)).build();
     //TODO swap type and level order
     public static final Spell STINKING_CLOUD = builder().name("Stinking Cloud").level(L3).type(CONJURATION).castingTime(ACTION).range(90)
             .components(SpellComponents.of(true, true, "a rotten egg or several skunk cabbage leaves")).duration(SpellDuration.of(ONE_MINUTE, true))
@@ -818,7 +816,7 @@ public class Spells
     public static final Spell STONESKIN = builder().name("Stoneskin").level(L4).type(ABJURATION).castingTime(ACTION)
             .description("This spell turns the flesh of a willing creature you touch as hard as stone. Until the spell ends, the target has resistance to nonmagical bludgeoning, piercing, and slashing damage.")
             .components(SpellComponents.of(true, true, "diamond dust worth 100 gp, which the spell consumes"))
-            .addProperty(DAMAGE_TYPES, Arrays.asList(BLUDGEONING, PIERCING, SLASHING)).build();
+            .addProperty(DAMAGE_TYPES, asList(BLUDGEONING, PIERCING, SLASHING)).build();
     public static final Spell STONE_SHAPE = builder().name("Stone Shape").level(L4).type(TRANSMUTATION).castingTime(ACTION)
             .description("You touch a stone object of Medium size or smaller or a section of stone no more than 5 feet in any dimension and form it into any shape that suits your purpose. So, for example, you could shape a large rock into a weapon, idol, or coffer, or make a small passage through a wall, as long as the wall is less than 5 feet thick. You could also shape a stone door or its frame to seal the door shut. The object you create can have up to two hinges and a latch but finer mechanical detail isn't possible.")
             .components(SpellComponents.of(true, true)).duration(SpellDuration.of(ONE_MINUTE))
@@ -867,7 +865,7 @@ public class Spells
             .addLineToDescription("The wall is an object mad eof stone that can be damaged and thus breached. Each panel has AC 15 and 30 hit points per inch of thickness. Reducing a panel to 0 hit points destroys it and might cause connected panels to collapse at the DM's descretion.")
             .addLineToDescription("If you maintain your concentration on this spell for its whole duration, the wall becomes permanent and can't be dispelled. Otherwise, the wall disappears when the spell ends.")
             .components(SpellComponents.of(true, true, "a small block of granite")).duration(SpellDuration.of(TEN_MINUTES, true))
-            .addProperty(INTEGER, 10).addProperty(HEIGHT, 10).addProperty(WIDTHS, Arrays.asList(10, 20)).addProperty(DEPTHS, Arrays.asList(0.5, 0.25))
+            .addProperty(INTEGER, 10).addProperty(HEIGHT, 10).addProperty(WIDTHS, asList(10, 20)).addProperty(DEPTHS, asList(0.5, 0.25))
             .addProperty(LENGTH, 20).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).addProperty(ARMOR_CLASS, 15).addProperty(HIT_POINTS, thickness ->
             {
                 int inches = 0;
