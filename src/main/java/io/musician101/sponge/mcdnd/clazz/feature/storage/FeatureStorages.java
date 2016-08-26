@@ -6,6 +6,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.clazz.feature.clazz.BarbarianFeatures;
 import io.musician101.sponge.mcdnd.clazz.feature.clazz.BardFeatures;
 import io.musician101.sponge.mcdnd.clazz.feature.clazz.ClericFeatures;
+import io.musician101.sponge.mcdnd.clazz.feature.clazz.DruidFeatures;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,5 +43,12 @@ public class FeatureStorages
             .put(4, Collections.singletonList(CommonFeatures.ABILITY_SCORE_IMPROVEMENT))
             .put(5, Collections.singletonList(ClericFeatures.DESTROY_UNDEAD))
             .put(10, Collections.singletonList(ClericFeatures.DIVINE_INTERVENTION))
+            .build());
+    public static final FeatureStorage DRUID_FEATURES = new FeatureStorage(ImmutableMap.<Integer, List<Feature>>builder()
+            .put(1, Arrays.asList(DruidFeatures.HP, DruidFeatures.PROFICIENCIES, DruidFeatures.EQUIPMENT, DruidFeatures.DRUIDIC, DruidFeatures.SPELLCASTING))
+            .put(2, Arrays.asList(DruidFeatures.WILD_SHAPE, DruidFeatures.DRUID_CIRCLE))
+            .put(4, Collections.singletonList(CommonFeatures.ABILITY_SCORE_IMPROVEMENT))
+            .put(18, Arrays.asList(DruidFeatures.TIMELESS_BODY, DruidFeatures.BEAST_SPELLS))
+            .put(20, Collections.singletonList(DruidFeatures.ARCHDRUID))
             .build());
 }

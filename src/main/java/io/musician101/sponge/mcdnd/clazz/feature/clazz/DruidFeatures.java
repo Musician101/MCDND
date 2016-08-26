@@ -6,6 +6,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.equipment.EquipmentChoices;
 import io.musician101.sponge.mcdnd.clazz.feature.equipment.ListChoice;
 import io.musician101.sponge.mcdnd.clazz.feature.equipment.MultipleChoice;
 import io.musician101.sponge.mcdnd.clazz.feature.equipment.SingleChoice;
+import io.musician101.sponge.mcdnd.clazz.feature.subclass.druidcircle.DruidCircles;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
@@ -108,7 +109,7 @@ public class DruidFeatures
             .build();
     public static final Feature DRUID_CIRCLE = builder().name("Druid Circle").levelRequirement(2)
             .addLineToDescription("At 2nd level, you choose to identify with a circle of druids: the Circle of the Land or the Circle of the Moon, both detailed at the end of the class description. You choice grants you features at 2nd level and again at 6th, 10th, and 14th level.")
-            .addProperty(MCDNDKeys.DRUID_CIRCLES, Arrays.asList())
+            .addProperty(MCDNDKeys.DRUID_CIRCLES, Arrays.asList(DruidCircles.CIRCLE_OF_THE_LAND))
             .build();
     public static final Feature TIMELESS_BODY = builder().name("Timeless Body").levelRequirement(18)
             .description("Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year.")

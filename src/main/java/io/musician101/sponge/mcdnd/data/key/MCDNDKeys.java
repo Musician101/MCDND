@@ -47,6 +47,7 @@ import io.musician101.sponge.mcdnd.property.spellcasting.SpellsKnownSpellcasting
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 import io.musician101.sponge.mcdnd.shape.Shape;
 import io.musician101.sponge.mcdnd.util.DualIntegerMap;
+import io.musician101.sponge.mcdnd.util.function.DoubleIntegerFunction;
 import io.musician101.sponge.mcdnd.util.function.DualIntegerFunction;
 import io.musician101.sponge.mcdnd.util.function.SpellLevelIntegerFunction;
 import io.musician101.sponge.mcdnd.util.list.FeatureList;
@@ -79,6 +80,7 @@ public class MCDNDKeys
     public static final Key<ListValue<Armor>> ARMORS = makeListKey(Armor.class, of("Armors"));
     public static final Key<Value<Integer>> ARMOR_CLASS = makeSingleKey(Integer.class, Value.class, of("ArmorClass"));
     public static final Key<Value<Integer>> ARMOR_CLASS_BONUS = makeSingleKey(Integer.class, Value.class, of("ArmorClassBonus"));
+    public static final Key<Value<DualIntegerFunction>> ARMOR_CLASS_INCREASE = makeSingleKey(DualIntegerFunction.class, Value.class, of("ArmorClassIncrease"));
     public static final Key<ListValue<Armor>> ARMOR_PROFICIENCIES = makeListKey(Armor.class, of("ArmorProficiencies"));
     public static final Key<Value<String>> ARMOR_STRING = makeSingleKey(String.class, Value.class, of("ArmorString"));
     public static final Key<Value<MCDNDArmorTypes>> ARMOR_TYPE = makeSingleKey(MCDNDArmorTypes.class, Value.class, of("ArmorType"));
@@ -108,6 +110,8 @@ public class MCDNDKeys
     public static final Key<Value<Damage>> DAMAGE = makeSingleKey(Damage.class, Value.class, of("Damage"));
     public static final Key<Value<MCDNDDamageType>> DAMAGE_TYPE = makeSingleKey(MCDNDDamageType.class, Value.class, of("DamageType"));
     public static final Key<ListValue<MCDNDDamageType>> DAMAGE_TYPES = makeListKey(MCDNDDamageType.class, of("DamageTypes"));
+    public static final Key<Value<Integer>> DEPTH = makeSingleKey(Integer.class, Value.class, of("Depth"));
+    public static final Key<ListValue<Double>> DEPTHS = makeListKey(Double.class, of("Depths"));
     public static final Key<ListValue<String>> DESCRIPTION = makeListKey(String.class, of("Description"));
     public static final Key<ListValue<Double>> DESTROYS_UNDEAD = makeListKey(Double.class, of("DestroysUndead"));
     public static final Key<ListValue<Integer>> DEX_COLUMN = makeListKey(Integer.class, of("Dex"));
@@ -130,6 +134,7 @@ public class MCDNDKeys
     public static final Key<Value<Integer>> HEIGHT = makeSingleKey(Integer.class, Value.class, of("Height"));
     public static final Key<Value<Dice>> HEIGHT_DICE = makeSingleKey(Dice.class, Value.class, of("HeightDice"));
     public static final Key<Value<HitDice>> HIT_DICE = makeSingleKey(HitDice.class, Value.class, of("HitDiceProperty"));
+    public static final Key<Value<DoubleIntegerFunction>> HIT_POINTS = makeSingleKey(DoubleIntegerFunction.class, Value.class, of("HitPoints"));
     public static final Key<ListValue<Integer>> HP_COLUMN = makeListKey(Integer.class, of("HP"));
     public static final Key<Value<HitPointsProperty>> HP_PROPERTY = makeSingleKey(HitPointsProperty.class, Value.class, of("HitPointsProperty"));
     public static final Key<Value<Integer>> INTEGER = makeSingleKey(Integer.class, Value.class, of("IntegerList"));
@@ -152,6 +157,8 @@ public class MCDNDKeys
     public static final Key<Value<Integer>> MAX_RANGE = makeSingleKey(Integer.class, Value.class, of("MinRange"));
     public static final Key<Value<Integer>> MIN_RANGE = makeSingleKey(Integer.class, Value.class, of("MaxRange"));
     public static final Key<Value<Integer>> MIN_ROLL = makeSingleKey(Integer.class, Value.class, of("MinimumRoll"));
+    public static final Key<Value<Integer>> MOVEMENT = makeSingleKey(Integer.class, Value.class, of("Movement"));
+    public static final Key<Value<DualIntegerFunction>> MOVEMENT_INCREASE = makeSingleKey(DualIntegerFunction.class, Value.class, of("MovementIncrease"));
     public static final Key<Value<Integer>> MOVEMENT_SPEED = makeSingleKey(Integer.class, Value.class, of("MovementSpeed"));
     public static final Key<Value<String>> NAME = makeSingleKey(String.class, Value.class, of("Name"));
     public static final Key<Value<Boolean>> NEEDS_CONCENTRATION = makeSingleKey(Boolean.class, Value.class, of("NeedsConcentration"));
@@ -195,6 +202,7 @@ public class MCDNDKeys
     public static final Key<Value<SpellLevel>> SPELL_LEVEL = makeSingleKey(SpellLevel.class, Value.class, of("SpellLevel"));
     public static final Key<ListValue<SpellLevel>> SPELL_LEVELS = makeListKey(SpellLevel.class, of("SpellLevels"));
     public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap"));
+    public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP2 = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap2"));
     public static final Key<MapValue<SpellLevel, Double>> SPELL_LEVEL_DOUBLE_MAP = makeMapKey(SpellLevel.class, Double.class, of("SpellLevelDoubleMap"));
     public static final Key<MapValue<SpellLevel, SpellDuration>> SPELL_LEVEL_DURATION_MAP = makeMapKey(SpellLevel.class, SpellDuration.class, of("SpellLevelDurationMap"));
     public static final Key<Value<SpellLevelIntegerFunction>> SPELL_LEVEL_INTEGER_FUNCTION = makeSingleKey(SpellLevelIntegerFunction.class, Value.class, of("SpellLevelIntegerFunction"));
@@ -227,6 +235,7 @@ public class MCDNDKeys
     public static final Key<Value<Double>> WEIGHT = makeSingleKey(Double.class, Value.class, of("Weight"));
     public static final Key<Value<Dice>> WEIGHT_DICE = makeSingleKey(Dice.class, Value.class, of("WeightDice"));
     public static final Key<Value<Integer>> WIDTH = makeSingleKey(Integer.class, Value.class, of("Width"));
+    public static final Key<ListValue<Integer>> WIDTHS = makeListKey(Integer.class, of("Widths"));
 
     private MCDNDKeys()
     {
