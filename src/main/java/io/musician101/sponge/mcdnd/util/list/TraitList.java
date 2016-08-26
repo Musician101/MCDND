@@ -17,7 +17,7 @@ public class TraitList extends ArrayList<Trait>
     {
         return new TraitList(collection);
     }
-    
+
     public static TraitList of(Trait... traits)
     {
         return new TraitList(Arrays.asList(traits));
