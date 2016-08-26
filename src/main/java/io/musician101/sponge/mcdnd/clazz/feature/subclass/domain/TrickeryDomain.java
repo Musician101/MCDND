@@ -29,7 +29,7 @@ public class TrickeryDomain
             .addProperty(MCDNDKeys.SKILL_TYPE, SkillTypes.STEALTH)
             .addProperty(MCDNDKeys.DURATION, ActionTimes.ONE_HOUR)
             .build();
-    public static final Feature INVOKE_DUPLICITY = builder().name("Channel Divinity: Invoke Duplicity")
+    public static final Feature INVOKE_DUPLICITY = builder().name("Channel Divinity: Invoke Duplicity").levelRequirement(2)
             .addLineToDescription("Starting at 2nd Level, you can use your Channel Divinity to create an illusory duplicate of yourself.")
             .addLineToDescription("As an action, you create a perfect illusion of yourself that lasts for 1 minute, or until you lose your concentration (as if you were concentrating on a spell). The illusion appears in an unoccupied space that you can see within 30 feet of you. As a bonus action on your turn, you can move the illusion up to 30 feet to a space you can see, but it must remain within 120 feet of you.")
             .addLineToDescription("For the duration, you can cast spells as though you were in the illusion's space, but you must use your own senses. Additionally, when both you and your illusion are within 5 feet of a creature that can see the illusion, you have advantage on attack rolls against that creature, given how distracting the illusion is to the target.")
@@ -40,19 +40,19 @@ public class TrickeryDomain
             .addProperty(MCDNDKeys.MAX_RANGE, 120)
             .addProperty(MCDNDKeys.DURATION, ActionTimes.ONE_MINUTE)
             .build();
-    public static final Feature CLOAK_OF_SHADOWS = builder().name("Channel Divinity: Cloak of Shadows")
+    public static final Feature CLOAK_OF_SHADOWS = builder().name("Channel Divinity: Cloak of Shadows").levelRequirement(6)
             .addLineToDescription("Starting at 6th level, you can use your Channel Divinity to vanish.")
             .addLineToDescription("As an action, you become invisible until the end of your next turn. You become visible if you attack or cast a spell.")
             .levelRequirement(6)
             .build();
-    public static final Feature DIVINE_STRIKE = builder().name("Divine Strike")
+    public static final Feature DIVINE_STRIKE = builder().name("Divine Strike").levelRequirement(8)
             .description("At 8th level, you gain the ability to infuse your weapon strikes with poison - a gift from your deity. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 poison damage to the target. When you reach 14th level, the extra damage increases to 2d8.")
             .levelRequirement(8)
             .addProperty(MCDNDKeys.INTEGER_DAMAGE_MAP, ImmutableMap.<Integer, Damage>builder()
                     .put(8, new Damage(MCDNDDamageTypes.POISON, new Dice(8)))
                     .put(14, new Damage(MCDNDDamageTypes.POISON, new Dice(8, 2)))
                     .build()).build();
-    public static final Feature IMPROVED_DUPLICITY = builder().name("Improved Duplicity")
+    public static final Feature IMPROVED_DUPLICITY = builder().name("Improved Duplicity").levelRequirement(17)
             .description("At 17th level, you can create up to four duplications of yourself, instead of one, when you use Invoke Duplicity. As a bonus action on your turn, you can move any number of them up to 30 feet, to a maximum range of 120 feet.")
             .levelRequirement(17)
             .addProperty(MCDNDKeys.DISTANCE, 30)
