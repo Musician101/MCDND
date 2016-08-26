@@ -26,7 +26,6 @@ public class AntimagicFieldSpellEffects
     public static final SpellEffect MAGICAL_TRAVEL = builder().name("Magical Travel")
             .description("Teleportation and planar travel fail to work in the sphere, whether the sphere is in the destination or the departure point for such magical travel. A portal to another location, world, or plane of existence, as well as an opening to an extradimensional space such as that created by the Rope Trick spell, temporarily closes while in the sphere.")
             .build();
-    //TODO check the name for this effect
     public static final SpellEffect TARGETED_EFFECTS = builder().name("Targeted Effects")
             .description("Spells and other magical effects, such as Magic Missile and Charm Person, that target a creature or an object in the sphere have no effect on that target.")
             .build();

@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
 
-//TODO implement Properties
 public class CommonFeatures
 {
     public static final Feature ABILITY_SCORE_IMPROVEMENT = builder().name("Ability Score Improvement").levelRequirement(4)

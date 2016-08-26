@@ -35,8 +35,6 @@ public class FeatureBuilder extends MCDNDBuilder<Feature, FeatureBuilder>
         return this;
     }
 
-    //TODO add a way to add individual lines to description
-    //TODO create builder interfaces for description, build, levelRequirement, name, properties
     public FeatureBuilder levelRequirement(int level)
     {
         this.level = level;

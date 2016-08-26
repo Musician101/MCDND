@@ -127,5 +127,4 @@ public class SpongeMCDND extends AbstractSpongePlugin
 
     //TODO remove all hardcoded enum classes
     //TODO NPC: ability score, size, armor class, hit points, resistances, actions
-    //TODO go through all registry modules and remove immutablemap as necessary
 }

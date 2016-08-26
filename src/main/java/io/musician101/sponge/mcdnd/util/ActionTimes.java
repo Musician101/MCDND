@@ -1,6 +1,5 @@
 package io.musician101.sponge.mcdnd.util;
 
-//TODO consult RandomSlurpiness for ActionTimes
 public class ActionTimes
 {
     public static final double ACTION = 2;
