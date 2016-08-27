@@ -17,7 +17,6 @@ import java.util.List;
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
 import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
-//TODO replace list argument for SpellList.of() so it uses an array
 public class CircleOfTheLand
 {
     public static final Feature BONUS_CANTRIP = builder().name("Bonus Cantrip").levelRequirement(2)
@@ -97,7 +96,6 @@ public class CircleOfTheLand
             .addProperty(MCDNDKeys.ABILITY_SCORE_TYPE, AbilityScoreTypes.WISDOM)
             .addProperty(MCDNDKeys.DURATION, ActionTimes.ONE_DAY)
             .build();
-    //TODO left off here pg 63
 
     private CircleOfTheLand()
     {
