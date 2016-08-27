@@ -53,6 +53,7 @@ import io.musician101.sponge.mcdnd.shape.Sphere;
 import io.musician101.sponge.mcdnd.util.DualIntegerMap;
 import io.musician101.sponge.mcdnd.util.function.DoubleIntegerFunction;
 import io.musician101.sponge.mcdnd.util.function.DualIntegerFunction;
+import io.musician101.sponge.mcdnd.util.function.SpellLevelDiceFunction;
 import io.musician101.sponge.mcdnd.util.function.SpellLevelIntegerFunction;
 import io.musician101.sponge.mcdnd.util.list.FeatureList;
 import io.musician101.sponge.mcdnd.util.list.SpellList;
@@ -208,6 +209,7 @@ public class MCDNDKeys
     public static final Key<ListValue<SpellEffect>> SPELL_EFFECTS = makeListKey(SpellEffect.class, of("SpellEffects"));
     public static final Key<Value<SpellLevel>> SPELL_LEVEL = makeSingleKey(SpellLevel.class, Value.class, of("SpellLevel"));
     public static final Key<ListValue<SpellLevel>> SPELL_LEVELS = makeListKey(SpellLevel.class, of("SpellLevels"));
+    public static final Key<Value<SpellLevelDiceFunction>> SPELL_LEVEL_DICE_FUNCTION = makeSingleKey(SpellLevelDiceFunction.class, Value.class, of("SpellLevelDiceFunction"));
     public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap"));
     public static final Key<MapValue<SpellLevel, Dice>> SPELL_LEVEL_DICE_MAP2 = makeMapKey(SpellLevel.class, Dice.class, of("SpellLevelDiceMap2"));
     public static final Key<MapValue<SpellLevel, Double>> SPELL_LEVEL_DOUBLE_MAP = makeMapKey(SpellLevel.class, Double.class, of("SpellLevelDoubleMap"));

@@ -109,7 +109,7 @@ public class DruidFeatures
             .build();
     public static final Feature DRUID_CIRCLE = builder().name("Druid Circle").levelRequirement(2)
             .addLineToDescription("At 2nd level, you choose to identify with a circle of druids: the Circle of the Land or the Circle of the Moon, both detailed at the end of the class description. You choice grants you features at 2nd level and again at 6th, 10th, and 14th level.")
-            .addProperty(MCDNDKeys.DRUID_CIRCLES, Arrays.asList(DruidCircles.CIRCLE_OF_THE_LAND))
+            .addProperty(MCDNDKeys.DRUID_CIRCLES, Arrays.asList(DruidCircles.CIRCLE_OF_THE_LAND, DruidCircles.CIRCLE_OF_THE_MOON))
             .build();
     public static final Feature TIMELESS_BODY = builder().name("Timeless Body").levelRequirement(18)
             .description("Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year.")
@@ -121,7 +121,6 @@ public class DruidFeatures
             .addLineToDescription("At 20th level, you can use your Wild Shape an unlimited number of times.")
             .addLineToDescription("Additionally, you can ignore the verbal and somatic components of your druid spells, as well as any material components that lack a cost and aren't consumed by a spell. You gain this benefit in both your normal shape and your beast shape form Wild Shape.")
             .build();
-    //TODO left off 62
 
     private DruidFeatures()
     {

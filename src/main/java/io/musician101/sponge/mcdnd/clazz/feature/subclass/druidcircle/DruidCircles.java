@@ -13,8 +13,15 @@ public class DruidCircles
             .addToMap(10, of(CircleOfTheLand.NATURES_WARD))
             .addToMap(14, of(CircleOfTheLand.NATURES_SANCTUARY))
             .build();
+    public static final DruidCircle CIRCLE_OF_THE_MOON = builder().name("Circle of the Moon")
+            .addLineToDescription("Druids of the Circle of the Moon are fierce guardians of the wilds. Their order gathers under the full moon to share news and trade warnings. They haunt the deepest parts of the wilderness, where they might go for weeks on end before crossing paths with another humanoid creature, let alone another druid.")
+            .addLineToDescription("Changeable as the moon, a druid of this circle might prowl as a great cat one night, soar over the treetops as an eagle the next day, and crash through the undergrowth in bear form to drive off a trespassing monster. The wild is in the druid's blood.")
+            .addToMap(2, of(CircleOfTheMoon.COMBAT_WILD_SHAPE, CircleOfTheMoon.CIRCLE_FORMS))
+            .addToMap(6, of(CircleOfTheMoon.PRIMAL_STRIKE))
+            .addToMap(10, of(CircleOfTheMoon.ELEMENTAL_WILD_SHAPE))
+            .addToMap(14, of(CircleOfTheMoon.THOUSAND_FORMS))
+            .build();
 
-    //TODO left off here page 62/63
     private DruidCircles()
     {
 
