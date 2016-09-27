@@ -138,7 +138,9 @@ public class MCDNDKeys
     public static final Key<MapValue<Equipment, Integer>> EQUIPMENT_MAP = makeMapKey(Equipment.class, Integer.class, of("EquipmentMap"));
     public static final Key<ListValue<String>> EXAMPLE_COLUMN = makeListKey(String.class, of("Example"));
     public static final Key<Value<Feature>> FEATURE = makeSingleKey(Feature.class, Value.class, of("Feature"));
+    public static final Key<ListValue<Feature>> FEATURES = makeListKey(Feature.class, of("Features"));
     public static final Key<MapValue<Integer, FeatureList>> FEATURES_MAP = makeMapKey(Integer.class, FeatureList.class, of("FeaturesMap"));
+    public static final Key<Value<Integer>> HEALTH = makeSingleKey(Integer.class, Value.class, of("Health"));
     public static final Key<Value<Integer>> HEIGHT = makeSingleKey(Integer.class, Value.class, of("Height"));
     public static final Key<Value<Dice>> HEIGHT_DICE = makeSingleKey(Dice.class, Value.class, of("HeightDice"));
     public static final Key<Value<HitDice>> HIT_DICE = makeSingleKey(HitDice.class, Value.class, of("HitDiceProperty"));
