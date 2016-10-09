@@ -12,7 +12,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.HitDice;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
+
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
 import io.musician101.sponge.mcdnd.property.ProficienciesProperty;

@@ -2,6 +2,7 @@ package io.musician101.sponge.mcdnd.equipment.armor;
 
 import io.musician101.sponge.mcdnd.currency.CurrencyHolder.Cost;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import io.musician101.sponge.mcdnd.data.type.MCDNDArmorType;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
 import org.spongepowered.api.data.DataContainer;
 
@@ -9,12 +10,12 @@ import javax.annotation.Nonnull;
 
 public class Armor extends Equipment
 {
-    private final MCDNDArmorTypes type;
+    private final MCDNDArmorType type;
     private final boolean stealthDisadvantage;
     private final int armorClass;
     private final int strength;
 
-    public Armor(String name, MCDNDArmorTypes type, Cost cost, int armorClass, int strength, boolean stealthDisadvantage, int weight)
+    public Armor(String name, MCDNDArmorType type, Cost cost, int armorClass, int strength, boolean stealthDisadvantage, int weight)
     {
         super(name, cost, weight);
         this.type = type;
@@ -23,7 +24,7 @@ public class Armor extends Equipment
         this.stealthDisadvantage = stealthDisadvantage;
     }
 
-    public MCDNDArmorTypes getType()
+    public MCDNDArmorType getType()
     {
         return type;
     }
@@ -58,18 +59,5 @@ public class Armor extends Equipment
                 .set(MCDNDKeys.STEALTH_DISADVANTAGE, stealthDisadvantage)
                 .set(MCDNDKeys.ARMOR_CLASS, armorClass)
                 .set(MCDNDKeys.REQUIRED_STRENGTH, strength);
-    }
-
-    /**
-     * @deprecated remove enum
-     */
-    @Deprecated
-    public enum MCDNDArmorTypes
-    {
-        LIGHT,
-        MEDIUM,
-        HEAVY,
-        SHIELD,
-        UNARMORED
     }
 }

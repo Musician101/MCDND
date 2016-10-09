@@ -14,7 +14,7 @@ import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.dice.HitDice;
 import io.musician101.sponge.mcdnd.equipment.Equipment;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
+
 import io.musician101.sponge.mcdnd.equipment.armor.Armors;
 import io.musician101.sponge.mcdnd.equipment.gear.AdventuringGear;
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;

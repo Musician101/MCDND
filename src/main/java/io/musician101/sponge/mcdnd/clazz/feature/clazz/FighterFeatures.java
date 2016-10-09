@@ -5,9 +5,9 @@ import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.fightingstyle.FightingStyles;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
+import io.musician101.sponge.mcdnd.data.type.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.HitDice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.armor.Armors;
 import io.musician101.sponge.mcdnd.equipment.gear.AdventuringGear;
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;
@@ -22,9 +22,10 @@ import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
 
 public class FighterFeatures
 {
-    public static final Feature HP = builder().name("Hit Points").addProperty(MCDNDKeys.HIT_DICE, new HitDice(10)).build();
+    public static final Feature HP = builder().name("Hit Points")
+            .addProperty(MCDNDKeys.HIT_DICE, new HitDice(10)).build();
     public static final Feature PROFICIENCIES = builder().name("Proficiencies")
-            .addProperty(MCDNDKeys.ARMOR_TYPES, Arrays.asList(MCDNDArmorTypes.values()))
+            .addProperty(MCDNDKeys.ARMOR_TYPES, Arrays.asList(MCDNDArmorTypes.LIGHT, MCDNDArmorTypes.MEDIUM, MCDNDArmorTypes.HEAVY, MCDNDArmorTypes.SHIELD))
             .addProperty(MCDNDKeys.ARMOR_STRING, "All armor, shields")
             .addProperty(MCDNDKeys.WEAPONS, Weapons.getAll())
             .addProperty(MCDNDKeys.WEAPON_STRING, "Simple weapons, martial weapons")

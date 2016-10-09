@@ -2,10 +2,10 @@ package io.musician101.sponge.mcdnd.race.trait.dwarf;
 
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
-import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
-import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
+import io.musician101.sponge.mcdnd.data.type.MCDNDArmorTypes;
+import io.musician101.sponge.mcdnd.dice.Dice;
+import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
 
 import java.util.Arrays;

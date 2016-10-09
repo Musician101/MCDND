@@ -13,7 +13,6 @@ import io.musician101.sponge.mcdnd.data.type.skill.SkillType;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevel;
 import io.musician101.sponge.mcdnd.data.type.spell.SpellLevels;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.pack.Packs;
 import io.musician101.sponge.mcdnd.equipment.tool.MusicalInstruments;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;

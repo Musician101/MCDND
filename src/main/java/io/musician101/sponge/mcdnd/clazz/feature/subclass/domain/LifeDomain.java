@@ -3,8 +3,8 @@ package io.musician101.sponge.mcdnd.clazz.feature.subclass.domain;
 import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import io.musician101.sponge.mcdnd.data.type.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
-import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
 
