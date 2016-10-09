@@ -22,6 +22,25 @@ public class HitDiceData extends AbstractMappedData<CharacterClassType, HitDice,
         super(value, MCDNDKeys.CHARACTER_HIT_DICE);
     }
 
+    public Optional<String> getHitPointsAtFirstLevel(CharacterClassType clazz)
+    {
+        Optional<HitDice> optional = get(clazz);
+        if (optional.isPresent())
+            return Optional.of(optional.get().sides() + " + your Constitution modifier");
+
+        return Optional.empty();
+    }
+
+    public Optional<String> getHitPointsAtHigherLevels(CharacterClassType clazz)
+    {
+        Optional<HitDice> optional = get(clazz);
+        if (!optional.isPresent())
+            return Optional.empty();
+
+        HitDice hd = optional.get();
+        return Optional.of(hd.toString() + " (or " + (optional.get().sides() / 2) + " + your Constitution modifier per " + clazz.getName() + " level");
+    }
+
     @Nonnull
     @Override
     public Optional<HitDice> get(@Nonnull CharacterClassType key)

@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.clazz.feature.subclass.college;
 
+import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.SubClassFeatureBuilder;
-import io.musician101.sponge.mcdnd.util.list.FeatureList;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -51,14 +51,14 @@ public class BardCollegeBuilder extends SubClassFeatureBuilder<BardCollege, Bard
     }
 
     @Override
-    public BardCollegeBuilder map(Map<Integer, FeatureList> map)
+    public BardCollegeBuilder map(Map<Integer, List<Feature>> map)
     {
         this.map = map;
         return this;
     }
 
     @Override
-    public BardCollegeBuilder addToMap(int key, FeatureList value)
+    public BardCollegeBuilder addToMap(int key, List<Feature> value)
     {
         map.put(key, value);
         return this;

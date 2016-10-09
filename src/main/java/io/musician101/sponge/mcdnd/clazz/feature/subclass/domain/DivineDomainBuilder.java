@@ -1,7 +1,7 @@
 package io.musician101.sponge.mcdnd.clazz.feature.subclass.domain;
 
+import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.SubClassFeatureBuilder;
-import io.musician101.sponge.mcdnd.util.list.FeatureList;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.MemoryDataContainer;
 import org.spongepowered.api.data.key.Key;
@@ -51,14 +51,14 @@ public class DivineDomainBuilder extends SubClassFeatureBuilder<DivineDomain, Di
     }
 
     @Override
-    public DivineDomainBuilder map(Map<Integer, FeatureList> map)
+    public DivineDomainBuilder map(Map<Integer, List<Feature>> map)
     {
         this.map = map;
         return this;
     }
 
     @Override
-    public DivineDomainBuilder addToMap(int key, FeatureList value)
+    public DivineDomainBuilder addToMap(int key, List<Feature> value)
     {
         map.put(key, value);
         return this;

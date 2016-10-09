@@ -7,22 +7,21 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class EquipmentChoices implements DataSerializable, Described
 {
-    private final List<EquipmentChoice> choices;
+    private final DataContainer choices;
     private final List<String> description;
 
-    public EquipmentChoices(String description, EquipmentChoice... choices)
+    public EquipmentChoices(String description, DataContainer choices)
     {
-        this.choices = Arrays.asList(choices);
+        this.choices = choices;
         this.description = Collections.singletonList(description);
     }
 
-    public List<EquipmentChoice> getChoices()
+    public DataContainer getChoices()
     {
         return choices;
     }

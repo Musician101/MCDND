@@ -26,4 +26,9 @@ public class ProficiencyBonus
 
         this.bonus = (int) (Math.floor(classLevels / (10000000000D)) + Math.floor(classLevels / 4d));
     }
+
+    public static int getBonus(Map<CharacterClassType, Integer> classes)
+    {
+        return new ProficiencyBonus(classes).getBonus();
+    }
 }

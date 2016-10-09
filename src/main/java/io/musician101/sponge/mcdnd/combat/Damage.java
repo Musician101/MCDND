@@ -7,6 +7,7 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
+import java.util.Map.Entry;
 
 public class Damage implements DataSerializable
 {
@@ -31,7 +32,11 @@ public class Damage implements DataSerializable
 
     public int rollDamage()
     {
-        return dice.roll();
+        int roll = 0;
+        for (Entry<Dice, Integer> entry : dice.roll())
+            roll =+ entry.getValue();
+
+        return roll;
     }
 
     @Override

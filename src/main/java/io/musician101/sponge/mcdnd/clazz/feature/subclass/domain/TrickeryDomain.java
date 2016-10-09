@@ -7,22 +7,24 @@ import io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
+import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
 import io.musician101.sponge.mcdnd.util.ActionTimes;
-import io.musician101.sponge.mcdnd.util.list.SpellList;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
-import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 public class TrickeryDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Trickery Domain Spells")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
-                    .put(1, of(Spells.CHARM_PERSON, Spells.DISGUISE_SELF))
-                    .put(3, of(Spells.MIRROR_IMAGE, Spells.PASS_WITHOUT_TRACE))
-                    .put(5, of(Spells.BLINK, Spells.DISPEL_MAGIC))
-                    .put(7, of(Spells.DIMENSION_DOOR, Spells.POLYMORPH))
-                    .put(9, of(Spells.DOMINATE_PERSON, Spells.MODIFY_MEMORY))
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, List<Spell>>builder()
+                    .put(1, Arrays.asList(Spells.CHARM_PERSON, Spells.DISGUISE_SELF))
+                    .put(3, Arrays.asList(Spells.MIRROR_IMAGE, Spells.PASS_WITHOUT_TRACE))
+                    .put(5, Arrays.asList(Spells.BLINK, Spells.DISPEL_MAGIC))
+                    .put(7, Arrays.asList(Spells.DIMENSION_DOOR, Spells.POLYMORPH))
+                    .put(9, Arrays.asList(Spells.DOMINATE_PERSON, Spells.MODIFY_MEMORY))
                     .build()).build();
     public static final Feature BLESSING_OF_THE_TRICKSTER = builder().name("Blessing of the Trickster")
             .description("Starting when you choose this domain at 1st level, you can use your action to touch a willing creature other than yourself to give it advantage on Dexterity (Stealth) checks. This blessing lasts for 1 hour or until you use this feature again.")

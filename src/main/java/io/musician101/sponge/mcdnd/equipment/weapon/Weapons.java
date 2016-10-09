@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+//TODO create weapon builder
 public class Weapons
 {
     public static final Weapon CLUB = new Weapon("Club", new Cost(CurrencyTypes.SILVER, 1), new Damage(MCDNDDamageTypes.BLUDGEONING, new Dice(4)), 2, Collections.singletonList(WeaponProperties.LIGHT), WeaponTypes.SIMPLE_MELEE);

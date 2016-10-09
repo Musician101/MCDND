@@ -6,6 +6,7 @@ import io.musician101.sponge.mcdnd.clazz.feature.FeatureBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.college.BardCollegeBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.domain.DivineDomainBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.druidcircle.DruidCircleBuilder;
+import io.musician101.sponge.mcdnd.clazz.feature.subclass.fightingstyle.FightingStyleBuilder;
 import io.musician101.sponge.mcdnd.clazz.feature.subclass.primalpaths.PrimalPathBuilder;
 import io.musician101.sponge.mcdnd.condition.ConditionBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.AbilityScoreDataBuilder;
@@ -14,6 +15,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.builder.AlignmentDataBuilder
 import io.musician101.sponge.mcdnd.data.manipulator.builder.ArmorProficiencyDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.CharacterArmorClassDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.CharacterClassDataBuilder;
+import io.musician101.sponge.mcdnd.data.manipulator.builder.EquippedItemsDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.FeatureListDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.HitDiceDataBuilder;
 import io.musician101.sponge.mcdnd.data.manipulator.builder.MCDNDHealthDataBuilder;
@@ -26,6 +28,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableAlignment
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableArmorProficiencyData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableCharacterArmorClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableCharacterClassData;
+import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableEquippedItemsData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableFeatureListData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableHitDiceData;
 import io.musician101.sponge.mcdnd.data.manipulator.immutable.ImmutableMCDNDHealthData;
@@ -38,6 +41,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.mutable.AlignmentData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.ArmorProficiencyData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.CharacterArmorClassData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.CharacterClassData;
+import io.musician101.sponge.mcdnd.data.manipulator.mutable.EquippedItemsData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.FeatureListData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.HitDiceData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.MCDNDHealthData;
@@ -45,6 +49,7 @@ import io.musician101.sponge.mcdnd.data.manipulator.mutable.SavingThrowProficien
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.SkillProficiencyData;
 import io.musician101.sponge.mcdnd.data.manipulator.mutable.WeaponProficiencyData;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
+import io.musician101.sponge.mcdnd.data.type.ActionType;
 import io.musician101.sponge.mcdnd.data.type.Alignment;
 import io.musician101.sponge.mcdnd.data.type.CharacterClassType;
 import io.musician101.sponge.mcdnd.data.type.CurrencyType;
@@ -58,6 +63,7 @@ import io.musician101.sponge.mcdnd.magic.SpellBuilder;
 import io.musician101.sponge.mcdnd.magic.spelleffect.SpellEffectBuilder;
 import io.musician101.sponge.mcdnd.race.trait.TraitBuilder;
 import io.musician101.sponge.mcdnd.registry.AbilityScoreTypeRegistryModule;
+import io.musician101.sponge.mcdnd.registry.ActionTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.AlignmentRegistryModule;
 import io.musician101.sponge.mcdnd.registry.CharacterClassTypeRegistryModule;
 import io.musician101.sponge.mcdnd.registry.CurrencyTypeRegistryModule;
@@ -103,6 +109,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         Sponge.getRegistry().registerBuilderSupplier(DivineDomainBuilder.class, DivineDomainBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(DruidCircleBuilder.class, DruidCircleBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(FeatureBuilder.class, FeatureBuilder::new);
+        Sponge.getRegistry().registerBuilderSupplier(FightingStyleBuilder.class, FightingStyleBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(PrimalPathBuilder.class, PrimalPathBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(SpellBuilder.class, SpellBuilder::new);
         Sponge.getRegistry().registerBuilderSupplier(SpellEffectBuilder.class, SpellEffectBuilder::new);
@@ -113,6 +120,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
     private void registerCatalogRegistryModules()
     {
         Sponge.getRegistry().registerModule(AbilityScoreType.class, new AbilityScoreTypeRegistryModule());
+        Sponge.getRegistry().registerModule(ActionType.class, new ActionTypeRegistryModule());
         Sponge.getRegistry().registerModule(Alignment.class, new AlignmentRegistryModule());
         Sponge.getRegistry().registerModule(CharacterClassType.class, new CharacterClassTypeRegistryModule());
         Sponge.getRegistry().registerModule(CurrencyType.class, new CurrencyTypeRegistryModule());
@@ -132,6 +140,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         Sponge.getDataManager().register(ArmorProficiencyData.class, ImmutableArmorProficiencyData.class, new ArmorProficiencyDataBuilder());
         Sponge.getDataManager().register(CharacterArmorClassData.class, ImmutableCharacterArmorClassData.class, new CharacterArmorClassDataBuilder());
         Sponge.getDataManager().register(CharacterClassData.class, ImmutableCharacterClassData.class, new CharacterClassDataBuilder());
+        Sponge.getDataManager().register(EquippedItemsData.class, ImmutableEquippedItemsData.class, new EquippedItemsDataBuilder());
         Sponge.getDataManager().register(FeatureListData.class, ImmutableFeatureListData.class, new FeatureListDataBuilder());
         Sponge.getDataManager().register(HitDiceData.class, ImmutableHitDiceData.class, new HitDiceDataBuilder());
         Sponge.getDataManager().register(MCDNDHealthData.class, ImmutableMCDNDHealthData.class, new MCDNDHealthDataBuilder());
@@ -151,6 +160,7 @@ public class SpongeMCDND extends AbstractSpongePlugin
         //noinspection OptionalGetWithoutIsPresent
         return (SpongeMCDND) getPluginContainer().getInstance().get();//NOSONAR
     }
+    //TODO create registry modules for features, traits, and spells?
     //TODO remove all hardcoded enum classes
     //TODO NPC: ability score, size, armor class, hit points, resistances, actions
 }

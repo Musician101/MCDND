@@ -6,6 +6,10 @@ import org.spongepowered.api.data.DataSerializable;
 import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.Random;
 
 public class Dice implements DataSerializable
@@ -39,13 +43,13 @@ public class Dice implements DataSerializable
         return sides;
     }
 
-    public int roll()
+    public List<Entry<Dice, Integer>> roll()
     {
-        int roll = 0;
+        List<Entry<Dice, Integer>> list = new ArrayList<>();
         for (int x = 0; x < amount; x++)
-            roll =+ new Random().nextInt(sides - 1) + 1;
+            list.add(new SimpleEntry<>(new Dice(sides), new Random().nextInt(sides - 1) + 1));
 
-        return roll;
+        return list;
     }
 
     @Override
@@ -67,5 +71,14 @@ public class Dice implements DataSerializable
         return new MemoryDataContainer()
                 .set(MCDNDKeys.SIDES, sides)
                 .set(MCDNDKeys.AMOUNT, amount);
+    }
+
+    public static int total(List<Entry<Dice, Integer>> rolls, int bonus)
+    {
+        int roll = 0;
+        for (Entry<Dice, Integer> rollEntry : rolls)
+            roll =+ rollEntry.getValue();
+
+        return roll + bonus;
     }
 }

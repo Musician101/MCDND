@@ -1,18 +1,15 @@
 package io.musician101.sponge.mcdnd.property;
 
-import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.data.type.AbilityScoreType;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillType;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.tool.Tool;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapon;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.MemoryDataContainer;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
-public class ProficienciesProperty extends MCDNDProperty
+@Deprecated
+public class ProficienciesProperty
 {
     private final int skillAmount;
     private final List<MCDNDArmorTypes> armor;
@@ -95,29 +92,4 @@ public class ProficienciesProperty extends MCDNDProperty
     {
         return weaponString;
     }
-
-    @Override
-    public int getContentVersion()
-    {
-        return 1;
-    }
-
-    @Nonnull
-    @Override
-    public DataContainer toContainer()
-    {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.ARMOR_TYPES, armor)
-                .set(MCDNDKeys.ARMOR_STRING, armorString)
-                .set(MCDNDKeys.ABILITY_SCORE_TYPES, savingThrows)
-                .set(MCDNDKeys.SAVING_THROW_STRING, savingThrowString)
-                .set(MCDNDKeys.SKILL_TYPES, skills)
-                .set(MCDNDKeys.SKILL_AMOUNT, skillAmount)
-                .set(MCDNDKeys.SKILL_STRING, skillString)
-                .set(MCDNDKeys.TOOLS, tools)
-                .set(MCDNDKeys.TOOL_STRING, toolString)
-                .set(MCDNDKeys.WEAPONS, weapons)
-                .set(MCDNDKeys.WEAPON_STRING, weaponString);
-    }
-
 }

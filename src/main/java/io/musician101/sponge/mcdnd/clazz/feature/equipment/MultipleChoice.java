@@ -9,7 +9,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 import javax.annotation.Nonnull;
 import java.util.Map;
 
-public class MultipleChoice extends EquipmentChoice implements Mapped<Equipment, Integer>
+public class MultipleChoice implements EquipmentChoice, Mapped<Equipment, Integer>
 {
     private final Map<Equipment, Integer> equipment;
 

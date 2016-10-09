@@ -16,8 +16,9 @@ import io.musician101.sponge.mcdnd.shape.Cube;
 import io.musician101.sponge.mcdnd.shape.Line;
 import io.musician101.sponge.mcdnd.shape.Sphere;
 import io.musician101.sponge.mcdnd.util.ActionTimes;
-import io.musician101.sponge.mcdnd.util.list.SpellList;
 import io.musician101.sponge.mcdnd.util.table.Table;
+
+import java.util.Arrays;
 
 import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.ACID;
 import static io.musician101.sponge.mcdnd.combat.MCDNDDamageTypes.BLUDGEONING;
@@ -46,6 +47,7 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONDITION;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONDITIONS;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CONNECTION_COLUMN;
+import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CUBE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.DAMAGE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.DAMAGE_TYPE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.DAMAGE_TYPES;
@@ -72,7 +74,6 @@ import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.MOVEMENT_INCREASE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.RANGE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SAVE_MODIFIER_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SAVING_THROW;
-import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.CUBE;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SIGHTS;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SIZE_COLUMN;
 import static io.musician101.sponge.mcdnd.data.key.MCDNDKeys.SKILL_TYPE;
@@ -698,7 +699,7 @@ public class Spells
             .addLineToDescription("A Remove Curse or Greater Restoration spell cast on the target restores the creature's true memory.")
             .addLineToDescription("At Higher Levels: If you cast this spell using a spell slot of 6th level or higher, you can alter the target's memories of an event that took place up to 7 days ago (6th level), 30 days ago (7th level), 1 year ago (8th level), or any time in the creature's past (9th level).")
             .components(true, true).duration(ONE_MINUTE, true)
-            .addProperty(SPELLS, SpellList.of(REMOVE_CURSE, GREATER_RESTORATION))
+            .addProperty(SPELLS, Arrays.asList(REMOVE_CURSE, GREATER_RESTORATION))
             .addProperty(SPELL_LEVEL_DOUBLE_MAP, ImmutableMap.<SpellLevel, Double>builder().put(L5, ONE_DAY)
                     .put(L6, ONE_DAY * 7D).put(L7, ONE_DAY * 30D).put(L8, ONE_DAY * 365D).put(L9, -1D).build())
             .addProperty(SAVING_THROW, WISDOM).addProperty(MAX_RANGE, 24).addProperty(INTEGER, 10).build();
@@ -844,9 +845,9 @@ public class Spells
             .addProperty(LENGTH, 20).addProperty(ABILITY_SCORE_TYPE, DEXTERITY).addProperty(ARMOR_CLASS, 15).addProperty(HIT_POINTS, thickness ->
             {
                 int inches = 0;
-                if (thickness == 0.5)
+                if (thickness == 0.5)//NOSONAR
                     inches = 6;
-                else if (thickness == 0.25)
+                else if (thickness == 0.25)//NOSONAR
                     inches = 3;
 
                 return inches * 30;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ListChoice extends EquipmentChoice implements Listed<Equipment>
+public class ListChoice implements EquipmentChoice, Listed<Equipment>
 {
     private final List<Equipment> equipment;
 

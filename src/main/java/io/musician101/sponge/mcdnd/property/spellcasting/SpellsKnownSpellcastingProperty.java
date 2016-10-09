@@ -1,10 +1,6 @@
 package io.musician101.sponge.mcdnd.property.spellcasting;
 
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
-import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
-import org.spongepowered.api.data.DataContainer;
-
-import javax.annotation.Nonnull;
 
 public class SpellsKnownSpellcastingProperty extends SpellcastingProperty
 {
@@ -19,19 +15,5 @@ public class SpellsKnownSpellcastingProperty extends SpellcastingProperty
     public Feature getSpellsKnown()
     {
         return spellsKnown;
-    }
-
-    @Override
-    public int getContentVersion()
-    {
-        return 1;
-    }
-
-    @Nonnull
-    @Override
-    public DataContainer toContainer()
-    {
-        return super.toContainer()
-                .set(MCDNDKeys.SPELLS_KNOWN, spellsKnown);
     }
 }

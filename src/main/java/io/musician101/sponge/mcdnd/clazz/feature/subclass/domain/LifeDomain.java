@@ -5,21 +5,23 @@ import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
+import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
-import io.musician101.sponge.mcdnd.util.list.SpellList;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
-import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 public class LifeDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Life Domain Spells")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
-                    .put(1, of(Spells.BLESS, Spells.CURE_WOUNDS))
-                    .put(3, of(Spells.LESSER_RESTORATION, Spells.SPIRITUAL_WEAPON))
-                    .put(5, of(Spells.BEACON_OF_HOPE, Spells.REVIVIFY))
-                    .put(7, of(Spells.DEATH_WARD, Spells.GUARDIAN_OF_FAITH))
-                    .put(9, of(Spells.MASS_CURE_WOUNDS, Spells.RAISE_DEAD)).build()).build();
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, List<Spell>>builder()
+                    .put(1, Arrays.asList(Spells.BLESS, Spells.CURE_WOUNDS))
+                    .put(3, Arrays.asList(Spells.LESSER_RESTORATION, Spells.SPIRITUAL_WEAPON))
+                    .put(5, Arrays.asList(Spells.BEACON_OF_HOPE, Spells.REVIVIFY))
+                    .put(7, Arrays.asList(Spells.DEATH_WARD, Spells.GUARDIAN_OF_FAITH))
+                    .put(9, Arrays.asList(Spells.MASS_CURE_WOUNDS, Spells.RAISE_DEAD)).build()).build();
     public static final Feature BONUS_PROFICIENCY = builder().name("Bonus Feature")
             .description("When you choose this domain at 1st level, you gain proficiency with heavy armor.")
             .addProperty(MCDNDKeys.ARMOR_TYPE, MCDNDArmorTypes.HEAVY).build();

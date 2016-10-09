@@ -1,14 +1,11 @@
 package io.musician101.sponge.mcdnd.property;
 
-import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
-import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.data.type.CharacterSize;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.MemoryDataContainer;
+import io.musician101.sponge.mcdnd.dice.Dice;
 
-import javax.annotation.Nonnull;
+import java.util.Map.Entry;
 
-public class SizeProperty extends MCDNDProperty
+public class SizeProperty implements MCDNDProperty
 {
     private final CharacterSize size;
     private final Dice heightDice;
@@ -37,7 +34,11 @@ public class SizeProperty extends MCDNDProperty
 
     public int rollHeight()
     {
-        return heightDice.roll() + baseHeight;
+        int roll = 0;
+        for (Entry<Dice, Integer> entry : heightDice.roll())
+            roll =+ entry.getValue();
+
+        return roll + baseHeight;
     }
 
     public int getAverageWeight(int height)
@@ -47,24 +48,10 @@ public class SizeProperty extends MCDNDProperty
 
     public int rollWeight(int height)
     {
-        return height * weightDice.roll() + baseWeight;
-    }
+        int roll = 0;
+        for (Entry<Dice, Integer> entry : weightDice.roll())
+            roll =+ entry.getValue();
 
-    @Override
-    public int getContentVersion()
-    {
-        return 1;
-    }
-
-    @Nonnull
-    @Override
-    public DataContainer toContainer()
-    {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.CHARACTER_SIZE, size)
-                .set(MCDNDKeys.BASE_HEIGHT, baseHeight)
-                .set(MCDNDKeys.HEIGHT_DICE, heightDice)
-                .set(MCDNDKeys.BASE_WEIGHT, baseWeight)
-                .set(MCDNDKeys.WEIGHT_DICE, weightDice);
+        return height * roll + baseWeight;
     }
 }

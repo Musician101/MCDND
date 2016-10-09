@@ -6,7 +6,7 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.data.type.skill.SkillTypes;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
-import io.musician101.sponge.mcdnd.util.list.TraitList;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,7 +41,7 @@ public class ElfTraits
             .description("You can speak, read, and write Common and Elvish. Elvish is fluid, with subtle intonations and intricate grammar. Elven literature is rich and varied, and their songs and poems are famous among other races. Many bards learn their language so they can add Elvish ballads to their repertoires.")
             .build();
     public static final Trait SUBRACES = builder().name("Subraces")
-            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, TraitList>builder().put("Dark", TraitList.of(DarkElfTraits.ALL)).put("High", TraitList.of(HighElfTraits.ALL)).put("Wood", TraitList.of(WoodElfTraits.ALL)).build())
+            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, List<Trait>>builder().put("Dark", DarkElfTraits.ALL).put("High", HighElfTraits.ALL).put("Wood", WoodElfTraits.ALL).build())
             .description("Ancient divides among the elven people resulted in three main subraces: high elves, wood elves, and dark elves, who are commonly called drow. Choose one of these subraces. In some worlds, these subraces are divided still further (such as the sun elves and moon elves of the Forgotten Realms), so if you wish you can choose a narrower subrace.")
             .build();
     public static final List<Trait> ALL = Arrays.asList(ABILITY_SCORE_INCREASE, AGE, ALIGNMENT, KEEN_SENSES, FEY_ANCESTRY, TRANCE, LANGUAGES, SUBRACES);

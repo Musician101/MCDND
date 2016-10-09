@@ -8,7 +8,6 @@ import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
-import io.musician101.sponge.mcdnd.util.list.TraitList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,7 +49,7 @@ public class HalflingTraits
             .description("You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.")
             .build();
     public static final Trait SUBRACES = builder().name("Subraces")
-            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, TraitList>builder().put("Lightfoot", TraitList.of(LightfootHalflingTraits.ALL)).put("Stout", TraitList.of(StoutHalflingTraits.ALL)).build())
+            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, List<Trait>>builder().put("Lightfoot", LightfootHalflingTraits.ALL).put("Stout", StoutHalflingTraits.ALL).build())
             .description("The two main kinds of halfling, lightfoot and stout, are more like closely related families than true subraces. Choose one of these subraces.")
             .build();
     public static final List<Trait> ALL = Arrays.asList(ABILITY_SCORE_INCREASE, AGE, ALIGNMENT, SPEED, SIZE, LUCKY, BRAVE, HALFLING_NIMBLENESS, LANGUAGES, SUBRACES);

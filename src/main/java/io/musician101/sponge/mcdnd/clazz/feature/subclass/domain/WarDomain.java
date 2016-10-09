@@ -8,23 +8,23 @@ import io.musician101.sponge.mcdnd.data.type.AbilityScoreTypes;
 import io.musician101.sponge.mcdnd.dice.Dice;
 import io.musician101.sponge.mcdnd.equipment.armor.Armor.MCDNDArmorTypes;
 import io.musician101.sponge.mcdnd.equipment.weapon.Weapons;
+import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
-import io.musician101.sponge.mcdnd.util.list.SpellList;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
-import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 public class WarDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("War Domain Spells")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
-                    .put(1, of(Spells.DIVINE_FAVOR, Spells.SHIELD_OF_FAITH))
-                    .put(3, of(Spells.MAGIC_WEAPON, Spells.SPIRITUAL_WEAPON))
-                    .put(5, of(Spells.CRUSADERS_MANTLE, Spells.SPIRIT_GUARDIANS))
-                    .put(7, of(Spells.FREEDOM_OF_MOVEMENT, Spells.STONESKIN))
-                    .put(9, of(Spells.FLAME_STRIKE, Spells.HOLD_MONSTER))
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, List<Spell>>builder()
+                    .put(1, Arrays.asList(Spells.DIVINE_FAVOR, Spells.SHIELD_OF_FAITH))
+                    .put(3, Arrays.asList(Spells.MAGIC_WEAPON, Spells.SPIRITUAL_WEAPON))
+                    .put(5, Arrays.asList(Spells.CRUSADERS_MANTLE, Spells.SPIRIT_GUARDIANS))
+                    .put(7, Arrays.asList(Spells.FREEDOM_OF_MOVEMENT, Spells.STONESKIN))
+                    .put(9, Arrays.asList(Spells.FLAME_STRIKE, Spells.HOLD_MONSTER))
                     .build()).build();
     public static final Feature BONUS_PROFICIENCIES = builder().name("Bonus Proficiencies")
             .description("At 1st level, you gain proficiency with martial weapons and heavy armor.")

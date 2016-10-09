@@ -7,7 +7,7 @@ import org.spongepowered.api.data.MemoryDataContainer;
 
 import javax.annotation.Nonnull;
 
-public class SingleChoice extends EquipmentChoice
+public class SingleChoice implements EquipmentChoice
 {
     private final int amount;
     private final Equipment equipment;

@@ -8,7 +8,7 @@ import io.musician101.sponge.mcdnd.language.Languages;
 import io.musician101.sponge.mcdnd.property.SizeProperty;
 import io.musician101.sponge.mcdnd.data.type.CharacterSizes;
 import io.musician101.sponge.mcdnd.race.trait.Trait;
-import io.musician101.sponge.mcdnd.util.list.TraitList;
+
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,7 +49,7 @@ public class GnomeTraits
             .description("Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.")
             .build();
     public static final Trait SUBRACES = builder().name("Subraces")
-            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, TraitList>builder().put("Forest", TraitList.of(ForestGnomeTraits.ALL)).put("Rock", TraitList.of(RockGnomeTraits.ALL)).build())
+            .addProperty(MCDNDKeys.SUBRACES, ImmutableMap.<String, List<Trait>>builder().put("Forest", ForestGnomeTraits.ALL).put("Rock", RockGnomeTraits.ALL).build())
             .description("Two subraces of gnomes are found among the worlds of D&D: forest gnomes and rock gnomes. Choose one of these subraces.")
             .build();
     public static final List<Trait> ALL = Arrays.asList(ABILITY_SCORE_INCREASE, AGE, ALIGNMENT, GNOME_CUNNING, DARKVISION, LANGUAGES, SPEED, SIZE, SUBRACES);

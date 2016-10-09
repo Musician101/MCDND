@@ -3,21 +3,23 @@ package io.musician101.sponge.mcdnd.clazz.feature.subclass.domain;
 import com.google.common.collect.ImmutableMap;
 import io.musician101.sponge.mcdnd.clazz.feature.Feature;
 import io.musician101.sponge.mcdnd.data.key.MCDNDKeys;
+import io.musician101.sponge.mcdnd.magic.Spell;
 import io.musician101.sponge.mcdnd.magic.Spells;
-import io.musician101.sponge.mcdnd.util.list.SpellList;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static io.musician101.sponge.mcdnd.clazz.feature.Feature.builder;
-import static io.musician101.sponge.mcdnd.util.list.SpellList.of;
 
 public class LightDomain
 {
     public static final Feature DOMAIN_SPELLS = builder().name("Light Domain Spells")
-            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, SpellList>builder()
-                    .put(1, of(Spells.BURNING_HANDS, Spells.FAERIE_FIRE))
-                    .put(3, of(Spells.FLAMING_SPHERE, Spells.SCORCHING_RAY))
-                    .put(5, of(Spells.DAYLIGHT, Spells.FIREBALL))
-                    .put(7, of(Spells.GUARDIAN_OF_FAITH, Spells.WALL_OF_FIRE))
-                    .put(9, of(Spells.FLAME_STRIKE, Spells.SCRYING)).build()).build();
+            .addProperty(MCDNDKeys.SPElLS_MAP, ImmutableMap.<Integer, List<Spell>>builder()
+                    .put(1, Arrays.asList(Spells.BURNING_HANDS, Spells.FAERIE_FIRE))
+                    .put(3, Arrays.asList(Spells.FLAMING_SPHERE, Spells.SCORCHING_RAY))
+                    .put(5, Arrays.asList(Spells.DAYLIGHT, Spells.FIREBALL))
+                    .put(7, Arrays.asList(Spells.GUARDIAN_OF_FAITH, Spells.WALL_OF_FIRE))
+                    .put(9, Arrays.asList(Spells.FLAME_STRIKE, Spells.SCRYING)).build()).build();
     public static final Feature BONUS_CANTRIP = builder().name("Bonus Cantrip")
             .description("When you choose this domain at 1st level, you gain the Light Cantrip if you don't already know it.")
             .addProperty(MCDNDKeys.SPELL, Spells.LIGHT).build();
