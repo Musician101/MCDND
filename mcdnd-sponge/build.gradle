@@ -1,0 +1,21 @@
+plugins {
+    id 'org.spongepowered.plugin' version '0.7'
+}
+
+dependencies {
+    compile project(':mcdnd-common')
+    compile 'org.spongepowered:spongeapi:5.0.0-SNAPSHOT'
+    compile 'io.musician101.musicianlibrary.java.minecraft:sponge:3.0-SNAPSHOT'
+}
+
+processResources {
+    from('src/main/resources') {
+        expand 'version': project.version
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(dependency(':mcdnd-common'))
+    }
+}
