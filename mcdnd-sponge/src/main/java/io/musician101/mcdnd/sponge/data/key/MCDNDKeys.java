@@ -74,15 +74,9 @@ import static io.musician101.mcdnd.sponge.data.key.MCDNDKeyFactory.makeListListK
 import static io.musician101.mcdnd.sponge.data.key.MCDNDKeyFactory.makeListMapKey;
 import static io.musician101.mcdnd.sponge.data.key.MCDNDKeyFactory.makeMapListKey;
 import static org.spongepowered.api.data.DataQuery.of;
-import static org.spongepowered.api.data.key.KeyFactory.makeListKey;
-import static org.spongepowered.api.data.key.KeyFactory.makeMapKey;
-import static org.spongepowered.api.data.key.KeyFactory.makeSingleKey;
 
-public class MCDNDKeys
-{
-    public static final Key<Value<String>> STRING = makeSingleKey(String.class, Value.class, of("String"));
-    public static final Key<Value<ItemType>> ITEM_TYPE = makeSingleKey(ItemType.class, Value.class, of("ItemType"));
-    public static final Key<Value<HitPointsHandler>> HIT_POINTS_HANDLER = makeSingleKey(HitPointsHandler.class, Value.class, of("HitPointsHandler"));
+public class MCDNDKeys {
+
     public static final Key<Value<Integer>> ABILITY_SCORE = makeSingleKey(Integer.class, Value.class, of("AbilityScore"));
     public static final Key<MapValue<AbilityScoreType, Integer>> ABILITY_SCORES = makeMapKey(AbilityScoreType.class, Integer.class, of("AbilityScores"));
     public static final Key<ListValue<Integer>> ABILITY_SCORE_IMPROVEMENT_PROPERTY = makeListKey(Integer.class, of("AbilityScoreImprovementProperty"));
@@ -165,6 +159,7 @@ public class MCDNDKeys
     public static final Key<Value<Dice>> HEIGHT_DICE = makeSingleKey(Dice.class, Value.class, of("HeightDice"));
     public static final Key<Value<HitDice>> HIT_DICE = makeSingleKey(HitDice.class, Value.class, of("HitDiceProperty"));
     public static final Key<Value<DoubleIntegerFunction>> HIT_POINTS = makeSingleKey(DoubleIntegerFunction.class, Value.class, of("HitPoints"));
+    public static final Key<Value<HitPointsHandler>> HIT_POINTS_HANDLER = makeSingleKey(HitPointsHandler.class, Value.class, of("HitPointsHandler"));
     public static final Key<ListValue<Integer>> HP_COLUMN = makeListKey(Integer.class, of("HP"));
     public static final Key<Value<HitPointsProperty>> HP_PROPERTY = makeSingleKey(HitPointsProperty.class, Value.class, of("HitPointsProperty"));
     public static final Key<Value<Integer>> INTEGER = makeSingleKey(Integer.class, Value.class, of("IntegerList"));
@@ -176,6 +171,7 @@ public class MCDNDKeys
     public static final Key<Value<Boolean>> IS_RITUAL = makeSingleKey(Boolean.class, Value.class, of("IsRitual"));
     public static final Key<Value<Boolean>> IS_SOMATIC = makeSingleKey(Boolean.class, Value.class, of("IsSomatic"));
     public static final Key<Value<Boolean>> IS_VERBAL = makeSingleKey(Boolean.class, Value.class, of("IsVerbal"));
+    public static final Key<Value<ItemType>> ITEM_TYPE = makeSingleKey(ItemType.class, Value.class, of("ItemType"));
     public static final Key<ListValue<String>> KNOWLEDGE_COLUMN = makeListKey(String.class, of("Knowledge"));
     public static final Key<Value<Language>> LANGUAGE = makeSingleKey(Language.class, Value.class, of("Language"));
     public static final Key<ListValue<Language>> LANGUAGES = makeListKey(Language.class, of("Languages"));
@@ -250,6 +246,8 @@ public class MCDNDKeys
     public static final Key<Value<Sphere>> SPHERE = makeSingleKey(Sphere.class, Value.class, of("Sphere"));
     public static final Key<Value<Integer>> STARTING_LEVEL = makeSingleKey(Integer.class, Value.class, of("StartingLevel"));
     public static final Key<Value<Boolean>> STEALTH_DISADVANTAGE = makeSingleKey(Boolean.class, Value.class, of("StealthDisadvantage"));
+    //TODO replace handler keys that use strings with com.google.common.base.Supplier
+    public static final Key<Value<String>> STRING = makeSingleKey(String.class, Value.class, of("String"));
     public static final Key<ListValue<Integer>> STR_COLUMN = makeListKey(Integer.class, of("Str"));
     public static final Key<MapListValue<String, Trait>> SUBRACES = makeMapListKey(String.class, Trait.class, of("Subraces"));
     public static final Key<Value<Table>> TABLE = makeSingleKey(Table.class, Value.class, of("Table"));
@@ -277,8 +275,7 @@ public class MCDNDKeys
     public static final Key<Value<Integer>> WIDTH = makeSingleKey(Integer.class, Value.class, of("Width"));
     public static final Key<ListValue<Integer>> WIDTHS = makeListKey(Integer.class, of("Widths"));
 
-    private MCDNDKeys()
-    {
+    private MCDNDKeys() {
 
     }
 }

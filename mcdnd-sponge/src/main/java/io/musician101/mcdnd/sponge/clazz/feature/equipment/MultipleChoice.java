@@ -3,50 +3,41 @@ package io.musician101.mcdnd.sponge.clazz.feature.equipment;
 import io.musician101.mcdnd.sponge.data.key.MCDNDKeys;
 import io.musician101.mcdnd.sponge.equipment.Equipment;
 import io.musician101.mcdnd.sponge.util.Interfaces.Mapped;
-import org.spongepowered.api.data.DataContainer;
-import org.spongepowered.api.data.MemoryDataContainer;
-
-import javax.annotation.Nonnull;
 import java.util.Map;
+import javax.annotation.Nonnull;
+import org.spongepowered.api.data.DataContainer;
 
-public class MultipleChoice implements EquipmentChoice, Mapped<Equipment, Integer>
-{
+public class MultipleChoice implements EquipmentChoice, Mapped<Equipment, Integer> {
+
     private final Map<Equipment, Integer> equipment;
 
-    public MultipleChoice(Map<Equipment, Integer> equipment)
-    {
+    public MultipleChoice(Map<Equipment, Integer> equipment) {
         this.equipment = equipment;
     }
 
     @Override
-    public boolean containsKey(Equipment key)
-    {
+    public boolean containsKey(Equipment key) {
         return equipment.containsKey(key);
     }
 
     @Override
-    public Map<Equipment, Integer> getMap()
-    {
-        return equipment;
-    }
-
-    @Override
-    public Integer get(Equipment key)
-    {
+    public Integer get(Equipment key) {
         return equipment.get(key);
     }
 
     @Override
-    public int getContentVersion()
-    {
+    public int getContentVersion() {
         return 1;
+    }
+
+    @Override
+    public Map<Equipment, Integer> getMap() {
+        return equipment;
     }
 
     @Nonnull
     @Override
-    public DataContainer toContainer()
-    {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.EQUIPMENT_MAP, equipment);
+    public DataContainer toContainer() {
+        return DataContainer.createNew().set(MCDNDKeys.EQUIPMENT_MAP, equipment);
     }
 }

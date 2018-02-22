@@ -2,53 +2,43 @@ package io.musician101.mcdnd.sponge.util.table;
 
 import io.musician101.mcdnd.sponge.data.key.MCDNDKeys;
 import io.musician101.mcdnd.sponge.util.Interfaces.Named;
+import javax.annotation.Nonnull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
-
-import javax.annotation.Nonnull;
 
 //TODO add class tables as features
-public class Table implements DataSerializable, Named
-{
-    private final String name;
-    private final DataContainer columns;
+public class Table implements DataSerializable, Named {
 
-    protected Table(String name, DataContainer columns)
-    {
+    private final DataContainer columns;
+    private final String name;
+
+    protected Table(String name, DataContainer columns) {
         this.name = name;
         this.columns = columns;
     }
 
-    @Override
-    public String getName()
-    {
-        return name;
+    public static TableBuilder builder() {
+        return Sponge.getRegistry().createBuilder(TableBuilder.class);
     }
 
-    public DataContainer getColumns()
-    {
+    public DataContainer getColumns() {
         return columns;
     }
 
     @Override
-    public int getContentVersion()
-    {
+    public int getContentVersion() {
         return 1;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     @Nonnull
     @Override
-    public DataContainer toContainer()
-    {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.NAME, name)
-                .set(MCDNDKeys.COLUMNS, columns);
-    }
-
-    public static TableBuilder builder()
-    {
-        return Sponge.getRegistry().createBuilder(TableBuilder.class);
+    public DataContainer toContainer() {
+        return DataContainer.createNew().set(MCDNDKeys.NAME, name).set(MCDNDKeys.COLUMNS, columns);
     }
 }

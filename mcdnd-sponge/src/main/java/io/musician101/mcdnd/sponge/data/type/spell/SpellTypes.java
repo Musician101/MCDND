@@ -1,7 +1,7 @@
 package io.musician101.mcdnd.sponge.data.type.spell;
 
-public class SpellTypes
-{
+public class SpellTypes {
+
     public static final SpellType ABJURATION = new SpellType("Abjuration");
     public static final SpellType CONJURATION = new SpellType("Conjuration");
     public static final SpellType DIVINATION = new SpellType("Divination");

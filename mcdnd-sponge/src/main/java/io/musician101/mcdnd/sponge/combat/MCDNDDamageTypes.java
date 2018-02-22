@@ -3,8 +3,8 @@ package io.musician101.mcdnd.sponge.combat;
 import java.util.Arrays;
 import java.util.List;
 
-public class MCDNDDamageTypes
-{
+public class MCDNDDamageTypes {
+
     public static final MCDNDDamageType ACID = new MCDNDDamageType("Acid");
     public static final MCDNDDamageType BLUDGEONING = new MCDNDDamageType("Bludgeoning");
     public static final MCDNDDamageType COLD = new MCDNDDamageType("Cold");

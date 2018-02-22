@@ -3,8 +3,8 @@ package io.musician101.mcdnd.sponge.data.type.spell;
 import java.util.Arrays;
 import java.util.List;
 
-public class SpellLevels
-{
+public class SpellLevels {
+
     public static final SpellLevel CANTRIP = new SpellLevel("Cantrip", 0);
     public static final SpellLevel L1 = new SpellLevel("1st Level", 1);
     public static final SpellLevel L2 = new SpellLevel("2nd Level", 2);

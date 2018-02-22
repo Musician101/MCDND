@@ -1,7 +1,7 @@
 package io.musician101.mcdnd.sponge.util;
 
-public class ActionTimes
-{
+public class ActionTimes {
+
     public static final double ACTION = 2;
     public static final double BONUS_ACTION = 2;
     public static final double EIGHT_HOURS = 28800;

@@ -6,30 +6,22 @@ import io.musician101.mcdnd.sponge.data.manipulator.immutable.ImmutableAbilitySc
 import io.musician101.mcdnd.sponge.data.manipulator.mutable.AbilityScoreIncreaseData;
 import io.musician101.mcdnd.sponge.data.type.AbilityScoreType;
 import io.musician101.mcdnd.sponge.util.Utils;
+import java.util.Map;
+import java.util.Optional;
+import javax.annotation.Nonnull;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataHolder;
 import org.spongepowered.api.data.DataView;
 
-import javax.annotation.Nonnull;
-import java.util.Map;
-import java.util.Optional;
-
-public class AbilityScoreIncreaseDataBuilder extends MappedDataManipulatorBuilder<AbilityScoreType, Integer, AbilityScoreIncreaseData, ImmutableAbilityScoreIncreaseData>
-{
-    @Nonnull
-    @Override
-    public AbilityScoreIncreaseData create()
-    {
-        return new AbilityScoreIncreaseData(value);
-    }
+public class AbilityScoreIncreaseDataBuilder extends MappedDataManipulatorBuilder<AbilityScoreType, Integer, AbilityScoreIncreaseData, ImmutableAbilityScoreIncreaseData> {
 
     @Nonnull
     @Override
-    public Optional<AbilityScoreIncreaseData> createFrom(@Nonnull DataHolder dataHolder)
-    {
-        Optional<Map<AbilityScoreType, Integer>> scores = dataHolder.get(MCDNDKeys.ABILITY_SCORES);//NOSONAR
-        if (!scores.isPresent())
+    public Optional<AbilityScoreIncreaseData> build(@Nonnull DataView container) {
+        Optional<Map<AbilityScoreType, Integer>> scores = Utils.getObjectMap((DataContainer) container, MCDNDKeys.ABILITY_SCORE.getQuery(), AbilityScoreType.class, Integer.class);
+        if (!scores.isPresent()) {
             return Optional.empty();
+        }
 
         this.value = scores.get();
         return Optional.of(create());
@@ -37,11 +29,17 @@ public class AbilityScoreIncreaseDataBuilder extends MappedDataManipulatorBuilde
 
     @Nonnull
     @Override
-    public Optional<AbilityScoreIncreaseData> build(@Nonnull DataView container)
-    {
-        Optional<Map<AbilityScoreType, Integer>> scores = Utils.getObjectMap((DataContainer) container, MCDNDKeys.ABILITY_SCORE.getQuery(), AbilityScoreType.class, Integer.class);
-        if (!scores.isPresent())
+    public AbilityScoreIncreaseData create() {
+        return new AbilityScoreIncreaseData(value);
+    }
+
+    @Nonnull
+    @Override
+    public Optional<AbilityScoreIncreaseData> createFrom(@Nonnull DataHolder dataHolder) {
+        Optional<Map<AbilityScoreType, Integer>> scores = dataHolder.get(MCDNDKeys.ABILITY_SCORES);
+        if (!scores.isPresent()) {
             return Optional.empty();
+        }
 
         this.value = scores.get();
         return Optional.of(create());

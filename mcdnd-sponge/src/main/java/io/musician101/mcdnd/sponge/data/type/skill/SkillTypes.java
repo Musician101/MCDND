@@ -2,8 +2,8 @@ package io.musician101.mcdnd.sponge.data.type.skill;
 
 import io.musician101.mcdnd.sponge.data.type.AbilityScoreTypes;
 
-public class SkillTypes
-{
+public class SkillTypes {
+
     public static final SkillType ACROBATICS = new SkillType("Acrobatics", AbilityScoreTypes.DEXTERITY);
     public static final SkillType ANIMAL_HANDLING = new SkillType("Animal Handling", AbilityScoreTypes.WISDOM);
     public static final SkillType ARCANA = new SkillType("Arcana", AbilityScoreTypes.INTELLIGENCE);
@@ -23,8 +23,7 @@ public class SkillTypes
     public static final SkillType STEALTH = new SkillType("Stealth", AbilityScoreTypes.DEXTERITY);
     public static final SkillType SURVIVAL = new SkillType("Survival", AbilityScoreTypes.WISDOM);
 
-    private SkillTypes()
-    {
+    private SkillTypes() {
 
     }
 }

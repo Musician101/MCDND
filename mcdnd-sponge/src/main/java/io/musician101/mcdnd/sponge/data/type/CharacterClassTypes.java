@@ -2,8 +2,8 @@ package io.musician101.mcdnd.sponge.data.type;
 
 import io.musician101.mcdnd.sponge.dice.HitDice;
 
-public class CharacterClassTypes
-{
+public class CharacterClassTypes {
+
     public static final CharacterClassType BARBARIAN = new CharacterClassType("Barbarian", new HitDice(12));
     public static final CharacterClassType BARD = new CharacterClassType("Bard", new HitDice(8));
     public static final CharacterClassType CLERIC = new CharacterClassType("Cleric", new HitDice(8));
@@ -17,8 +17,7 @@ public class CharacterClassTypes
     public static final CharacterClassType WARLOCK = new CharacterClassType("Warlock", new HitDice(8));
     public static final CharacterClassType WIZARD = new CharacterClassType("Wizard", new HitDice(6));
 
-    private CharacterClassTypes()
-    {
+    private CharacterClassTypes() {
 
     }
 }

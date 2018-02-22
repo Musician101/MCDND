@@ -3,73 +3,57 @@ package io.musician101.mcdnd.sponge.equipment;
 import io.musician101.mcdnd.sponge.data.key.MCDNDKeys;
 import io.musician101.mcdnd.sponge.equipment.armor.Armor;
 import io.musician101.mcdnd.sponge.equipment.weapon.Weapon;
+import javax.annotation.Nonnull;
 import org.spongepowered.api.data.DataContainer;
 import org.spongepowered.api.data.DataSerializable;
-import org.spongepowered.api.data.MemoryDataContainer;
 
-import javax.annotation.Nonnull;
+public class EquippedItems implements DataSerializable {
 
-public class EquippedItems implements DataSerializable
-{
     private Armor armor;
-    private Armor shield;
     private Weapon mainHand;
     private Weapon offHand;
+    private Armor shield;
 
-    public Armor getArmor()
-    {
+    public Armor getArmor() {
         return armor;
     }
 
-    public Weapon getMainHand()
-    {
-        return mainHand;
-    }
-
-    public Weapon getOffHand()
-    {
-        return offHand;
-    }
-
-    public Armor getShield()
-    {
-        return shield;
-    }
-
-    public void setArmor(Armor armor)
-    {
+    public void setArmor(Armor armor) {
         this.armor = armor;
     }
 
-    public void setMainHand(Weapon mainHand)
-    {
+    @Override
+    public int getContentVersion() {
+        return 1;
+    }
+
+    public Weapon getMainHand() {
+        return mainHand;
+    }
+
+    public void setMainHand(Weapon mainHand) {
         this.mainHand = mainHand;
     }
 
-    public void setOffHand(Weapon offHand)
-    {
+    public Weapon getOffHand() {
+        return offHand;
+    }
+
+    public void setOffHand(Weapon offHand) {
         this.offHand = offHand;
     }
 
-    public void setShield(Armor shield)
-    {
-        this.shield = shield;
+    public Armor getShield() {
+        return shield;
     }
 
-    @Override
-    public int getContentVersion()
-    {
-        return 1;
+    public void setShield(Armor shield) {
+        this.shield = shield;
     }
 
     @Nonnull
     @Override
-    public DataContainer toContainer()
-    {
-        return new MemoryDataContainer()
-                .set(MCDNDKeys.ARMOR, armor)
-                .set(MCDNDKeys.SHIELD, shield)
-                .set(MCDNDKeys.MAIN_HAND, mainHand)
-                .set(MCDNDKeys.OFF_HAND, offHand);
+    public DataContainer toContainer() {
+        return DataContainer.createNew().set(MCDNDKeys.ARMOR, armor).set(MCDNDKeys.SHIELD, shield).set(MCDNDKeys.MAIN_HAND, mainHand).set(MCDNDKeys.OFF_HAND, offHand);
     }
 }

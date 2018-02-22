@@ -5,19 +5,17 @@ import io.musician101.mcdnd.sponge.util.Interfaces.SingleValue;
 import org.spongepowered.api.util.annotation.CatalogedBy;
 
 @CatalogedBy(SpellLevels.class)
-public class SpellLevel extends MCDNDCatalogType implements SingleValue<Integer>
-{
+public class SpellLevel extends MCDNDCatalogType implements SingleValue<Integer> {
+
     private final int numericalValue;
 
-    public SpellLevel(String name, int numericalValue)
-    {
+    public SpellLevel(String name, int numericalValue) {
         super(name);
         this.numericalValue = numericalValue;
     }
 
     @Override
-    public Integer getValue()
-    {
+    public Integer getValue() {
         return numericalValue;
     }
 }
