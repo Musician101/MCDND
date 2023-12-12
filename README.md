@@ -1,3 +1,5 @@
+Archived due to the name of the plugin more than likely clashing with Mojang/Microsoft's terms for naming Minecraft related products.
+
 Minecraft Dungeons & Dragons
 ===================
 
